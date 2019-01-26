@@ -1,11 +1,17 @@
-# ECSE321 Project Group _number_
+# ECSE321 Project Group 19 [![Build Status](https://travis-ci.com/McGill-ECSE321-Winter2019/ecse321-group-project-19-1.svg?token=E9CzzJJTQAzyqtGXvYx8&branch=master)](https://travis-ci.com/McGill-ECSE321-Winter2019/ecse321-group-project-19-1)
 
-_This README.md is a fillable template for the project submissions. Use the table provided below to document the hours and the responsibilities of team members individually. Create a separate table for each deliverable. Remove this comment before the first submission._
+Welcome to ECSE 321 - Winter 2019 project - Group 19 edition.
 
-## Deliverable _number_
+App hosted [here](https://bingo-backend-1.herokuapp.com/)
 
-|Team member's name|Total hours|Responsibility         |
-|------------------|-----------|-----------------------|
-|Team Member 1     |  _x_ hours|Mobile frontend lead   |
-|Team Member 2     |  _y_ hours|Project management lead|
-|...               |...        |                       |
+
+## Deliverable 1
+
+|Team member's name |Total hours |Responsibility         |
+|-------------------|------------|-----------------------|
+|Sophie Deng        |            |                       |
+|Andre Kaba         |            |                       |
+|Mia Zhou           |            |                       |
+|Max Brodeur        |            |                       |
+|Carl Elkhoury      |            |                       |
+
