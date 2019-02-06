@@ -1,2 +1,11 @@
+## Gradle generated
 .gradle/
+build/
+out/
+
+## Idea generated
+.idea
+*.iws
+*.iml
+*.ipr
 
