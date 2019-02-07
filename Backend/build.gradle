@@ -14,8 +14,8 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-group = 'ca.mcgill.ecse321'
-version = '0.0.1'
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
