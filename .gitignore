@@ -3,6 +3,12 @@
 build/
 out/
 
+## Ignore eclipse? files
+.settings/
+
+## Ignore vs code files
+.vscode/
+
 ## Idea generated
 .idea
 *.iws
