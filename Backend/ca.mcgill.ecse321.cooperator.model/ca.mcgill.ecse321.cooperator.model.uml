@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Persistency="http:///schemas/Persistency/NS/0" xmlns:UMLLabProfile="http:///schemas/UMLLabProfile/NS/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/Persistency/NS/0 pathmap://PERSISTENCY_PROFILES/Persistency.profile.uml#Persistency_2-Annotation-Persistency http:///schemas/UMLLabProfile/NS/0 pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile">
+  <uml:Model xmi:id="_f7qIkCpCEemSCI2wvOhV-A" name="ca_mcgill_ecse321_cooperator_model">
+    <eAnnotations xmi:id="_gF2mYCpCEemSCI2wvOhV-A" source="http://ns.yatta.de/umllab">
+      <contents xmi:type="ecore:EAnnotation" xmi:id="_gF2mYSpCEemSCI2wvOhV-A" source="codegen">
+        <details xmi:id="_gF2mYipCEemSCI2wvOhV-A" key="codegenDirectory" value="/ca.mcgill.ecse321.cooperator.model/src-gen"/>
+        <details xmi:id="_gGii4CpCEemSCI2wvOhV-A" key="observedFolders" value="/ca.mcgill.ecse321.cooperator.model/src-gen"/>
+        <details xmi:id="_FNSWkCpEEemZlriYZjiYLg" key="AssociatedSourceCode" value="/ca.mcgill.ecse321.cooperator.model/src-gen/ca/mcgill/ecse321/bingo/BingoApplication.java;3687508844/1;/ca.mcgill.ecse321.cooperator.model/src-gen/ca/mcgill/ecse321/model/Student.java;273936537/1;/ca.mcgill.ecse321.cooperator.model/src-gen/ca/mcgill/ecse321/model/CooperatorManager.java;1656455346/1;/ca.mcgill.ecse321.cooperator.model/src-gen/ca/mcgill/ecse321/model/User.java;3810184088/1;/ca.mcgill.ecse321.cooperator.model/src-gen/ca/mcgill/ecse321/model/CoopPosition.java;3793753266/1;/ca.mcgill.ecse321.cooperator.model/src-gen/ca/mcgill/ecse321/model/RequiredDocuments.java;3474768150/1;/ca.mcgill.ecse321.cooperator.model/src-gen/ca/mcgill/ecse321/model/EmployerContract.java;3009596900/1;/ca.mcgill.ecse321.cooperator.model/src-gen/ca/mcgill/ecse321/model/Form.java;647347494/1;/ca.mcgill.ecse321.cooperator.model/src-gen/ca/mcgill/ecse321/model/ReportType.java;705657718/1;/ca.mcgill.ecse321.cooperator.model/src-gen/ca/mcgill/ecse321/model/Report.java;3380067887/1;/ca.mcgill.ecse321.cooperator.model/src-gen/ca/mcgill/ecse321/model/Status.java;282667623/1;/ca.mcgill.ecse321.cooperator.model/src-gen/ca/mcgill/ecse321/model/UserRole.java;717354821/1;/ca.mcgill.ecse321.cooperator.model/src-gen/ca/mcgill/ecse321/model/ProgramManager.java;2049373553/1;/ca.mcgill.ecse321.cooperator.model/src-gen/ca/mcgill/ecse321/model/TermInstructor.java;3121649033/1;/ca.mcgill.ecse321.cooperator.model/src-gen/ca/mcgill/ecse321/model/Course.java;3226063707/1;"/>
+        <details xmi:id="_poUvcCp0EemDjvGMfFr7ig" key="codeGenerator" value="com.yattasolutions.codegen.oaw.codeGenerator"/>
+      </contents>
+      <contents xmi:type="ecore:EAnnotation" xmi:id="_2LVaUCpDEemSCI2wvOhV-A" source="com.yattasolutions.umllab.OCLConstraintConfiguration">
+        <details xmi:id="_2LWocCpDEemSCI2wvOhV-A" key="OCLConstraintConfiguration" value="UML:validateNamespace_validateMembersDistinguishable,UML:validateConnector_validateRoles,UML:validateConnector_validateTypes,UML:validateMergeNode_validateEdges,UML:validateMergeNode_validateOneOutgoingEdge,UML:validatePin_validateNotUnique,UML:validatePin_validateControlPins,UML:validateForkNode_validateEdges,UML:validateForkNode_validateOneIncomingEdge,UML:validateElement_validateHasOwner,UML:validateElement_validateNotOwnSelf,UML:validateRegion_validateOwned,UML:validateRegion_validateInitialVertex,UML:validateRegion_validateDeepHistoryVertex,UML:validateRegion_validateShallowHistoryVertex,UML:validateMultiplicityElement_validateLowerIsInteger,UML:validateMultiplicityElement_validateValueSpecificationConstant,UML:validateMultiplicityElement_validateUpperIsUnlimitedNatural,UML:validateMultiplicityElement_validateValueSpecificationNoSideEffects,UML:validateMultiplicityElement_validateLowerGe0,UML:validateMultiplicityElement_validateUpperGeLower,UML:validateProperty_validateSubsettingContextConforms,UML:validateProperty_validateRedefinedPropertyInherited,UML:validateProperty_validateQualifiedIsAssociationEnd,UML:validateProperty_validateSubsettedPropertyNames,UML:validateProperty_validateDerivedUnionIsReadOnly,UML:validateProperty_validateSubsettingRules,UML:validateProperty_validateDerivedUnionIsDerived,UML:validateProperty_validateDeploymentTarget,UML:validateProperty_validateTypeOfOppositeEnd,UML:validateProperty_validateBindingToAttribute,UML:validateProperty_validateMultiplicityOfComposite,UML:validateDeploymentSpecification_validateDeploymentTarget,UML:validateDeploymentSpecification_validateDeployedElements,UML:validateBehavior_validateFeatureOfContextClassifier,UML:validateBehavior_validateParametersMatch,UML:validateBehavior_validateMostOneBehavior,UML:validateTemplateParameterSubstitution_validateMustBeCompatible,UML:validateStereotype_validateAssociationEndOwnership,UML:validateStereotype_validateBinaryAssociationsOnly,UML:validateStereotype_validateBasePropertyUpperBound,UML:validateStereotype_validateBasePropertyMultiplicitySingleExtension,UML:validateStereotype_validateBasePropertyMultiplicityMultipleExtension,UML:validateStereotype_validateGeneralize,UML:validateStereotype_validateNameNotClash,UML:validateGeneralizationSet_validateGeneralizationSameClassifier,UML:validateGeneralizationSet_validateMapsToGeneralizationSet,UML:validateParameterSet_validateSameParameterizedEntity,UML:validateParameterSet_validateTwoParameterSets,UML:validateParameterSet_validateInput,UML:validateProtocolStateMachine_validateClassifierContext,UML:validateProtocolStateMachine_validateDeepOrShallowHistory,UML:validateProtocolStateMachine_validateProtocolTransitions,UML:validateProtocolStateMachine_validateEntryExitDo,UML:validatePackageableElement_validateNamespaceNeedsVisibility,UML:validateTemplateSignature_validateUniqueParameters,UML:validateTemplateSignature_validateOwnElements,UML:validateBehavioredClassifier_validateClassBehavior,UML:validateOpaqueExpression_validateLanguageBodySize,UML:validateOpaqueExpression_validateOnlyReturnResultParameters,UML:validateOpaqueExpression_validateOneReturnResultParameter,UML:validateNamespace_validateCannotImportOwnedMembers,UML:validateNamespace_validateCannotImportSelf,UML:validateTemplateBinding_validateParameterSubstitutionFormal,UML:validateTemplateBinding_validateOneParameterSubstitution,UML:validateProfile_validateMetaclassReferenceNotSpecialized,UML:validateProfile_validateReferencesSameMetamodel,UML:validateBehavioralFeature_validateAbstractNoMethod,UML:validateRedefinableElement_validateNonLeafRedefinition,UML:validateRedefinableElement_validateRedefinitionContextValid,UML:validateRedefinableElement_validateRedefinitionConsistent,UML:validateClassifier_validateNoCyclesInGeneralization,UML:validateClassifier_validateMapsToGeneralizationSet,UML:validateClassifier_validateSpecializeType,UML:validateClassifier_validateNonFinalParents,UML:validateElementImport_validateImportedElementIsPublic,UML:validateElementImport_validateVisibilityPublicOrPrivate,UML:validateTemplateParameter_validateMustBeCompatible,UML:validateNamedElement_validateVisibilityNeedsOwnership,UML:validateNamedElement_validateHasNoQualifiedName,UML:validateNamedElement_validateHasQualifiedName,UML:validateInputPin_validateOutgoingEdgesStructuredOnly,UML:validateRedefinableTemplateSignature_validateRedefinesParents,UML:validateClassifierTemplateParameter_validateActualIsClassifier,UML:validateClassifierTemplateParameter_validateMatchingAbstract,UML:validateClassifierTemplateParameter_validateConstrainingClassifiersConstrainParameteredElement,UML:validateClassifierTemplateParameter_validateHasConstrainingClassifier,UML:validateClassifierTemplateParameter_validateParameteredElementNoFeatures,UML:validateClassifierTemplateParameter_validateConstrainingClassifiersConstrainArgs,UML:validateInstanceSpecification_validateStructuralFeature,UML:validateInstanceSpecification_validateDefiningFeature,UML:validateInstanceSpecification_validateDeploymentTarget,UML:validateInstanceSpecification_validateDeploymentArtifact,UML:validateGeneralOrdering_validateIrreflexiveTransitiveClosure,UML:validateInteractionUse_validateReturnValueRecipientCoverage,UML:validateInteractionUse_validateArgumentsAreConstants,UML:validateInteractionUse_validateArgumentsCorrespondToParameters,UML:validateInteractionUse_validateReturnValueTypeRecipientCorrespondence,UML:validateInteractionUse_validateGatesMatch,UML:validateInteractionUse_validateAllLifelines,UML:validateInteractionConstraint_validateMinintMaxint,UML:validateInteractionConstraint_validateMinintNonNegative,UML:validateInteractionConstraint_validateMaxintPositive,UML:validateInteractionConstraint_validateMaxintGreaterEqualMinint,UML:validateInteractionConstraint_validateDynamicVariables,UML:validateInteractionConstraint_validateGlobalData,UML:validateStructuredActivityNode_validateInputPinEdges,UML:validateStructuredActivityNode_validateOutputPinEdges,UML:validateStructuredActivityNode_validateEdges,UML:validateOutputPin_validateIncomingEdgesStructuredOnly,UML:validateActivityPartition_validateRepresentsProperty,UML:validateActivityPartition_validateRepresentsClassifier,UML:validateActivityPartition_validateDimensionNotContained,UML:validateActivityPartition_validateRepresentsPropertyAndIsContained,UML:validateExceptionHandler_validateHandlerBodyEdges,UML:validateExceptionHandler_validateExceptionInputType,UML:validateExceptionHandler_validateEdgeSourceTarget,UML:validateExceptionHandler_validateHandlerBodyOwner,UML:validateExceptionHandler_validateOutputPins,UML:validateExceptionHandler_validateOneInput,UML:validateContinuation_validateFirstOrLastInteractionFragment,UML:validateContinuation_validateSameName,UML:validateContinuation_validateGlobal,UML:validateCreateObjectAction_validateClassifierNotAbstract,UML:validateCreateObjectAction_validateClassifierNotAssociationClass,UML:validateCreateObjectAction_validateSameType,UML:validateCreateObjectAction_validateMultiplicity,UML:validateTestIdentityAction_validateResultIsBoolean,UML:validateTestIdentityAction_validateMultiplicity,UML:validateTestIdentityAction_validateNoType,UML:validateGate_validateOutsideCfGateDistinguishable,UML:validateGate_validateInsideCfMatched,UML:validateGate_validateActualGateMatched,UML:validateGate_validateOutsideCfMatched,UML:validateGate_validateFormalGateDistinguishable,UML:validateGate_validateActualGateDistinguishable,UML:validateGate_validateInsideCfGateDistinguishable,UML:validateStructuralFeatureAction_validateMultiplicity,UML:validateStructuralFeatureAction_validateObjectType,UML:validateStructuralFeatureAction_validateVisibility,UML:validateStructuralFeatureAction_validateNotStatic,UML:validateStructuralFeatureAction_validateOneFeaturingClassifier,UML:validateActionExecutionSpecification_validateActionReferenced,UML:validateInteractionOperand_validateGuardContainReferences,UML:validateInteractionOperand_validateGuardDirectlyPrior,UML:validateReadStructuralFeatureAction_validateMultiplicity,UML:validateReadStructuralFeatureAction_validateTypeAndOrdering,UML:validateOperationTemplateParameter_validateMatchDefaultSignature,UML:validateMessage_validateSignatureIsOperationRequest,UML:validateMessage_validateSendingReceivingMessageEvent,UML:validateMessage_validateSignatureIsOperationReply,UML:validateMessage_validateSignatureReferTo,UML:validateMessage_validateCannotCrossBoundaries,UML:validateMessage_validateSignatureIsSignal,UML:validateMessage_validateOccurrenceSpecifications,UML:validateMessage_validateArguments,UML:validateWriteStructuralFeatureAction_validateTypeOfValue,UML:validateWriteStructuralFeatureAction_validateMultiplicityOfValue,UML:validateWriteStructuralFeatureAction_validateTypeOfResult,UML:validateWriteStructuralFeatureAction_validateMultiplicityOfResult,UML:validateFunctionBehavior_validateOneOutputParameter,UML:validateFunctionBehavior_validateTypesOfParameters,UML:validateActivity_validateMaximumTwoParameterNodes,UML:validateActivity_validateMaximumOneParameterNode,UML:validateCombinedFragment_validateConsiderAndIgnore,UML:validateCombinedFragment_validateOptLoopBreakNeg,UML:validateCombinedFragment_validateBreak,UML:validateConsiderIgnoreFragment_validateConsiderOrIgnore,UML:validateConsiderIgnoreFragment_validateType,UML:validatePartDecomposition_validatePartsOfInternalStructures,UML:validatePartDecomposition_validateCommutativityOfDecomposition,UML:validatePartDecomposition_validateAssume,UML:validateState_validateDestinationsOrSourcesOfTransitions,UML:validateState_validateEntryOrExit,UML:validateState_validateSubmachineStates,UML:validateState_validateCompositeStates,UML:validateState_validateSubmachineOrRegions,UML:validateConnectionPointReference_validateExitPseudostates,UML:validateConnectionPointReference_validateEntryPseudostates,UML:validateInterruptibleActivityRegion_validateInterruptingEdges,UML:validateLifeline_validateInteractionUsesShareLifeline,UML:validateLifeline_validateSelectorSpecified,UML:validateLifeline_validateSameClassifier,UML:validateLifeline_validateSelectorIntOrString,UML:validateExecutionSpecification_validateSameLifeline,UML:validateReclassifyObjectAction_validateMultiplicity,UML:validateReclassifyObjectAction_validateClassifierNotAbstract,UML:validateReclassifyObjectAction_validateInputPin,UML:validateAddStructuralFeatureValueAction_validateRequiredValue,UML:validateAddStructuralFeatureValueAction_validateInsertAtPin,UML:validateReadLinkObjectEndAction_validateAssociationOfAssociation,UML:validateReadLinkObjectEndAction_validateMultiplicityOfObject,UML:validateReadLinkObjectEndAction_validateEndsOfAssociation,UML:validateReadLinkObjectEndAction_validateTypeOfResult,UML:validateReadLinkObjectEndAction_validateTypeOfObject,UML:validateReadLinkObjectEndAction_validateMultiplicityOfResult,UML:validateReadLinkObjectEndAction_validateProperty,UML:validateDurationConstraint_validateFirstEventMultiplicity,UML:validateDurationConstraint_validateHasOneOrTwoConstrainedElements,UML:validateInformationFlow_validateConveyClassifiers,UML:validateInformationFlow_validateSourcesAndTargetsKind,UML:validateInformationFlow_validateMustConform,UML:validateReadLinkObjectEndQualifierAction_validateTypeOfObject,UML:validateReadLinkObjectEndQualifierAction_validateSameType,UML:validateReadLinkObjectEndQualifierAction_validateMultiplicityOfQualifier,UML:validateReadLinkObjectEndQualifierAction_validateAssociationOfAssociation,UML:validateReadLinkObjectEndQualifierAction_validateEndsOfAssociation,UML:validateReadLinkObjectEndQualifierAction_validateMultiplicityOfObject,UML:validateReadLinkObjectEndQualifierAction_validateMultiplicityOfResult,UML:validateReadLinkObjectEndQualifierAction_validateQualifierAttribute,UML:validateReadExtentAction_validateMultiplicityOfResult,UML:validateReadExtentAction_validateTypeIsClassifier,UML:validateInformationItem_validateSourcesAndTargets,UML:validateInformationItem_validateHasNo,UML:validateInformationItem_validateNotInstantiable,UML:validateCreateLinkObjectAction_validateMultiplicity,UML:validateCreateLinkObjectAction_validateTypeOfResult,UML:validateCreateLinkObjectAction_validateAssociationClass,UML:validateDuration_validateNoExprRequiresObservation,UML:validateStartObjectBehaviorAction_validateMultiplicityOfObject,UML:validateStartObjectBehaviorAction_validateNoOnport,UML:validateStartObjectBehaviorAction_validateTypeOfObject,UML:validateClearStructuralFeatureAction_validateTypeOfResult,UML:validateClearStructuralFeatureAction_validateMultiplicityOfResult,UML:validateStartClassifierBehaviorAction_validateTypeHasClassifier,UML:validateStartClassifierBehaviorAction_validateMultiplicity,UML:validateCreateLinkAction_validateAssociationNotAbstract,UML:validateCallOperationAction_validateTypeTargetPin,UML:validateReplyAction_validateEventOnReplyToCallTrigger,UML:validateReplyAction_validatePinsMatchParameter,UML:validateAcceptCallAction_validateTriggerCallEvent,UML:validateAcceptCallAction_validateResultPins,UML:validateAcceptCallAction_validateUnmarshall,UML:validateValueSpecificationAction_validateCompatibleType,UML:validateValueSpecificationAction_validateMultiplicity,UML:validateTimeConstraint_validateHasOneConstrainedElement,UML:validateSendSignalAction_validateTypeOrderingMultiplicity,UML:validateSendSignalAction_validateTypeTargetPin,UML:validateSendSignalAction_validateNumberOrder,UML:validateTimeExpression_validateNoExprRequiresObservation,UML:validateRemoveVariableValueAction_validateRemoveAtAndValue,UML:validateReadVariableAction_validateCompatibleMultiplicity,UML:validateReadVariableAction_validateTypeAndOrdering,UML:validateReadIsClassifiedObjectAction_validateMultiplicityOfInput,UML:validateReadIsClassifiedObjectAction_validateBooleanResult,UML:validateReadIsClassifiedObjectAction_validateNoType,UML:validateReadIsClassifiedObjectAction_validateMultiplicityOfOutput,UML:validateUnmarshallAction_validateMultiplicityOfObject,UML:validateUnmarshallAction_validateTypeOrderingAndMultiplicity,UML:validateUnmarshallAction_validateStructuralFeature,UML:validateUnmarshallAction_validateNumberOfResult,UML:validateUnmarshallAction_validateObjectType,UML:validateClearAssociationAction_validateMultiplicity,UML:validateClearAssociationAction_validateSameType,UML:validateActivityParameterNode_validateNoOutgoingEdges,UML:validateActivityParameterNode_validateHasParameters,UML:validateActivityParameterNode_validateNoIncomingEdges,UML:validateActivityParameterNode_validateSameType,UML:validateActivityParameterNode_validateNoEdges,UML:validateAddVariableValueAction_validateInsertAtPin,UML:validateAddVariableValueAction_validateRequiredValue,UML:validateQualifierValue_validateMultiplicityOfQualifier,UML:validateQualifierValue_validateQualifierAttribute,UML:validateQualifierValue_validateTypeOfQualifier,UML:validateActionInputPin_validateNoControlOrObjectFlow,UML:validateActionInputPin_validateInputPin,UML:validateActionInputPin_validateOneOutputPin,UML:validateReduceAction_validateInputTypeIsCollection,UML:validateReduceAction_validateOutputTypesAreCompatible,UML:validateReduceAction_validateReducerInputsOutput,UML:validateBroadcastSignalAction_validateTypeOrderingMultiplicity,UML:validateBroadcastSignalAction_validateNumberOfArguments,UML:validateBroadcastSignalAction_validateNoOnport,UML:validateLinkEndData_validatePropertyIsAssociationEnd,UML:validateLinkEndData_validateMultiplicity,UML:validateLinkEndData_validateQualifiers,UML:validateLinkEndData_validateSameType,UML:validateLinkEndData_validateEndObjectInputPin,UML:validateLinkEndDestructionData_validateDestroyAtPin,UML:validateDurationObservation_validateFirstEventMultiplicity,UML:validateReadLinkAction_validateCompatibleMultiplicity,UML:validateReadLinkAction_validateNavigableOpenEnd,UML:validateReadLinkAction_validateTypeAndOrdering,UML:validateReadLinkAction_validateOneOpenEnd,UML:validateReadLinkAction_validateVisibility,UML:validateAcceptEventAction_validateUnmarshallSignalEvents,UML:validateAcceptEventAction_validateNoInputPins,UML:validateAcceptEventAction_validateNoOutputPins,UML:validateAcceptEventAction_validateOneOutputPin,UML:validateAcceptEventAction_validateConformingType,UML:validateDecisionNode_validateIncomingObjectOneInputParameter,UML:validateDecisionNode_validateIncomingControlOneInputParameter,UML:validateDecisionNode_validateIncomingOutgoingEdges,UML:validateDecisionNode_validateDecisionInputFlowIncoming,UML:validateDecisionNode_validateParameters,UML:validateDecisionNode_validateEdges,UML:validateDecisionNode_validateZeroInputParameters,UML:validateDecisionNode_validateTwoInputParameters,UML:validateObjectFlow_validateIsMulticastOrIsMultireceive,UML:validateObjectFlow_validateInputAndOutputParameter,UML:validateObjectFlow_validateTransformationBehavior,UML:validateObjectFlow_validateCompatibleTypes,UML:validateObjectFlow_validateSameUpperBounds,UML:validateObjectFlow_validateTarget,UML:validateObjectFlow_validateSelectionBehavior,UML:validateObjectFlow_validateNoExecutableNodes,UML:validateProtocolTransition_validateAssociatedActions,UML:validateProtocolTransition_validateRefersToOperation,UML:validateProtocolTransition_validateBelongsToPsm,UML:validateConditionalNode_validateMatchingOutputPins,UML:validateConditionalNode_validateClauseNoPredecessor,UML:validateConditionalNode_validateOneClauseWithExecutableNode,UML:validateConditionalNode_validateResultNoIncoming,UML:validateConditionalNode_validateExecutableNodes,UML:validateConditionalNode_validateNoInputPins,UML:validateCommunicationPath_validateAssociationEnds,UML:validateExpansionNode_validateRegionAsInputOrOutput,UML:validateFinalState_validateCannotReferenceSubmachine,UML:validateFinalState_validateNoEntryBehavior,UML:validateFinalState_validateNoRegions,UML:validateFinalState_validateNoExitBehavior,UML:validateFinalState_validateNoOutgoingTransitions,UML:validateFinalState_validateNoStateBehavior,UML:validateAssociationClass_validateDisjointAttributesEnds,UML:validateAssociationClass_validateCannotBeDefined,UML:validateDestructionOccurrenceSpecification_validateNoOccurrenceSpecificationsBelow,UML:validateRemoveStructuralFeatureValueAction_validateRemoveAtAndValue,UML:validatePackageImport_validatePublicOrPrivate,UML:validatePackage_validateElementsPublicOrPrivate,UML:validateClass_validatePassiveClass,UML:validateTransition_validateOutgoingPseudostates,UML:validateTransition_validateForkSegmentState,UML:validateTransition_validateForkSegmentGuards,UML:validateTransition_validateStateIsExternal,UML:validateTransition_validateStateIsLocal,UML:validateTransition_validateInitialTransition,UML:validateTransition_validateJoinSegmentGuards,UML:validateTransition_validateStateIsInternal,UML:validateTransition_validateJoinSegmentState,UML:validateParameter_validateStreamAndException,UML:validateParameter_validateObjectEffect,UML:validateParameter_validateInAndOut,UML:validateParameter_validateNotException,UML:validateParameter_validateConnectorEnd,UML:validateParameter_validateReentrantBehaviors,UML:validateStateMachine_validateClassifierContext,UML:validateStateMachine_validateMethod,UML:validateStateMachine_validateContextClassifier,UML:validateStateMachine_validateConnectionPoints,UML:validateUseCase_validateCannotIncludeSelf,UML:validateUseCase_validateMustHaveName,UML:validateUseCase_validateNoAssociationToUseCase,UML:validateUseCase_validateBinaryAssociations,UML:validateTrigger_validateTriggerWithPorts,UML:validatePort_validatePortAggregation,UML:validatePort_validateEncapsulatedOwner,UML:validatePort_validateDefaultValue,UML:validateConstraint_validateBooleanValue,UML:validateConstraint_validateNotApplyToSelf,UML:validateConstraint_validateNoSideEffects,UML:validateExtensionPoint_validateMustHaveName,UML:validateExtend_validateExtensionPoints,UML:validateConnectorEnd_validateRoleAndPartWithPort,UML:validateConnectorEnd_validateSelfPartWithPort,UML:validateConnectorEnd_validatePartWithPortEmpty,UML:validateConnectorEnd_validateMultiplicity,UML:validateReception_validateSameNameAsSignal,UML:validateReception_validateSameStructureAsSignal,UML:validateOperation_validateOnlyBodyForQuery,UML:validateOperation_validateAtMostOneReturn,UML:validateInterface_validateVisibility,UML:validatePseudostate_validateTransitionsOutgoing,UML:validatePseudostate_validateJoinVertex,UML:validatePseudostate_validateInitialVertex,UML:validatePseudostate_validateHistoryVertices,UML:validatePseudostate_validateOutgoingFromInitial,UML:validatePseudostate_validateChoiceVertex,UML:validatePseudostate_validateTransitionsIncoming,UML:validatePseudostate_validateJunctionVertex,UML:validatePseudostate_validateForkVertex,UML:validateDestroyObjectAction_validateMultiplicity,UML:validateDestroyObjectAction_validateNoType,UML:validateAssociation_validateSpecializedEndTypes,UML:validateAssociation_validateAssociationEnds,UML:validateAssociation_validateEndsMustBeTyped,UML:validateAssociation_validateBinaryAssociations,UML:validateAssociation_validateSpecializedEndNumber,UML:validateActor_validateMustHaveName,UML:validateActor_validateAssociations,UML:validateStringExpression_validateOperands,UML:validateStringExpression_validateSubexpressions,UML:validateActivityGroup_validateNodesAndEdges,UML:validateActivityGroup_validateNotContained,UML:validateCollaborationUse_validateConnectors,UML:validateCollaborationUse_validateClientElements,UML:validateCollaborationUse_validateEveryRole,UML:validateExtension_validateIsBinary,UML:validateExtension_validateNonOwnedEnd,UML:validateExtensionEnd_validateMultiplicity,UML:validateExtensionEnd_validateAggregation,UML:validateInteraction_validateNotContained,UML:validateEnumeration_validateImmutable,UML:validateActivityEdge_validateSourceAndTarget,UML:validateObjectNode_validateInputOutputParameter,UML:validateObjectNode_validateObjectFlowEdges,UML:validateObjectNode_validateSelectionBehavior,UML:validateLinkAction_validateSameAssociation,UML:validateLinkAction_validateSamePins,UML:validateLinkAction_validateNotStatic,UML:validateValuePin_validateCompatibleType,UML:validateValuePin_validateNoIncomingEdges,UML:validateWriteVariableAction_validateValueType,UML:validateWriteVariableAction_validateMultiplicity,UML:validateJoinNode_validateOneOutgoingEdge,UML:validateJoinNode_validateIncomingObjectFlow,UML:validateCallAction_validateResultPins,UML:validateCallAction_validateSynchronousCall,UML:validateCallAction_validateArgumentPins,UML:validateLinkEndCreationData_validateInsertAtPin,UML:validateInitialNode_validateControlEdges,UML:validateInitialNode_validateNoIncomingEdges,UML:validateSendObjectAction_validateTypeTargetPin,UML:validateReadSelfAction_validateNotStatic,UML:validateReadSelfAction_validateType,UML:validateReadSelfAction_validateMultiplicity,UML:validateReadSelfAction_validateContained,UML:validateCallBehaviorAction_validateNoOnport,UML:validateOpaqueAction_validateLanguageBodySize,UML:validateWriteLinkAction_validateAllowAccess,UML:validateControlFlow_validateObjectNodes,UML:validateFinalNode_validateNoOutgoingEdges,UML:validateVariableAction_validateScopeOfVariable,UML:validateClause_validateDeciderOutput,UML:validateClause_validateBodyOutputPins,UML:validateClause_validateTestAndBody,UML:validateLoopNode_validateMatchingOutputPins,UML:validateLoopNode_validateBodyOutputPins,UML:validateLoopNode_validateLoopVariableOutgoing,UML:validateLoopNode_validateExecutableNodes,UML:validateLoopNode_validateMatchingLoopVariables,UML:validateLoopNode_validateSetupTestAndBody,UML:validateLoopNode_validateResultNoIncoming,UML:validateLoopNode_validateInputEdges,UML:validateLoopNode_validateMatchingResultPins,UML:validateTimeEvent_validateWhenNonNegative,UML:validateComponent_validateNoPackagedElements,UML:validateComponent_validateNoNestedClassifiers,UML:validateNode_validateInternalStructure,PRO:com.yattasolutions.umllab.validation.unresolvedElementInUse,PRO:com.yattasolutions.umllab.validation.stereotypes,PRO:com.yattasolutions.umllab.validation.valididentifier.java,PRO:com.yattasolutions.umllab.validation.classname,PRO:com.yattasolutions.umllab.validation.constructor,PRO:com.yattasolutions.umllab.validation.memberEnds,PRO:com.yattasolutions.umllab.validation.primitives,PRO:com.yattasolutions.umllab.validation.roles,PRO:com.yattasolutions.umllab.validation.attributename"/>
+      </contents>
+      <contents xmi:type="ecore:EAnnotation" xmi:id="_ExJ0MCpEEemZlriYZjiYLg" source="preferences">
+        <contents xmi:type="ecore:EAnnotation" xmi:id="_ExKbQCpEEemZlriYZjiYLg" source="com.yattasolutions.codegen.reverse">
+          <details xmi:id="_ExKbQSpEEemZlriYZjiYLg" key="com.yattasolutions.codegen.reverse.roundtrip.ReverseEngineerNewFiles" value="true"/>
+          <details xmi:id="_ExKbQipEEemZlriYZjiYLg" key="com.yattasolutions.codegen.reverse.roundtrip.ReverseEngineerChangedFiles" value="true"/>
+          <details xmi:id="_ExKbQypEEemZlriYZjiYLg" key="com.yattasolutions.codegen.reverse.roundtrip.RemoveDeletedFiles" value="true"/>
+        </contents>
+      </contents>
+      <contents xmi:type="ecore:EAnnotation" xmi:id="_32ABACpyEemd3uKV_mURhw" source="dangling-refs">
+        <contents xmi:type="uml:Property" xmi:id="_JhFDDypwEemd3uKV_mURhw" name="" association="_JhFDAipwEemd3uKV_mURhw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JhFDECpwEemd3uKV_mURhw" value="*"/>
+        </contents>
+        <contents xmi:type="uml:Property" xmi:id="_JhFDACpwEemd3uKV_mURhw" name="" association="_JhFDBSpwEemd3uKV_mURhw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JhFDASpwEemd3uKV_mURhw" value="*"/>
+        </contents>
+        <contents xmi:type="uml:Property" xmi:id="_JhFDAypwEemd3uKV_mURhw" name="" association="_JhFDCypwEemd3uKV_mURhw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JhFDBCpwEemd3uKV_mURhw" value="*"/>
+        </contents>
+        <contents xmi:type="uml:Property" xmi:id="_JhFDCSpwEemd3uKV_mURhw" name="" association="_JhFDESpwEemd3uKV_mURhw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JhFDCipwEemd3uKV_mURhw" value="*"/>
+        </contents>
+      </contents>
+      <contents xmi:type="ecore:EAnnotation" xmi:id="_xbYcECp0EemDjvGMfFr7ig" source="genmodel">
+        <details xmi:id="_xbYcESp0EemDjvGMfFr7ig" key="href" value="platform:/resource/ca.mcgill.ecse321.cooperator.model/ca.mcgill.ecse321.cooperator.model.genmodel"/>
+      </contents>
+    </eAnnotations>
+    <elementImport xmi:id="_FH3rECpEEemZlriYZjiYLg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+    </elementImport>
+    <elementImport xmi:id="_FH3rESpEEemZlriYZjiYLg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#byte"/>
+    </elementImport>
+    <elementImport xmi:id="_FH4SICpEEemZlriYZjiYLg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </elementImport>
+    <elementImport xmi:id="_FH4SISpEEemZlriYZjiYLg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+    </elementImport>
+    <elementImport xmi:id="_FH4SIipEEemZlriYZjiYLg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </elementImport>
+    <elementImport xmi:id="_FH4SIypEEemZlriYZjiYLg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </elementImport>
+    <elementImport xmi:id="_FH45MCpEEemZlriYZjiYLg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+    </elementImport>
+    <elementImport xmi:id="_FH45MSpEEemZlriYZjiYLg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#short"/>
+    </elementImport>
+    <elementImport xmi:id="_FH45MipEEemZlriYZjiYLg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </elementImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_FHt6ECpEEemZlriYZjiYLg" name="ca">
+      <packagedElement xmi:type="uml:Package" xmi:id="_FHuhICpEEemZlriYZjiYLg" name="mcgill">
+        <packagedElement xmi:type="uml:Package" xmi:id="_FHuhISpEEemZlriYZjiYLg" name="ecse321">
+          <packagedElement xmi:type="uml:Package" xmi:id="_FHyykCpEEemZlriYZjiYLg" name="bingo">
+            <packagedElement xmi:type="uml:Class" xmi:id="_FH0nwCpEEemZlriYZjiYLg" name="BingoApplication">
+              <eAnnotations xmi:id="_FH1O0CpEEemZlriYZjiYLg" source="http://ns.yatta.de/umllab">
+                <contents xmi:type="ecore:EAnnotation" xmi:id="_FH1O0SpEEemZlriYZjiYLg" source="codegen">
+                  <details xmi:id="_FH1O0ipEEemZlriYZjiYLg" key="codegenDirectory" value="/ca.mcgill.ecse321.cooperator.model/src-gen"/>
+                </contents>
+              </eAnnotations>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_FIjnkCpEEemZlriYZjiYLg" name="main" specification="_FH5gQCpEEemZlriYZjiYLg">
+                <ownedParameter xmi:id="_FIjnkSpEEemZlriYZjiYLg" name="args">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FIjnkipEEemZlriYZjiYLg" value="*"/>
+                </ownedParameter>
+                <language>java</language>
+                <body>SpringApplication.run(BingoApplication.class, args);&#xD;
+	</body>
+              </ownedBehavior>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_FImq4CpEEemZlriYZjiYLg" name="greeting" specification="_FH6uYCpEEemZlriYZjiYLg">
+                <ownedParameter xmi:id="_FImq4SpEEemZlriYZjiYLg" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <language>java</language>
+                <body>return &quot;Hello we are group 19!&quot;;&#xD;
+	</body>
+              </ownedBehavior>
+              <ownedOperation xmi:id="_FH5gQCpEEemZlriYZjiYLg" name="main" isStatic="true" method="_FIjnkCpEEemZlriYZjiYLg">
+                <ownedParameter xmi:id="_FH5gQSpEEemZlriYZjiYLg" name="args">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FH6HUSpEEemZlriYZjiYLg" value="*"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_FH6uYCpEEemZlriYZjiYLg" name="greeting" method="_FImq4CpEEemZlriYZjiYLg">
+                <ownedParameter xmi:id="_FH7VcCpEEemZlriYZjiYLg" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+            </packagedElement>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_BuBWYCpwEemd3uKV_mURhw" name="model"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_FHvvQCpEEemZlriYZjiYLg" name="org">
+      <packagedElement xmi:type="uml:Package" xmi:id="_FHvvQSpEEemZlriYZjiYLg" name="springframework">
+        <packagedElement xmi:type="uml:Package" xmi:id="_FHwWUCpEEemZlriYZjiYLg" name="boot">
+          <packagedElement xmi:type="uml:Package" xmi:id="_FHwWUSpEEemZlriYZjiYLg" name="autoconfigure">
+            <packagedElement xmi:type="uml:Class" xmi:id="_FIAN8CpEEemZlriYZjiYLg" name="SpringBootApplication"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_FIJX4CpEEemZlriYZjiYLg" name="SpringApplication"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_FHw9YCpEEemZlriYZjiYLg" name="web">
+          <packagedElement xmi:type="uml:Package" xmi:id="_FHw9YSpEEemZlriYZjiYLg" name="bind">
+            <packagedElement xmi:type="uml:Package" xmi:id="_FHxkcCpEEemZlriYZjiYLg" name="annotation">
+              <packagedElement xmi:type="uml:Class" xmi:id="_FIRTsSpEEemZlriYZjiYLg" name="RestController"/>
+              <packagedElement xmi:type="uml:Class" xmi:id="_FIadoCpEEemZlriYZjiYLg" name="RequestMapping"/>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="__c9hQCpEEem0Wcht8IppcQ" name="ca">
+      <packagedElement xmi:type="uml:Package" xmi:id="_AUu2wCpFEem0Wcht8IppcQ" name="mcgill">
+        <packagedElement xmi:type="uml:Package" xmi:id="_BsmooCpFEem0Wcht8IppcQ" name="ecse321">
+          <packagedElement xmi:type="uml:Package" xmi:id="_C7A8gCpFEem0Wcht8IppcQ" name="model">
+            <packagedElement xmi:type="uml:Association" xmi:id="_s8Gb4CpJEem0Wcht8IppcQ" name="" memberEnd="_s8Gb4SpJEem0Wcht8IppcQ _s8Gb5CpJEem0Wcht8IppcQ"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_cvOE8CpGEem0Wcht8IppcQ" name="CooperatorManager">
+              <ownedAttribute xmi:id="_s8Gb5CpJEem0Wcht8IppcQ" name="student" type="_hTH4gCpHEem0Wcht8IppcQ" aggregation="composite" association="_s8Gb4CpJEem0Wcht8IppcQ">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DhXfICp3Eemvs8z37xKZzA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_s8Gb5ipJEem0Wcht8IppcQ" value="*"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_Ula6MCpwEemd3uKV_mURhw" name="cooperatorID" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_xtseoCp1Eemay_v0qNNh8w" name="user" type="_eVeswCp1Eemay_v0qNNh8w" aggregation="composite" association="_xtnmICp1Eemay_v0qNNh8w">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xtseoSp1Eemay_v0qNNh8w"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xtseoip1Eemay_v0qNNh8w" value="*"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_VmnJFCp-Eemvs8z37xKZzA" name="coopPosition" type="_Wx2RUCp3Eemvs8z37xKZzA" aggregation="composite" association="_VmnJECp-Eemvs8z37xKZzA">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VmnJFSp-Eemvs8z37xKZzA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VmnJFip-Eemvs8z37xKZzA" value="*"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_WpneNCp-Eemvs8z37xKZzA" name="userRole" type="_R1A8MCp9Eemvs8z37xKZzA" aggregation="composite" association="_WpneMCp-Eemvs8z37xKZzA">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WpneNSp-Eemvs8z37xKZzA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WpneNip-Eemvs8z37xKZzA" value="*"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_aHZzsip-Eemvs8z37xKZzA" name="course" type="_X_xY0Cp-Eemvs8z37xKZzA" aggregation="composite" association="_aHQpwCp-Eemvs8z37xKZzA">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aHZzsyp-Eemvs8z37xKZzA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aHZztCp-Eemvs8z37xKZzA" value="*"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_HnLu5CqAEemH1tZSF0AxHw" name="problematicStudent" type="_hTH4gCpHEem0Wcht8IppcQ" aggregation="composite" association="_HnLu4CqAEemH1tZSF0AxHw">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HnLu5SqAEemH1tZSF0AxHw"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HnLu5iqAEemH1tZSF0AxHw" value="*"/>
+              </ownedAttribute>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_hTH4gCpHEem0Wcht8IppcQ" name="Student">
+              <ownedAttribute xmi:id="_s8Gb4SpJEem0Wcht8IppcQ" name="cooperatorManager" type="_cvOE8CpGEem0Wcht8IppcQ" association="_s8Gb4CpJEem0Wcht8IppcQ"/>
+              <ownedAttribute xmi:id="_8_RkkCpJEem0Wcht8IppcQ" name="studentID" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_GL5FICpKEem0Wcht8IppcQ" name="problematic" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_RFeH5Cp4Eemvs8z37xKZzA" name="coopPosition" type="_Wx2RUCp3Eemvs8z37xKZzA" aggregation="composite" association="_RFeH4Cp4Eemvs8z37xKZzA">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RFeH5Sp4Eemvs8z37xKZzA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RFeH5ip4Eemvs8z37xKZzA" value="*"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_HnLu4SqAEemH1tZSF0AxHw" name="cooperatorManager1" type="_cvOE8CpGEem0Wcht8IppcQ" association="_HnLu4CqAEemH1tZSF0AxHw">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HnLu4iqAEemH1tZSF0AxHw" value="1"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HnLu4yqAEemH1tZSF0AxHw" value="1"/>
+              </ownedAttribute>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_eVeswCp1Eemay_v0qNNh8w" name="User">
+              <ownedAttribute xmi:id="_gxO9gCp1Eemay_v0qNNh8w" name="name" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_kzNlMCp1Eemay_v0qNNh8w" name="email" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_kzmmwCp1Eemay_v0qNNh8w" name="userID" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_nhz5cCp1Eemay_v0qNNh8w" name="password" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_xtoNMCp1Eemay_v0qNNh8w" name="cooperatorManager" type="_cvOE8CpGEem0Wcht8IppcQ" association="_xtnmICp1Eemay_v0qNNh8w">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xtr3kCp1Eemay_v0qNNh8w" value="1"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xtr3kSp1Eemay_v0qNNh8w" value="1"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_VEfv8ip9Eemvs8z37xKZzA" name="userRole" type="_R1A8MCp9Eemvs8z37xKZzA" association="_VEM1ACp9Eemvs8z37xKZzA">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VEfv8yp9Eemvs8z37xKZzA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VEfv9Cp9Eemvs8z37xKZzA" value="*"/>
+              </ownedAttribute>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Association" xmi:id="_xtnmICp1Eemay_v0qNNh8w" name="" memberEnd="_xtoNMCp1Eemay_v0qNNh8w _xtseoCp1Eemay_v0qNNh8w"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_Wx2RUCp3Eemvs8z37xKZzA" name="CoopPosition">
+              <ownedAttribute xmi:id="_Z6Z9sCp3Eemvs8z37xKZzA" name="coopID" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eA5R8Cp3Eemvs8z37xKZzA" name="description" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eBo40Cp3Eemvs8z37xKZzA" name="startDate" visibility="private" type="_9hBxUCpKEem0Wcht8IppcQ"/>
+              <ownedAttribute xmi:id="_jMLrECp3Eemvs8z37xKZzA" name="endDate" visibility="private" type="_9hBxUCpKEem0Wcht8IppcQ"/>
+              <ownedAttribute xmi:id="_k6JowCp3Eemvs8z37xKZzA" name="location" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_mveysCp3Eemvs8z37xKZzA" name="term" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_pbPOUCp3Eemvs8z37xKZzA" name="status" visibility="private" type="_vfpn0Cp3Eemvs8z37xKZzA"/>
+              <ownedAttribute xmi:id="_CsJ48ip4Eemvs8z37xKZzA" name="requiredDocuments" type="__g5d4Cp3Eemvs8z37xKZzA" aggregation="composite" association="_Cr2-ACp4Eemvs8z37xKZzA">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CsJ48yp4Eemvs8z37xKZzA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CsTp8Cp4Eemvs8z37xKZzA" value="*"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_RFeH4Sp4Eemvs8z37xKZzA" name="student" type="_hTH4gCpHEem0Wcht8IppcQ" association="_RFeH4Cp4Eemvs8z37xKZzA">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RFeH4ip4Eemvs8z37xKZzA" value="1"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RFeH4yp4Eemvs8z37xKZzA" value="1"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_qfM-ASp9Eemvs8z37xKZzA" name="termInstructor" type="_oEfPECp9Eemvs8z37xKZzA" association="_qfM-ACp9Eemvs8z37xKZzA">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qfM-Aip9Eemvs8z37xKZzA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qfM-Ayp9Eemvs8z37xKZzA" value="*"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_VmnJESp-Eemvs8z37xKZzA" name="cooperatorManager" type="_cvOE8CpGEem0Wcht8IppcQ" association="_VmnJECp-Eemvs8z37xKZzA">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VmnJEip-Eemvs8z37xKZzA" value="1"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VmnJEyp-Eemvs8z37xKZzA" value="1"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_w2o50SqAEemH1tZSF0AxHw" name="course" type="_X_xY0Cp-Eemvs8z37xKZzA" association="_w2o50CqAEemH1tZSF0AxHw">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_w2o50iqAEemH1tZSF0AxHw"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_w2o50yqAEemH1tZSF0AxHw" value="*"/>
+              </ownedAttribute>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="__g5d4Cp3Eemvs8z37xKZzA" name="RequiredDocuments" isAbstract="true">
+              <ownedAttribute xmi:id="_Cr2-ASp4Eemvs8z37xKZzA" name="coopPosition" type="_Wx2RUCp3Eemvs8z37xKZzA" association="_Cr2-ACp4Eemvs8z37xKZzA">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CsJ48Cp4Eemvs8z37xKZzA" value="1"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CsJ48Sp4Eemvs8z37xKZzA" value="1"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_-KEbkCp8Eemvs8z37xKZzA" name="name" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_BHbkkCp9Eemvs8z37xKZzA" name="documentID" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_zgN2ECp-Eemvs8z37xKZzA" name="dueDate" visibility="private" type="_9hBxUCpKEem0Wcht8IppcQ"/>
+              <ownedAttribute xmi:id="_zh200Cp-Eemvs8z37xKZzA" name="status" visibility="private" type="_vfpn0Cp3Eemvs8z37xKZzA"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Association" xmi:id="_Cr2-ACp4Eemvs8z37xKZzA" name="" memberEnd="_Cr2-ASp4Eemvs8z37xKZzA _CsJ48ip4Eemvs8z37xKZzA"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_RFeH4Cp4Eemvs8z37xKZzA" name="" memberEnd="_RFeH4Sp4Eemvs8z37xKZzA _RFeH5Cp4Eemvs8z37xKZzA"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_WPv0YCp4Eemvs8z37xKZzA" name="EmployerContract">
+              <generalization xmi:id="_Z6H0YCp4Eemvs8z37xKZzA" general="__g5d4Cp3Eemvs8z37xKZzA"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_U4YY0Cp4Eemvs8z37xKZzA" name="Form">
+              <generalization xmi:id="_ZbtaECp4Eemvs8z37xKZzA" general="__g5d4Cp3Eemvs8z37xKZzA"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Enumeration" xmi:id="_cn-hwCp4Eemvs8z37xKZzA" name="ReportType">
+              <ownedLiteral xmi:id="_qH674Cp8Eemvs8z37xKZzA" name="TwoWeek"/>
+              <ownedLiteral xmi:id="_qWOdoCp8Eemvs8z37xKZzA" name="TermSpecific"/>
+              <ownedLiteral xmi:id="_68E1kCp8Eemvs8z37xKZzA" name="Evaluation"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_XrKpgCp4Eemvs8z37xKZzA" name="Report">
+              <generalization xmi:id="_aYrYoCp4Eemvs8z37xKZzA" general="__g5d4Cp3Eemvs8z37xKZzA"/>
+              <ownedAttribute xmi:id="_HiEFsCp9Eemvs8z37xKZzA" name="reportType" visibility="private" type="_cn-hwCp4Eemvs8z37xKZzA"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Enumeration" xmi:id="_vfpn0Cp3Eemvs8z37xKZzA" name="Status">
+              <ownedLiteral xmi:id="_yK338Cp3Eemvs8z37xKZzA" name="Pending"/>
+              <ownedLiteral xmi:id="_zyZPYCp3Eemvs8z37xKZzA" name="Accepted"/>
+              <ownedLiteral xmi:id="_0sNzUCp3Eemvs8z37xKZzA" name="Rejected"/>
+              <ownedLiteral xmi:id="_4iW-cCp3Eemvs8z37xKZzA" name="Completed"/>
+              <ownedLiteral xmi:id="_6OHVoCp3Eemvs8z37xKZzA" name="Failed"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_R1A8MCp9Eemvs8z37xKZzA" name="UserRole" isAbstract="true">
+              <ownedAttribute xmi:id="_VEM1ASp9Eemvs8z37xKZzA" name="user" type="_eVeswCp1Eemay_v0qNNh8w" association="_VEM1ACp9Eemvs8z37xKZzA">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VEfv8Cp9Eemvs8z37xKZzA" value="1"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VEfv8Sp9Eemvs8z37xKZzA" value="1"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_i0ofACp9Eemvs8z37xKZzA" name="roleID" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_WpneMSp-Eemvs8z37xKZzA" name="cooperatorManager" type="_cvOE8CpGEem0Wcht8IppcQ" association="_WpneMCp-Eemvs8z37xKZzA">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WpneMip-Eemvs8z37xKZzA" value="1"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WpneMyp-Eemvs8z37xKZzA" value="1"/>
+              </ownedAttribute>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Association" xmi:id="_VEM1ACp9Eemvs8z37xKZzA" name="" memberEnd="_VEM1ASp9Eemvs8z37xKZzA _VEfv8ip9Eemvs8z37xKZzA"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_moYdcCp9Eemvs8z37xKZzA" name="ProgramManager">
+              <generalization xmi:id="_5_A68Cp9Eemvs8z37xKZzA" general="_R1A8MCp9Eemvs8z37xKZzA"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_oEfPECp9Eemvs8z37xKZzA" name="TermInstructor">
+              <generalization xmi:id="_6bc_UCp9Eemvs8z37xKZzA" general="_R1A8MCp9Eemvs8z37xKZzA"/>
+              <ownedAttribute xmi:id="_qfM-BCp9Eemvs8z37xKZzA" name="coopPosition" type="_Wx2RUCp3Eemvs8z37xKZzA" association="_qfM-ACp9Eemvs8z37xKZzA">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qfM-BSp9Eemvs8z37xKZzA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qfM-Bip9Eemvs8z37xKZzA" value="*"/>
+              </ownedAttribute>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Association" xmi:id="_VmnJECp-Eemvs8z37xKZzA" name="" memberEnd="_VmnJESp-Eemvs8z37xKZzA _VmnJFCp-Eemvs8z37xKZzA"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_WpneMCp-Eemvs8z37xKZzA" name="" memberEnd="_WpneMSp-Eemvs8z37xKZzA _WpneNCp-Eemvs8z37xKZzA"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_aHQpwCp-Eemvs8z37xKZzA" name="" memberEnd="_aHQpwSp-Eemvs8z37xKZzA _aHZzsip-Eemvs8z37xKZzA"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_X_xY0Cp-Eemvs8z37xKZzA" name="Course">
+              <ownedAttribute xmi:id="_aHQpwSp-Eemvs8z37xKZzA" name="cooperatorManager" type="_cvOE8CpGEem0Wcht8IppcQ" association="_aHQpwCp-Eemvs8z37xKZzA">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aHZzsCp-Eemvs8z37xKZzA" value="1"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aHZzsSp-Eemvs8z37xKZzA" value="1"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_s6jwsCp-Eemvs8z37xKZzA" name="courseName" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_w2o51CqAEemH1tZSF0AxHw" name="coopPosition" type="_Wx2RUCp3Eemvs8z37xKZzA" association="_w2o50CqAEemH1tZSF0AxHw">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_w2o51SqAEemH1tZSF0AxHw"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_w2o51iqAEemH1tZSF0AxHw" value="*"/>
+              </ownedAttribute>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Association" xmi:id="_HnLu4CqAEemH1tZSF0AxHw" name="" memberEnd="_HnLu4SqAEemH1tZSF0AxHw _HnLu5CqAEemH1tZSF0AxHw"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_w2o50CqAEemH1tZSF0AxHw" name="" memberEnd="_w2o50SqAEemH1tZSF0AxHw _w2o51CqAEemH1tZSF0AxHw"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_GGM3YCpLEem0Wcht8IppcQ" name="java">
+      <packagedElement xmi:type="uml:Package" xmi:id="_GGM3YSpLEem0Wcht8IppcQ" name="sql">
+        <packagedElement xmi:type="uml:Package" xmi:id="_GGM3YipLEem0Wcht8IppcQ" name="Date"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_9hBxUCpKEem0Wcht8IppcQ" name="Date"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_BsiIoipwEemd3uKV_mURhw" name="util">
+        <packagedElement xmi:type="uml:Class" xmi:id="_BvNpMSpwEemd3uKV_mURhw" name="Set"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_BsiIoCpwEemd3uKV_mURhw" name="javax">
+      <packagedElement xmi:type="uml:Package" xmi:id="_BsiIoSpwEemd3uKV_mURhw" name="persistence">
+        <packagedElement xmi:type="uml:Class" xmi:id="_BuxkUCpwEemd3uKV_mURhw" name="Entity"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_BvhLMSpwEemd3uKV_mURhw" name="CascadeType"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_BvqVISpwEemd3uKV_mURhw" name="OneToMany"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_Bv0GISpwEemd3uKV_mURhw" name="ManyToMany"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_Bv93ISpwEemd3uKV_mURhw" name="ManyToOne"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_LUazcCpxEemd3uKV_mURhw" name="Id"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_JhFDAipwEemd3uKV_mURhw" name="" memberEnd="_Jg7SBipwEemd3uKV_mURhw _JhFDDypwEemd3uKV_mURhw">
+      <ownedEnd xmi:id="_Jg7SBipwEemd3uKV_mURhw" name="" type="_cvOE8CpGEem0Wcht8IppcQ" association="_JhFDAipwEemd3uKV_mURhw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_JhFDBSpwEemd3uKV_mURhw" name="" memberEnd="_Jg7SACpwEemd3uKV_mURhw _JhFDACpwEemd3uKV_mURhw">
+      <ownedEnd xmi:id="_Jg7SACpwEemd3uKV_mURhw" name="" type="_cvOE8CpGEem0Wcht8IppcQ" association="_JhFDBSpwEemd3uKV_mURhw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_JhFDCypwEemd3uKV_mURhw" name="" memberEnd="_Jg7SASpwEemd3uKV_mURhw _JhFDAypwEemd3uKV_mURhw">
+      <ownedEnd xmi:id="_Jg7SASpwEemd3uKV_mURhw" name="" type="_cvOE8CpGEem0Wcht8IppcQ" association="_JhFDCypwEemd3uKV_mURhw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_JhFDESpwEemd3uKV_mURhw" name="" memberEnd="_Jg7SBCpwEemd3uKV_mURhw _JhFDCSpwEemd3uKV_mURhw">
+      <ownedEnd xmi:id="_Jg7SBCpwEemd3uKV_mURhw" name="" type="_cvOE8CpGEem0Wcht8IppcQ" association="_JhFDESpwEemd3uKV_mURhw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_qfM-ACp9Eemvs8z37xKZzA" name="" memberEnd="_qfM-ASp9Eemvs8z37xKZzA _qfM-BCp9Eemvs8z37xKZzA"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_SlU3cCqAEemH1tZSF0AxHw" name="void"/>
+    <profileApplication xmi:id="_gF5psCpCEemSCI2wvOhV-A">
+      <eAnnotations xmi:id="_gF97ICpCEemSCI2wvOhV-A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile"/>
+    </profileApplication>
+    <profileApplication xmi:id="_0GRnwCpCEemSCI2wvOhV-A">
+      <eAnnotations xmi:id="_0GUrECpCEemSCI2wvOhV-A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PERSISTENCY_PROFILES/Persistency.profile.uml#Persistency_2-Annotation-Persistency"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://PERSISTENCY_PROFILES/Persistency.profile.uml#Persistency_2"/>
+    </profileApplication>
+    <profileApplication xmi:id="_nUcekCpDEemSCI2wvOhV-A">
+      <eAnnotations xmi:id="_nUcekSpDEemSCI2wvOhV-A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://ZEND_PROFILES/Zend.profile.uml#ZENDStyle-Annotation-ZENDStyle"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://ZEND_PROFILES/Zend.profile.uml#ZENDStyle"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLLabProfile:TargetLanguage xmi:id="_gGYK0CpCEemSCI2wvOhV-A" base_Package="_f7qIkCpCEemSCI2wvOhV-A">
+    <languageName>java</languageName>
+  </UMLLabProfile:TargetLanguage>
+  <Persistency:JPA1StyledElement xmi:id="_5JueECpDEemSCI2wvOhV-A" base_Element="_f7qIkCpCEemSCI2wvOhV-A"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_FH114CpEEemZlriYZjiYLg" base_Element="_FH0nwCpEEemZlriYZjiYLg"/>
+  <UMLLabProfile:StyledElement xmi:id="_FH6HUCpEEemZlriYZjiYLg" base_Element="_FH5gQCpEEemZlriYZjiYLg"/>
+  <UMLLabProfile:Annotations xmi:id="_FH78gCpEEemZlriYZjiYLg" base_Element="_FH6uYCpEEemZlriYZjiYLg">
+    <annotations xmi:id="_FH78gSpEEemZlriYZjiYLg" name="RequestMapping">
+      <annotationParameters xmi:id="_FH8jkCpEEemZlriYZjiYLg" skipName="true" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_FInR8CpEEemZlriYZjiYLg" value="&quot;/&quot;"/>
+      </annotationParameters>
+    </annotations>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:Annotations xmi:id="_FH8jkSpEEemZlriYZjiYLg" base_Element="_FH0nwCpEEemZlriYZjiYLg">
+    <annotations xmi:id="_FH9KoCpEEemZlriYZjiYLg" name="RestController"/>
+    <annotations xmi:id="_FH9KoSpEEemZlriYZjiYLg" name="SpringBootApplication"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:Reference xmi:id="_FIIw0CpEEemZlriYZjiYLg" base_Element="_FIAN8CpEEemZlriYZjiYLg"/>
+  <UMLLabProfile:Reference xmi:id="_FIRTsCpEEemZlriYZjiYLg" base_Element="_FIJX4CpEEemZlriYZjiYLg"/>
+  <UMLLabProfile:Reference xmi:id="_FIZ2kCpEEemZlriYZjiYLg" base_Element="_FIRTsSpEEemZlriYZjiYLg"/>
+  <UMLLabProfile:Reference xmi:id="_FIjAgCpEEemZlriYZjiYLg" base_Element="_FIadoCpEEemZlriYZjiYLg"/>
+  <UMLLabProfile:StyledElement xmi:id="_BuU4aSpwEemd3uKV_mURhw" base_Element="_8_RkkCpJEem0Wcht8IppcQ"/>
+  <UMLLabProfile:StyledElement xmi:id="_BuU4aipwEemd3uKV_mURhw" base_Element="_GL5FICpKEem0Wcht8IppcQ"/>
+  <UMLLabProfile:Reference xmi:id="_BvNpMCpwEemd3uKV_mURhw" base_Element="_BuxkUCpwEemd3uKV_mURhw"/>
+  <UMLLabProfile:Reference xmi:id="_BvhLMCpwEemd3uKV_mURhw" base_Element="_BvNpMSpwEemd3uKV_mURhw"/>
+  <UMLLabProfile:Reference xmi:id="_BvqVICpwEemd3uKV_mURhw" base_Element="_BvhLMSpwEemd3uKV_mURhw"/>
+  <UMLLabProfile:Reference xmi:id="_Bv0GICpwEemd3uKV_mURhw" base_Element="_BvqVISpwEemd3uKV_mURhw"/>
+  <UMLLabProfile:Reference xmi:id="_Bv93ICpwEemd3uKV_mURhw" base_Element="_Bv0GISpwEemd3uKV_mURhw"/>
+  <UMLLabProfile:Reference xmi:id="_BwHBECpwEemd3uKV_mURhw" base_Element="_Bv93ISpwEemd3uKV_mURhw"/>
+  <Persistency:PrimaryKey xmi:id="_tPp_UCpwEemd3uKV_mURhw" base_Property="_Ula6MCpwEemd3uKV_mURhw"/>
+  <Persistency:PrimaryKey xmi:id="_vu1-kCpwEemd3uKV_mURhw" base_Property="_8_RkkCpJEem0Wcht8IppcQ"/>
+  <UMLLabProfile:Reference xmi:id="_LUazcSpxEemd3uKV_mURhw" base_Element="_LUazcCpxEemd3uKV_mURhw"/>
+  <Persistency:PrimaryKey xmi:id="_ONbZMCp3Eemvs8z37xKZzA" base_Property="_kzmmwCp1Eemay_v0qNNh8w"/>
+  <Persistency:PrimaryKey xmi:id="_DhH_0Cp9Eemvs8z37xKZzA" base_Property="_BHbkkCp9Eemvs8z37xKZzA"/>
+  <Persistency:PrimaryKey xmi:id="_FDqJkCp9Eemvs8z37xKZzA" base_Property="_Z6Z9sCp3Eemvs8z37xKZzA"/>
+  <Persistency:PrimaryKey xmi:id="_BXxbwCp_Eemvs8z37xKZzA" base_Property="_s6jwsCp-Eemvs8z37xKZzA"/>
+  <Persistency:PrimaryKey xmi:id="_JX_aoCp_Eemvs8z37xKZzA" base_Property="_i0ofACp9Eemvs8z37xKZzA"/>
+  <UMLLabProfile:UnresolvedElement xmi:id="_SlxjYCqAEemH1tZSF0AxHw" base_Element="_SlU3cCqAEemH1tZSF0AxHw"/>
+</xmi:XMI>
