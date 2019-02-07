@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.sql.Date.Date;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;

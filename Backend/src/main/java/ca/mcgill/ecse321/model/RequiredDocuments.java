@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.model;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Id;
+import java.sql.Date.Date;
 
 @Entity
 public abstract class RequiredDocuments{
