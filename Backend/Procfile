@@ -1,1 +1,1 @@
-web: java -jar Backend/build/libs/Cooperator-Backend-0.0.1-SNAPSHOT.jar --server.port=$PORT
+web: java -jar Backend/build/libs/Backend-0.0.1-SNAPSHOT.jar --server.port=$PORT
