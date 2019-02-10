@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.cooperator;
 
 import ca.mcgill.ecse321.cooperator.dao.CourseRepository;
+import ca.mcgill.ecse321.cooperator.dao.UserEntityRepository;
 import ca.mcgill.ecse321.cooperator.model.Course;
 import ca.mcgill.ecse321.cooperator.model.UserEntity;
 import ca.mcgill.ecse321.cooperator.services.CooperatorService;
@@ -24,11 +25,15 @@ public class TestCooperatorService {
     @Autowired
     private CourseRepository courseRepository;
 
+    @Autowired
+    private UserEntityRepository userEntityRepository;
+
 
     @After
     public void clearDatabase() {
-        // Clear all courses
+        // Clear all data
         courseRepository.deleteAll();
+        userEntityRepository.deleteAll();
     }
 
     @Test
