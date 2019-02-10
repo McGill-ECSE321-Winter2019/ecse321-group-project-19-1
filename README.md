@@ -6,7 +6,7 @@ Welcome to ECSE 321 - Winter 2019 project - Group 19 edition.
 
 Please check the wiki for information on the architecture of the system and how to use it.
 
-App hosted [here]( https://git.heroku.com/cooperator-backend-260.git)
+App hosted [here](https://cooperator-backend-260.herokuapp.com/)
 
 ## Deliverable 1
 
