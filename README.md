@@ -9,7 +9,7 @@ Please check the wiki for information on the architecture of the system and how 
 App hosted [here](https://cooperator-backend-260.herokuapp.com/)
 
 ## Deliverable 1
-
+The report can be found [here](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-19-1/wiki/Deliverable-1-Report)
 |Team member's name |Total hours |Responsibility         |
 |-------------------|------------|-----------------------|
 |Sophie Deng        |            |                       |
