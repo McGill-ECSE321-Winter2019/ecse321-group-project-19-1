@@ -11,16 +11,7 @@ public abstract class UserEntity {
     private String firstName;
     private String lastName;
     private String password;
-
-    public void setUseId(Integer value) {
-        this.useId = value;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Integer getUseId() {
-        return this.useId;
-    }
+    private String email;
 
     public void setFirstName(String value) {
         this.firstName = value;
@@ -44,5 +35,14 @@ public abstract class UserEntity {
 
     public String getPassword() {
         return this.password;
+    }
+
+    public void setEmail(String value) {
+        this.email = value;
+    }
+
+    @Id
+    public String getEmail() {
+        return this.email;
     }
 }

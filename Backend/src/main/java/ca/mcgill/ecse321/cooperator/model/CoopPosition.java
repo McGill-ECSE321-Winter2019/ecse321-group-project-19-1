@@ -16,7 +16,7 @@ public class CoopPosition {
     private Date startDate;
     private Date endDate;
     private String location;
-    private Set<Course> course;
+    private Set<Course> usefulCourses;
 
     public void setCoopId(Integer value) {
         this.coopId = value;
@@ -46,12 +46,12 @@ public class CoopPosition {
     }
 
     @ManyToMany(mappedBy = "coopPosition")
-    public Set<Course> getCourse() {
-        return this.course;
+    public Set<Course> getUsefulCourses() {
+        return this.usefulCourses;
     }
 
-    public void setCourse(Set<Course> courses) {
-        this.course = courses;
+    public void setUsefulCourses(Set<Course> courses) {
+        this.usefulCourses = courses;
     }
 
     @ManyToOne(optional = false)
