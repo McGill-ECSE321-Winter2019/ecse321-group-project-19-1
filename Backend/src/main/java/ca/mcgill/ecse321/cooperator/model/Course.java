@@ -5,34 +5,29 @@ import java.util.Set;
 
 @Entity
 public class Course {
+    private Integer courseId;
     private String courseName;
-    private CooperatorManager cooperatorManager;
     private Set<CoopPosition> coopPosition;
 
-    public Course(String courseName){
-        this.courseName=courseName;
+    public void setCourseId(Integer value) {
+        this.courseId = value;
     }
 
-    @ManyToOne(optional = false)
-    public CooperatorManager getCooperatorManager() {
-        return this.cooperatorManager;
-    }
-
-    public void setCooperatorManager(CooperatorManager cooperatorManager) {
-        this.cooperatorManager = cooperatorManager;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Integer getCourseId() {
+        return this.courseId;
     }
 
     public void setCourseName(String value) {
         this.courseName = value;
     }
 
-    @Id
-    @Column(name="course_name", unique = true, nullable = false)
     public String getCourseName() {
         return this.courseName;
     }
 
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany
     public Set<CoopPosition> getCoopPosition() {
         return this.coopPosition;
     }

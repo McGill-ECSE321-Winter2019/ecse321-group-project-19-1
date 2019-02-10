@@ -1,91 +1,57 @@
 package ca.mcgill.ecse321.cooperator.model;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
 public class CoopPosition {
-    private Integer coopID;
+    private Integer coopId;
+    private Status status;
+    private Set<TermInstructor> termInstructor;
+    private Student student;
+    private Set<RequiredDocument> requiredDocument;
     private String description;
+    private String term;
     private Date startDate;
     private Date endDate;
-    private String term;
     private String location;
-    private Status status;
-    private Set<Course> courses;
-    private Student student;
-    private Set<TermInstructor> termInstructor;
-    private CooperatorManager cooperatorManager;
-    private Set<RequiredDocuments> requiredDocuments;
+    private Set<Course> course;
 
-    private void setCoopID(Integer value) {
-        this.coopID = value;
+    public void setCoopId(Integer value) {
+        this.coopId = value;
     }
 
     @Id
-    @Column(name="coop_id", unique = true, nullable = false)
-    private Integer getCoopID() {
-        return this.coopID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Integer getCoopId() {
+        return this.coopId;
     }
 
-    private void setDescription(String value) {
-        this.description = value;
-    }
-
-    private String getDescription() {
-        return this.description;
-    }
-
-    private void setStartDate(Date value) {
-        this.startDate = value;
-    }
-
-    private Date getStartDate() {
-        return this.startDate;
-    }
-
-    private void setEndDate(Date value) {
-        this.endDate = value;
-    }
-
-    private Date getEndDate() {
-        return this.endDate;
-    }
-
-    private void setLocation(String value) {
-        this.location = value;
-    }
-
-    private String getLocation() {
-        return this.location;
-    }
-
-    private void setTerm(String value) {
-        this.term = value;
-    }
-
-    private String getTerm() {
-        return this.term;
-    }
-
-    private void setStatus(Status value) {
-
+    public void setStatus(Status value) {
         this.status = value;
     }
 
-    private Status getStatus() {
-
+    public Status getStatus() {
         return this.status;
     }
 
-    @OneToMany(mappedBy = "coopPosition", cascade = {CascadeType.ALL})
-    public Set<RequiredDocuments> getRequiredDocuments() {
-        return this.requiredDocuments;
+    @ManyToMany
+    public Set<TermInstructor> getTermInstructor() {
+        return this.termInstructor;
     }
 
-    public void setRequiredDocuments(Set<RequiredDocuments> requiredDocumentss) {
-        this.requiredDocuments = requiredDocumentss;
+    public void setTermInstructor(Set<TermInstructor> termInstructors) {
+        this.termInstructor = termInstructors;
+    }
+
+    @ManyToMany(mappedBy = "coopPosition")
+    public Set<Course> getCourse() {
+        return this.course;
+    }
+
+    public void setCourse(Set<Course> courses) {
+        this.course = courses;
     }
 
     @ManyToOne(optional = false)
@@ -97,41 +63,53 @@ public class CoopPosition {
         this.student = student;
     }
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "CoopPosition_TermInstructor",
-            joinColumns = { @JoinColumn(name = "coop_id") },
-            inverseJoinColumns = { @JoinColumn(name = "user_id") }
-    )
-    public Set<TermInstructor> getTermInstructor() {
-        return this.termInstructor;
+    @OneToMany(mappedBy = "coopPosition", cascade = {CascadeType.ALL})
+    public Set<RequiredDocument> getRequiredDocument() {
+        return this.requiredDocument;
     }
 
-    public void setTermInstructor(Set<TermInstructor> termInstructors) {
-        this.termInstructor = termInstructors;
+    public void setRequiredDocument(Set<RequiredDocument> requiredDocuments) {
+        this.requiredDocument = requiredDocuments;
     }
 
-    @ManyToOne(optional = false)
-    public CooperatorManager getCooperatorManager() {
-        return this.cooperatorManager;
+    public void setDescription(String value) {
+        this.description = value;
     }
 
-    public void setCooperatorManager(CooperatorManager cooperatorManager) {
-        this.cooperatorManager = cooperatorManager;
+    public String getDescription() {
+        return this.description;
     }
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "CoopPosition_Course",
-            joinColumns = { @JoinColumn(name = "coop_id") },
-            inverseJoinColumns = { @JoinColumn(name = "course_name") }
-    )
-    public Set<Course> getCourses() {
-        return this.courses;
+
+    public void setStartDate(Date value) {
+        this.startDate = value;
     }
 
-    public void setCourses(Set<Course> courses) {
-        this.courses = courses;
+    public Date getStartDate() {
+        return this.startDate;
     }
 
+    public void setEndDate(Date value) {
+        this.endDate = value;
+    }
+
+    public Date getEndDate() {
+        return this.endDate;
+    }
+
+    public void setTerm(String value) {
+        this.term = value;
+    }
+
+    public String getTerm() {
+        return this.term;
+    }
+
+    public void setLocation(String value) {
+        this.location = value;
+    }
+
+    public String getLocation() {
+        return this.location;
+    }
 }

@@ -1,5 +1,5 @@
 package ca.mcgill.ecse321.cooperator;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.junit.Assert.fail;
 
 import java.sql.Date;
@@ -38,7 +38,8 @@ public class TestProgramManagerService {
 
     @Test
     public void testCreateCourse() {
-        assertEquals(0, service.getAllCourses().size());
+
+        assertEquals(0,service.getAllCourses().size());
 
         String name = "ECSE 321";
 
@@ -50,7 +51,7 @@ public class TestProgramManagerService {
 
         List<Course> allCourses = service.getAllCourses();
 
-        assertEquals(1, allCourses.size());
+        assertFalse(service.getAllCourses().isEmpty());
         assertEquals(name, allCourses.get(0).getCourseName());
     }
 }

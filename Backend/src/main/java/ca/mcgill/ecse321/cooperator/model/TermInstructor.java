@@ -5,7 +5,7 @@ import javax.persistence.ManyToMany;
 import java.util.Set;
 
 @Entity
-public class TermInstructor extends UserRole {
+public class TermInstructor extends UserEntity {
     private Set<CoopPosition> coopPosition;
 
     @ManyToMany(mappedBy = "termInstructor")

@@ -1,17 +1,25 @@
 package ca.mcgill.ecse321.cooperator.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import java.sql.Date;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-public abstract class RequiredDocuments {
-    private Integer documentID;
-    private String name;
+public abstract class RequiredDocument {
+    private Integer documentId;
     private CoopPosition coopPosition;
-    private Status status;
+    private String name;
     private Date dueDate;
+    private Boolean accepted;
+
+    public void setDocumentId(Integer value) {
+        this.documentId = value;
+    }
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    public Integer getDocumentId() {
+        return this.documentId;
+    }
 
     @ManyToOne(optional = false)
     public CoopPosition getCoopPosition() {
@@ -22,22 +30,12 @@ public abstract class RequiredDocuments {
         this.coopPosition = coopPosition;
     }
 
-
     public void setName(String value) {
         this.name = value;
     }
 
     public String getName() {
         return this.name;
-    }
-
-    public void setDocumentID(Integer value) {
-        this.documentID = value;
-    }
-
-    @Id
-    public Integer getDocumentID() {
-        return this.documentID;
     }
 
     public void setDueDate(Date value) {
@@ -48,11 +46,11 @@ public abstract class RequiredDocuments {
         return this.dueDate;
     }
 
-    public void setStatus(Status value) {
-        this.status = value;
+    public void setAccepted(Boolean value) {
+        this.accepted = value;
     }
 
-    public Status getStatus() {
-        return this.status;
+    public Boolean getAccepted() {
+        return this.accepted;
     }
 }
