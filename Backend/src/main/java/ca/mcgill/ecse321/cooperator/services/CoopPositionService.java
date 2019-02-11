@@ -35,10 +35,13 @@ public class CoopPositionService {
 	            throw new IllegalArgumentException("Cannot add a coop position with empty location");
 	        if(!CheckNotEmpty(term))
 	            throw new IllegalArgumentException("Cannot add a coop position with empty term");
-	        if(startDate.after(endDate)|| startDate.equals(endDate))
-	        	throw new IllegalArgumentException("Cannot add a coop position with start date after or at the same time as end date");
+	        if(startDate == null)
+	            throw new IllegalArgumentException("Cannot add a coop position with empty startDate");
 	        if(endDate == null)
 	            throw new IllegalArgumentException("Cannot add a coop position with empty endDate");
+	        if(startDate.after(endDate)|| startDate.equals(endDate))
+	        	throw new IllegalArgumentException("Cannot add a coop position with start date after or at the same time as end date");
+	       
 	        
 	        CoopPosition cp = new CoopPosition();
 	        cp.setDescription(description);
