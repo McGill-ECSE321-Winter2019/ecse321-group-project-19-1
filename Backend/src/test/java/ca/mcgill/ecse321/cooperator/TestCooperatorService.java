@@ -112,17 +112,13 @@ public class TestCooperatorService {
     @Test
     public void testCreateStudent() {
     	assertEquals(0, studentServ.getAllStudents().size());
-    	
-    	int id = 260807182;
+
     	try {
-            studentServ.createStudent(id);
+            studentServ.createStudent();
         } catch (IllegalArgumentException e) {
             fail();
         }
-    	List<Student> allStudents = studentServ.getAllStudents();
-        assertFalse(studentServ.getAllStudents().isEmpty());
-        if(id == allStudents.get(0).getStudentID())
-        	fail();
+        assertEquals(1, studentServ.getAllStudents().size());
     }
     
     @Test
@@ -164,17 +160,7 @@ public class TestCooperatorService {
     	assertEquals(1, coopServ.getAllCoopPositions().size());
     	
     }
-    
-//    public void testRateACourse() {
-//    	assertEquals(0, service.getAllCourses().size());
-//    	
-//    	Course course = createCourse();
-//    	CoopPosition coop = createCoopPosition();
-//    	coopServ.getAllCoopPositions().get(0).getUsefulCourses().add(service.getAllCourses().get(0));
-//    	
-//    	assertEquals(coop.getUsefulCourses().size(), 1);
-//    }
-    
+
     @Test
     public void testCreateFormDocument() {
     	
@@ -202,17 +188,9 @@ public class TestCooperatorService {
     	
     	assertEquals(1,docServ.getAllRequiredDocuments().size());
     }
-    
 
-//    public void changeCoopStatus() {
-//    	Status stats = (Status) new Object();
-//    	CoopPosition coop = createCoopPosition();
-//    	coop.setStatus(stats);
-//    	assertFalse(coopServ.getAllCoopPositions().isEmpty());
-//    }
     private Student createStudent() {
-    	int id = 260807182;
-    	Student student = studentServ.createStudent(id);
+    	Student student = studentServ.createStudent();
     	return student;
     }
     private CoopPosition createCoopPosition() {
