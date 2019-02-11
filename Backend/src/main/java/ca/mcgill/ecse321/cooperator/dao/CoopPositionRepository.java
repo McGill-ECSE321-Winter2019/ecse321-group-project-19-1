@@ -12,9 +12,9 @@ import java.util.List;
 
 public interface CoopPositionRepository extends CrudRepository<CoopPosition, Integer>{
 
-    List<CoopPosition> findByStudent(Student student);
-    List<CoopPosition> findByTerm(String term);
-    List<CoopPosition> findByStatus(Status status);
-    List<CoopPosition> findByTermInstructor(TermInstructor termInstructor);
+    List<CoopPosition> findCoopPositionByStudent(Student student);
+    List<CoopPosition> findCoopPositionByTerm(String term);
+    List<CoopPosition> findCoopPositionByStatus(Status status);
+    List<CoopPosition> findCoopPositionByTermInstructor(TermInstructor termInstructor);
 
 }

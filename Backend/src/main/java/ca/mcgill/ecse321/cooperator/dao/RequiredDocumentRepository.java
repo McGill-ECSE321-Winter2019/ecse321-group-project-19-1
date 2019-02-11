@@ -10,8 +10,7 @@ import ca.mcgill.ecse321.cooperator.model.RequiredDocument;
 import ca.mcgill.ecse321.cooperator.model.Student;
 
 public interface RequiredDocumentRepository extends CrudRepository<RequiredDocument, Integer> {
-	RequiredDocument findById(int id);
-	RequiredDocument findByName(String name);
-	List<RequiredDocument> findByDueDate(Date dueDate);
-	List<RequiredDocument> findByStudentAndCoopPosition(Student s, CoopPosition cp);
+	RequiredDocument findRequiredDocumentBydocumentId(int id);
+	RequiredDocument findRequiredDocumentByName(String name);
+	List<RequiredDocument> findRequiredDocumentByDueDate(Date dueDate);
 }

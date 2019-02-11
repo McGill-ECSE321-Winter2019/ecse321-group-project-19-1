@@ -6,6 +6,6 @@ import ca.mcgill.ecse321.cooperator.model.Student;
 
 public interface StudentRepository extends CrudRepository<Student, Integer> {
 
-	Student findStudentByID(int id);
+	Student findStudentByStudentID(int id);
 	
 }

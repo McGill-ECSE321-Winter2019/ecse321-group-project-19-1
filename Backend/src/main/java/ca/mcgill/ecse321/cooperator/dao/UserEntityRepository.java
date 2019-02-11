@@ -8,5 +8,5 @@ import java.util.Date;
 import java.util.List;
 
 public interface UserEntityRepository extends CrudRepository<UserEntity, String>{
-    UserEntity findByEmail(String email);
+    UserEntity findUserEntityByEmail(String email);
 }

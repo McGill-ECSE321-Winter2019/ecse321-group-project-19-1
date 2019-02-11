@@ -44,6 +44,10 @@ public class CoopPositionService {
 	            throw new IllegalArgumentException("Cannot add a coop position with empty term");
 	        if(startDate.after(endDate)|| startDate.equals(endDate))
 	        	throw new IllegalArgumentException("Cannot add a coop position with start date after or at the same time as end date");
+	        if(startDate == null)
+	            throw new IllegalArgumentException("Cannot add a coop position with empty startDate");
+	        if(endDate == null)
+	            throw new IllegalArgumentException("Cannot add a coop position with empty endDate");
 	        
 	        CoopPosition cp = new CoopPosition();
 	        cp.setCoopId(id);
@@ -60,7 +64,7 @@ public class CoopPositionService {
 	 @Transactional
 	 	public List<CoopPosition> getCoopPositionsByStatus(Status status){
 		 List<CoopPosition> coopPositionsByStatus = new ArrayList<>();
-		 for(CoopPosition cp: coopPositionRepository.findByStatus(status)) {
+		 for(CoopPosition cp: coopPositionRepository.findCoopPositionByStatus(status)) {
 		 		coopPositionsByStatus.add(cp);
 		 	}
 		 	return coopPositionsByStatus;
@@ -69,7 +73,7 @@ public class CoopPositionService {
 	 @Transactional
 	    public List<CoopPosition> getCoopPositionsByStudent(Student student){
 		 	List<CoopPosition> coopPositionsByStudent = new ArrayList<>();
-		 	for(CoopPosition cp: coopPositionRepository.findByStudent(student)) {
+		 	for(CoopPosition cp: coopPositionRepository.findCoopPositionByStudent(student)) {
 		 		coopPositionsByStudent.add(cp);
 		 	}
 		 	return coopPositionsByStudent;
@@ -78,7 +82,7 @@ public class CoopPositionService {
 	 @Transactional
 	 	public List<CoopPosition> getCoopPositionsByTerm(String term){
 		 List<CoopPosition> coopPositionsByTerm = new ArrayList<>();
-		 for(CoopPosition cp: coopPositionRepository.findByTerm(term)) {
+		 for(CoopPosition cp: coopPositionRepository.findCoopPositionByTerm(term)) {
 		 		coopPositionsByTerm.add(cp);
 		 	}
 		 	return coopPositionsByTerm;
@@ -87,7 +91,7 @@ public class CoopPositionService {
 	 @Transactional
 	 	public List<CoopPosition> getCoopPositionsByTermInstructor(TermInstructor termInstructor){
 		 List<CoopPosition> coopPositionsByTermInstructor = new ArrayList<>();
-		 for(CoopPosition cp: coopPositionRepository.findByTermInstructor(termInstructor)) {
+		 for(CoopPosition cp: coopPositionRepository.findCoopPositionByTermInstructor(termInstructor)) {
 		 		coopPositionsByTermInstructor.add(cp);
 		 	}
 		 	return coopPositionsByTermInstructor;

@@ -38,7 +38,7 @@ public class UserEntityService {
     }
 
     public UserEntity getUserEntityByEmail(String email) {
-        return userEntityRepository.findByEmail(email);
+        return userEntityRepository.findUserEntityByEmail(email);
     }
 
     // =============================== Private methods ===============================
