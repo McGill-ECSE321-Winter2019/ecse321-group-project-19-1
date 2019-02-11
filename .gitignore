@@ -2,6 +2,7 @@
 .gradle/
 build/
 out/
+bin/
 
 ## Ignore eclipse? files
 .settings/
@@ -15,3 +16,4 @@ out/
 *.iml
 *.ipr
 
+.project
