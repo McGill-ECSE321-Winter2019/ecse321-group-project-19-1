@@ -164,7 +164,7 @@ public class TestCooperatorService {
     	assertEquals(1, coopServ.getAllCoopPositions().size());
     	
     }
-    @Test
+    
 //    public void testRateACourse() {
 //    	assertEquals(0, service.getAllCourses().size());
 //    	
@@ -203,7 +203,7 @@ public class TestCooperatorService {
     	assertEquals(1,docServ.getAllRequiredDocuments().size());
     }
     
-    @Test
+
 //    public void changeCoopStatus() {
 //    	Status stats = (Status) new Object();
 //    	CoopPosition coop = createCoopPosition();
