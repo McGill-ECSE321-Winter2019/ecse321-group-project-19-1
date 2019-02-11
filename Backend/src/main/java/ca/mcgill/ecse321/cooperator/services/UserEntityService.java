@@ -38,7 +38,7 @@ public class UserEntityService {
     }
 
     public UserEntity getUserEntityByEmail(String email) {
-        return userEntityRepository.findByEmail(email);
+        return userEntityRepository.findUserEntityByEmail(email);
     }
 
     // =============================== Private methods ===============================
@@ -64,7 +64,7 @@ public class UserEntityService {
         if (type == UserType.PROGRAM_MANAGER) {
             user = new ProgramManager();
         } else if (type == UserType.TERM_INSTRUCTOR) {
-            user = new ProgramManager();
+            user = new TermInstructor();
 
         }
         if (user != null) {
