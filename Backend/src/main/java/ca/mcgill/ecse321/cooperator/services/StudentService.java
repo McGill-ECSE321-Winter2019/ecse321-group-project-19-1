@@ -16,8 +16,7 @@ public class StudentService {
 	 @Autowired
 	    StudentRepository studentRepository;
 	 
-	 @Transactional
-	    public Student createStudent() {
+	    public Student createStudent(int id) {
 	        Student student = new Student();
 	        studentRepository.save(student);
 	        return student;
