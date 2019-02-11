@@ -64,7 +64,7 @@ public class UserEntityService {
         if (type == UserType.PROGRAM_MANAGER) {
             user = new ProgramManager();
         } else if (type == UserType.TERM_INSTRUCTOR) {
-            user = new ProgramManager();
+            user = new TermInstructor();
 
         }
         if (user != null) {
