@@ -30,10 +30,6 @@ public class RequiredDocumentService {
 	        EMPLOYER_CONTRACT,
 	        FORM
 	    }
-	
-	 Boolean CheckNotEmptyInt(int i){
-	        return i!=0;
-	    }
 	 
 	 @Autowired
 	 	CoopPositionRepository coopPositionRepository;
@@ -41,20 +37,20 @@ public class RequiredDocumentService {
 	    RequiredDocumentRepository requiredDocumentRepository;
 	 
 	 @Transactional
-	    public Report createReport(int id, String name, Date dueDate, CoopPosition cp, ReportType type) {
-	        Report report = (Report) createRequiredDocument(id, name, dueDate,cp, RequiredDocumentType.REPORT);
+	    public Report createReport(String name, Date dueDate, CoopPosition cp, ReportType type) {
+	        Report report = (Report) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.REPORT);
 	        report.setReportType(type);
 	        return report;
 	    }
 
 	 @Transactional
-	    public EmployerContract createEmployerContract(int id, String name, Date dueDate, CoopPosition cp) {
-	        return (EmployerContract) createRequiredDocument(id, name, dueDate,cp, RequiredDocumentType.EMPLOYER_CONTRACT);
+	    public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp) {
+	        return (EmployerContract) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.EMPLOYER_CONTRACT);
 	    }
 
 	 @Transactional
-	 	public Form createForm(int id, String name, Date dueDate, CoopPosition cp) {
-	        return (Form) createRequiredDocument(id, name, dueDate,cp, RequiredDocumentType.FORM);
+	 	public Form createForm(String name, Date dueDate, CoopPosition cp) {
+	        return (Form) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.FORM);
 	    }
 	 
 	 @Transactional
@@ -91,10 +87,7 @@ public class RequiredDocumentService {
 	        return s != null && !s.equals("") && s.trim().length() > 0;
 	    }
 	    
-	    private RequiredDocument createRequiredDocument(int id, String name, Date dueDate, CoopPosition cp, RequiredDocumentType type) {
-	        if (!CheckNotEmptyInt(id))
-	            throw new IllegalArgumentException("Cannot add a document with empty id.");
-
+	    private RequiredDocument createRequiredDocument(String name, Date dueDate, CoopPosition cp, RequiredDocumentType type) {
 	        if (!CheckNotEmpty(name))
 	            throw new IllegalArgumentException("Cannot add a document with empty name.");
 
@@ -107,8 +100,7 @@ public class RequiredDocumentService {
 	        	rdoc = new Form();
 	        }
 	        	
-	        if (rdoc != null) {
-	            rdoc.setDocumentId(id);;
+	        if (rdoc != null) { 
 	            rdoc.setName(name);
 	            rdoc.setDueDate(dueDate);
 	            rdoc.setCoopPosition(cp);

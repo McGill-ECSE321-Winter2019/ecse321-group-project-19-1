@@ -12,18 +12,12 @@ import ca.mcgill.ecse321.cooperator.model.Student;
 
 @Service
 public class StudentService {
-	
-	 Boolean CheckNotEmpty(int i){
-	        return i!=0;
-	    }
+
 	 @Autowired
 	    StudentRepository studentRepository;
 	 
 	 @Transactional
 	    public Student createStudent(int id) {
-	        if(!CheckNotEmpty(id))
-	            throw new IllegalArgumentException("Cannot add a student with empty id");
-
 	        Student student = new Student();
 	        student.setStudentID(id);
 	        studentRepository.save(student);

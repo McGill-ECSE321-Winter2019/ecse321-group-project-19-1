@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.StudentRepository;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
-import ca.mcgill.ecse321.cooperator.model.RequiredDocument;
 import ca.mcgill.ecse321.cooperator.model.Status;
 import ca.mcgill.ecse321.cooperator.model.Student;
 import ca.mcgill.ecse321.cooperator.model.TermInstructor;
@@ -19,10 +18,6 @@ import ca.mcgill.ecse321.cooperator.model.TermInstructor;
 @Service   
 public class CoopPositionService {
 
-	 Boolean CheckNotEmptyInt(int i){
-	        return i!=0;
-	    }
-	 
 	 Boolean CheckNotEmpty(String s) {
 	        return s != null && !s.equals("") && s.trim().length() > 0;
 	    }
@@ -33,9 +28,7 @@ public class CoopPositionService {
 	 	StudentRepository studentRepository;
 	 
 	 @Transactional
-	    public CoopPosition createCoopPosition(int id,Date startDate, Date endDate,String description,String location, String term, Student student) {
-	        if(!CheckNotEmptyInt(id))
-	            throw new IllegalArgumentException("Cannot add a coop position with empty id");
+	    public CoopPosition createCoopPosition(Date startDate, Date endDate,String description,String location, String term, Student student) {
 	        if(!CheckNotEmpty(description))
 	            throw new IllegalArgumentException("Cannot add a coop position with empty description");
 	        if(!CheckNotEmpty(location))
@@ -44,13 +37,10 @@ public class CoopPositionService {
 	            throw new IllegalArgumentException("Cannot add a coop position with empty term");
 	        if(startDate.after(endDate)|| startDate.equals(endDate))
 	        	throw new IllegalArgumentException("Cannot add a coop position with start date after or at the same time as end date");
-	        if(startDate == null)
-	            throw new IllegalArgumentException("Cannot add a coop position with empty startDate");
 	        if(endDate == null)
 	            throw new IllegalArgumentException("Cannot add a coop position with empty endDate");
 	        
 	        CoopPosition cp = new CoopPosition();
-	        cp.setCoopId(id);
 	        cp.setDescription(description);
 	        cp.setLocation(location);
 	        cp.setStartDate(startDate);
