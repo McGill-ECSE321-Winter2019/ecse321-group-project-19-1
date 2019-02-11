@@ -13,9 +13,9 @@ The report can be found [here](https://github.com/McGill-ECSE321-Winter2019/ecse
 
 |Team member's name |Total hours |Responsibility         |
 |-------------------|------------|-----------------------|
-|Sophie Deng        |            |                       |
-|Andre Kaba         |            |                       |
-|Mia Zhou           |            |                       |
-|Max Brodeur        |            |                       |
-|Carl Elkhoury      |            |                       |
-
+|Sophie Deng        |    15      |         Domain model and report              |
+|Andre Kaba         |    18      |         Build system and domain model              |
+|Mia Zhou           |    15      |         Persistance layer and use case diagram             |
+|Max Brodeur        |    15      |         System requirements, use case and report             |
+|Carl Elkhoury      |    15      |         Tests and System requirement              |
+* Every Member is responsible for the project management, generate issues wherever applicable
