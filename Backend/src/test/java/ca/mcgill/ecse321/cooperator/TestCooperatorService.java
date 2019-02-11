@@ -1,17 +1,25 @@
 package ca.mcgill.ecse321.cooperator;
 
+import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.CourseRepository;
+import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
 import ca.mcgill.ecse321.cooperator.dao.UserEntityRepository;
-import ca.mcgill.ecse321.cooperator.model.Course;
-import ca.mcgill.ecse321.cooperator.model.UserEntity;
+import ca.mcgill.ecse321.cooperator.model.*;
+import ca.mcgill.ecse321.cooperator.services.CoopPositionService;
 import ca.mcgill.ecse321.cooperator.services.CooperatorService;
+import ca.mcgill.ecse321.cooperator.services.RequiredDocumentService;
+import ca.mcgill.ecse321.cooperator.services.StudentService;
+
+
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -28,15 +36,33 @@ public class TestCooperatorService {
     @Autowired
     private UserEntityRepository userEntityRepository;
 
+    @Autowired
+    private RequiredDocumentRepository requiredDocumentRepository;
 
-    @After
-    public void clearDatabase() {
-        // Clear all data
-        courseRepository.deleteAll();
-        userEntityRepository.deleteAll();
-    }
+    @Autowired
+    private CoopPositionRepository coopPositionRepository;
+    
+    @Autowired
+    private StudentService studentServ;
+    
+    @Autowired
+    private CoopPositionService coopServ;
+    
+    @Autowired
+    private RequiredDocumentService docServ;
 
-    @Test
+
+    @Before
+	public void clearDatabase() {
+	    // Clear all data
+	    courseRepository.deleteAll();
+	    userEntityRepository.deleteAll();
+        requiredDocumentRepository.deleteAll();
+        coopPositionRepository.deleteAll();
+	}
+
+
+	@Test
     public void testCreateCourse() {
 
         assertEquals(0, service.getAllCourses().size());
@@ -92,5 +118,101 @@ public class TestCooperatorService {
             fail();
         }
     }
+    
+    @Test
+    public void testCreateStudent() {
+    	assertEquals(0, studentServ.getAllStudents().size());
 
+    	try {
+            studentServ.createStudent();
+        } catch (IllegalArgumentException e) {
+            fail();
+        }
+        assertEquals(1, studentServ.getAllStudents().size());
+    }
+    
+    @Test
+    public void testCreateTermInstructor() {
+    	 assertEquals(0, service.getAllUserEntities().size());
+
+         String firstName = "Happy";
+         String lastName = "Birthday";
+         String email = "!!!@gmail.com";
+         String password = "Super weak";
+
+         try {
+             service.createTermInstructor(firstName,lastName,email,password);
+         } catch (IllegalArgumentException e) {
+             fail();
+         }
+         assertEquals(1, service.getAllUserEntities().size());
+    }
+    
+    @Test
+    public void testCreateCoopPosition() {
+    	assertEquals(0, coopServ.getAllCoopPositions().size());
+    	
+    	Student student=null;
+    	
+    	try{
+    		createStudent();
+    	}catch(IllegalArgumentException e) {
+    		fail();
+    	}
+    	Date startDate = new Date(5);
+    	Date endDate = new Date(10);
+    	CoopPosition coop = null;
+    	try {
+             coop = coopServ.createCoopPosition( startDate, endDate, "Test Course", "Test", "Test", studentServ.getAllStudents().get(0));
+        } catch (IllegalArgumentException e) {
+            fail();
+        }
+    	assertEquals(1, coopServ.getAllCoopPositions().size());
+    	
+    }
+
+    @Test
+    public void testCreateFormDocument() {
+    	
+    	CoopPosition coopPosition = createCoopPosition();
+    	try {
+    		docServ.createForm( "Form Test", new Date(), coopPosition);
+    	}catch(IllegalArgumentException e) {
+    		fail();
+    	}
+    	
+    	assertFalse(docServ.getAllRequiredDocuments().isEmpty());
+    	
+    }
+    
+    @Test
+    public void testCreateEmployerContactDocument() {
+    	assertEquals(0,docServ.getAllRequiredDocuments().size());
+    	
+    	CoopPosition coopPosition = createCoopPosition();
+    	try {
+    		docServ.createEmployerContract( "Employer Contract test", new Date(), coopPosition);
+    	}catch(IllegalArgumentException e) {
+    		fail();
+    	}
+    	
+    	assertEquals(1,docServ.getAllRequiredDocuments().size());
+    }
+
+    private Student createStudent() {
+    	Student student = studentServ.createStudent();
+    	return student;
+    }
+    private CoopPosition createCoopPosition() {
+    	createStudent();
+    	Date startDate = new Date(5);
+    	Date endDate = new Date(10);
+    	CoopPosition coop = coopServ.createCoopPosition( startDate, endDate, "description", "McGill", "Winter", studentServ.getAllStudents().get(0));
+    	return coop;
+    }
+    private Course createCourse() {
+          String name = "ECSE 321";
+          Course course = service.createCourse(name);
+          return course;
+    }
 }
