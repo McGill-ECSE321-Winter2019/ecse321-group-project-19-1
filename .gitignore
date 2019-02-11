@@ -2,6 +2,7 @@
 .gradle/
 build/
 out/
+bin/
 
 ## Ignore eclipse? files
 .settings/
