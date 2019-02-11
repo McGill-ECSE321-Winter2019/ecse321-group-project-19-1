@@ -58,9 +58,9 @@ public class RequiredDocumentService {
 	    }
 	 
 	 @Transactional
-	 	public List<RequiredDocument> getRequiredDocumentByStudentAndCoopPosition(Student s, CoopPosition cp) {
+	 	public List<RequiredDocument> getRequiredDocumentByCoopPosition(CoopPosition cp) {
 		 List<RequiredDocument> requiredDocumentByStudentAndCoopPosition = new ArrayList<>();
-		 for(RequiredDocument rdoc: requiredDocumentRepository.findByStudentAndCoopPosition(s, cp)) {
+		 for(RequiredDocument rdoc: requiredDocumentRepository.findRequiredDocumentByCoopPosition(cp)) {
 			 requiredDocumentByStudentAndCoopPosition.add(rdoc);
 		 }
 		 return requiredDocumentByStudentAndCoopPosition;
@@ -69,14 +69,14 @@ public class RequiredDocumentService {
 	 @Transactional
 	 	public List<RequiredDocument> getRequiredDocumentByDueDate(Date dueDate) {
 		 List<RequiredDocument> requiredDocumentByDueDate = new ArrayList<>();
-		 for(RequiredDocument rdoc: requiredDocumentRepository.findByDueDate(dueDate)) {
+		 for(RequiredDocument rdoc: requiredDocumentRepository.findRequiredDocumentByDueDate(dueDate)) {
 			 requiredDocumentByDueDate.add(rdoc);
 		 }
 		 return requiredDocumentByDueDate;
 	 }
 	 @Transactional
 	 	public RequiredDocument getRequiredDocument(int id) {
-		 RequiredDocument rdoc = requiredDocumentRepository.findById(id);
+		 RequiredDocument rdoc = requiredDocumentRepository.findRequiredDocumentBydocumentId(id);
 	 		return rdoc;
 	 }
 

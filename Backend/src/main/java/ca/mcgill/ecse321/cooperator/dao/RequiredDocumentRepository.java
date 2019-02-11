@@ -13,4 +13,5 @@ public interface RequiredDocumentRepository extends CrudRepository<RequiredDocum
 	RequiredDocument findRequiredDocumentBydocumentId(int id);
 	RequiredDocument findRequiredDocumentByName(String name);
 	List<RequiredDocument> findRequiredDocumentByDueDate(Date dueDate);
+	List<RequiredDocument> findRequiredDocumentByCoopPosition(CoopPosition coopPosition);
 }

@@ -32,7 +32,7 @@ public class StudentService {
 
 	 	@Transactional
 	 	public Student getStudent(int id) {
-	 		Student student = studentRepository.findStudentByID(id);
+	 		Student student = studentRepository.findStudentByStudentID(id);
 	 		return student;
 	 	}
 	    @Transactional
