@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.cooperator;
 
 import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.CourseRepository;
+import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
 import ca.mcgill.ecse321.cooperator.dao.UserEntityRepository;
 import ca.mcgill.ecse321.cooperator.model.*;
 import ca.mcgill.ecse321.cooperator.services.CoopPositionService;
@@ -11,6 +12,7 @@ import ca.mcgill.ecse321.cooperator.services.StudentService;
 
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,12 @@ public class TestCooperatorService {
 
     @Autowired
     private UserEntityRepository userEntityRepository;
+
+    @Autowired
+    private RequiredDocumentRepository requiredDocumentRepository;
+
+    @Autowired
+    private CoopPositionRepository coopPositionRepository;
     
     @Autowired
     private StudentService studentServ;
@@ -44,11 +52,13 @@ public class TestCooperatorService {
     private RequiredDocumentService docServ;
 
 
-    @After
+    @Before
 	public void clearDatabase() {
 	    // Clear all data
 	    courseRepository.deleteAll();
 	    userEntityRepository.deleteAll();
+        requiredDocumentRepository.deleteAll();
+        coopPositionRepository.deleteAll();
 	}
 
 
