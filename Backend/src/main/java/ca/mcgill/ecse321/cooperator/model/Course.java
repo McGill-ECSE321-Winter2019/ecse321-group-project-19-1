@@ -7,7 +7,8 @@ import java.util.Set;
 public class Course {
     private Integer courseId;
     private String courseName;
-    private Set<CoopPosition> coopPosition;
+    private Set<CoopPosition> coopPosition;  
+    private CooperatorManager cooperatorManager;
 
     public void setCourseId(Integer value) {
         this.courseId = value;
@@ -34,6 +35,15 @@ public class Course {
 
     public void setCoopPosition(Set<CoopPosition> coopPositions) {
         this.coopPosition = coopPositions;
+    }
+    
+    @ManyToOne(optional=false)
+    public CooperatorManager getCooperatorManager() {
+       return this.cooperatorManager;
+    }
+    
+    public void setCooperatorManager(CooperatorManager cooperatorManager) {
+       this.cooperatorManager = cooperatorManager;
     }
 
 }

@@ -7,7 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
 import ca.mcgill.ecse321.cooperator.model.RequiredDocument;
-import ca.mcgill.ecse321.cooperator.model.Student;
 
 public interface RequiredDocumentRepository extends CrudRepository<RequiredDocument, Integer> {
 	RequiredDocument findRequiredDocumentBydocumentId(int id);

@@ -1,17 +1,15 @@
 package ca.mcgill.ecse321.cooperator.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import javax.persistence.Id;
 
 @Entity
 public abstract class UserEntity {
-    private Integer useId;
     private String firstName;
     private String lastName;
     private String password;
     private String email;
+    private CooperatorManager cooperatorManager;
 
     public void setFirstName(String value) {
         this.firstName = value;
@@ -44,5 +42,14 @@ public abstract class UserEntity {
     @Id
     public String getEmail() {
         return this.email;
+    }
+    
+    @ManyToOne(optional=false)
+    public CooperatorManager getCooperatorManager() {
+       return this.cooperatorManager;
+    }
+    
+    public void setCooperatorManager(CooperatorManager cooperatorManager) {
+       this.cooperatorManager = cooperatorManager;
     }
 }
