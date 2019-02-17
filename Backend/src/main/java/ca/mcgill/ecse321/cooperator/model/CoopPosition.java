@@ -17,6 +17,7 @@ public class CoopPosition {
     private Date endDate;
     private String location;
     private Set<Course> usefulCourses;
+    private CooperatorManager cooperatorManager;
 
     public void setCoopId(Integer value) {
         this.coopId = value;
@@ -111,5 +112,14 @@ public class CoopPosition {
 
     public String getLocation() {
         return this.location;
+    }
+    
+    @ManyToOne(optional=false)
+    public CooperatorManager getCooperatorManager() {
+       return this.cooperatorManager;
+    }
+    
+    public void setCooperatorManager(CooperatorManager cooperatorManager) {
+       this.cooperatorManager = cooperatorManager;
     }
 }

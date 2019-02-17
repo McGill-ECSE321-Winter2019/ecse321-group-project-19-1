@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.cooperator.services;
 
 import ca.mcgill.ecse321.cooperator.dao.UserEntityRepository;
+import ca.mcgill.ecse321.cooperator.model.CooperatorManager;
 import ca.mcgill.ecse321.cooperator.model.Course;
 import ca.mcgill.ecse321.cooperator.model.ProgramManager;
 import ca.mcgill.ecse321.cooperator.model.TermInstructor;
@@ -28,13 +29,13 @@ public class UserEntityService {
     }
 
     @Transactional
-    public TermInstructor createTermInstructor(String firstName, String lastName, String email, String password) {
-        return (TermInstructor) createUser(firstName, lastName, email, password, UserType.TERM_INSTRUCTOR);
+    public TermInstructor createTermInstructor(String firstName, String lastName, String email, String password, CooperatorManager sys) {
+        return (TermInstructor) createUser(firstName, lastName, email, password, UserType.TERM_INSTRUCTOR, sys);
     }
 
     @Transactional
-    public ProgramManager createProgramManager(String firstName, String lastName, String email, String password) {
-        return (ProgramManager) createUser(firstName, lastName, email, password, UserType.PROGRAM_MANAGER);
+    public ProgramManager createProgramManager(String firstName, String lastName, String email, String password, CooperatorManager sys) {
+        return (ProgramManager) createUser(firstName, lastName, email, password, UserType.PROGRAM_MANAGER, sys);
     }
 
     public UserEntity getUserEntityByEmail(String email) {
@@ -47,7 +48,7 @@ public class UserEntityService {
         return s != null && !s.equals("") && s.trim().length() > 0;
     }
 
-    private UserEntity createUser(String firstName, String lastName, String email, String password, UserType type) {
+    private UserEntity createUser(String firstName, String lastName, String email, String password, UserType type, CooperatorManager sys) {
         if (!CheckNotEmpty(firstName))
             throw new IllegalArgumentException("Cannot add a user with empty firstName.");
 
@@ -72,6 +73,7 @@ public class UserEntityService {
             user.setLastName(lastName);
             user.setEmail(email);
             user.setPassword(password);
+            user.setCooperatorManager(sys);
             userEntityRepository.save(user);
             return user;
         }

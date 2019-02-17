@@ -23,12 +23,13 @@ public class CoursesService {
     CourseRepository courseRepository;
 
     @Transactional
-    public Course createCourse(String name) {
+    public Course createCourse(String name, CooperatorManager sys) {
         if(!CheckNotEmpty(name))
             throw new IllegalArgumentException("Cannot add a course with empty name");
 
         Course course = new Course();
         course.setCourseName(name.trim());
+        course.setCooperatorManager(sys);
         courseRepository.save(course);
         return course;
     }
