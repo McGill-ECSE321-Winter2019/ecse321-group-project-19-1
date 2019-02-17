@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import ca.mcgill.ecse321.cooperator.model.CooperatorManager;
 
 public interface CooperatorManagerRepository extends CrudRepository<CooperatorManager, Integer>{
-	CooperatorManager findCooperatorManagerByCooperatorID(int id);   
+	CooperatorManager findCooperatorManagerBySystemName(String name);   
 }

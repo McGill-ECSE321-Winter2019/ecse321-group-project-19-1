@@ -10,17 +10,16 @@ public class CooperatorManager {
 	private Set<Student> student;
 	private Set<RequiredDocument> requiredDocument;
 	private Set<Course> course;
-	private Integer cooperatorID;
+	private String systemName;
 	private Set<Employer> employer;
 
-	public void setCooperatorId(Integer value) {
-		this.cooperatorID = value;
+	public void setSystemName(String value) {
+		this.systemName = value;
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Integer getCooperatorId() {
-		return this.cooperatorID;
+	public String getSystemName() {
+		return this.systemName;
 	}
 
 	@OneToMany(mappedBy = "cooperatorManager", cascade = { CascadeType.ALL })

@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
+import ca.mcgill.ecse321.cooperator.model.CooperatorManager;
+import ca.mcgill.ecse321.cooperator.model.Employer;
 import ca.mcgill.ecse321.cooperator.model.EmployerContract;
 import ca.mcgill.ecse321.cooperator.model.Form;
 import ca.mcgill.ecse321.cooperator.model.Report;
@@ -37,20 +39,39 @@ public class RequiredDocumentService {
 	    RequiredDocumentRepository requiredDocumentRepository;
 	 
 	 @Transactional
-	    public Report createReport(String name, Date dueDate, CoopPosition cp, ReportType type) {
-	        Report report = (Report) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.REPORT);
+	    public Report createReport(String name, Date dueDate, CoopPosition cp, ReportType type, CooperatorManager sys) {
+	        Report report = (Report) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.REPORT, sys);
 	        report.setReportType(type);
 	        return report;
 	    }
 
 	 @Transactional
-	    public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp) {
-	        return (EmployerContract) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.EMPLOYER_CONTRACT);
+	    public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp, Employer em, CooperatorManager sys) {
+	        if (!CheckNotEmpty(name))
+	            throw new IllegalArgumentException("Cannot add a document with empty name.");
+
+	        EmployerContract rdoc = new EmployerContract();
+	        
+	        if (rdoc != null) { 
+	            rdoc.setName(name);
+	            rdoc.setDueDate(dueDate);
+	            rdoc.setCoopPosition(cp);
+	            rdoc.setEmployer(em);
+	            rdoc.setCooperatorManager(sys);
+	            requiredDocumentRepository.save(rdoc);
+	            return rdoc;
+	        }
+	        throw new IllegalArgumentException("[Internal error] Failed to create a new document.");
+	    }
+	 
+	 @Transactional
+	 	public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp, CooperatorManager sys) {
+	        return (EmployerContract) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.FORM, sys);
 	    }
 
 	 @Transactional
-	 	public Form createForm(String name, Date dueDate, CoopPosition cp) {
-	        return (Form) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.FORM);
+	 	public Form createForm(String name, Date dueDate, CoopPosition cp, CooperatorManager sys) {
+	        return (Form) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.FORM, sys);
 	    }
 	 
 	 @Transactional
@@ -87,7 +108,7 @@ public class RequiredDocumentService {
 	        return s != null && !s.equals("") && s.trim().length() > 0;
 	    }
 	    
-	    private RequiredDocument createRequiredDocument(String name, Date dueDate, CoopPosition cp, RequiredDocumentType type) {
+	    private RequiredDocument createRequiredDocument(String name, Date dueDate, CoopPosition cp, RequiredDocumentType type, CooperatorManager sys) {
 	        if (!CheckNotEmpty(name))
 	            throw new IllegalArgumentException("Cannot add a document with empty name.");
 
@@ -104,6 +125,7 @@ public class RequiredDocumentService {
 	            rdoc.setName(name);
 	            rdoc.setDueDate(dueDate);
 	            rdoc.setCoopPosition(cp);
+	            rdoc.setCooperatorManager(sys);
 	            requiredDocumentRepository.save(rdoc);
 	            return rdoc;
 	        }

@@ -16,14 +16,40 @@ public class CooperatorService {
     }
 
     @Autowired
+    CooperatorSystemService systemService;
+    
+    @Autowired
     CoursesService coursesService;
 
     @Autowired
     UserEntityService userEntityService;
+    
+    @Autowired
+    EmployerService employerService;
 
     @Transactional
-    public Course createCourse(String name) {
-        return coursesService.createCourse(name);
+    public CooperatorManager createSystem(String name) {
+        return systemService.createSystem(name);
+    }
+    
+    @Transactional
+    public List<CooperatorManager> getAllSystems() {
+        return systemService.getAllSystems();
+    }
+    
+    @Transactional
+    public Employer createEmployer(CooperatorManager sys) {
+        return employerService.createEmployer(sys);
+    }
+    
+    @Transactional
+    public List<Employer> getAllEmployers() {
+        return employerService.getAllEmployers();
+    }
+    
+    @Transactional
+    public Course createCourse(String name, CooperatorManager sys) {
+        return coursesService.createCourse(name, sys);
     }
 
     @Transactional
@@ -31,16 +57,14 @@ public class CooperatorService {
         return coursesService.getAllCourses();
     }
 
-
     @Transactional
-    public ProgramManager createProgramManager(String firstName, String lastName, String email, String password) {
-        return userEntityService.createProgramManager(firstName,lastName,email,password);
+    public ProgramManager createProgramManager(String firstName, String lastName, String email, String password, CooperatorManager sys) {
+        return userEntityService.createProgramManager(firstName,lastName,email,password, sys);
     }
 
-
     @Transactional
-    public TermInstructor createTermInstructor(String firstName, String lastName, String email, String password) {
-        return userEntityService.createTermInstructor(firstName,lastName,email,password);
+    public TermInstructor createTermInstructor(String firstName, String lastName, String email, String password, CooperatorManager sys) {
+        return userEntityService.createTermInstructor(firstName,lastName,email,password, sys);
     }
 
     @Transactional

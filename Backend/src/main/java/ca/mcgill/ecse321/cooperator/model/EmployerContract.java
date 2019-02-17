@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class EmployerContract extends RequiredDocument {
 	private Employer employer;
 	   
-	   @ManyToOne(optional=false)
+	   @ManyToOne
 	   public Employer getEmployer() {
 	      return this.employer;
 	   }
