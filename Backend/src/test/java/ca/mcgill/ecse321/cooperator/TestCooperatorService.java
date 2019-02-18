@@ -49,15 +49,6 @@ public class TestCooperatorService {
 	@Autowired
 	private CoopPositionRepository coopPositionRepository;
 
-	@Autowired
-	private StudentService studentServ;
-
-	@Autowired
-	private CoopPositionService coopServ;
-
-	@Autowired
-	private RequiredDocumentService docServ;
-
 	@Before
 	public void clearDatabase() {
 		// Clear all data
@@ -148,15 +139,15 @@ public class TestCooperatorService {
 
 	@Test
 	public void testCreateStudent() {
-		assertEquals(0, studentServ.getAllStudents().size());
+		assertEquals(0, service.getAllStudents().size());
 
 		try {
 			createSystem();
-			studentServ.createStudent(service.getAllSystems().get(0));
+			service.createStudent(service.getAllSystems().get(0));
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
-		assertEquals(1, studentServ.getAllStudents().size());
+		assertEquals(1, service.getAllStudents().size());
 	}
 
 	@Test
@@ -179,7 +170,7 @@ public class TestCooperatorService {
 
 	@Test
 	public void testCreateCoopPosition() {
-		assertEquals(0, coopServ.getAllCoopPositions().size());
+		assertEquals(0, service.getAllCoopPositions().size());
 
 		Student student = null;
 
@@ -193,12 +184,12 @@ public class TestCooperatorService {
 		Date endDate = new Date(10);
 		CoopPosition coop = null;
 		try {
-			coop = coopServ.createCoopPosition(startDate, endDate, "Test Course", "Test", "Test",
-					studentServ.getAllStudents().get(0), service.getAllSystems().get(0));
+			coop = service.createCoopPosition(startDate, endDate, "Test Course", "Test", "Test",
+					service.getAllStudents().get(0), service.getAllSystems().get(0));
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
-		assertEquals(1, coopServ.getAllCoopPositions().size());
+		assertEquals(1, service.getAllCoopPositions().size());
 
 	}
 
@@ -208,35 +199,35 @@ public class TestCooperatorService {
 		CoopPosition coopPosition = createCoopPosition();
 		try {
 			createSystem();
-			docServ.createForm("Form Test", new Date(1), coopPosition, service.getAllSystems().get(0));
+			service.createForm("Form Test", new Date(1), coopPosition, service.getAllSystems().get(0));
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
 
-		assertFalse(docServ.getAllRequiredDocuments().isEmpty());
+		assertFalse(service.getAllRequiredDocuments().isEmpty());
 
 	}
 
 	@Test
 	public void testCreateEmployerContactDocument() {
-		assertEquals(0, docServ.getAllRequiredDocuments().size());
+		assertEquals(0, service.getAllRequiredDocuments().size());
 
 		CoopPosition coopPosition = createCoopPosition();
 		try {
 			createSystem();
 			createEmployer();
-			docServ.createEmployerContract("Employer Contract test", new Date(), coopPosition,
+			service.createEmployerContract("Employer Contract test", new Date(), coopPosition,
 					service.getAllEmployers().get(0), service.getAllSystems().get(0));
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
 
-		assertEquals(1, docServ.getAllRequiredDocuments().size());
+		assertEquals(1, service.getAllRequiredDocuments().size());
 	}
 
 	private Student createStudent() {
 		createSystem();
-		Student student = studentServ.createStudent(service.getAllSystems().get(0));
+		Student student = service.createStudent(service.getAllSystems().get(0));
 		return student;
 	}
 
@@ -244,8 +235,8 @@ public class TestCooperatorService {
 		createStudent();
 		Date startDate = new Date(5);
 		Date endDate = new Date(10);
-		CoopPosition coop = coopServ.createCoopPosition(startDate, endDate, "description", "McGill", "Winter",
-				studentServ.getAllStudents().get(0), service.getAllSystems().get(0));
+		CoopPosition coop = service.createCoopPosition(startDate, endDate, "description", "McGill", "Winter",
+				service.getAllStudents().get(0), service.getAllSystems().get(0));
 		return coop;
 	}
 

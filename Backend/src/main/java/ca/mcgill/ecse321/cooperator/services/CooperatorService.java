@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -17,6 +18,15 @@ public class CooperatorService {
 
     @Autowired
     CooperatorSystemService systemService;
+    
+    @Autowired
+    CoopPositionService coopPositionService;
+    
+    @Autowired
+    RequiredDocumentService requiredDocumentService;
+    
+    @Autowired
+    StudentService studentService;
     
     @Autowired
     CoursesService coursesService;
@@ -80,4 +90,41 @@ public class CooperatorService {
         }
         return null;
     }
+
+    @Transactional
+	public List<Student> getAllStudents() {
+		return studentService.getAllStudents();
+	}
+
+    @Transactional
+	public Student createStudent(CooperatorManager cooperatorManager) {
+		return studentService.createStudent(cooperatorManager);
+	}
+	
+    @Transactional
+	public CoopPosition createCoopPosition(Date startDate, Date endDate,String description,String location, String term, Student student, CooperatorManager sys) {
+		return coopPositionService.createCoopPosition(startDate, endDate, description, location, term, student, sys);
+	}
+
+    @Transactional
+	public List<CoopPosition> getAllCoopPositions() {
+		return coopPositionService.getAllCoopPositions();
+	}
+
+    @Transactional
+	public Form createForm(String name, Date dueDate, CoopPosition cp, CooperatorManager sys) {
+		return requiredDocumentService.createForm(name, dueDate, cp, sys);
+	}
+
+    @Transactional
+	public List<RequiredDocument> getAllRequiredDocuments() {
+		return requiredDocumentService.getAllRequiredDocuments();
+	}
+
+    @Transactional
+	public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp, Employer employer,
+			CooperatorManager sys) {
+		return requiredDocumentService.createEmployerContract(name, dueDate, cp, employer, sys);
+	}
+
 }
