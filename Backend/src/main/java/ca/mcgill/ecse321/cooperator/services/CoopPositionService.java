@@ -66,6 +66,11 @@ public class CoopPositionService {
 	    }
 	 
 	 @Transactional
+	 	public CoopPosition getCoopPositionByID(Integer id){	 
+		 	return coopPositionRepository.findCoopPositionByCoopId(id);
+	    }
+	 
+	 @Transactional
 	    public List<CoopPosition> getCoopPositionsByStudent(Student student){
 		 	List<CoopPosition> coopPositionsByStudent = new ArrayList<>();
 		 	for(CoopPosition cp: coopPositionRepository.findCoopPositionByStudent(student)) {

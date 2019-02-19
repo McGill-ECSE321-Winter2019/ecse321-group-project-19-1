@@ -43,6 +43,10 @@ public class CooperatorService {
     }
     
     @Transactional
+    public CooperatorManager getSystem(String name) {
+    	return systemService.getSystem(name);
+    }
+    @Transactional
     public List<CooperatorManager> getAllSystems() {
         return systemService.getAllSystems();
     }
@@ -90,6 +94,11 @@ public class CooperatorService {
         }
         return null;
     }
+    
+    @Transactional
+    public UserEntity getUserEntityByEmail(String email) {
+    	return userEntityService.getUserEntityByEmail(email);
+    }
 
     @Transactional
 	public List<Student> getAllStudents() {
@@ -110,6 +119,11 @@ public class CooperatorService {
 	public List<CoopPosition> getAllCoopPositions() {
 		return coopPositionService.getAllCoopPositions();
 	}
+    
+    @Transactional
+    public CoopPosition getCoopPositionByID(Integer id){
+    	return coopPositionService.getCoopPositionByID(id);
+    }
 
     @Transactional
 	public Form createForm(String name, Date dueDate, CoopPosition cp, CooperatorManager sys) {

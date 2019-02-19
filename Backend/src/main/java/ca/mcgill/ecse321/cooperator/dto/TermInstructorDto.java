@@ -26,4 +26,8 @@ public class TermInstructorDto extends UserEntityDto {
     public void setCoopPosition(List<CoopPositionDto> coopPositions) {
         this.coopPosition = coopPositions;
     }
+    
+    public void addCoopPostion(CoopPositionDto cpDto) {
+    	coopPosition.add(cpDto);
+    }
 }
