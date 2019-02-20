@@ -139,7 +139,6 @@ public class TestCooperatorService {
 
 	@Test
 	public void testCreateStudent() {
-		assertEquals(0, service.getAllStudents().size());
 
 		try {
 			createSystem();
@@ -147,13 +146,11 @@ public class TestCooperatorService {
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
-		assertEquals(1, service.getAllStudents().size());
 	}
 
 	@Test
 	public void testCreateTermInstructor() {
-		assertEquals(0, service.getAllUserEntities().size());
-
+		
 		String firstName = "Happy";
 		String lastName = "Birthday";
 		String email = "!!!@gmail.com";
@@ -165,7 +162,6 @@ public class TestCooperatorService {
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
-		assertEquals(1, service.getAllUserEntities().size());
 	}
 
 	@Test
@@ -203,14 +199,10 @@ public class TestCooperatorService {
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
-
-		assertFalse(service.getAllRequiredDocuments().isEmpty());
-
 	}
 
 	@Test
-	public void testCreateEmployerContactDocument() {
-		assertEquals(0, service.getAllRequiredDocuments().size());
+	public void testCreateEmployerContract() {
 
 		CoopPosition coopPosition = createCoopPosition();
 		try {
@@ -222,7 +214,69 @@ public class TestCooperatorService {
 			fail();
 		}
 
+	}
+	
+	@Test
+	public void testReadEmployerContract() {
+		assertEquals(0, service.getAllRequiredDocuments().size());
+		createEmployerContract();
 		assertEquals(1, service.getAllRequiredDocuments().size());
+	}
+	
+	@Test
+	public void testReadFormDocument() {
+		assertEquals(0, service.getAllRequiredDocuments().size());
+		createFormDocument();
+		assertFalse(service.getAllRequiredDocuments().isEmpty());
+	}
+	
+	@Test
+	public void testReadCoopPosition() {
+		assertEquals(0, service.getAllCoopPositions().size());
+		createCoopPosition();
+		assertEquals(1, service.getAllCoopPositions().size());
+	}
+	
+	@Test
+	public void testReadTermInstructor() {
+		assertEquals(0, service.getAllUserEntities().size());
+		createTermInstructor();
+		assertEquals(1, service.getAllUserEntities().size());
+	}
+	
+	@Test
+	public void testReadStudent() {
+		assertEquals(0, service.getAllStudents().size());
+		createStudent();
+		assertEquals(1, service.getAllStudents().size());
+	}
+	
+	private RequiredDocument createEmployerContract() {
+		CoopPosition coop = createCoopPosition();
+		createSystem();
+		createEmployer();
+		RequiredDocument contract = service.createEmployerContract("Employer Contract test", new Date(), coop,
+				service.getAllEmployers().get(0), service.getAllSystems().get(0));
+		return contract;
+		
+	}
+	
+	private RequiredDocument createFormDocument() {
+		CoopPosition coopPosition = createCoopPosition();
+		createSystem();
+		RequiredDocument doc = service.createForm("Form Test", new Date(1), coopPosition, service.getAllSystems().get(0));
+		return doc;
+	}
+
+	private TermInstructor createTermInstructor(){
+		String firstName = "Happy";
+		String lastName = "Birthday";
+		String email = "!!!@gmail.com";
+		String password = "Super weak";
+
+		createSystem();
+		TermInstructor ti = service.createTermInstructor(firstName, lastName, email, password, service.getAllSystems().get(0));
+		return ti;
 	}
 
 	private Student createStudent() {
