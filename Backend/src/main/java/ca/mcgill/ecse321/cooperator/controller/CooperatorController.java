@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.cooperator.controller;
 
 import java.util.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import ca.mcgill.ecse321.cooperator.dto.*;
@@ -12,7 +13,8 @@ import ca.mcgill.ecse321.cooperator.services.CooperatorService;
 @RestController
 public class CooperatorController {
 
-	CooperatorService service;
+	@Autowired
+	private CooperatorService service;
 
 	//create system
 	@PostMapping(value = { "/system/{name}", "/system/{name}/" })
@@ -42,6 +44,16 @@ public class CooperatorController {
 		TermInstructor termInstructor = service.createTermInstructor(firstName, lastName, password, email, cm);
 		return convertToDto(termInstructor);
 	}
+	
+	//view all systems
+		@GetMapping(value = { "/systems", "/systems/" })
+		public List<CooperatorManagerDto> getAllSystems() {
+			List<CooperatorManagerDto> sysDtos = new ArrayList<>();
+			for (CooperatorManager sys : service.getAllSystems()) {
+				sysDtos.add(convertToDto(sys));
+			}
+			return sysDtos;
+		}
 
 	//view all coops
 	@GetMapping(value = { "/coops", "/coops/" })
