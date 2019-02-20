@@ -50,6 +50,7 @@ public class TestCooperatorService {
 	private CoopPositionRepository coopPositionRepository;
 
 	@Before
+	@After
 	public void clearDatabase() {
 		// Clear all data
 		systemRepository.deleteAll();
