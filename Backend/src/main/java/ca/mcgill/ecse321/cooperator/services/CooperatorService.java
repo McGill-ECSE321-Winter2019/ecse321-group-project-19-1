@@ -124,6 +124,10 @@ public class CooperatorService {
     public CoopPosition getCoopPositionByID(Integer id){
     	return coopPositionService.getCoopPositionByID(id);
     }
+    @Transactional
+   	public Report createReport(String name, Date dueDate, CoopPosition cp, ReportType type,CooperatorManager sys) {
+   		return requiredDocumentService.createReport(name, dueDate, cp,type, sys);
+   	}
 
     @Transactional
 	public Form createForm(String name, Date dueDate, CoopPosition cp, CooperatorManager sys) {

@@ -28,7 +28,7 @@ public class StudentService {
 
 	 	@Transactional
 	 	public Student getStudent(int id) {
-	 		Student student = studentRepository.findStudentByStudentID(id);
+	 		Student student = studentRepository.findById(id);
 	 		return student;
 	 	}
 	 	

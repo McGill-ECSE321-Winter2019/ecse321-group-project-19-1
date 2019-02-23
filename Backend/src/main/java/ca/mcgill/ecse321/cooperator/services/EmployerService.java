@@ -28,7 +28,7 @@ public class EmployerService {
 
  	@Transactional
  	public Employer getEmployer(int id) {
- 		Employer employer = employerRepository.findEmployerByEmployerID(id);
+ 		Employer employer = employerRepository.findById(id);
  		return employer;
  	}
  	

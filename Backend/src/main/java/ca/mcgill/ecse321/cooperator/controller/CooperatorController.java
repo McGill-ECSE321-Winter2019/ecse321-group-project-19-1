@@ -45,6 +45,65 @@ public class CooperatorController {
 		return convertToDto(termInstructor);
 	}
 	
+	//create student
+	@PostMapping(value = { "/createStudent/{studentId}", "/createStudent/{studentId}/" })
+	public StudentDto createStudent(@PathVariable("id") Integer studentId, @RequestParam(name = "system") CooperatorManagerDto cmDto)
+			throws IllegalArgumentException {
+		// @formatter:on
+		CooperatorManager cm = service.getSystem(cmDto.getName());
+		Student student = service.createStudent(cm);
+		return convertToDto(student);
+	}
+		
+	//create course
+	@PostMapping(value = {"/createCourse/{courseName}", "/createCourse/{courseName}/" })
+	public CourseDto createCourse(@PathVariable("name") String courseName, @RequestParam(name = "system") CooperatorManagerDto cmDto)
+			throws IllegalArgumentException {
+		// @formatter:on
+		CooperatorManager cm = service.getSystem(cmDto.getName());
+		Course course = service.createCourse(courseName,cm);
+		return convertToDto(course);
+	}	
+	
+	//create employer
+	@PostMapping(value = { "/createEmployer/{employerId}", "/createEmployer/{employerId}/" })
+	public EmployerDto createEmployer(@PathVariable("id") Integer employerId, @RequestParam(name = "system") CooperatorManagerDto cmDto)
+			throws IllegalArgumentException {
+			// @formatter:on
+			CooperatorManager cm = service.getSystem(cmDto.getName());
+			Employer employer = service.createEmployer(cm);
+			return convertToDto(employer);
+	}
+	
+	//create report
+	@PostMapping(value = { "/createReport/{reportId}", "/createReport/{reportId}/" })
+	public ReportDto createReport(@PathVariable("name") String name, @PathVariable("due") Date dueDate, @PathVariable("coop") CoopPosition cp,  @PathVariable("type") ReportType type, @RequestParam(name = "system") CooperatorManagerDto cmDto)
+			throws IllegalArgumentException {
+			// @formatter:on
+			CooperatorManager cm = service.getSystem(cmDto.getName());
+			Report report = service.createReport(name,dueDate,cp,type,cm);
+			return convertToDto(report);
+	}		
+	//create form
+	@PostMapping(value = { "/createForm/{formId}", "/createForm/{formId}/" })
+	public FormDto createForm(@PathVariable("name") String name, @PathVariable("due") Date dueDate, @PathVariable("coop") CoopPosition cp, @RequestParam(name = "system") CooperatorManagerDto cmDto)
+			throws IllegalArgumentException {
+			// @formatter:on
+			CooperatorManager cm = service.getSystem(cmDto.getName());
+			Form form = service.createForm(name,dueDate,cp,cm);
+			return convertToDto(form);
+	}
+	
+	//create employer contract
+	@PostMapping(value = { "/createEmployerContract/{name}", "/createForm/{name}/" })
+	public EmployerContractDto createEmployerContract(@PathVariable("name") String name, @PathVariable("due") Date dueDate, @PathVariable("coop") CoopPosition cp,@PathVariable("coop")Employer e, @RequestParam(name = "system") CooperatorManagerDto cmDto)
+			throws IllegalArgumentException {
+			// @formatter:on
+			CooperatorManager cm = service.getSystem(cmDto.getName());
+			EmployerContract ec= service.createEmployerContract(name,dueDate,cp,e,cm);
+			return convertToDto(ec);
+	}		
+	
 	//view all systems
 		@GetMapping(value = { "/systems", "/systems/" })
 		public List<CooperatorManagerDto> getAllSystems() {
@@ -85,13 +144,71 @@ public class CooperatorController {
 	}
 	
     // =============================== Private methods ===============================
-
+	
+	//====REQUIRED DOCUMENT======
+	//Report
+	private ReportDto convertToDto(Report r) {
+		if (r == null) {
+			throw new IllegalArgumentException("There is no such report!");
+		}
+		CooperatorManagerDto cm = convertToDto(r.getCooperatorManager());
+		ReportDto rDto = new ReportDto(r.getReportType(),r.getDocumentId(),r.getName(),r.getDueDate(),cm);
+		return rDto;
+	}
+	//Form
+	private FormDto convertToDto(Form f) {
+		if (f == null) {
+			throw new IllegalArgumentException("There is no such form!");
+		}
+		CooperatorManagerDto cm = convertToDto(f.getCooperatorManager());
+		FormDto fDto = new FormDto(f.getDocumentId(),f.getName(),f.getDueDate(),cm);
+		return fDto;
+	}
+	//Employer Contract
+	private EmployerContractDto convertToDto(EmployerContract ec) {
+		if (ec == null) {
+			throw new IllegalArgumentException("There is no such employer contract!");
+		}
+		CooperatorManagerDto cm = convertToDto(ec.getCooperatorManager());
+		EmployerContractDto ecDto = new EmployerContractDto(ec.getDocumentId(),ec.getName(),ec.getDueDate(),cm);
+		return ecDto;
+	}
+	//==========================
+	
+	private EmployerDto convertToDto(Employer e) {
+		if (e == null) {
+			throw new IllegalArgumentException("There is no such employer!");
+		}
+		CooperatorManagerDto cm = convertToDto(e.getCooperatorManager());
+		EmployerDto eDto = new EmployerDto(e.getEmployerID(),cm);
+		return eDto;
+	}
+	
+	
+	private CourseDto convertToDto(Course c) {
+		if (c == null) {
+			throw new IllegalArgumentException("There is no such course!");
+		}
+		CooperatorManagerDto cm = convertToDto(c.getCooperatorManager());
+		CourseDto cDto = new CourseDto(c.getCourseId(),c.getCourseName(),cm);
+		return cDto;
+	}
 	private CoopPositionDto convertToDto(CoopPosition cp) {
 		if (cp == null) {
 			throw new IllegalArgumentException("There is no such coop position!");
 		}
-		CoopPositionDto cpDto = new CoopPositionDto(cp.getCoopId());
+		StudentDto sDto= convertToDto(cp.getStudent());
+		CooperatorManagerDto cm = convertToDto(cp.getCooperatorManager());
+		CoopPositionDto cpDto = new CoopPositionDto(cp.getCoopId(), cp.getDescription(),cp.getStartDate(),cp.getEndDate(),cp.getLocation(),cp.getTerm(), sDto, cm);
 		return cpDto;
+	}
+	
+	private StudentDto convertToDto(Student s) {
+		if (s == null) {
+			throw new IllegalArgumentException("There is no such student!");
+		}
+		CooperatorManagerDto cm = convertToDto(s.getCooperatorManager());
+		return new StudentDto(s.getStudentID(),cm);
 	}
 
 	private TermInstructorDto convertToDto(TermInstructor ti) {

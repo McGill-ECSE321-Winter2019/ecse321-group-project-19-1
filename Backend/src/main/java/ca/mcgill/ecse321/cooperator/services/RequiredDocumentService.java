@@ -93,7 +93,7 @@ public class RequiredDocumentService {
 	 }
 	 @Transactional
 	 	public RequiredDocument getRequiredDocument(int id) {
-		 RequiredDocument rdoc = requiredDocumentRepository.findRequiredDocumentBydocumentId(id);
+		 RequiredDocument rdoc = requiredDocumentRepository.findById(id);
 	 		return rdoc;
 	 }
 
