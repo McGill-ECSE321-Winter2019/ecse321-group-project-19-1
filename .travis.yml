@@ -1,9 +1,8 @@
 language: java
 script:
-- ./gradlew build
-
+- "./gradlew build"
 deploy:
   provider: heroku
-  api_key: 112dda1c-f23c-4e9d-8e13-affe428ea266
-  app:
-    akaba/Auto-deploy-travis: cooperator-backend-260
+  api_key:
+    secure: Lz0f0rCKfIO54xRCykJ1UAhgwwcvEUfDWwpevo8AqD/jAKrUnpTKBBjol1I4sC8+fDryix231xpRG6akEbsBC7LJQ5BYNxi8cIOv3NJtL/Nd8Ap2CyHOsXOyIvTV5dxFG7YrChFbhppXvU2Us7uY9hGIfUE4wUFjvxVWboeqR/363Xa2cY2vQ/pyFogxwXV0hbG4OXkAV2YOZijKczq0dpNRmLZJlfcQOTeTXaX1eVOToFVW+tljiiXl7MkUYD9P+Z4BktGJ497TmuK2c9T9J7lq4Q+70ieAYiUNzwQK6W54P43PuGoFOxqD3eqFdYmiFs79JQlkqzKnSmxYXRLtHgvNPfZ07i/iGO8iR1+Z1Vad0bBuVh3+EyF6PjkT9xihn0OVje7vrezqMe/y79XAPF7nvnNQkhemTKZnYnqr/AGsZlYLwGs3kzwJ3FqMod1mtW5symzeWZKovcMR+Y9r7n9bX4Y/xPTIpGreWMifjX4+yx6lcXiyBZUuJKrrxo8BWKOHv/Nhr8kGMY4R5rkHlKxJuN0mCoryO8mS08NMkl6wtITAvEq3iSBxOdRwlds3G3VbtsBc22x7wLhAc8XW0ro7F9guDN4xlwEQAoNKCch9ASrPb5bNT8y1xooCTAGQootffumQ5CX9mLT57yO81x1CurA6Kpa3RiXs0ZW+8F8=
+  app: cooperator-backend-260
