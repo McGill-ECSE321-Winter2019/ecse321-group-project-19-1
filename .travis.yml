@@ -5,4 +5,5 @@ script:
 deploy:
   provider: heroku
   api_key: 112dda1c-f23c-4e9d-8e13-affe428ea266
-  app: cooperator-backend-260
+  app:
+    akaba/Auto-deploy-travis: cooperator-backend-260
