@@ -33,8 +33,7 @@ public class CoursesService {
         courseRepository.save(course);
         return course;
     }
-
-
+   
     @Transactional
     public List<Course> getAllCourses(){
         return (List<Course>)courseRepository.findAll();
