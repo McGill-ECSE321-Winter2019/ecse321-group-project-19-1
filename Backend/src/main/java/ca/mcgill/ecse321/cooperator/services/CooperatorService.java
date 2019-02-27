@@ -44,6 +44,9 @@ public class CooperatorService {
     }
     @Transactional
     public CooperatorManager getSystem(String name) {
+    	if (!CheckNotEmpty(name)) {
+	        throw new IllegalArgumentException("System name cannot be empty!");
+	    }
     	return systemService.getSystem(name);
     }
     @Transactional

@@ -30,6 +30,8 @@ public class CooperatorSystemService {
 
  	@Transactional
  	public CooperatorManager getSystem(String name) {
+ 		if (!CheckNotEmpty(name))
+            throw new IllegalArgumentException("Cannot get a system with empty name.");
  		CooperatorManager cooperatorSystem = systemRepository.findCooperatorManagerBySystemName(name);
  		return cooperatorSystem;
  	}
