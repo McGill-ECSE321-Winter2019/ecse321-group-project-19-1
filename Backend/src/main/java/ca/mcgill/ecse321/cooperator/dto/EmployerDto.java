@@ -14,6 +14,10 @@ public class EmployerDto {
 		this.employerID=id;
 	}
 	
+	public Integer getEmployerId() {
+		return this.employerID;
+	}
+	
 	public List<EmployerContractDto> getEmployerContract(){
 		return ec;
 	}

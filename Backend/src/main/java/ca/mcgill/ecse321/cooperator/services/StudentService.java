@@ -19,6 +19,7 @@ public class StudentService {
 	 
 	    public Student createStudent() {
 	        Student student = new Student();
+	        student.setProblematic(false);
 	        studentRepository.save(student);
 	        return student;
 	    }

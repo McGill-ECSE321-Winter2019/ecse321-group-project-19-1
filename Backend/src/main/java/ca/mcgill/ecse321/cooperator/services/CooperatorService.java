@@ -43,12 +43,17 @@ public class CooperatorService {
     public List<Employer> getAllEmployers() {
         return employerService.getAllEmployers();
     }
+    @Transactional
+    public Employer getEmployerbyId(int id) {
+    	return employerService.getEmployer(id);
+    }
     
     //Course
     @Transactional
     public Course createCourse(String name) {
         return coursesService.createCourse(name);
     }
+    
     @Transactional
     public List<Course> getAllCourses() {
         return coursesService.getAllCourses();

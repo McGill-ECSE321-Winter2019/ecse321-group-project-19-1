@@ -7,7 +7,6 @@ public class StudentDto {
 	 private Boolean problematic;
 	 private List<CoopPositionDto> coopPositions;
 	 private List<RequiredDocumentDto> requiredDocuments;
-	 private List<TermInstructorDto> termInstructors;
 	 
 	 
 	 public StudentDto() {
@@ -33,11 +32,6 @@ public class StudentDto {
 	 
 	 public void addCoopPosition(CoopPositionDto cp) {
 		 this.coopPositions.add(cp);
-	 }
-	 
-	 //Term instructor
-	 public List<TermInstructorDto> getTermInstructors() {
-		 return termInstructors;
 	 }
 	 
 	 //Problematic

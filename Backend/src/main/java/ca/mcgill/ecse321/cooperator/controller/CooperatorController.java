@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.cooperator.controller;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import java.util.*;
 
 import org.aspectj.apache.bcel.generic.SwitchBuilder;
@@ -22,7 +23,8 @@ public class CooperatorController {
 	// create coop
 	@PostMapping(value = { "/createCoop", "/createCoop/" })
 	public CoopPositionDto createCoopPostion(@RequestParam(name = "startDate") Date startDate,
-			@RequestParam(name = "endDate") Date endDate, @RequestParam(name = "description") String desc,
+			@RequestParam(name = "endDate") @DateTimeFormat(pattern="MM/dd/yyyy") Date endDate, 
+			@RequestParam(name = "description") String desc,
 			@RequestParam(name = "location") String location, @RequestParam(name = "term") String term,
 			@RequestParam(name = "student") StudentDto studentDto) throws IllegalArgumentException {
 		Student student = convertToDomainObject(studentDto);
@@ -32,8 +34,9 @@ public class CooperatorController {
 
 	// create term instructor
 	@PostMapping(value = { "/createTermInstructor/{email}", "/createTermInstructor/{email}/" })
-	public TermInstructorDto createTermInstructor(@RequestParam("first") String firstName,
-			@RequestParam("last") String lastName, @RequestParam("password") String password,
+	public TermInstructorDto createTermInstructor(@RequestParam("firstName") String firstName,
+			@RequestParam("lastName") String lastName, 
+			@RequestParam("password") String password,
 			@PathVariable("email") String email)
 			throws IllegalArgumentException {
 		TermInstructor termInstructor = service.createTermInstructor(firstName, lastName, password, email);
@@ -49,8 +52,8 @@ public class CooperatorController {
 	}
 
 	// create course
-	@PostMapping(value = { "/createCourse/{name}", "/createCourse/{name}/" })
-	public CourseDto createCourse(@PathVariable("name") String courseName) throws IllegalArgumentException {
+	@PostMapping(value = { "/createCourse/{courseName}", "/createCourse/{courseName}/" })
+	public CourseDto createCourse(@PathVariable("courseName") String courseName) throws IllegalArgumentException {
 		Course course = service.createCourse(courseName);
 		return convertToDto(course);
 	}
@@ -65,17 +68,22 @@ public class CooperatorController {
 
 	// create report
 	@PostMapping(value = { "/createReport", "/createReport/" })
-	public ReportDto createReport(@RequestParam("title") String title, @RequestParam(name = "due") Date dueDate,
-			@RequestParam(name = "coop") CoopPosition cp, @RequestParam(name = "type") ReportType type) throws IllegalArgumentException {
+	public ReportDto createReport(@RequestParam("name") String title, 
+			@RequestParam(name = "dueDate") @DateTimeFormat(pattern="MM/dd/yyyy") Date dueDate,
+			@RequestParam(name = "coopId") CoopPositionDto cpDto, 
+			@RequestParam(name = "reportType") ReportType type) throws IllegalArgumentException {
+		CoopPosition cp = convertToDomainObject(cpDto);
 		Report report = service.createReport(title, dueDate, cp, type);
 		return convertToDto(report);
 	}
 
 	// create form
 	@PostMapping(value = { "/createForm/", "/createForm/" })
-	public FormDto createForm(@RequestParam("name") String name, @RequestParam(name = "due") Date dueDate,
-			@RequestParam(name = "coop") CoopPosition cp)
+	public FormDto createForm(@RequestParam("name") String name, 
+			@RequestParam(name = "dueDate") @DateTimeFormat(pattern="MM/dd/yyyy") Date dueDate,
+			@RequestParam(name = "coopId") CoopPositionDto cpDto)
 			throws IllegalArgumentException {
+		CoopPosition cp = convertToDomainObject(cpDto);
 		Form form = service.createForm(name, dueDate, cp);
 		return convertToDto(form);
 	}
@@ -83,17 +91,20 @@ public class CooperatorController {
 	// create employer contract
 	@PostMapping(value = { "/createEmployerContract/", "/createEmployerContract/" })
 	public EmployerContractDto createEmployerContract(@RequestParam(name = "name") String name,
-			@RequestParam(name = "due") Date dueDate, @RequestParam(name = "coop") CoopPosition cp,
-			@RequestParam(name = "employer") Employer e)
+			@RequestParam(name = "dueDate") @DateTimeFormat(pattern="MM/dd/yyyy") Date dueDate,
+			@RequestParam(name = "coopId") CoopPositionDto cpDto,
+			@RequestParam(name = "employer") EmployerDto eDto)
 			throws IllegalArgumentException {
+		Employer e = convertToDomainObject(eDto);
+		CoopPosition cp = convertToDomainObject(cpDto);
 		EmployerContract ec = service.createEmployerContract(name, dueDate, cp, e);
 		return convertToDto(ec);
 	}
 
 	// Assign coop to term instructors
 	@PostMapping(value = { "/assignCoop", "/assignCoop/" })
-	public void assignCoop(@RequestParam(name = "termInstructor") TermInstructorDto tiDto,
-			@RequestParam(name = "Coop") CoopPositionDto cpDto) throws IllegalArgumentException {
+	public void assignCoop(@RequestParam(name = "email") TermInstructorDto tiDto,
+			@RequestParam(name = "coopId") CoopPositionDto cpDto) throws IllegalArgumentException {
 		// set for Dto
 		tiDto.addCoopPostion(cpDto);
 		// set for persistence
@@ -142,7 +153,7 @@ public class CooperatorController {
 	// view all documents submitted by student for specific coop
 	@GetMapping(value = { "/requiredDocuments", "/requiredDocuments/" })
 	public List<RequiredDocumentDto> getRequiredDocumentsByCoopPosition(
-			@RequestParam(name = "coop") CoopPositionDto cpDto) {
+			@RequestParam(name = "coopId") CoopPositionDto cpDto) {
 		CoopPosition cp = convertToDomainObject(cpDto);
 		List<RequiredDocument> rdDto = service.getAllRequiredDocumentsByCoopPosition(cp);
 		List<RequiredDocumentDto> rdDtos = new ArrayList<>();
@@ -155,7 +166,7 @@ public class CooperatorController {
 
 	// viewing graded document
 	@GetMapping(value = { "/grade", "/grade/" })
-	public Boolean viewGrade(@RequestParam(name = "document") RequiredDocumentDto rd) throws IllegalArgumentException {
+	public Boolean viewGrade(@RequestParam(name = "documentId") RequiredDocumentDto rd) throws IllegalArgumentException {
 		return rd.getAccepted();
 	}
 
@@ -172,7 +183,7 @@ public class CooperatorController {
 
 	// adjudicate completion of coop
 	@GetMapping(value = { "/setCoopStatus", "/setCoopStatus/" })
-	public void adjudicateCoop(@RequestParam(name = "coop") CoopPositionDto cp, Status status)
+	public void adjudicateCoop(@RequestParam(name = "coopId") CoopPositionDto cp, Status status)
 			throws IllegalArgumentException {
 		cp.setStatus(status);
 	}
@@ -321,6 +332,13 @@ public class CooperatorController {
 			throw new IllegalArgumentException("There is no such coop position!");
 		}
 		return service.getCoopPositionByID(cpDto.getCoopID());
+	}
+	
+	private Employer convertToDomainObject(EmployerDto eDto) {
+		if (eDto == null) {
+			throw new IllegalArgumentException("There is no employer!");
+		}
+		return service.getEmployerbyId(eDto.getEmployerId());
 	}
 
 	private Student convertToDomainObject(StudentDto sDto) {
