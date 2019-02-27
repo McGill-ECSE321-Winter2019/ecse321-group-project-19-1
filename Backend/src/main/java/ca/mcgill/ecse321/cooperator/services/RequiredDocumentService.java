@@ -68,7 +68,7 @@ public class RequiredDocumentService {
 	 	public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp, CooperatorManager sys) {
 	        return (EmployerContract) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.FORM, sys);
 	    }
-
+	 
 	 @Transactional
 	 	public Form createForm(String name, Date dueDate, CoopPosition cp, CooperatorManager sys) {
 	        return (Form) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.FORM, sys);
@@ -91,11 +91,20 @@ public class RequiredDocumentService {
 		 }
 		 return requiredDocumentByDueDate;
 	 }
+	 
 	 @Transactional
 	 	public RequiredDocument getRequiredDocument(int id) {
 		 RequiredDocument rdoc = requiredDocumentRepository.findById(id);
 	 		return rdoc;
 	 }
+	 
+	 @Transactional
+	 public void setAccepted(int id, Boolean answer) {
+	    RequiredDocument rd = requiredDocumentRepository.findById(id);
+	    rd.setAccepted(answer);
+	    	
+	  }
+	 
 
 	  @Transactional
 	    public List<RequiredDocument> getAllRequiredDocuments(){

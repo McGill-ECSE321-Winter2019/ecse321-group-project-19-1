@@ -17,7 +17,7 @@ public class CooperatorController {
 	private CooperatorService service;
 
 	//create system
-	@PostMapping(value = { "/system/{name}", "/system/{name}/" })
+	@PostMapping(value = { "/createSystem/{name}", "/createSystem/{name}/" })
 	public CooperatorManagerDto createSystem(@PathVariable("name") String name) throws IllegalArgumentException {
 		CooperatorManager system = service.createSystem(name);
 		return convertToDto(system);
@@ -25,18 +25,18 @@ public class CooperatorController {
 	
 	//create coop
 	@PostMapping(value = { "/createCoop", "/createCoop/" })
-	public CoopPositionDto createCoopPostion(@RequestParam(name = "system") CooperatorManagerDto cmDto) throws IllegalArgumentException {
+	public CoopPositionDto createCoopPostion(@RequestParam(name="startDate")Date startDate, @RequestParam(name="endDate")Date endDate, @RequestParam(name="description")String desc, 
+			@RequestParam(name="location")String location,@RequestParam(name="term")String term, @RequestParam(name="student") StudentDto studentDto, @RequestParam(name = "system") CooperatorManagerDto cmDto) throws IllegalArgumentException {
 		CooperatorManager cm = service.getSystem(cmDto.getName());
-		//TODO: change/add code for student. This is just a test
-		Student student = service.createStudent(cm);
-		CoopPosition coopPostion = service.createCoopPosition(new Date(0), new Date(0), "test", "location", "fall2020", student, cm);
+		Student student = convertToDomainObject(studentDto);
+		CoopPosition coopPostion = service.createCoopPosition(startDate, endDate, desc, location, term, student, cm);
 		return convertToDto(coopPostion);
 	}
 
 	//create term instructor
 	@PostMapping(value = { "/createTermInstructor/{email}", "/createTermInstructor/{email}/" })
-	public TermInstructorDto createPerson(@PathVariable("first") String firstName,
-			@PathVariable("last") String lastName, @PathVariable("password") String password,
+	public TermInstructorDto createTermInstructor(@RequestParam("first") String firstName,
+			@RequestParam("last") String lastName, @RequestParam("password") String password,
 			@PathVariable("email") String email, @RequestParam(name = "system") CooperatorManagerDto cmDto)
 			throws IllegalArgumentException {
 		// @formatter:on
@@ -46,8 +46,8 @@ public class CooperatorController {
 	}
 	
 	//create student
-	@PostMapping(value = { "/createStudent/{studentId}", "/createStudent/{studentId}/" })
-	public StudentDto createStudent(@PathVariable("id") Integer studentId, @RequestParam(name = "system") CooperatorManagerDto cmDto)
+	@PostMapping(value = { "/createStudent", "/createStudent/" })
+	public StudentDto createStudent(@RequestParam(name = "system") CooperatorManagerDto cmDto)
 			throws IllegalArgumentException {
 		// @formatter:on
 		CooperatorManager cm = service.getSystem(cmDto.getName());
@@ -59,46 +59,47 @@ public class CooperatorController {
 	@PostMapping(value = {"/createCourse/{courseName}", "/createCourse/{courseName}/" })
 	public CourseDto createCourse(@PathVariable("name") String courseName, @RequestParam(name = "system") CooperatorManagerDto cmDto)
 			throws IllegalArgumentException {
-		// @formatter:on
 		CooperatorManager cm = service.getSystem(cmDto.getName());
 		Course course = service.createCourse(courseName,cm);
 		return convertToDto(course);
 	}	
 	
 	//create employer
-	@PostMapping(value = { "/createEmployer/{employerId}", "/createEmployer/{employerId}/" })
-	public EmployerDto createEmployer(@PathVariable("id") Integer employerId, @RequestParam(name = "system") CooperatorManagerDto cmDto)
+	@PostMapping(value = { "/createEmployer", "/createEmployer/" })
+	public EmployerDto createEmployer(@RequestParam(name = "system") CooperatorManagerDto cmDto)
 			throws IllegalArgumentException {
-			// @formatter:on
 			CooperatorManager cm = service.getSystem(cmDto.getName());
 			Employer employer = service.createEmployer(cm);
 			return convertToDto(employer);
 	}
 	
 	//create report
-	@PostMapping(value = { "/createReport/{reportId}", "/createReport/{reportId}/" })
-	public ReportDto createReport(@PathVariable("name") String name, @PathVariable("due") Date dueDate, @PathVariable("coop") CoopPosition cp,  @PathVariable("type") ReportType type, @RequestParam(name = "system") CooperatorManagerDto cmDto)
+	@PostMapping(value = { "/createReport", "/createReport/" })
+	public ReportDto createReport(@RequestParam("title") String title, @RequestParam(name="due") Date dueDate,@RequestParam(name="coop") CoopPosition cp,  
+			@RequestParam(name="type") ReportType type, @RequestParam(name = "system") CooperatorManagerDto cmDto)
 			throws IllegalArgumentException {
-			// @formatter:on
+			
 			CooperatorManager cm = service.getSystem(cmDto.getName());
-			Report report = service.createReport(name,dueDate,cp,type,cm);
+			Report report = service.createReport(title,dueDate,cp,type,cm);
 			return convertToDto(report);
 	}		
 	//create form
-	@PostMapping(value = { "/createForm/{formId}", "/createForm/{formId}/" })
-	public FormDto createForm(@PathVariable("name") String name, @PathVariable("due") Date dueDate, @PathVariable("coop") CoopPosition cp, @RequestParam(name = "system") CooperatorManagerDto cmDto)
+	@PostMapping(value = { "/createForm/", "/createForm/" })
+	public FormDto createForm(@RequestParam("name") String name,@RequestParam(name="due") Date dueDate, @RequestParam(name="coop") CoopPosition cp, 
+			@RequestParam(name = "system") CooperatorManagerDto cmDto)
 			throws IllegalArgumentException {
-			// @formatter:on
+			
 			CooperatorManager cm = service.getSystem(cmDto.getName());
 			Form form = service.createForm(name,dueDate,cp,cm);
 			return convertToDto(form);
 	}
 	
 	//create employer contract
-	@PostMapping(value = { "/createEmployerContract/{name}", "/createForm/{name}/" })
-	public EmployerContractDto createEmployerContract(@PathVariable("name") String name, @PathVariable("due") Date dueDate, @PathVariable("coop") CoopPosition cp,@PathVariable("coop")Employer e, @RequestParam(name = "system") CooperatorManagerDto cmDto)
+	@PostMapping(value = { "/createEmployerContract/", "/createEmployerContract/" })
+	public EmployerContractDto createEmployerContract(@RequestParam(name="name") String name,@RequestParam(name="due") Date dueDate, @RequestParam(name="coop") CoopPosition cp,
+			@RequestParam(name="employer")Employer e, @RequestParam(name = "system") CooperatorManagerDto cmDto)
 			throws IllegalArgumentException {
-			// @formatter:on
+			
 			CooperatorManager cm = service.getSystem(cmDto.getName());
 			EmployerContract ec= service.createEmployerContract(name,dueDate,cp,e,cm);
 			return convertToDto(ec);
@@ -123,6 +124,19 @@ public class CooperatorController {
 		}
 		return coopDtos;
 	}
+	
+	//view all documents submitted by student
+	@GetMapping(value = { "/requiredDocuments", "/requiredDocuments/" })
+	public List<RequiredDocumentDto> getRequiredDocumentsByCoopPosition (@RequestParam(name="coop")CoopPositionDto cpDto){
+		CoopPosition cp= convertToDomainObject(cpDto);
+		List<RequiredDocument> rdDto = service.getAllRequiredDocumentsByCoopPosition(cp);
+		List<RequiredDocumentDto> rdDtos= new ArrayList<>();
+		for (RequiredDocument r : rdDto) {
+			//TODO
+		}
+		return rdDtos;
+	}
+	
 
 	//Assign coop to term instructors
 	@PostMapping(value = { "/assignCoop", "/assignCoop/" })
@@ -142,6 +156,47 @@ public class CooperatorController {
 		}
 		ti.setCoopPosition(newCoopPositions);
 	}
+	
+	//grade document
+	@PostMapping(value = {"/gradeDocument","/gradeDocument/"})
+	public void gradeDocument(@RequestParam(name="documentId")RequiredDocument rd,@RequestParam(name="grade") Boolean accepted) throws IllegalArgumentException{
+		rd.setAccepted(accepted);
+	}
+	
+	//viewing graded document
+	@GetMapping(value= {"/grade","/grade/"})
+	public Boolean viewGrade(@RequestParam(name="document")RequiredDocumentDto rd) throws IllegalArgumentException{
+		return rd.getAccepted();
+	}
+	
+	//getting problematic students
+	@GetMapping(value= {"/problematicStudents","/problematicStudents/"})
+	public List<StudentDto> getProblematicStudents() throws IllegalArgumentException{
+		List<Student> students = service.getAllProblematicStudents();
+		List<StudentDto> studentsDto = new ArrayList<>();
+		for(Student s: students) {
+			studentsDto.add(convertToDto(s));
+		}
+		return studentsDto;
+	}
+	
+	//adjudicate completion of coop
+	@GetMapping (value= {"/coops","/coops/"})
+	public void adjudicateCoop(@RequestParam(name="coop")CoopPositionDto cp, Status status) throws IllegalArgumentException{
+		cp.setStatus(status);
+	}
+	
+	//getting list of ranked courses
+	@GetMapping(value= {"/ranking","/ranking/"})
+	public List<CourseDto> getCoursesRanking(){
+		//TODO 
+		List<CourseDto> c= new ArrayList<>();
+		return c;
+		
+	}
+	
+	
+	
 	
     // =============================== Private methods ===============================
 	
@@ -231,6 +286,13 @@ public class CooperatorController {
 			throw new IllegalArgumentException("There is no such coop position!");
 		}
 		return service.getCoopPositionByID(cpDto.getCoopID());
+	}
+	
+	private Student convertToDomainObject(StudentDto sDto) {
+		if (sDto == null) {
+			throw new IllegalArgumentException("There is no such student position!");
+		}
+		return service.getStudentById(sDto.getStudentId());
 	}
 
 }

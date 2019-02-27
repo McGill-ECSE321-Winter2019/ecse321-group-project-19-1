@@ -27,7 +27,7 @@ public class StudentService {
 	    }
 
 	 	@Transactional
-	 	public Student getStudent(int id) {
+	 	public Student getStudentById(int id) {
 	 		Student student = studentRepository.findById(id);
 	 		return student;
 	 	}
@@ -35,6 +35,11 @@ public class StudentService {
 	    @Transactional
 	    public List<Student> getAllStudents(){
 	        return (List<Student>)studentRepository.findAll();
+	    }
+	    
+	    @Transactional
+	    public List<Student> getAllProblematicStudents(){
+	    	return (List<Student>) studentRepository.findStudentByProblematic(true);
 	    }
 
 }
