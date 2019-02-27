@@ -8,7 +8,6 @@ public class Student {
     private Integer studentID;
     private Boolean problematic;
     private Set<CoopPosition> coopPosition;
-    private CooperatorManager cooperatorManager;
 
     public void setStudentID(Integer value) {
         this.studentID = value;
@@ -35,15 +34,6 @@ public class Student {
 
     public void setCoopPosition(Set<CoopPosition> coopPositions) {
         this.coopPosition = coopPositions;
-    }
-    
-    @ManyToOne(optional=false)
-    public CooperatorManager getCooperatorManager() {
-       return this.cooperatorManager;
-    }
-    
-    public void setCooperatorManager(CooperatorManager cooperatorManager) {
-       this.cooperatorManager = cooperatorManager;
     }
 
 }

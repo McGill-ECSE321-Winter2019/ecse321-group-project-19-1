@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.cooperator.services;
 
 import ca.mcgill.ecse321.cooperator.dao.UserEntityRepository;
+import ca.mcgill.ecse321.cooperator.model.CoopPosition;
 import ca.mcgill.ecse321.cooperator.model.CooperatorManager;
 import ca.mcgill.ecse321.cooperator.model.Course;
 import ca.mcgill.ecse321.cooperator.model.ProgramManager;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 
 @Service
@@ -29,13 +31,13 @@ public class UserEntityService {
     }
 
     @Transactional
-    public TermInstructor createTermInstructor(String firstName, String lastName, String email, String password, CooperatorManager sys) {
-        return (TermInstructor) createUser(firstName, lastName, email, password, UserType.TERM_INSTRUCTOR, sys);
+    public TermInstructor createTermInstructor(String firstName, String lastName, String email, String password) {
+        return (TermInstructor) createUser(firstName, lastName, email, password, UserType.TERM_INSTRUCTOR);
     }
 
     @Transactional
-    public ProgramManager createProgramManager(String firstName, String lastName, String email, String password, CooperatorManager sys) {
-        return (ProgramManager) createUser(firstName, lastName, email, password, UserType.PROGRAM_MANAGER, sys);
+    public ProgramManager createProgramManager(String firstName, String lastName, String email, String password) {
+        return (ProgramManager) createUser(firstName, lastName, email, password, UserType.PROGRAM_MANAGER);
     }
 
     public UserEntity getUserEntityByEmail(String email) {
@@ -48,7 +50,7 @@ public class UserEntityService {
         return s != null && !s.equals("") && s.trim().length() > 0;
     }
 
-    private UserEntity createUser(String firstName, String lastName, String email, String password, UserType type, CooperatorManager sys) {
+    private UserEntity createUser(String firstName, String lastName, String email, String password, UserType type) {
         if (!CheckNotEmpty(firstName))
             throw new IllegalArgumentException("Cannot add a user with empty firstName.");
 
@@ -73,10 +75,19 @@ public class UserEntityService {
             user.setLastName(lastName);
             user.setEmail(email);
             user.setPassword(password);
-            user.setCooperatorManager(sys);
             userEntityRepository.save(user);
             return user;
         }
         throw new IllegalArgumentException("[Internal error] Failed to create a new user.");
     }
+
+	public UserEntity assignCoopToInstructor(TermInstructor ti, Set<CoopPosition> newCoopPositions) {
+		UserEntity t = userEntityRepository.findUserEntityByEmail(ti.getEmail());
+		if(t instanceof TermInstructor) {
+			((TermInstructor)t).setCoopPosition(newCoopPositions);
+			userEntityRepository.save(t);
+			return t;
+		}
+		return null;
+	}
 }

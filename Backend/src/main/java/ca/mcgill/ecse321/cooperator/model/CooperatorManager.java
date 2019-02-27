@@ -22,7 +22,7 @@ public class CooperatorManager {
 		return this.systemName;
 	}
 
-	@OneToMany(mappedBy = "cooperatorManager", cascade = { CascadeType.ALL })
+	@OneToMany(cascade={CascadeType.ALL})
 	public Set<UserEntity> getUserEntity() {
 		return this.userEntity;
 	}
@@ -31,7 +31,11 @@ public class CooperatorManager {
 		this.userEntity = userEntitys;
 	}
 
-	@OneToMany(mappedBy = "cooperatorManager", cascade = { CascadeType.ALL })
+	public void addUserEntity(UserEntity u) {
+		this.userEntity.add(u);
+	}
+	
+	@OneToMany(cascade = { CascadeType.ALL })
 	public Set<CoopPosition> getCoopPosition() {
 		return this.coopPosition;
 	}
@@ -39,8 +43,12 @@ public class CooperatorManager {
 	public void setCoopPosition(Set<CoopPosition> coopPositions) {
 		this.coopPosition = coopPositions;
 	}	
+	
+	public void addCoopPosition(CoopPosition cp) {
+		this.coopPosition.add(cp);
+	}
 
-	@OneToMany(mappedBy = "cooperatorManager", cascade = { CascadeType.ALL })
+	@OneToMany(cascade = { CascadeType.ALL })
 	public Set<Student> getStudent() {
 		return this.student;
 	}
@@ -48,8 +56,12 @@ public class CooperatorManager {
 	public void setStudent(Set<Student> students) {
 		this.student = students;
 	}
+	
+	public void addStudent(Student s) {
+		this.student.add(s);
+	}
 
-	@OneToMany(mappedBy = "cooperatorManager", cascade = { CascadeType.ALL })
+	@OneToMany(cascade = { CascadeType.ALL })
 	public Set<RequiredDocument> getRequiredDocument() {
 		return this.requiredDocument;
 	}
@@ -57,8 +69,12 @@ public class CooperatorManager {
 	public void setRequiredDocument(Set<RequiredDocument> requiredDocuments) {
 		this.requiredDocument = requiredDocuments;
 	}
+	
+	public void addRequiredDocument(RequiredDocument r) {
+		this.requiredDocument.add(r);
+	}
 
-	@OneToMany(mappedBy = "cooperatorManager", cascade = { CascadeType.ALL })
+	@OneToMany(cascade = { CascadeType.ALL })
 	public Set<Course> getCourse() {
 		return this.course;
 	}
@@ -66,8 +82,12 @@ public class CooperatorManager {
 	public void setCourse(Set<Course> courses) {
 		this.course = courses;
 	}
+	
+	public void addCourse(Course c) {
+		this.course.add(c);
+	}
 
-	@OneToMany(mappedBy = "cooperatorManager", cascade = { CascadeType.ALL })
+	@OneToMany(cascade = { CascadeType.ALL })
 	public Set<Employer> getEmployer() {
 		return this.employer;
 	}
@@ -76,4 +96,7 @@ public class CooperatorManager {
 		this.employer = employers;
 	}
 
+	public void addEmployer(Employer e) {
+		this.employer.add(e);
+	}
 }

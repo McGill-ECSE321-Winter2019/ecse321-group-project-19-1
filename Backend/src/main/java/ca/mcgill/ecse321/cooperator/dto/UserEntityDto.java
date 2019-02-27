@@ -1,21 +1,28 @@
-package ca.mcgill.ecse321.cooperator.model;
+package ca.mcgill.ecse321.cooperator.dto;
 
-import javax.persistence.*;
-import javax.persistence.Id;
-
-@Entity
-public abstract class UserEntity {
-    private String firstName;
+public abstract class UserEntityDto {
+	private String firstName;
     private String lastName;
     private String password;
     private String email;
+    
+    public UserEntityDto() {
+    	
+    }
+    
+    public UserEntityDto(String first, String last, String pass, String e_mail) {
+    	this.firstName = first;
+    	this.lastName = last;
+    	this.password = pass;
+    	this.email = e_mail;
+    }
 
     public void setFirstName(String value) {
         this.firstName = value;
     }
 
     public String getFirstName() {
-        return this.firstName;
+        return firstName;
     }
 
     public void setLastName(String value) {
@@ -23,7 +30,7 @@ public abstract class UserEntity {
     }
 
     public String getLastName() {
-        return this.lastName;
+        return lastName;
     }
 
     public void setPassword(String value) {
@@ -37,9 +44,8 @@ public abstract class UserEntity {
     public void setEmail(String value) {
         this.email = value;
     }
-
-    @Id
+    
     public String getEmail() {
-        return this.email;
+    	return email;
     }
 }

@@ -11,14 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
-import ca.mcgill.ecse321.cooperator.model.CooperatorManager;
 import ca.mcgill.ecse321.cooperator.model.Employer;
 import ca.mcgill.ecse321.cooperator.model.EmployerContract;
 import ca.mcgill.ecse321.cooperator.model.Form;
 import ca.mcgill.ecse321.cooperator.model.Report;
 import ca.mcgill.ecse321.cooperator.model.ReportType;
 import ca.mcgill.ecse321.cooperator.model.RequiredDocument;
-import ca.mcgill.ecse321.cooperator.model.Student;
 
 
 
@@ -39,14 +37,14 @@ public class RequiredDocumentService {
 	    RequiredDocumentRepository requiredDocumentRepository;
 	 
 	 @Transactional
-	    public Report createReport(String name, Date dueDate, CoopPosition cp, ReportType type, CooperatorManager sys) {
-	        Report report = (Report) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.REPORT, sys);
+	    public Report createReport(String name, Date dueDate, CoopPosition cp, ReportType type) {
+	        Report report = (Report) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.REPORT);
 	        report.setReportType(type);
 	        return report;
 	    }
 
 	 @Transactional
-	    public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp, Employer em, CooperatorManager sys) {
+	    public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp, Employer em) {
 	        if (!CheckNotEmpty(name))
 	            throw new IllegalArgumentException("Cannot add a document with empty name.");
 
@@ -57,7 +55,8 @@ public class RequiredDocumentService {
 	            rdoc.setDueDate(dueDate);
 	            rdoc.setCoopPosition(cp);
 	            rdoc.setEmployer(em);
-	            rdoc.setCooperatorManager(sys);
+	            rdoc.setSubmitted(false);
+	            rdoc.setAccepted(false);
 	            requiredDocumentRepository.save(rdoc);
 	            return rdoc;
 	        }
@@ -65,13 +64,13 @@ public class RequiredDocumentService {
 	    }
 	 
 	 @Transactional
-	 	public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp, CooperatorManager sys) {
-	        return (EmployerContract) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.FORM, sys);
+	 	public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp) {
+	        return (EmployerContract) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.FORM);
 	    }
-
+	 
 	 @Transactional
-	 	public Form createForm(String name, Date dueDate, CoopPosition cp, CooperatorManager sys) {
-	        return (Form) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.FORM, sys);
+	 	public Form createForm(String name, Date dueDate, CoopPosition cp) {
+	        return (Form) createRequiredDocument(name, dueDate,cp, RequiredDocumentType.FORM);
 	    }
 	 
 	 @Transactional
@@ -91,11 +90,20 @@ public class RequiredDocumentService {
 		 }
 		 return requiredDocumentByDueDate;
 	 }
+	 
 	 @Transactional
 	 	public RequiredDocument getRequiredDocument(int id) {
-		 RequiredDocument rdoc = requiredDocumentRepository.findRequiredDocumentBydocumentId(id);
+		 RequiredDocument rdoc = requiredDocumentRepository.findById(id);
 	 		return rdoc;
 	 }
+	 
+	 @Transactional
+	 public void setAccepted(int id, Boolean answer) {
+	    RequiredDocument rd = requiredDocumentRepository.findById(id);
+	    rd.setAccepted(answer);
+	    	
+	  }
+	 
 
 	  @Transactional
 	    public List<RequiredDocument> getAllRequiredDocuments(){
@@ -108,7 +116,7 @@ public class RequiredDocumentService {
 	        return s != null && !s.equals("") && s.trim().length() > 0;
 	    }
 	    
-	    private RequiredDocument createRequiredDocument(String name, Date dueDate, CoopPosition cp, RequiredDocumentType type, CooperatorManager sys) {
+	    private RequiredDocument createRequiredDocument(String name, Date dueDate, CoopPosition cp, RequiredDocumentType type) {
 	        if (!CheckNotEmpty(name))
 	            throw new IllegalArgumentException("Cannot add a document with empty name.");
 
@@ -125,7 +133,8 @@ public class RequiredDocumentService {
 	            rdoc.setName(name);
 	            rdoc.setDueDate(dueDate);
 	            rdoc.setCoopPosition(cp);
-	            rdoc.setCooperatorManager(sys);
+	            rdoc.setSubmitted(false);
+	            rdoc.setAccepted(false);
 	            requiredDocumentRepository.save(rdoc);
 	            return rdoc;
 	        }

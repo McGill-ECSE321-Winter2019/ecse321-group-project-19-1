@@ -9,7 +9,7 @@ import ca.mcgill.ecse321.cooperator.model.CoopPosition;
 import ca.mcgill.ecse321.cooperator.model.RequiredDocument;
 
 public interface RequiredDocumentRepository extends CrudRepository<RequiredDocument, Integer> {
-	RequiredDocument findRequiredDocumentBydocumentId(int id);
+	RequiredDocument findById(int id);
 	RequiredDocument findRequiredDocumentByName(String name);
 	List<RequiredDocument> findRequiredDocumentByDueDate(Date dueDate);
 	List<RequiredDocument> findRequiredDocumentByCoopPosition(CoopPosition coopPosition);

@@ -17,24 +17,27 @@ public class StudentService {
 	 @Autowired
 	    StudentRepository studentRepository;
 	 
-	    public Student createStudent(CooperatorManager sys) {
-	    	if(sys == null)
-	            throw new IllegalArgumentException("Cannot add a student with empty system");
+	    public Student createStudent() {
 	        Student student = new Student();
-	        student.setCooperatorManager(sys);
+	        student.setProblematic(false);
 	        studentRepository.save(student);
 	        return student;
 	    }
 
 	 	@Transactional
-	 	public Student getStudent(int id) {
-	 		Student student = studentRepository.findStudentByStudentID(id);
+	 	public Student getStudentById(int id) {
+	 		Student student = studentRepository.findById(id);
 	 		return student;
 	 	}
 	 	
 	    @Transactional
 	    public List<Student> getAllStudents(){
 	        return (List<Student>)studentRepository.findAll();
+	    }
+	    
+	    @Transactional
+	    public List<Student> getAllProblematicStudents(){
+	    	return (List<Student>) studentRepository.findStudentByProblematic(true);
 	    }
 
 }

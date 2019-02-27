@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import ca.mcgill.ecse321.cooperator.dao.EmployerRepository;
-import ca.mcgill.ecse321.cooperator.model.CooperatorManager;
 import ca.mcgill.ecse321.cooperator.model.Employer;
 
 @Service
@@ -17,18 +16,15 @@ public class EmployerService {
 	@Autowired
     EmployerRepository employerRepository;
  
-    public Employer createEmployer(CooperatorManager sys) {
-    	if(sys == null)
-            throw new IllegalArgumentException("Cannot add an employer with empty system");
+    public Employer createEmployer() {
     	Employer employer = new Employer();
-    	employer.setCooperatorManager(sys);
     	employerRepository.save(employer);
         return employer;
     }
 
  	@Transactional
  	public Employer getEmployer(int id) {
- 		Employer employer = employerRepository.findEmployerByEmployerID(id);
+ 		Employer employer = employerRepository.findById(id);
  		return employer;
  	}
  	
