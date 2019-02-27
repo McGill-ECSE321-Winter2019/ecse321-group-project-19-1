@@ -17,6 +17,7 @@ import ca.mcgill.ecse321.cooperator.controller.CooperatorController;
 import ca.mcgill.ecse321.cooperator.dao.*;
 import ca.mcgill.ecse321.cooperator.model.*;
 import ca.mcgill.ecse321.cooperator.services.CooperatorService;
+import ca.mcgill.ecse321.cooperator.services.CoursesService;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -48,7 +49,7 @@ public class CooperatorApplicationTests {
 	@InjectMocks
 	private CooperatorController controller;
 	@InjectMocks
-	private CooperatorService service;
+	private CoursesService coursesServicce;
 
 	private Course course;
 	private static final String SYSTEM_KEY = "test";
@@ -56,17 +57,17 @@ public class CooperatorApplicationTests {
 
 	@Before
 	public void setMockOutput() {
-	  when(courseDao.findCourseByCourseName(anyString())).thenAnswer( (InvocationOnMock invocation) -> {
-	    if(invocation.getArgument(0).equals(SYSTEM_KEY)) {
-	      Course course = new Course();
-	      course.setCourseName(SYSTEM_KEY);
-	      return course;
-	    } else {
-	      return null;
-	    }
-	  });
+		when(courseDao.findCourseByCourseName(anyString())).thenAnswer((InvocationOnMock invocation) -> {
+			if (invocation.getArgument(0).equals(SYSTEM_KEY)) {
+				Course course = new Course();
+				course.setCourseName(SYSTEM_KEY);
+				return course;
+			} else {
+				return null;
+			}
+		});
 	}
-	
+
 	@Before
 	public void setupMock() {
 		course = mock(Course.class);
@@ -79,7 +80,7 @@ public class CooperatorApplicationTests {
 
 	@Test
 	public void testMockCourseQueryFound() {
-	  //assertNotNull(service.getCourseByCourseName(SYSTEM_KEY));
+		assertNotNull(coursesServicce.getCourseByCourseName(SYSTEM_KEY));
 	}
 
 }
