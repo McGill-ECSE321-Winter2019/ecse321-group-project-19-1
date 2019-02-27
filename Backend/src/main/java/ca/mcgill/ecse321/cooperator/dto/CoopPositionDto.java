@@ -13,58 +13,76 @@ public class CoopPositionDto {
 	private Date startDate;
 	private Date endDate;
 	private String location;
-	
+
 	private StudentDto student;
 	private TermInstructorDto termInstructor;
 	private List<CourseDto> courses;
-	
+
 	public CoopPositionDto() {
-		
+
 	}
-	
-	//Constructor without term instructor
-	public CoopPositionDto(Integer id,String desc, Date start,Date end, String location, String term, StudentDto student) {
-		this.coopId=id;
-		this.description=desc;
-		this.startDate=start;
-		this.endDate=end;
-		this.location=location;
-		this.student=student;
+	public CoopPositionDto(String sid) {
+		this(sid, null, null, null, null, null, null);
 	}
-	
-	//Constructor with term instructor
-	public CoopPositionDto(Integer id,String desc, Date start,Date end, String location, String term, StudentDto student, TermInstructorDto termInst) {
-		this.coopId=id;
-		this.description=desc;
-		this.startDate=start;
-		this.endDate=end;
-		this.location=location;
-		this.student=student;
-		this.termInstructor=termInst;		
+
+	// Constructor without term instructor with string
+	public CoopPositionDto(String sid, String desc, Date start, Date end, String location, String term,
+			StudentDto student) {
+		Integer id = Integer.parseInt(sid);
+		this.coopId = id;
+		this.description = desc;
+		this.startDate = start;
+		this.endDate = end;
+		this.location = location;
+		this.student = student;
 	}
-	
+
+	// Constructor without term instructor
+	public CoopPositionDto(Integer id, String desc, Date start, Date end, String location, String term,
+			StudentDto student) {
+		this.coopId = id;
+		this.description = desc;
+		this.startDate = start;
+		this.endDate = end;
+		this.location = location;
+		this.student = student;
+	}
+
+	// Constructor with term instructor
+	public CoopPositionDto(Integer id, String desc, Date start, Date end, String location, String term,
+			StudentDto student, TermInstructorDto termInst) {
+		this.coopId = id;
+		this.description = desc;
+		this.startDate = start;
+		this.endDate = end;
+		this.location = location;
+		this.student = student;
+		this.termInstructor = termInst;
+	}
+
 	public Integer getCoopID() {
 		return coopId;
 	}
-	//Student
+
+	// Student
 	public StudentDto getStudent() {
 		return student;
 	}
-	
-	//Term Instructor
+
+	// Term Instructor
 	public TermInstructorDto getTermInstructor() {
 		return termInstructor;
 	}
-	
+
 	public void setTermInstructor(TermInstructorDto termInstructor) {
-		this.termInstructor=termInstructor;
+		this.termInstructor = termInstructor;
 	}
-	
-	//Status
+
+	// Status
 	public void setStatus(Status s) {
 		this.status = s;
 	}
-	
+
 	public Status getStatus() {
 		return status;
 	}

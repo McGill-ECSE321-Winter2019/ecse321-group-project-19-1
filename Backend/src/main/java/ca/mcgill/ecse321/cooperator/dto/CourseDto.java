@@ -11,6 +11,10 @@ public class CourseDto {
 		
 	}
 	
+	public CourseDto(String courseName) {
+		this(null, courseName);
+	}
+	
 	public CourseDto(Integer id, String courseName) {
 		this.courseId=id;
 		this.courseName=courseName;

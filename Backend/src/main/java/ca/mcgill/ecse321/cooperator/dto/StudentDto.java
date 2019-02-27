@@ -13,6 +13,11 @@ public class StudentDto {
 		 
 	 }
 	 
+	 public StudentDto(String sid) {
+		 Integer id = Integer.parseInt(sid);
+		 this.studentID=id;
+	 }
+	 
 	 public StudentDto(Integer id) {
 		 this.studentID=id;
 	 }

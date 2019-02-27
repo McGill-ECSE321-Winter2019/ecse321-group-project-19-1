@@ -10,6 +10,11 @@ public class EmployerDto {
 		
 	}
 	
+	public EmployerDto(String sid) {
+		Integer id = Integer.parseInt(sid);
+		this.employerID=id;
+	}
+	
 	public EmployerDto(Integer id) {
 		this.employerID=id;
 	}

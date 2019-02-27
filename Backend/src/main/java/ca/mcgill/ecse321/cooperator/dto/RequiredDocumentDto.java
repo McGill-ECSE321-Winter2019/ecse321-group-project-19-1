@@ -16,6 +16,10 @@ public abstract class RequiredDocumentDto {
     	
     }
     
+    public RequiredDocumentDto(String s) {
+    	this(Integer.parseInt(s), null, null);
+    }
+    
     public RequiredDocumentDto(Integer id, String name, Date due) {
     	this.documentId=id;
     	this.name=name;

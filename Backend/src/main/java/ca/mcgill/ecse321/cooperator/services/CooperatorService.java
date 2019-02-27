@@ -128,6 +128,10 @@ public class CooperatorService {
    	public List<RequiredDocument> getAllRequiredDocumentsByCoopPosition(CoopPosition cp) {
    		return requiredDocumentService.getRequiredDocumentByCoopPosition(cp);
    	}
+    @Transactional
+    public RequiredDocument getDocumentByDocumentID(Integer id) {
+    	return requiredDocumentService.getRequiredDocument(id);
+    }
     
     //Report
     @Transactional

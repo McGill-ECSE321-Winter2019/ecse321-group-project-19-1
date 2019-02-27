@@ -24,11 +24,11 @@ public class CooperatorController {
 	@PostMapping(value = { "/createCoop", "/createCoop/" })
 	public CoopPositionDto createCoopPostion(@RequestParam(name = "startDate") Date startDate,
 			@RequestParam(name = "endDate") @DateTimeFormat(pattern="MM/dd/yyyy") Date endDate, 
-			@RequestParam(name = "description") String desc,
+			@RequestParam(name = "description") String description,
 			@RequestParam(name = "location") String location, @RequestParam(name = "term") String term,
-			@RequestParam(name = "student") StudentDto studentDto) throws IllegalArgumentException {
+			@RequestParam(name = "studentID") StudentDto studentDto) throws IllegalArgumentException {
 		Student student = convertToDomainObject(studentDto);
-		CoopPosition coopPostion = service.createCoopPosition(startDate, endDate, desc, location, term, student);
+		CoopPosition coopPostion = service.createCoopPosition(startDate, endDate, description, location, term, student);
 		return convertToDto(coopPostion);
 	}
 
@@ -39,7 +39,7 @@ public class CooperatorController {
 			@RequestParam("password") String password,
 			@PathVariable("email") String email)
 			throws IllegalArgumentException {
-		TermInstructor termInstructor = service.createTermInstructor(firstName, lastName, password, email);
+		TermInstructor termInstructor = service.createTermInstructor(firstName, lastName, email, password);
 		return convertToDto(termInstructor);
 	}
 
@@ -93,7 +93,7 @@ public class CooperatorController {
 	public EmployerContractDto createEmployerContract(@RequestParam(name = "name") String name,
 			@RequestParam(name = "dueDate") @DateTimeFormat(pattern="MM/dd/yyyy") Date dueDate,
 			@RequestParam(name = "coopId") CoopPositionDto cpDto,
-			@RequestParam(name = "employer") EmployerDto eDto)
+			@RequestParam(name = "employerId") EmployerDto eDto)
 			throws IllegalArgumentException {
 		Employer e = convertToDomainObject(eDto);
 		CoopPosition cp = convertToDomainObject(cpDto);
@@ -103,28 +103,23 @@ public class CooperatorController {
 
 	// Assign coop to term instructors
 	@PostMapping(value = { "/assignCoop", "/assignCoop/" })
-	public void assignCoop(@RequestParam(name = "email") TermInstructorDto tiDto,
+	public TermInstructorDto assignCoop(@RequestParam(name = "email") TermInstructorDto tiDto,
 			@RequestParam(name = "coopId") CoopPositionDto cpDto) throws IllegalArgumentException {
-		// set for Dto
-		tiDto.addCoopPostion(cpDto);
-		// set for persistence
+
 		TermInstructor ti = (TermInstructor) service.getUserEntityByEmail(tiDto.getEmail());
-		Set<CoopPosition> newCoopPositions = new HashSet<CoopPosition>();
-		for (CoopPositionDto coopDto : tiDto.getCoopPosition()) {
-			CoopPosition newCP = convertToDomainObject(coopDto);
-			if (newCP == null) {
-				throw new IllegalArgumentException("There is no such coop position!");
-			}
-			newCoopPositions.add(newCP);
-		}
-		ti.setCoopPosition(newCoopPositions);
+		CoopPosition newCP = convertToDomainObject(cpDto);
+		Set<CoopPosition> newCoopPositions = ti.getCoopPosition();
+		newCoopPositions.add(newCP);
+		ti.setCoopPosition(newCoopPositions);	
+		return convertToDto(ti);
 	}
 
 	// grade document
 	@PostMapping(value = { "/gradeDocument", "/gradeDocument/" })
-	public void gradeDocument(@RequestParam(name = "documentId") RequiredDocument rd,
+	public void gradeDocument(@RequestParam(name = "documentId") RequiredDocumentDto rdDto,
 			@RequestParam(name = "grade") Boolean accepted) throws IllegalArgumentException {
-		rd.setAccepted(accepted);
+		RequiredDocument rd = convertToDomainObject(rdDto);
+		rd.setAccepted(Boolean.valueOf(accepted));
 	}
 	// ==============================
 
@@ -288,10 +283,19 @@ public class CooperatorController {
 		if (cp == null) {
 			throw new IllegalArgumentException("There is no such coop position!");
 		}
-		StudentDto sDto = convertToDto(cp.getStudent());
-		CoopPositionDto cpDto = new CoopPositionDto(cp.getCoopId(), cp.getDescription(), cp.getStartDate(),
-				cp.getEndDate(), cp.getLocation(), cp.getTerm(), sDto);
-		return cpDto;
+		StudentDto sDto = convertToDto(cp.getStudent());	
+		if(cp.getTermInstructor() == null || cp.getTermInstructor().isEmpty()) {
+			CoopPositionDto cpDto = new CoopPositionDto(cp.getCoopId(), cp.getDescription(), cp.getStartDate(),
+					cp.getEndDate(), cp.getLocation(), cp.getTerm(), sDto);
+			return cpDto;
+		}
+		else {
+			TermInstructor termInstructor = getLast(cp.getTermInstructor());
+			TermInstructorDto tiDto = convertToDto(termInstructor);
+			CoopPositionDto cpDto = new CoopPositionDto(cp.getCoopId(), cp.getDescription(), cp.getStartDate(),
+					cp.getEndDate(), cp.getLocation(), cp.getTerm(), sDto, tiDto);
+			return cpDto;
+		}	
 	}
 
 	private StudentDto convertToDto(Student s) {
@@ -334,6 +338,13 @@ public class CooperatorController {
 		return service.getCoopPositionByID(cpDto.getCoopID());
 	}
 	
+	private RequiredDocument convertToDomainObject(RequiredDocumentDto rdDto) {
+		if (rdDto == null) {
+			throw new IllegalArgumentException("There is no such document!");
+		}
+		return service.getDocumentByDocumentID(rdDto.getDocumentId());
+	}
+	
 	private Employer convertToDomainObject(EmployerDto eDto) {
 		if (eDto == null) {
 			throw new IllegalArgumentException("There is no employer!");
@@ -346,6 +357,11 @@ public class CooperatorController {
 			throw new IllegalArgumentException("There is no such student position!");
 		}
 		return service.getStudentById(sDto.getStudentId());
+	}
+	
+	private TermInstructor getLast(Set<TermInstructor> termInstructor) {
+		List<TermInstructor> newList = new ArrayList<TermInstructor>(termInstructor);
+	    return newList.get(newList.size()-1);
 	}
 
 	// ==========================

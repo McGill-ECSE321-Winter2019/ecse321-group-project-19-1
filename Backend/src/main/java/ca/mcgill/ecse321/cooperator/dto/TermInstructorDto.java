@@ -9,6 +9,10 @@ public class TermInstructorDto extends UserEntityDto {
 	public TermInstructorDto() {
 		
 	}
+	public TermInstructorDto(String email) {
+		this(null, null, null, email, Collections.EMPTY_LIST);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public TermInstructorDto(String first, String last, String pass, String e_mail) {
 		this(first, last, pass, e_mail, Collections.EMPTY_LIST);
