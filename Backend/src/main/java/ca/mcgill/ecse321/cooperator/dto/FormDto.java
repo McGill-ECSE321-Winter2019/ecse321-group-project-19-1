@@ -9,8 +9,8 @@ public class FormDto extends RequiredDocumentDto {
 		
 	}
 	
-	public FormDto(Integer id, String name,Date dueDate, CooperatorManagerDto sys) {
-		super(id,name,dueDate,sys);
+	public FormDto(Integer id, String name,Date dueDate) {
+		super(id,name,dueDate);
 	}
 
 }

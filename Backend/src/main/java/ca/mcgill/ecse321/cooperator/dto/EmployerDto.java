@@ -4,16 +4,14 @@ import java.util.List;
 
 public class EmployerDto {
 	private Integer employerID;
-	private CooperatorManagerDto cooperatorManager;
 	private List<EmployerContractDto> ec;
 	
 	public EmployerDto() {
 		
 	}
 	
-	public EmployerDto(Integer id, CooperatorManagerDto cm) {
+	public EmployerDto(Integer id) {
 		this.employerID=id;
-		this.cooperatorManager=cm;
 	}
 	
 	public List<EmployerContractDto> getEmployerContract(){
@@ -27,8 +25,4 @@ public class EmployerDto {
 	public void addEmployerContract(EmployerContractDto ec) {
 		this.ec.add(ec);
 	}
-
-	 public CooperatorManagerDto getCooperatorManager() {
-	    	return cooperatorManager;
-	    }
 }

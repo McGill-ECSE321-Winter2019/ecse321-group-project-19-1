@@ -51,7 +51,6 @@ public class CoopPositionService {
 	        cp.setEndDate(endDate);
 	        cp.setTerm(term);
 	        cp.setStudent(student);
-	        cp.setCooperatorManager(sys);
 	        coopPositionRepository.save(cp);
 	        return cp;
 	    }

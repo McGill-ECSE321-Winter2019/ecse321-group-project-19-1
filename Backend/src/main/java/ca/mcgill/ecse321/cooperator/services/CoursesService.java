@@ -29,7 +29,6 @@ public class CoursesService {
 
         Course course = new Course();
         course.setCourseName(name.trim());
-        course.setCooperatorManager(sys);
         courseRepository.save(course);
         return course;
     }

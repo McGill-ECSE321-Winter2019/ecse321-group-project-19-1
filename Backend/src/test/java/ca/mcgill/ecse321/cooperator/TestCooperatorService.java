@@ -52,12 +52,12 @@ public class TestCooperatorService {
 	@Before
 	public void clearDatabase() {
 		// Clear all data
-		systemRepository.deleteAll();
-		employerRepository.deleteAll();
 		courseRepository.deleteAll();
-		userEntityRepository.deleteAll();
 		requiredDocumentRepository.deleteAll();
+		employerRepository.deleteAll();
 		coopPositionRepository.deleteAll();
+		userEntityRepository.deleteAll();
+		systemRepository.deleteAll();
 	}
 
 	@Test

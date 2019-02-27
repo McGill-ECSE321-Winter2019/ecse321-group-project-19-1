@@ -17,34 +17,30 @@ public class CoopPositionDto {
 	private StudentDto student;
 	private TermInstructorDto termInstructor;
 	private List<CourseDto> courses;
-	private CooperatorManagerDto cooperatorManager;
 	
 	public CoopPositionDto() {
 		
 	}
 	
 	//Constructor without term instructor
-	public CoopPositionDto(Integer id,String desc, Date start,Date end, String location, String term, StudentDto student, CooperatorManagerDto sys) {
+	public CoopPositionDto(Integer id,String desc, Date start,Date end, String location, String term, StudentDto student) {
 		this.coopId=id;
 		this.description=desc;
 		this.startDate=start;
 		this.endDate=end;
 		this.location=location;
 		this.student=student;
-		this.cooperatorManager=sys;
 	}
 	
 	//Constructor with term instructor
-	public CoopPositionDto(Integer id,String desc, Date start,Date end, String location, String term, StudentDto student, TermInstructorDto termInst, CooperatorManagerDto sys) {
+	public CoopPositionDto(Integer id,String desc, Date start,Date end, String location, String term, StudentDto student, TermInstructorDto termInst) {
 		this.coopId=id;
 		this.description=desc;
 		this.startDate=start;
 		this.endDate=end;
 		this.location=location;
 		this.student=student;
-		this.termInstructor=termInst;
-		this.cooperatorManager=sys;
-		
+		this.termInstructor=termInst;		
 	}
 	
 	public Integer getCoopID() {
@@ -72,8 +68,4 @@ public class CoopPositionDto {
 	public Status getStatus() {
 		return status;
 	}
-	
-	public CooperatorManagerDto getCooperatorManager() {
-    	return cooperatorManager;
-  }
 }

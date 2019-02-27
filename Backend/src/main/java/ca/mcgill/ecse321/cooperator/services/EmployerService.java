@@ -21,7 +21,6 @@ public class EmployerService {
     	if(sys == null)
             throw new IllegalArgumentException("Cannot add an employer with empty system");
     	Employer employer = new Employer();
-    	employer.setCooperatorManager(sys);
     	employerRepository.save(employer);
         return employer;
     }

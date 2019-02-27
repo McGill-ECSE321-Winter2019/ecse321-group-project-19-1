@@ -73,7 +73,6 @@ public class UserEntityService {
             user.setLastName(lastName);
             user.setEmail(email);
             user.setPassword(password);
-            user.setCooperatorManager(sys);
             userEntityRepository.save(user);
             return user;
         }

@@ -6,18 +6,31 @@ import java.util.List;
 public class CooperatorManagerDto {
 	private String name;
 	private List<UserEntityDto> users;
+	private List<CoopPositionDto> coops;
+	private List<CourseDto> courses;
+	private List<EmployerDto> employers;
+	private List<RequiredDocumentDto> requiredDocuments;
+	private List<StudentDto> students;
+	
 
 	public CooperatorManagerDto() {
 	}
 
 	@SuppressWarnings("unchecked")
 	public CooperatorManagerDto(String name) {
-		this(name, Collections.EMPTY_LIST);
+		this(name, Collections.EMPTY_LIST, Collections.EMPTY_LIST, Collections.EMPTY_LIST, Collections.EMPTY_LIST, Collections.EMPTY_LIST, Collections.EMPTY_LIST);
 	}
 	
-	public CooperatorManagerDto(String name, List<UserEntityDto> usersList) {
+	public CooperatorManagerDto(String name, List<UserEntityDto> usersList, List<CoopPositionDto> cp,  List<CourseDto> c,
+			List<EmployerDto> e, List<RequiredDocumentDto> r, List<StudentDto> s) {
 		this.name = name;
 		this.users = usersList;
+		this.coops = cp;
+		this.users = usersList;
+		this.courses = c;
+		this.employers = e;
+		this.requiredDocuments = r;
+		this.students = s;
 	}
 
 	public String getName() {

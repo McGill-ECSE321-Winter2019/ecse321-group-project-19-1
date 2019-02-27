@@ -8,16 +8,14 @@ public class StudentDto {
 	 private List<CoopPositionDto> coopPositions;
 	 private List<RequiredDocumentDto> requiredDocuments;
 	 private List<TermInstructorDto> termInstructors;
-	 private CooperatorManagerDto cooperatorManager;
 	 
 	 
 	 public StudentDto() {
 		 
 	 }
 	 
-	 public StudentDto(Integer id, CooperatorManagerDto cp) {
+	 public StudentDto(Integer id) {
 		 this.studentID=id;
-		 this.cooperatorManager=cp;
 	 }
 	 
 	 public Integer getStudentId() {
@@ -63,8 +61,4 @@ public class StudentDto {
 	 public void addRequiredDocument(RequiredDocumentDto rd) {
 		 this.requiredDocuments.add(rd);
 	 }
-	 
-	 public CooperatorManagerDto getCooperatorManager() {
-	    	return cooperatorManager;
-	  }
 }

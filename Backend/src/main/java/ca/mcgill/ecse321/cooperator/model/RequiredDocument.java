@@ -11,7 +11,6 @@ public abstract class RequiredDocument {
     private Date dueDate;
     private Boolean submitted;
     private Boolean accepted;
-    private CooperatorManager cooperatorManager;
 
     public void setDocumentId(Integer value) {
         this.documentId = value;
@@ -64,12 +63,4 @@ public abstract class RequiredDocument {
         return this.submitted;
     }
     
-    @ManyToOne(optional=false)
-    public CooperatorManager getCooperatorManager() {
-       return this.cooperatorManager;
-    }
-    
-    public void setCooperatorManager(CooperatorManager cooperatorManager) {
-       this.cooperatorManager = cooperatorManager;
-    }
 }

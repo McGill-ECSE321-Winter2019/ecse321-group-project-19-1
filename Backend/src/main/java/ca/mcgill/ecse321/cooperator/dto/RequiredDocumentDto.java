@@ -11,17 +11,15 @@ public abstract class RequiredDocumentDto {
     private Boolean submitted;
     private Boolean accepted;
     private StudentDto student;
-    private CooperatorManagerDto cooperatorManager;
     
     public RequiredDocumentDto() {
     	
     }
     
-    public RequiredDocumentDto(Integer id, String name, Date due, CooperatorManagerDto sys) {
+    public RequiredDocumentDto(Integer id, String name, Date due) {
     	this.documentId=id;
     	this.name=name;
-    	this.dueDate=due;
-    	this.cooperatorManager=sys;	
+    	this.dueDate=due;	
     }
     
 
@@ -61,10 +59,6 @@ public abstract class RequiredDocumentDto {
     
     public void setStudent(StudentDto student) {
     	this.student=student;
-    }
-    
-    public CooperatorManagerDto getSystem() {
-    	return cooperatorManager;
     }
 
 }

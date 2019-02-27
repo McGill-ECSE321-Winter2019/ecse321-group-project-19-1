@@ -9,7 +9,6 @@ public abstract class UserEntity {
     private String lastName;
     private String password;
     private String email;
-    private CooperatorManager cooperatorManager;
 
     public void setFirstName(String value) {
         this.firstName = value;
@@ -42,14 +41,5 @@ public abstract class UserEntity {
     @Id
     public String getEmail() {
         return this.email;
-    }
-    
-    @ManyToOne(optional=false)
-    public CooperatorManager getCooperatorManager() {
-       return this.cooperatorManager;
-    }
-    
-    public void setCooperatorManager(CooperatorManager cooperatorManager) {
-       this.cooperatorManager = cooperatorManager;
     }
 }

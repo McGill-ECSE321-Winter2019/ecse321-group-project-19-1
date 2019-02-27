@@ -21,7 +21,6 @@ public class StudentService {
 	    	if(sys == null)
 	            throw new IllegalArgumentException("Cannot add a student with empty system");
 	        Student student = new Student();
-	        student.setCooperatorManager(sys);
 	        studentRepository.save(student);
 	        return student;
 	    }

@@ -5,18 +5,16 @@ public abstract class UserEntityDto {
     private String lastName;
     private String password;
     private String email;
-    private CooperatorManagerDto cooperatorManager;
     
     public UserEntityDto() {
     	
     }
     
-    public UserEntityDto(String first, String last, String pass, String e_mail, CooperatorManagerDto sys) {
+    public UserEntityDto(String first, String last, String pass, String e_mail) {
     	this.firstName = first;
     	this.lastName = last;
     	this.password = pass;
     	this.email = e_mail;
-    	this.cooperatorManager = sys;
     }
 
     public void setFirstName(String value) {
@@ -49,9 +47,5 @@ public abstract class UserEntityDto {
     
     public String getEmail() {
     	return email;
-    }
-    
-    public CooperatorManagerDto getSystem() {
-    	return cooperatorManager;
     }
 }

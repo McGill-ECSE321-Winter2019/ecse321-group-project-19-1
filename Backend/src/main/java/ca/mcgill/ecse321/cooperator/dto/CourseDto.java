@@ -6,16 +6,14 @@ public class CourseDto {
 	private Integer courseId;
     private String courseName;
     private List<CoopPositionDto> coopPositions;  
-    private CooperatorManagerDto cooperatorManager;
 	
 	public CourseDto() {
 		
 	}
 	
-	public CourseDto(Integer id, String courseName,CooperatorManagerDto sys) {
+	public CourseDto(Integer id, String courseName) {
 		this.courseId=id;
 		this.courseName=courseName;
-		this.cooperatorManager=sys;	
 	}
 	
 	public Integer getCourseId() {
@@ -38,10 +36,5 @@ public class CourseDto {
 	public void addCoopPosition(CoopPositionDto cp) {
 		this.coopPositions.add(cp);
 	}
-	
-	public CooperatorManagerDto getSystem() {
-    	return cooperatorManager;
-    }
-	
 
 }

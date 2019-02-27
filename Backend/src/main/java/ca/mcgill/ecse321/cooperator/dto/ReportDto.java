@@ -11,8 +11,8 @@ public class ReportDto extends RequiredDocumentDto {
 		
 	}
 	
-	public ReportDto(ReportType rt, Integer id, String name,Date dueDate, CooperatorManagerDto sys) {
-		super(id,name,dueDate,sys);
+	public ReportDto(ReportType rt, Integer id, String name,Date dueDate) {
+		super(id,name,dueDate);
 		this.reportType=rt;	
 	}
 	

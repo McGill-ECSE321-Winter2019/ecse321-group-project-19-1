@@ -10,9 +10,8 @@ public class EmployerContractDto extends RequiredDocumentDto {
 		
 	}
 	
-	public EmployerContractDto(Integer id, String name,Date dueDate, CooperatorManagerDto sys) {
-		super(id,name,dueDate,sys);
-		
+	public EmployerContractDto(Integer id, String name,Date dueDate) {
+		super(id,name,dueDate);	
 	}
 	
 	public EmployerDto getEmployer() {

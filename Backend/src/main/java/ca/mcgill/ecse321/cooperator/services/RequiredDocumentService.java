@@ -57,7 +57,6 @@ public class RequiredDocumentService {
 	            rdoc.setDueDate(dueDate);
 	            rdoc.setCoopPosition(cp);
 	            rdoc.setEmployer(em);
-	            rdoc.setCooperatorManager(sys);
 	            requiredDocumentRepository.save(rdoc);
 	            return rdoc;
 	        }
@@ -134,7 +133,6 @@ public class RequiredDocumentService {
 	            rdoc.setName(name);
 	            rdoc.setDueDate(dueDate);
 	            rdoc.setCoopPosition(cp);
-	            rdoc.setCooperatorManager(sys);
 	            requiredDocumentRepository.save(rdoc);
 	            return rdoc;
 	        }
