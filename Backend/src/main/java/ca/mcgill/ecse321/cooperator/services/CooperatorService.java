@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 
 @Service
@@ -151,6 +152,10 @@ public class CooperatorService {
     @Transactional
 	public Course getCourseByCourseName(String name) {
 		return coursesService.getCourseByCourseName(name);
+	}
+    @Transactional
+	public UserEntity assignCoopToInstructor(TermInstructor ti, Set<CoopPosition> newCoopPositions) {
+		return userEntityService.assignCoopToInstructor(ti, newCoopPositions);
 	}
 
 }

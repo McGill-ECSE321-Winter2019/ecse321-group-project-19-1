@@ -110,8 +110,7 @@ public class CooperatorController {
 		CoopPosition newCP = convertToDomainObject(cpDto);
 		Set<CoopPosition> newCoopPositions = ti.getCoopPosition();
 		newCoopPositions.add(newCP);
-		ti.setCoopPosition(newCoopPositions);	
-		return convertToDto(ti);
+		return convertToDto((TermInstructor)service.assignCoopToInstructor(ti, newCoopPositions));	
 	}
 
 	// grade document

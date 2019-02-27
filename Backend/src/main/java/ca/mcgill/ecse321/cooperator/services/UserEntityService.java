@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.cooperator.services;
 
 import ca.mcgill.ecse321.cooperator.dao.UserEntityRepository;
+import ca.mcgill.ecse321.cooperator.model.CoopPosition;
 import ca.mcgill.ecse321.cooperator.model.CooperatorManager;
 import ca.mcgill.ecse321.cooperator.model.Course;
 import ca.mcgill.ecse321.cooperator.model.ProgramManager;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 
 @Service
@@ -78,4 +80,14 @@ public class UserEntityService {
         }
         throw new IllegalArgumentException("[Internal error] Failed to create a new user.");
     }
+
+	public UserEntity assignCoopToInstructor(TermInstructor ti, Set<CoopPosition> newCoopPositions) {
+		UserEntity t = userEntityRepository.findUserEntityByEmail(ti.getEmail());
+		if(t instanceof TermInstructor) {
+			((TermInstructor)t).setCoopPosition(newCoopPositions);
+			userEntityRepository.save(t);
+			return t;
+		}
+		return null;
+	}
 }
