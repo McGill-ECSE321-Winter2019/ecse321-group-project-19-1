@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface CourseRepository extends CrudRepository<Course, Integer>{
 
-    List<Course> findCourseByCourseName(String courseName);
+    Course findCourseByCourseName(String courseName);
 
 }

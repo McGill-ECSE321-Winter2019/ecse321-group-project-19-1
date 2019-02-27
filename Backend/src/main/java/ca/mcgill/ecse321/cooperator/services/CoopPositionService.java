@@ -29,7 +29,7 @@ public class CoopPositionService {
 	 	StudentRepository studentRepository;
 	 
 	 @Transactional
-	    public CoopPosition createCoopPosition(Date startDate, Date endDate,String description,String location, String term, Student student, CooperatorManager sys) {
+	    public CoopPosition createCoopPosition(Date startDate, Date endDate,String description,String location, String term, Student student) {
 	        if(!CheckNotEmpty(description))
 	            throw new IllegalArgumentException("Cannot add a coop position with empty description");
 	        if(!CheckNotEmpty(location))
@@ -40,8 +40,6 @@ public class CoopPositionService {
 	            throw new IllegalArgumentException("Cannot add a coop position with empty startDate");
 	        if(endDate == null)
 	            throw new IllegalArgumentException("Cannot add a coop position with empty endDate");
-	        if(sys == null)
-	            throw new IllegalArgumentException("Cannot add a coop position with empty system");
 	      
 	        
 	        CoopPosition cp = new CoopPosition();

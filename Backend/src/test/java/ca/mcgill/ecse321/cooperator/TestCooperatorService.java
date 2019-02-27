@@ -1,7 +1,6 @@
 package ca.mcgill.ecse321.cooperator;
 
 import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
-import ca.mcgill.ecse321.cooperator.dao.CooperatorManagerRepository;
 import ca.mcgill.ecse321.cooperator.dao.CourseRepository;
 import ca.mcgill.ecse321.cooperator.dao.EmployerRepository;
 import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
@@ -32,9 +31,6 @@ public class TestCooperatorService {
 	private CooperatorService service;
 
 	@Autowired
-	private CooperatorManagerRepository systemRepository;
-
-	@Autowired
 	private EmployerRepository employerRepository;
 
 	@Autowired
@@ -57,26 +53,6 @@ public class TestCooperatorService {
 		employerRepository.deleteAll();
 		coopPositionRepository.deleteAll();
 		userEntityRepository.deleteAll();
-		systemRepository.deleteAll();
-	}
-
-	@Test
-	public void testCreateSystem() {
-
-		assertEquals(0, service.getAllSystems().size());
-
-		String name = "McGill Coop";
-
-		try {
-			service.createSystem(name);
-		} catch (IllegalArgumentException e) {
-			fail();
-		}
-
-		List<CooperatorManager> allSystems = service.getAllSystems();
-
-		assertFalse(service.getAllSystems().isEmpty());
-		assertEquals(name, allSystems.get(0).getSystemName());
 	}
 
 	@Test
@@ -87,8 +63,7 @@ public class TestCooperatorService {
 		String name = "ECSE 321";
 
 		try {
-			createSystem();
-			service.createCourse(name, service.getAllSystems().get(0));
+			service.createCourse(name);
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
@@ -111,8 +86,7 @@ public class TestCooperatorService {
 
 		UserEntity user = null;
 		try {
-			createSystem();
-			user = service.createProgramManager(firstName, lastName, email, password, service.getAllSystems().get(0));
+			user = service.createProgramManager(firstName, lastName, email, password);
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
@@ -142,8 +116,7 @@ public class TestCooperatorService {
 		assertEquals(0, service.getAllStudents().size());
 
 		try {
-			createSystem();
-			service.createStudent(service.getAllSystems().get(0));
+			service.createStudent();
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
@@ -160,8 +133,7 @@ public class TestCooperatorService {
 		String password = "Super weak";
 
 		try {
-			createSystem();
-			service.createTermInstructor(firstName, lastName, email, password, service.getAllSystems().get(0));
+			service.createTermInstructor(firstName, lastName, email, password);
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
@@ -175,7 +147,6 @@ public class TestCooperatorService {
 		Student student = null;
 
 		try {
-			createSystem();
 			student = createStudent();
 		} catch (IllegalArgumentException e) {
 			fail();
@@ -185,7 +156,7 @@ public class TestCooperatorService {
 		CoopPosition coop = null;
 		try {
 			coop = service.createCoopPosition(startDate, endDate, "Test Course", "Test", "Test",
-					service.getAllStudents().get(0), service.getAllSystems().get(0));
+					service.getAllStudents().get(0));
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
@@ -198,8 +169,7 @@ public class TestCooperatorService {
 
 		CoopPosition coopPosition = createCoopPosition();
 		try {
-			createSystem();
-			service.createForm("Form Test", new Date(1), coopPosition, service.getAllSystems().get(0));
+			service.createForm("Form Test", new Date(1), coopPosition);
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
@@ -214,10 +184,9 @@ public class TestCooperatorService {
 
 		CoopPosition coopPosition = createCoopPosition();
 		try {
-			createSystem();
 			createEmployer();
 			service.createEmployerContract("Employer Contract test", new Date(), coopPosition,
-					service.getAllEmployers().get(0), service.getAllSystems().get(0));
+					service.getAllEmployers().get(0));
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
@@ -226,8 +195,7 @@ public class TestCooperatorService {
 	}
 
 	private Student createStudent() {
-		createSystem();
-		Student student = service.createStudent(service.getAllSystems().get(0));
+		Student student = service.createStudent();
 		return student;
 	}
 
@@ -236,26 +204,18 @@ public class TestCooperatorService {
 		Date startDate = new Date(5);
 		Date endDate = new Date(10);
 		CoopPosition coop = service.createCoopPosition(startDate, endDate, "description", "McGill", "Winter",
-				service.getAllStudents().get(0), service.getAllSystems().get(0));
+				service.getAllStudents().get(0));
 		return coop;
 	}
 
 	private Course createCourse() {
-		createSystem();
 		String name = "ECSE 321";
-		Course course = service.createCourse(name, service.getAllSystems().get(0));
+		Course course = service.createCourse(name);
 		return course;
 	}
 
-	private CooperatorManager createSystem() {
-		String name = "McGill Coop";
-		CooperatorManager sys = service.createSystem(name);
-		return sys;
-	}
-
 	private Employer createEmployer() {
-		createSystem();
-		Employer em = service.createEmployer(service.getAllSystems().get(0));
+		Employer em = service.createEmployer();
 		return em;
 	}
 }

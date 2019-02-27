@@ -15,9 +15,6 @@ public class CooperatorService {
     Boolean CheckNotEmpty(String s) {
         return s != null && !s.equals("") && s.trim().length() > 0;
     }
-
-    @Autowired
-    CooperatorSystemService systemService;
     
     @Autowired
     CoopPositionService coopPositionService;
@@ -36,28 +33,11 @@ public class CooperatorService {
     
     @Autowired
     EmployerService employerService;
-
-    //System
-    @Transactional
-    public CooperatorManager createSystem(String name) {
-        return systemService.createSystem(name);
-    }
-    @Transactional
-    public CooperatorManager getSystem(String name) {
-    	if (!CheckNotEmpty(name)) {
-	        throw new IllegalArgumentException("System name cannot be empty!");
-	    }
-    	return systemService.getSystem(name);
-    }
-    @Transactional
-    public List<CooperatorManager> getAllSystems() {
-        return systemService.getAllSystems();
-    }
     
     //Employer
     @Transactional
-    public Employer createEmployer(CooperatorManager sys) {
-        return employerService.createEmployer(sys);
+    public Employer createEmployer() {
+        return employerService.createEmployer();
     }
     @Transactional
     public List<Employer> getAllEmployers() {
@@ -66,8 +46,8 @@ public class CooperatorService {
     
     //Course
     @Transactional
-    public Course createCourse(String name, CooperatorManager sys) {
-        return coursesService.createCourse(name, sys);
+    public Course createCourse(String name) {
+        return coursesService.createCourse(name);
     }
     @Transactional
     public List<Course> getAllCourses() {
@@ -93,13 +73,13 @@ public class CooperatorService {
     }
     //ProgramManager
     @Transactional
-    public ProgramManager createProgramManager(String firstName, String lastName, String email, String password, CooperatorManager sys) {
-        return userEntityService.createProgramManager(firstName,lastName,email,password, sys);
+    public ProgramManager createProgramManager(String firstName, String lastName, String email, String password) {
+        return userEntityService.createProgramManager(firstName,lastName,email,password);
     }
     //Term instructor
     @Transactional
-    public TermInstructor createTermInstructor(String firstName, String lastName, String email, String password, CooperatorManager sys) {
-        return userEntityService.createTermInstructor(firstName,lastName,email,password, sys);
+    public TermInstructor createTermInstructor(String firstName, String lastName, String email, String password) {
+        return userEntityService.createTermInstructor(firstName,lastName,email,password);
     }
 
     //Student
@@ -116,14 +96,14 @@ public class CooperatorService {
     	return studentService.getAllProblematicStudents();
     }
     @Transactional
-	public Student createStudent(CooperatorManager cooperatorManager) {
-		return studentService.createStudent(cooperatorManager);
+	public Student createStudent() {
+		return studentService.createStudent();
 	}
     
 	//Coop
     @Transactional
-	public CoopPosition createCoopPosition(Date startDate, Date endDate,String description,String location, String term, Student student, CooperatorManager sys) {
-		return coopPositionService.createCoopPosition(startDate, endDate, description, location, term, student, sys);
+	public CoopPosition createCoopPosition(Date startDate, Date endDate,String description,String location, String term, Student student) {
+		return coopPositionService.createCoopPosition(startDate, endDate, description, location, term, student);
 	}
     @Transactional
 	public List<CoopPosition> getAllCoopPositions() {
@@ -146,19 +126,22 @@ public class CooperatorService {
     
     //Report
     @Transactional
-   	public Report createReport(String name, Date dueDate, CoopPosition cp, ReportType type,CooperatorManager sys) {
-   		return requiredDocumentService.createReport(name, dueDate, cp,type, sys);
+   	public Report createReport(String name, Date dueDate, CoopPosition cp, ReportType type) {
+   		return requiredDocumentService.createReport(name, dueDate, cp,type);
    	}
     //Form
     @Transactional
-	public Form createForm(String name, Date dueDate, CoopPosition cp, CooperatorManager sys) {
-		return requiredDocumentService.createForm(name, dueDate, cp, sys);
+	public Form createForm(String name, Date dueDate, CoopPosition cp) {
+		return requiredDocumentService.createForm(name, dueDate, cp);
 	}
     //Employer contract
     @Transactional
-	public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp, Employer employer,
-			CooperatorManager sys) {
-		return requiredDocumentService.createEmployerContract(name, dueDate, cp, employer, sys);
+	public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp, Employer employer) {
+		return requiredDocumentService.createEmployerContract(name, dueDate, cp, employer);
+	}
+    @Transactional
+	public Course getCourseByCourseName(String name) {
+		return coursesService.getCourseByCourseName(name);
 	}
 
 }

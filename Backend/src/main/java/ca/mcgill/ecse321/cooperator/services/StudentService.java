@@ -17,9 +17,7 @@ public class StudentService {
 	 @Autowired
 	    StudentRepository studentRepository;
 	 
-	    public Student createStudent(CooperatorManager sys) {
-	    	if(sys == null)
-	            throw new IllegalArgumentException("Cannot add a student with empty system");
+	    public Student createStudent() {
 	        Student student = new Student();
 	        studentRepository.save(student);
 	        return student;

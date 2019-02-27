@@ -31,9 +31,7 @@ public class CooperatorApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-	
-	@Mock
-	private CooperatorManagerRepository systemDao;
+
 	@Mock
 	private UserEntityRepository userDao;
 	@Mock
@@ -52,17 +50,17 @@ public class CooperatorApplicationTests {
 	@InjectMocks
 	private CooperatorService service;
 
-	private UserEntity users;
-	private static final String SYSTEM_KEY = "TestSystem";
-	private static final String NONEXISTING_KEY = "NotASystem";
+	private Course course;
+	private static final String SYSTEM_KEY = "test";
+	private static final String NONEXISTING_KEY = "nothing";
 
 	@Before
 	public void setMockOutput() {
-	  when(userDao.findUserEntityByEmail(anyString())).thenAnswer( (InvocationOnMock invocation) -> {
+	  when(courseDao.findCourseByCourseName(anyString())).thenAnswer( (InvocationOnMock invocation) -> {
 	    if(invocation.getArgument(0).equals(SYSTEM_KEY)) {
-	      UserEntity users = new TermInstructor();
-	      users.setEmail(SYSTEM_KEY);
-	      return users;
+	      Course course = new Course();
+	      course.setCourseName(SYSTEM_KEY);
+	      return course;
 	    } else {
 	      return null;
 	    }
@@ -71,17 +69,17 @@ public class CooperatorApplicationTests {
 	
 	@Before
 	public void setupMock() {
-		users = mock(UserEntity.class);
+		course = mock(Course.class);
 	}
 
 	@Test
-	public void testMockSystemCreation() {
-		assertNotNull(users);
+	public void testMockCourseCreation() {
+		assertNotNull(course);
 	}
 
 	@Test
-	public void testSystemQueryFound() {
-	  assertNotNull(service.getUserEntityByEmail(SYSTEM_KEY));
+	public void testMockCourseQueryFound() {
+	  //assertNotNull(service.getCourseByCourseName(SYSTEM_KEY));
 	}
 
 }

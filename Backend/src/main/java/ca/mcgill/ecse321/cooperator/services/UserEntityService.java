@@ -29,13 +29,13 @@ public class UserEntityService {
     }
 
     @Transactional
-    public TermInstructor createTermInstructor(String firstName, String lastName, String email, String password, CooperatorManager sys) {
-        return (TermInstructor) createUser(firstName, lastName, email, password, UserType.TERM_INSTRUCTOR, sys);
+    public TermInstructor createTermInstructor(String firstName, String lastName, String email, String password) {
+        return (TermInstructor) createUser(firstName, lastName, email, password, UserType.TERM_INSTRUCTOR);
     }
 
     @Transactional
-    public ProgramManager createProgramManager(String firstName, String lastName, String email, String password, CooperatorManager sys) {
-        return (ProgramManager) createUser(firstName, lastName, email, password, UserType.PROGRAM_MANAGER, sys);
+    public ProgramManager createProgramManager(String firstName, String lastName, String email, String password) {
+        return (ProgramManager) createUser(firstName, lastName, email, password, UserType.PROGRAM_MANAGER);
     }
 
     public UserEntity getUserEntityByEmail(String email) {
@@ -48,7 +48,7 @@ public class UserEntityService {
         return s != null && !s.equals("") && s.trim().length() > 0;
     }
 
-    private UserEntity createUser(String firstName, String lastName, String email, String password, UserType type, CooperatorManager sys) {
+    private UserEntity createUser(String firstName, String lastName, String email, String password, UserType type) {
         if (!CheckNotEmpty(firstName))
             throw new IllegalArgumentException("Cannot add a user with empty firstName.");
 
