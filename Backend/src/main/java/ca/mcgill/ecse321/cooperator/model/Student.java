@@ -8,6 +8,8 @@ public class Student {
     private Integer studentID;
     private Boolean problematic;
     private Set<CoopPosition> coopPosition;
+    private String firstName;
+    private String lastName;
 
     public void setStudentID(Integer value) {
         this.studentID = value;
@@ -34,6 +36,22 @@ public class Student {
 
     public void setCoopPosition(Set<CoopPosition> coopPositions) {
         this.coopPosition = coopPositions;
+    }
+
+    public void setFirstName(String value) {
+        this.firstName = value;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void setLastName(String value) {
+        this.lastName = value;
+    }
+
+    public String getLastName() {
+        return this.lastName;
     }
 
 }

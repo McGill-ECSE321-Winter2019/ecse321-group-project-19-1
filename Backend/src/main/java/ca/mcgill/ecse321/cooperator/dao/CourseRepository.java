@@ -1,13 +1,8 @@
 package ca.mcgill.ecse321.cooperator.dao;
 
+import ca.mcgill.ecse321.cooperator.model.Course;
 import org.springframework.data.repository.CrudRepository;
 
-import ca.mcgill.ecse321.cooperator.model.Course;
-
-import java.util.List;
-
-public interface CourseRepository extends CrudRepository<Course, Integer>{
-
+public interface CourseRepository extends CrudRepository<Course, Integer> {
     Course findCourseByCourseName(String courseName);
-
 }

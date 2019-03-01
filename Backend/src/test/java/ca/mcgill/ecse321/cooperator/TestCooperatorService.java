@@ -6,10 +6,7 @@ import ca.mcgill.ecse321.cooperator.dao.EmployerRepository;
 import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
 import ca.mcgill.ecse321.cooperator.dao.UserEntityRepository;
 import ca.mcgill.ecse321.cooperator.model.*;
-import ca.mcgill.ecse321.cooperator.services.CoopPositionService;
-import ca.mcgill.ecse321.cooperator.services.CooperatorService;
-import ca.mcgill.ecse321.cooperator.services.RequiredDocumentService;
-import ca.mcgill.ecse321.cooperator.services.StudentService;
+import ca.mcgill.ecse321.cooperator.services.*;
 
 import org.junit.After;
 import org.junit.Before;
@@ -28,7 +25,22 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class TestCooperatorService {
 	@Autowired
-	private CooperatorService service;
+	CoopPositionService coopPositionService;
+
+	@Autowired
+	RequiredDocumentService requiredDocumentService;
+
+	@Autowired
+	StudentService studentService;
+
+	@Autowired
+	CoursesService coursesService;
+
+	@Autowired
+	UserEntityService userEntityService;
+
+	@Autowired
+	EmployerService employerService;
 
 	@Autowired
 	private EmployerRepository employerRepository;
@@ -58,26 +70,26 @@ public class TestCooperatorService {
 	@Test
 	public void testCreateCourse() {
 
-		assertEquals(0, service.getAllCourses().size());
+		assertEquals(0, coursesService.getAllCourses().size());
 
 		String name = "ECSE 321";
 
 		try {
-			service.createCourse(name);
+			coursesService.createCourse(name);
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
 
-		List<Course> allCourses = service.getAllCourses();
+		List<Course> allCourses = coursesService.getAllCourses();
 
-		assertFalse(service.getAllCourses().isEmpty());
+		assertFalse(coursesService.getAllCourses().isEmpty());
 		assertEquals(name, allCourses.get(0).getCourseName());
 	}
 
 	@Test
 	public void testLogin() {
 
-		assertEquals(0, service.getAllUserEntities().size());
+		assertEquals(0, userEntityService.getAllUserEntities().size());
 
 		String firstName = "Happy";
 		String lastName = "New";
@@ -86,26 +98,26 @@ public class TestCooperatorService {
 
 		UserEntity user = null;
 		try {
-			user = service.createProgramManager(firstName, lastName, email, password);
+			user = userEntityService.createProgramManager(firstName, lastName, email, password);
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
 
-		List<UserEntity> allUsers = service.getAllUserEntities();
+		List<UserEntity> allUsers = userEntityService.getAllUserEntities();
 
-		assertFalse(service.getAllUserEntities().isEmpty());
+		assertFalse(userEntityService.getAllUserEntities().isEmpty());
 		assertEquals(email, allUsers.get(0).getEmail());
 
 		// Must fail to login with wrong credentials
 		try {
-			assertEquals(null, service.login("hacker@mail.com", "Trying"));
+			assertEquals(null, userEntityService.login("hacker@mail.com", "Trying"));
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
 
 		// Should work since credentials are correct
 		try {
-			assertEquals(user.getEmail(), service.login(email, password).getEmail());
+			assertEquals(user.getEmail(), userEntityService.login(email, password).getEmail());
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
@@ -113,19 +125,19 @@ public class TestCooperatorService {
 
 	@Test
 	public void testCreateStudent() {
-		assertEquals(0, service.getAllStudents().size());
+		assertEquals(0, studentService.getAllStudents().size());
 
 		try {
-			service.createStudent();
+			studentService.createStudent();
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
-		assertEquals(1, service.getAllStudents().size());
+		assertEquals(1, studentService.getAllStudents().size());
 	}
 
 	@Test
 	public void testCreateTermInstructor() {
-		assertEquals(0, service.getAllUserEntities().size());
+		assertEquals(0, userEntityService.getAllUserEntities().size());
 
 		String firstName = "Happy";
 		String lastName = "Birthday";
@@ -133,16 +145,16 @@ public class TestCooperatorService {
 		String password = "Super weak";
 
 		try {
-			service.createTermInstructor(firstName, lastName, email, password);
+			userEntityService.createTermInstructor(firstName, lastName, email, password);
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
-		assertEquals(1, service.getAllUserEntities().size());
+		assertEquals(1, userEntityService.getAllUserEntities().size());
 	}
 
 	@Test
 	public void testCreateCoopPosition() {
-		assertEquals(0, service.getAllCoopPositions().size());
+		assertEquals(0, coopPositionService.getAllCoopPositions().size());
 
 		Student student = null;
 
@@ -155,12 +167,12 @@ public class TestCooperatorService {
 		Date endDate = new Date(10);
 		CoopPosition coop = null;
 		try {
-			coop = service.createCoopPosition(startDate, endDate, "Test Course", "Test", "Test",
-					service.getAllStudents().get(0));
+			coop = coopPositionService.createCoopPosition(startDate, endDate, "Test Course", "Test", "Test",
+					studentService.getAllStudents().get(0));
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
-		assertEquals(1, service.getAllCoopPositions().size());
+		assertEquals(1, coopPositionService.getAllCoopPositions().size());
 
 	}
 
@@ -169,33 +181,33 @@ public class TestCooperatorService {
 
 		CoopPosition coopPosition = createCoopPosition();
 		try {
-			service.createForm("Form Test", new Date(1), coopPosition);
+			requiredDocumentService.createForm("Form Test", new Date(1), coopPosition);
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
 
-		assertFalse(service.getAllRequiredDocuments().isEmpty());
+		assertFalse(requiredDocumentService.getAllRequiredDocuments().isEmpty());
 
 	}
 
 	@Test
 	public void testCreateEmployerContactDocument() {
-		assertEquals(0, service.getAllRequiredDocuments().size());
+		assertEquals(0, requiredDocumentService.getAllRequiredDocuments().size());
 
 		CoopPosition coopPosition = createCoopPosition();
 		try {
 			createEmployer();
-			service.createEmployerContract("Employer Contract test", new Date(), coopPosition,
-					service.getAllEmployers().get(0));
+			requiredDocumentService.createEmployerContract("Employer Contract test", new Date(), coopPosition,
+					employerService.getAllEmployers().get(0));
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
 
-		assertEquals(1, service.getAllRequiredDocuments().size());
+		assertEquals(1, requiredDocumentService.getAllRequiredDocuments().size());
 	}
 
 	private Student createStudent() {
-		Student student = service.createStudent();
+		Student student = studentService.createStudent();
 		return student;
 	}
 
@@ -203,19 +215,19 @@ public class TestCooperatorService {
 		createStudent();
 		Date startDate = new Date(5);
 		Date endDate = new Date(10);
-		CoopPosition coop = service.createCoopPosition(startDate, endDate, "description", "McGill", "Winter",
-				service.getAllStudents().get(0));
+		CoopPosition coop = coopPositionService.createCoopPosition(startDate, endDate, "description", "McGill", "Winter",
+				studentService.getAllStudents().get(0));
 		return coop;
 	}
 
 	private Course createCourse() {
 		String name = "ECSE 321";
-		Course course = service.createCourse(name);
+		Course course = coursesService.createCourse(name);
 		return course;
 	}
 
 	private Employer createEmployer() {
-		Employer em = service.createEmployer();
+		Employer em = employerService.createEmployer();
 		return em;
 	}
 }
