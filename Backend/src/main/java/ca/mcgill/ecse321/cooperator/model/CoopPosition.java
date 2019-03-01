@@ -37,11 +37,11 @@ public class CoopPosition {
     }
 
     @ManyToMany
-    public Set<TermInstructor> getTermInstructor() {
+    public Set<TermInstructor> getTermInstructors() {
         return this.termInstructor;
     }
 
-    public void setTermInstructor(Set<TermInstructor> termInstructors) {
+    public void setTermInstructors(Set<TermInstructor> termInstructors) {
         this.termInstructor = termInstructors;
     }
 
