@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.cooperator.services;
 
+import ca.mcgill.ecse321.cooperator.Utilities;
 import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.StudentRepository;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
@@ -17,10 +18,6 @@ import java.util.List;
 @Service
 public class CoopPositionService {
 
-    Boolean CheckNotEmpty(String s) {
-        return s != null && !s.equals("") && s.trim().length() > 0;
-    }
-
     @Autowired
     CoopPositionRepository coopPositionRepository;
 
@@ -29,11 +26,11 @@ public class CoopPositionService {
 
     @Transactional
     public CoopPosition createCoopPosition(Date startDate, Date endDate, String description, String location, String term, Student student) {
-        if (!CheckNotEmpty(description))
+        if (!Utilities.CheckNotEmpty(description))
             throw new IllegalArgumentException("Cannot add a coop position with empty description");
-        if (!CheckNotEmpty(location))
+        if (!Utilities.CheckNotEmpty(location))
             throw new IllegalArgumentException("Cannot add a coop position with empty location");
-        if (!CheckNotEmpty(term))
+        if (!Utilities.CheckNotEmpty(term))
             throw new IllegalArgumentException("Cannot add a coop position with empty term");
         if (startDate == null)
             throw new IllegalArgumentException("Cannot add a coop position with empty startDate");

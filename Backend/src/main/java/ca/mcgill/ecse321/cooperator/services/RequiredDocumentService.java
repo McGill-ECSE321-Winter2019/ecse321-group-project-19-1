@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.cooperator.services;
 
+import ca.mcgill.ecse321.cooperator.Utilities;
 import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
 import ca.mcgill.ecse321.cooperator.model.*;
@@ -35,7 +36,7 @@ public class RequiredDocumentService {
 
     @Transactional
     public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp, Employer em) {
-        if (!CheckNotEmpty(name))
+        if (!Utilities.CheckNotEmpty(name))
             throw new IllegalArgumentException("Cannot add a document with empty name.");
 
         EmployerContract rdoc = new EmployerContract();
@@ -102,12 +103,8 @@ public class RequiredDocumentService {
 
     // =============================== Private methods ===============================
 
-    private Boolean CheckNotEmpty(String s) {
-        return s != null && !s.equals("") && s.trim().length() > 0;
-    }
-
     private RequiredDocument createRequiredDocument(String name, Date dueDate, CoopPosition cp, RequiredDocumentType type) {
-        if (!CheckNotEmpty(name))
+        if (!Utilities.CheckNotEmpty(name))
             throw new IllegalArgumentException("Cannot add a document with empty name.");
 
         RequiredDocument rdoc = null;
