@@ -349,7 +349,7 @@
       <visibility xmi:id="_CsTp9Sp4Eemvs8z37xKZzA" label="+"/>
       <cardinality xmi:id="_CsTp9ip4Eemvs8z37xKZzA" label="1" max="1" min="1"/>
     </sourceRole>
-    <targetRole xmi:id="_CsTp9yp4Eemvs8z37xKZzA" name="requiredDocument" navigable="true">
+    <targetRole xmi:id="_CsTp9yp4Eemvs8z37xKZzA" name="requiredDocuments" navigable="true">
       <modelElement href="ca.mcgill.ecse321.cooperator.model.uml#_CsJ48ip4Eemvs8z37xKZzA"/>
       <visualProperties xmi:id="_CwLdbSp4Eemvs8z37xKZzA" position="2.0,-80.0"/>
       <visibility xmi:id="_CsTp-Cp4Eemvs8z37xKZzA" label="+"/>
@@ -1136,7 +1136,7 @@
         <modelElement href="ca.mcgill.ecse321.cooperator.model.uml#_vfpn0Cp3Eemvs8z37xKZzA"/>
       </type>
     </attributes>
-    <attributes xmi:id="_CsTp_ip4Eemvs8z37xKZzA" name="requiredDocument">
+    <attributes xmi:id="_CsTp_ip4Eemvs8z37xKZzA" name="requiredDocuments">
       <modelElement href="ca.mcgill.ecse321.cooperator.model.uml#_CsJ48ip4Eemvs8z37xKZzA"/>
       <visibility xmi:id="_CsTp_yp4Eemvs8z37xKZzA" label="+"/>
       <cardinality xmi:id="_CsTqACp4Eemvs8z37xKZzA" label="*" max="-1"/>
