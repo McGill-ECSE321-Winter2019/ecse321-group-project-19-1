@@ -16,7 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import ca.mcgill.ecse321.cooperator.controller.CooperatorController;
 import ca.mcgill.ecse321.cooperator.dao.*;
 import ca.mcgill.ecse321.cooperator.model.*;
-import ca.mcgill.ecse321.cooperator.services.CooperatorService;
 import ca.mcgill.ecse321.cooperator.services.CoursesService;
 
 import static org.junit.Assert.assertEquals;
