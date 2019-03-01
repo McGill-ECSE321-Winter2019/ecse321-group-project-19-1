@@ -7,7 +7,7 @@ import java.util.Set;
 public class Course {
     private Integer courseId;
     private String courseName;
-    private Set<CoopPosition> coopPosition;  
+    private Set<CoopPosition> coopPosition;
 
     public void setCourseId(Integer value) {
         this.courseId = value;

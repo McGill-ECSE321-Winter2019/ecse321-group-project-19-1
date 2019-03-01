@@ -4,13 +4,13 @@ import java.util.Date;
 
 
 public class FormDto extends RequiredDocumentDto {
-	
-	public FormDto() {
-		
-	}
-	
-	public FormDto(Integer id, String name,Date dueDate) {
-		super(id,name,dueDate);
-	}
+
+    public FormDto() {
+
+    }
+
+    public FormDto(Integer id, String name, Date dueDate) {
+        super(id, name, dueDate);
+    }
 
 }

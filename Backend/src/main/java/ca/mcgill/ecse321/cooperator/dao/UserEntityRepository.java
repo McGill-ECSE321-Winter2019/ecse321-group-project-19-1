@@ -1,9 +1,8 @@
 package ca.mcgill.ecse321.cooperator.dao;
 
-import org.springframework.data.repository.CrudRepository;
 import ca.mcgill.ecse321.cooperator.model.UserEntity;
+import org.springframework.data.repository.CrudRepository;
 
-//@RepositoryRestResource(collectionResourceRel = "participants", path = "participants")
-public interface UserEntityRepository extends CrudRepository<UserEntity, String>{
+public interface UserEntityRepository extends CrudRepository<UserEntity, String> {
     UserEntity findUserEntityByEmail(String email);
 }

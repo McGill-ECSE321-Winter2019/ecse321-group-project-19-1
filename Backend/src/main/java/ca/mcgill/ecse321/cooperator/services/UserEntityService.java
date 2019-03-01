@@ -1,9 +1,8 @@
 package ca.mcgill.ecse321.cooperator.services;
 
+import ca.mcgill.ecse321.cooperator.Utilities;
 import ca.mcgill.ecse321.cooperator.dao.UserEntityRepository;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
-import ca.mcgill.ecse321.cooperator.model.CooperatorManager;
-import ca.mcgill.ecse321.cooperator.model.Course;
 import ca.mcgill.ecse321.cooperator.model.ProgramManager;
 import ca.mcgill.ecse321.cooperator.model.TermInstructor;
 import ca.mcgill.ecse321.cooperator.model.UserEntity;
@@ -26,8 +25,8 @@ public class UserEntityService {
     }
 
     @Transactional
-    public List<UserEntity> getAllUserEntities(){
-        return (List<UserEntity>)userEntityRepository.findAll();
+    public List<UserEntity> getAllUserEntities() {
+        return (List<UserEntity>) userEntityRepository.findAll();
     }
 
     @Transactional
@@ -40,27 +39,33 @@ public class UserEntityService {
         return (ProgramManager) createUser(firstName, lastName, email, password, UserType.PROGRAM_MANAGER);
     }
 
+    @Transactional
+    public UserEntity login(String email, String password) {
+        UserEntity user = userEntityRepository.findUserEntityByEmail(email);
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        }
+        return null;
+    }
+
+    @Transactional
     public UserEntity getUserEntityByEmail(String email) {
         return userEntityRepository.findUserEntityByEmail(email);
     }
 
     // =============================== Private methods ===============================
 
-    private Boolean CheckNotEmpty(String s) {
-        return s != null && !s.equals("") && s.trim().length() > 0;
-    }
-
     private UserEntity createUser(String firstName, String lastName, String email, String password, UserType type) {
-        if (!CheckNotEmpty(firstName))
+        if (!Utilities.CheckNotEmpty(firstName))
             throw new IllegalArgumentException("Cannot add a user with empty firstName.");
 
-        if (!CheckNotEmpty(lastName))
+        if (!Utilities.CheckNotEmpty(lastName))
             throw new IllegalArgumentException("Cannot add a user with empty lastName.");
 
-        if (!CheckNotEmpty(email))
+        if (!Utilities.CheckNotEmpty(email))
             throw new IllegalArgumentException("Cannot add a user with empty email.");
 
-        if (!CheckNotEmpty(password))
+        if (!Utilities.CheckNotEmpty(password))
             throw new IllegalArgumentException("Cannot add a user with empty password.");
 
         UserEntity user = null;
@@ -81,13 +86,13 @@ public class UserEntityService {
         throw new IllegalArgumentException("[Internal error] Failed to create a new user.");
     }
 
-	public UserEntity assignCoopToInstructor(TermInstructor ti, Set<CoopPosition> newCoopPositions) {
-		UserEntity t = userEntityRepository.findUserEntityByEmail(ti.getEmail());
-		if(t instanceof TermInstructor) {
-			((TermInstructor)t).setCoopPosition(newCoopPositions);
-			userEntityRepository.save(t);
-			return t;
-		}
-		return null;
-	}
+    public UserEntity assignCoopToInstructor(TermInstructor ti, Set<CoopPosition> newCoopPositions) {
+        UserEntity t = userEntityRepository.findUserEntityByEmail(ti.getEmail());
+        if (t instanceof TermInstructor) {
+            ((TermInstructor) t).setCoopPosition(newCoopPositions);
+            userEntityRepository.save(t);
+            return t;
+        }
+        return null;
+    }
 }

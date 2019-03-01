@@ -112,5 +112,5 @@ public class CoopPosition {
     public String getLocation() {
         return this.location;
     }
-    
+
 }

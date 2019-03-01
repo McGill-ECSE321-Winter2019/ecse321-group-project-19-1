@@ -17,7 +17,7 @@ public abstract class RequiredDocument {
     }
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getDocumentId() {
         return this.documentId;
     }
@@ -54,7 +54,7 @@ public abstract class RequiredDocument {
     public Boolean getAccepted() {
         return this.accepted;
     }
-    
+
     public void setSubmitted(Boolean value) {
         this.submitted = value;
     }
@@ -62,5 +62,5 @@ public abstract class RequiredDocument {
     public Boolean getSubmitted() {
         return this.submitted;
     }
-    
+
 }
