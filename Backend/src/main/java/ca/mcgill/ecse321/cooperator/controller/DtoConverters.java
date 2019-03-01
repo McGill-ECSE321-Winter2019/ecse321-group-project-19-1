@@ -117,10 +117,4 @@ public class DtoConverters {
         CheckArg(studentService);
         return studentService.getStudentById(sDto.getStudentId());
     }
-
-    static TermInstructor getLast(Set<TermInstructor> termInstructor) {
-        List<TermInstructor> newList = new ArrayList<TermInstructor>(termInstructor);
-        return newList.get(newList.size() - 1);
-    }
-
 }
