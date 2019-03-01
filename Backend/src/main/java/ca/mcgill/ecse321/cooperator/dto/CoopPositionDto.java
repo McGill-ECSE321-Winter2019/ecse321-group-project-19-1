@@ -15,7 +15,7 @@ public class CoopPositionDto {
     private String location;
 
     private StudentDto student;
-    private List<TermInstructorDto> termInstructors;
+    private List<TermInstructorDto> termInstructor;
     private List<CourseDto> courses;
 
     public CoopPositionDto() {
@@ -58,7 +58,7 @@ public class CoopPositionDto {
         this.endDate = end;
         this.location = location;
         this.student = student;
-        this.termInstructors = termInst;
+        this.termInstructor = termInst;
     }
 
     public Integer getCoopID() {
@@ -71,12 +71,12 @@ public class CoopPositionDto {
     }
 
     // Term Instructor
-    public List<TermInstructorDto> getTermInstructors() {
-        return termInstructors;
+    public List<TermInstructorDto> getTermInstructor() {
+        return termInstructor;
     }
 
-    public void setTermInstructor(List<TermInstructorDto> termInstructors) {
-        this.termInstructors = termInstructors;
+    public void setTermInstructor(List<TermInstructorDto> termInstructor) {
+        this.termInstructor = termInstructor;
     }
 
     // Status

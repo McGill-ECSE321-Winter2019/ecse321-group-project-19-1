@@ -6,7 +6,6 @@ import ca.mcgill.ecse321.cooperator.services.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class DtoConverters {
 
@@ -73,7 +72,7 @@ public class DtoConverters {
     static CoopPositionDto convertToDto(CoopPosition cp) {
         CheckArg(cp);
         StudentDto sDto = convertToDto(cp.getStudent());
-        List<TermInstructor> instructors = new ArrayList<>(cp.getTermInstructors());
+        List<TermInstructor> instructors = new ArrayList<>(cp.getTermInstructor());
         List<TermInstructorDto> tiDtos = new ArrayList<>();
         for(TermInstructor instructor : instructors) {
             if (instructor != null)

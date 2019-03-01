@@ -37,12 +37,12 @@ public class CoopPosition {
     }
 
     @ManyToMany
-    public Set<TermInstructor> getTermInstructors() {
+    public Set<TermInstructor> getTermInstructor() {
         return this.termInstructor;
     }
 
-    public void setTermInstructors(Set<TermInstructor> termInstructors) {
-        this.termInstructor = termInstructors;
+    public void setTermInstructor(Set<TermInstructor> termInstructor) {
+        this.termInstructor = termInstructor;
     }
 
     @ManyToMany(mappedBy = "coopPosition")
@@ -68,8 +68,8 @@ public class CoopPosition {
         return this.requiredDocument;
     }
 
-    public void setRequiredDocument(Set<RequiredDocument> requiredDocuments) {
-        this.requiredDocument = requiredDocuments;
+    public void setRequiredDocument(Set<RequiredDocument> requiredDocument) {
+        this.requiredDocument = requiredDocument;
     }
 
     public void setDescription(String value) {
