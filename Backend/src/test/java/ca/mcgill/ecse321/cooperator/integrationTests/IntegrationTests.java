@@ -18,9 +18,9 @@ public class IntegrationTests {
     private final String COURSE_NAME = "test101";
     private JSONObject respose;
 
-    private JSONObject sendRequest(String requestType, String baseUrl, String path, String parmeters) {
+    private JSONObject sendRequest(String requestType, String baseUrl, String path, String parameters) {
         try {
-            URL url = new URL(baseUrl + path + "?" + parmeters);
+            URL url = new URL(baseUrl + path + ((parameters==null)?"":("?" + parameters)));
             System.out.println("Sending: "+url.toString());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod(requestType);
@@ -43,6 +43,9 @@ public class IntegrationTests {
         return null;
     }
 
+    private JSONObject sendRequest(String requestType, String baseUrl, String path) {
+        sendRequest(requestType,baseUrl,path,null);
+    }
     @Test
     public void TestAddingCourse() {
         try {
