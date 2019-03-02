@@ -4,21 +4,25 @@ import java.util.Date;
 
 
 public class EmployerContractDto extends RequiredDocumentDto {
-    private EmployerDto employer;
+    private Integer employerId;
 
     public EmployerContractDto() {
 
+    }
+    public EmployerContractDto(String sid) {
+        super(sid);
+        this.employerId=null;
     }
 
     public EmployerContractDto(Integer id, String name, Date dueDate) {
         super(id, name, dueDate);
     }
 
-    public EmployerDto getEmployer() {
-        return employer;
+    public Integer getEmployer() {
+        return employerId;
     }
 
-    public void setEmployer(EmployerDto employer) {
-        this.employer = employer;
+    public void setEmployer(Integer employer) {
+        this.employerId = employer;
     }
 }

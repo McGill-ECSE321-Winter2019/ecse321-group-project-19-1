@@ -2,11 +2,9 @@ package ca.mcgill.ecse321.cooperator.services;
 
 import ca.mcgill.ecse321.cooperator.Utilities;
 import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
+import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
 import ca.mcgill.ecse321.cooperator.dao.StudentRepository;
-import ca.mcgill.ecse321.cooperator.model.CoopPosition;
-import ca.mcgill.ecse321.cooperator.model.Status;
-import ca.mcgill.ecse321.cooperator.model.Student;
-import ca.mcgill.ecse321.cooperator.model.TermInstructor;
+import ca.mcgill.ecse321.cooperator.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +18,9 @@ public class CoopPositionService {
 
     @Autowired
     CoopPositionRepository coopPositionRepository;
+
+    @Autowired
+    RequiredDocumentRepository requiredDocumentRepository;
 
     @Autowired
     StudentRepository studentRepository;
@@ -59,8 +60,8 @@ public class CoopPositionService {
     }
 
     @Transactional
-    public CoopPosition getCoopPositionById(Integer id) {
-        return coopPositionRepository.findCoopPositionByCoopId(id);
+    public CoopPosition getById(Integer id) {
+        return coopPositionRepository.findByCoopId(id);
     }
 
     @Transactional
@@ -93,6 +94,17 @@ public class CoopPositionService {
     @Transactional
     public List<CoopPosition> getAllCoopPositions() {
         return (List<CoopPosition>) coopPositionRepository.findAll();
+    }
+
+    @Transactional
+    public Boolean addRequiredDocumentToCoopPosition(int cpId, int rdId) {
+        RequiredDocument rd = requiredDocumentRepository.findById(rdId);
+        CoopPosition cp = coopPositionRepository.findByCoopId(cpId);
+        if (rd == null || cp == null)
+            return false;
+        cp.addRequiredDocument(rd);
+        coopPositionRepository.save(cp);
+        return true;
     }
 
 

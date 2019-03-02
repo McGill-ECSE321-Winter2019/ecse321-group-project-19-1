@@ -4,4 +4,9 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public enum Status {
+    PENDING,
+    REJECTED,
+    COMPLETED,
+    FAILED,
+    ACCEPTED
 }

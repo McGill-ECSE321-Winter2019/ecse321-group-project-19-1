@@ -1,8 +1,5 @@
 package ca.mcgill.ecse321.cooperator;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,10 +7,8 @@ import org.mockito.InjectMocks;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import ca.mcgill.ecse321.cooperator.controller.CooperatorController;
 import ca.mcgill.ecse321.cooperator.dao.*;
 import ca.mcgill.ecse321.cooperator.model.*;
 import ca.mcgill.ecse321.cooperator.services.CoursesService;
@@ -45,8 +40,6 @@ public class CooperatorApplicationTests {
 	@Mock
 	private RequiredDocumentRepository requiredDocumentDao;
 
-	@InjectMocks
-	private CooperatorController controller;
 	@InjectMocks
 	private CoursesService coursesServicce;
 

@@ -35,4 +35,9 @@ public class CoursesService {
     public Course getCourseByCourseName(String name) {
         return courseRepository.findCourseByCourseName(name);
     }
+
+    @Transactional
+    public Course getCourseByCourseId(int id) {
+        return courseRepository.findByCourseId(id);
+    }
 }

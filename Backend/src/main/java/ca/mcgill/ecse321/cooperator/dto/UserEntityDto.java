@@ -10,6 +10,10 @@ public abstract class UserEntityDto {
 
     }
 
+    public UserEntityDto(String email) {
+        this(null,null,null,email);
+    }
+
     public UserEntityDto(String first, String last, String pass, String e_mail) {
         this.firstName = first;
         this.lastName = last;

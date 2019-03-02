@@ -14,7 +14,7 @@ public class CoopPositionDto {
     private Date endDate;
     private String location;
 
-    private StudentDto student;
+    private Integer studentId;
     private List<TermInstructorDto> termInstructor;
     private List<CourseDto> courses;
 
@@ -28,36 +28,38 @@ public class CoopPositionDto {
 
     // Constructor without term instructor with string
     public CoopPositionDto(String sid, String desc, Date start, Date end, String location, String term,
-                           StudentDto student) {
+                           Integer student) {
         Integer id = Integer.parseInt(sid);
         this.coopId = id;
         this.description = desc;
         this.startDate = start;
         this.endDate = end;
         this.location = location;
-        this.student = student;
+        this.studentId = studentId;
+        this.term=term;
     }
 
     // Constructor without term instructor
     public CoopPositionDto(Integer id, String desc, Date start, Date end, String location, String term,
-                           StudentDto student) {
+                           Integer studentId) {
         this.coopId = id;
         this.description = desc;
         this.startDate = start;
         this.endDate = end;
         this.location = location;
-        this.student = student;
+        this.studentId = studentId;
+        this.term=term;
     }
 
     // Constructor with term instructor
     public CoopPositionDto(Integer id, String desc, Date start, Date end, String location, String term,
-                           StudentDto student, List<TermInstructorDto> termInst) {
+                           Integer studentId, List<TermInstructorDto> termInst) {
         this.coopId = id;
         this.description = desc;
         this.startDate = start;
         this.endDate = end;
         this.location = location;
-        this.student = student;
+        this.studentId = studentId;
         this.termInstructor = termInst;
     }
 
@@ -66,8 +68,13 @@ public class CoopPositionDto {
     }
 
     // Student
-    public StudentDto getStudent() {
-        return student;
+    public Integer getStudent() {
+        return studentId;
+    }
+
+    // Student
+    public void setStudent(Integer value) {
+        this.studentId=value;
     }
 
     // Term Instructor
