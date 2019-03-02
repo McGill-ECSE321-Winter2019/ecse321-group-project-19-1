@@ -15,8 +15,8 @@ public class CourseController {
     CoursesService coursesService;
 
     // create course
-    @PostMapping(value = {"/createCourse/{courseName}", "/createCourse/{courseName}/"})
-    public CourseDto createCourse(@PathVariable("courseName") String courseName) throws IllegalArgumentException {
+    @PostMapping(value = {"/createCourse", "/createCourse/"})
+    public CourseDto createCourse(@RequestParam("courseName") String courseName) throws IllegalArgumentException {
         Course course = coursesService.createCourse(courseName);
         return DtoConverters.convertToDto(course);
     }
