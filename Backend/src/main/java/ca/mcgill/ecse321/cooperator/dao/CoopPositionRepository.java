@@ -17,5 +17,5 @@ public interface CoopPositionRepository extends CrudRepository<CoopPosition, Int
 
     List<CoopPosition> findCoopPositionByTermInstructor(TermInstructor termInstructor);
 
-    CoopPosition findCoopPositionByCoopId(Integer coopId);
+    CoopPosition findById(int coopId);
 }

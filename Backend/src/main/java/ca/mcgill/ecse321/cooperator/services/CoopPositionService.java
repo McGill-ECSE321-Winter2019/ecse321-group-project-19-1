@@ -59,8 +59,8 @@ public class CoopPositionService {
     }
 
     @Transactional
-    public CoopPosition getCoopPositionById(Integer id) {
-        return coopPositionRepository.findCoopPositionByCoopId(id);
+    public CoopPosition getCoopPositionById(int id) {
+        return coopPositionRepository.findById(id);
     }
 
     @Transactional
