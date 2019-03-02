@@ -29,7 +29,7 @@ public class CoopPostionController {
                                              @RequestParam(name = "endDate") @DateTimeFormat(pattern = "MM/dd/yyyy") Date endDate,
                                              @RequestParam(name = "description") String description,
                                              @RequestParam(name = "location") String location, @RequestParam(name = "term") String term,
-                                             @RequestParam(name = "studentID") int studentId) throws IllegalArgumentException {
+                                             @RequestParam(name = "studentId") int studentId) throws IllegalArgumentException {
         Student student = studentService.getStudentById(studentId);
         CoopPosition coopPostion = coopPositionService.createCoopPosition(startDate, endDate, description, location, term, student);
         studentService.offerCoopPostionToStudent(student.getStudentID(),coopPostion.getCoopId());
@@ -47,7 +47,7 @@ public class CoopPostionController {
     }
 
     // adjudicate completion of coop
-    @GetMapping(value = {"/setCoopStatus", "/setCoopStatus/"})
+    @PostMapping(value = {"/setCoopStatus", "/setCoopStatus/"})
     public Boolean adjudicateCoop(@RequestParam(name = "coopId") int cpId, Status status)
             throws IllegalArgumentException {
         CoopPosition cp = coopPositionService.getById(cpId);
