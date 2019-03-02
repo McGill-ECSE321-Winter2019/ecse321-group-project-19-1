@@ -44,7 +44,7 @@ public class IntegrationTests {
     }
 
     private JSONObject sendRequest(String requestType, String baseUrl, String path) {
-        sendRequest(requestType,baseUrl,path,null);
+        return sendRequest(requestType,baseUrl,path,null);
     }
     @Test
     public void TestAddingCourse() {
