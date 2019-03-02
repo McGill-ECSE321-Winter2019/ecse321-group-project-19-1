@@ -41,8 +41,8 @@ public class CoopPosition {
         return this.termInstructor;
     }
 
-    public void setTermInstructor(Set<TermInstructor> termInstructors) {
-        this.termInstructor = termInstructors;
+    public void setTermInstructor(Set<TermInstructor> termInstructor) {
+        this.termInstructor = termInstructor;
     }
 
     @ManyToMany(mappedBy = "coopPosition")
@@ -68,8 +68,8 @@ public class CoopPosition {
         return this.requiredDocument;
     }
 
-    public void setRequiredDocument(Set<RequiredDocument> requiredDocuments) {
-        this.requiredDocument = requiredDocuments;
+    public void setRequiredDocument(Set<RequiredDocument> requiredDocument) {
+        this.requiredDocument = requiredDocument;
     }
 
     public void setDescription(String value) {

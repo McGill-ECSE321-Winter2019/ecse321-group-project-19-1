@@ -6,7 +6,6 @@ import ca.mcgill.ecse321.cooperator.services.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class DtoConverters {
 
@@ -73,17 +72,15 @@ public class DtoConverters {
     static CoopPositionDto convertToDto(CoopPosition cp) {
         CheckArg(cp);
         StudentDto sDto = convertToDto(cp.getStudent());
-        if (cp.getTermInstructor() == null || cp.getTermInstructor().isEmpty()) {
-            CoopPositionDto cpDto = new CoopPositionDto(cp.getCoopId(), cp.getDescription(), cp.getStartDate(),
-                    cp.getEndDate(), cp.getLocation(), cp.getTerm(), sDto);
-            return cpDto;
-        } else {
-            TermInstructor termInstructor = getLast(cp.getTermInstructor());
-            TermInstructorDto tiDto = convertToDto(termInstructor);
-            CoopPositionDto cpDto = new CoopPositionDto(cp.getCoopId(), cp.getDescription(), cp.getStartDate(),
-                    cp.getEndDate(), cp.getLocation(), cp.getTerm(), sDto, tiDto);
-            return cpDto;
+        List<TermInstructor> instructors = new ArrayList<>(cp.getTermInstructor());
+        List<TermInstructorDto> tiDtos = new ArrayList<>();
+        for(TermInstructor instructor : instructors) {
+            if (instructor != null)
+                tiDtos.add(convertToDto(instructor));
         }
+        CoopPositionDto cpDto = new CoopPositionDto(cp.getCoopId(), cp.getDescription(), cp.getStartDate(),
+                cp.getEndDate(), cp.getLocation(), cp.getTerm(), sDto, tiDtos);
+        return cpDto;
     }
 
     static UserEntityDto convertToDto(UserEntity ue) {
@@ -119,10 +116,4 @@ public class DtoConverters {
         CheckArg(studentService);
         return studentService.getStudentById(sDto.getStudentId());
     }
-
-    static TermInstructor getLast(Set<TermInstructor> termInstructor) {
-        List<TermInstructor> newList = new ArrayList<TermInstructor>(termInstructor);
-        return newList.get(newList.size() - 1);
-    }
-
 }
