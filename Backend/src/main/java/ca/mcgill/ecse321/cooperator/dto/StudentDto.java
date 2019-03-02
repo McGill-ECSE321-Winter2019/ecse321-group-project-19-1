@@ -1,21 +1,31 @@
 package ca.mcgill.ecse321.cooperator.dto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class StudentDto {
     private Integer studentID;
     private Boolean problematic;
-    private List<CoopPositionDto> coopPositions;
-    private List<RequiredDocumentDto> requiredDocuments;
+    private List<Integer> coopPositions;
+    private String firstName;
+    private String lastName;
 
 
     public StudentDto() {
 
     }
 
+    @SuppressWarnings("unchecked")
     public StudentDto(String sid) {
-        Integer id = Integer.parseInt(sid);
-        this.studentID = id;
+        this(Integer.parseInt(sid), null, null, null, Collections.EMPTY_LIST);
+    }
+
+    public StudentDto(Integer id, String firstName, String lastName, Boolean problematic, List<Integer> coopPositions) {
+        this(id);
+        this.problematic = problematic;
+        this.coopPositions = coopPositions;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public StudentDto(Integer id) {
@@ -27,15 +37,15 @@ public class StudentDto {
     }
 
     //Coop position
-    public List<CoopPositionDto> getCoopPositions() {
+    public List<Integer> getCoopPositions() {
         return coopPositions;
     }
 
-    public void setCoopPosition(List<CoopPositionDto> cps) {
+    public void setCoopPosition(List<Integer> cps) {
         this.coopPositions = cps;
     }
 
-    public void addCoopPosition(CoopPositionDto cp) {
+    public void addCoopPosition(Integer cp) {
         this.coopPositions.add(cp);
     }
 
@@ -48,16 +58,19 @@ public class StudentDto {
         return problematic;
     }
 
-    //Required documents
-    public List<RequiredDocumentDto> getRequiredDocuments() {
-        return requiredDocuments;
+    public void setFirstName(String value) {
+        this.firstName = value;
     }
 
-    public void setRequiredDocuments(List<RequiredDocumentDto> rd) {
-        this.requiredDocuments = rd;
+    public String getFirstName() {
+        return this.firstName;
     }
 
-    public void addRequiredDocument(RequiredDocumentDto rd) {
-        this.requiredDocuments.add(rd);
+    public void setLastName(String value) {
+        this.lastName = value;
+    }
+
+    public String getLastName() {
+        return this.lastName;
     }
 }

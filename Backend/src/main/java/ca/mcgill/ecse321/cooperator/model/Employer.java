@@ -1,12 +1,13 @@
 package ca.mcgill.ecse321.cooperator.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 public class Employer {
     private Integer employerID;
-    private Set<EmployerContract> employerContract;
+    private Set<EmployerContract> employerContract = new HashSet<>();
 
     public void setEmployerID(Integer value) {
         this.employerID = value;

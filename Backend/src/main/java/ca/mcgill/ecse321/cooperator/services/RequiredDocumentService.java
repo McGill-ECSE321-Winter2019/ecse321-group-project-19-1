@@ -24,6 +24,7 @@ public class RequiredDocumentService {
 
     @Autowired
     CoopPositionRepository coopPositionRepository;
+
     @Autowired
     RequiredDocumentRepository requiredDocumentRepository;
 

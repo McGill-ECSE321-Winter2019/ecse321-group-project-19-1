@@ -1,5 +1,7 @@
 package ca.mcgill.ecse321.cooperator.dto;
 
+import ca.mcgill.ecse321.cooperator.model.Student;
+
 import java.util.Date;
 
 
@@ -9,20 +11,27 @@ public abstract class RequiredDocumentDto {
     private Date dueDate;
     private Boolean submitted;
     private Boolean accepted;
-    private StudentDto student;
+    private Integer studentId;
 
     public RequiredDocumentDto() {
 
     }
 
     public RequiredDocumentDto(String s) {
-        this(Integer.parseInt(s), null, null);
+        this(Integer.parseInt(s), null, null,null,null,null);
     }
 
     public RequiredDocumentDto(Integer id, String name, Date due) {
+        this(id,name,due,false,false,null);
+    }
+
+    public RequiredDocumentDto(Integer id, String name, Date due, Boolean submitted, Boolean accepted,Integer studentId) {
         this.documentId = id;
         this.name = name;
         this.dueDate = due;
+        this.submitted=submitted;
+        this.accepted=accepted;
+        this.studentId=studentId;
     }
 
 
@@ -57,12 +66,12 @@ public abstract class RequiredDocumentDto {
     }
 
     //Student
-    public StudentDto getStudent() {
-        return student;
+    public Integer getStudent() {
+        return studentId;
     }
 
-    public void setStudent(StudentDto student) {
-        this.student = student;
+    public void setStudent(Integer student) {
+        this.studentId = student;
     }
 
 }
