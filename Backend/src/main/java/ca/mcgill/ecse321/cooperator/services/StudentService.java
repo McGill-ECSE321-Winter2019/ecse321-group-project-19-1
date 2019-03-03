@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.cooperator.services;
 
 import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
+import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
 import ca.mcgill.ecse321.cooperator.dao.StudentRepository;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
 import ca.mcgill.ecse321.cooperator.model.RequiredDocument;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,8 +21,11 @@ public class StudentService {
     @Autowired
     CoopPositionRepository coopPositionRepository;
 
-    public Student createStudent(String firstName,String lastName) {
-        Student student = new Student(firstName,lastName);
+    @Autowired
+    RequiredDocumentRepository requiredDocumentRepository;
+
+    public Student createStudent(String firstName, String lastName) {
+        Student student = new Student(firstName, lastName);
         studentRepository.save(student);
         return student;
     }
@@ -42,6 +45,23 @@ public class StudentService {
     public List<Student> getAllProblematicStudents() {
         List<Student> possiblyProblematic = studentRepository.findStudentByProblematic(true);
         return possiblyProblematic;
+    }
+
+    @Transactional
+    public Boolean submitRequiredDocumentToCoop(int studnetId, int coopId, int docId) {
+        Student student = studentRepository.findById(studnetId);
+        CoopPosition coop = coopPositionRepository.findByCoopId(coopId);
+        RequiredDocument doc = requiredDocumentRepository.findById(docId);
+        if (student == null || coop == null || doc == null) {
+            System.err.println("Trying to submit a document(id= " + docId + ") to coop(id= " + coopId + ") by student(id= "
+                    + studnetId + ") failed!");
+            return false;
+        }
+        if (student.submitDocument(coop, doc)) {
+            requiredDocumentRepository.save(doc);
+            return true;
+        }
+        return false;
     }
 
     @Transactional

@@ -34,17 +34,20 @@ public class DtoConverters {
 
     public static ReportDto convertToDto(Report r) {
         CheckArg(r);
-        return new ReportDto(r.getReportType(), r.getDocumentId(), r.getName(), r.getDueDate());
+        return new ReportDto(r.getReportType(), r.getDocumentId(), r.getName(), r.getDueDate(), r.getSubmitted(),
+                r.getAccepted(), r.getCoopPosition().getCoopId());
     }
 
     public static FormDto convertToDto(Form f) {
         CheckArg(f);
-        return new FormDto(f.getDocumentId(), f.getName(), f.getDueDate());
+        return new FormDto(f.getDocumentId(), f.getName(), f.getDueDate(), f.getSubmitted(), f.getAccepted(),
+                f.getCoopPosition().getCoopId());
     }
 
     public static EmployerContractDto convertToDto(EmployerContract ec) {
         CheckArg(ec);
-        return new EmployerContractDto(ec.getDocumentId(), ec.getName(), ec.getDueDate());
+        return new EmployerContractDto(ec.getDocumentId(), ec.getName(), ec.getDueDate(), ec.getSubmitted(),
+                ec.getAccepted(), ec.getCoopPosition().getCoopId(), ec.getEmployer().getEmployerID());
     }
 
     public static EmployerDto convertToDto(Employer e) {
@@ -59,10 +62,10 @@ public class DtoConverters {
 
     public static StudentDto convertToDto(Student s) {
         CheckArg(s);
-        List<Integer> coops=new ArrayList<>();
-        for(CoopPosition cp:s.getCoopPosition())
+        List<Integer> coops = new ArrayList<>();
+        for (CoopPosition cp : s.getCoopPosition())
             coops.add(new Integer(cp.getCoopId()));
-        StudentDto st=new StudentDto(s.getStudentID(),s.getFirstName(),s.getLastName(),s.getProblematic(),coops);
+        StudentDto st = new StudentDto(s.getStudentID(), s.getFirstName(), s.getLastName(), s.getProblematic(), coops);
         return st;
     }
 

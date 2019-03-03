@@ -28,4 +28,9 @@ public class Employer {
         this.employerContract = employerContracts;
     }
 
+    @Override
+    public String toString() {
+        return "Employer(id= "+getEmployerID()+")";
+    }
+
 }

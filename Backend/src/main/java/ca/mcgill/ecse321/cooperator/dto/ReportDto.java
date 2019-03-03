@@ -23,8 +23,8 @@ public class ReportDto extends RequiredDocumentDto {
         reportType=null;
     }
 
-    public ReportDto(ReportType rt, Integer id, String name, Date dueDate) {
-        super(id, name, dueDate);
+    public ReportDto(ReportType rt, Integer id, String name, Date dueDate, Boolean submitted, Boolean accepted, Integer coopId) {
+        super(id, name, dueDate,submitted,accepted,coopId);
         this.reportType = rt;
     }
 

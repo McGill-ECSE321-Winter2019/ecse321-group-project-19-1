@@ -86,9 +86,7 @@ public class RequiredDocumentController {
         UserEntity user = userEntityService.getUserEntityByEmail(instructorEmail);
         if (user == null || !(user instanceof TermInstructor))
             return false;
-        RequiredDocument rd = requiredDocumentService.getRequiredDocumentById(rdId);
-        rd.setAccepted(Boolean.valueOf(accepted));
-        return accepted;
+        return requiredDocumentService.gradeDocument(rdId,accepted);
     }
 
     // viewing graded document

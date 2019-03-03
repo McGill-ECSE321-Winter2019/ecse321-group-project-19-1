@@ -116,4 +116,9 @@ public class CoopPosition {
         this.requiredDocument.add(rd);
     }
 
+    @Override
+    public String toString() {
+        return "CoopPosition(id= "+getCoopId()+")";
+    }
+
 }

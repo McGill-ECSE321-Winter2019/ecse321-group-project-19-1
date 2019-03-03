@@ -37,4 +37,8 @@ public class Course {
         this.coopPosition = coopPositions;
     }
 
+    @Override
+    public String toString() {
+        return "Course(id= "+getCourseId()+")";
+    }
 }

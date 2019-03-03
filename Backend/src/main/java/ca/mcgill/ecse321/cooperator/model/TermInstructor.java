@@ -18,4 +18,8 @@ public class TermInstructor extends UserEntity {
         this.coopPosition = coopPositions;
     }
 
+    @Override
+    public String toString() {
+        return "TermInstructor(email= "+getEmail()+")";
+    }
 }

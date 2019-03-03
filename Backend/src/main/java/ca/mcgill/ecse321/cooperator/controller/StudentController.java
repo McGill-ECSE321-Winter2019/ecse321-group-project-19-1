@@ -20,7 +20,7 @@ public class StudentController {
     @PostMapping(value = {"/createStudent", "/createStudent/"})
     public StudentDto createStudent(@RequestParam(name = "firstName") String firstName,
                                     @RequestParam(name = "lastName") String lastName) throws IllegalArgumentException {
-        Student student = studentService.createStudent(firstName,lastName);
+        Student student = studentService.createStudent(firstName, lastName);
         return DtoConverters.convertToDto(student);
     }
 
@@ -29,6 +29,15 @@ public class StudentController {
     public Boolean offerCoopPosition(@RequestParam(name = "studentId") int studentId,
                                      @RequestParam(name = "coopId") int cpId) throws IllegalArgumentException {
         return studentService.offerCoopPostionToStudent(studentId, cpId);
+    }
+
+    // Submit a required document to
+    @PostMapping(value = {"/submitRequiredDoc", "/problematicStudents/"})
+    public Boolean getProblematicStudents(
+            @RequestParam(name = "studentId") int studentId,
+            @RequestParam(name = "coopId") int cpId,
+            @RequestParam(name = "docId") int docId) throws IllegalArgumentException {
+        return studentService.submitRequiredDocumentToCoop(studentId, cpId, docId);
     }
 
     // getting problematic students

@@ -1,25 +1,25 @@
 package ca.mcgill.ecse321.cooperator.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 @Entity
 public class Student {
     private Integer studentID;
     private Boolean problematic = true;
-    private Set<CoopPosition> coopPosition =new HashSet<>();
+    private Set<CoopPosition> coopPosition = new HashSet<>();
     private String firstName;
     private String lastName;
 
-    public Student(){
+    public Student() {
 
     }
 
-    public Student(String firstName,String lastName){
-        this.firstName=firstName;
-        this.lastName=lastName;
+    public Student(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public void setStudentID(Integer value) {
@@ -66,11 +66,11 @@ public class Student {
     }
 
     public void offerCoopPostion(CoopPosition cp) {
-       coopPosition.add(cp);
-       // If the student was problematic now it's not anymore
-       if(problematic){
-           problematic=false;
-       }
+        coopPosition.add(cp);
+        // If the student was problematic now it's not anymore
+        if (problematic) {
+            problematic = false;
+        }
     }
 
     @Transient
@@ -94,5 +94,28 @@ public class Student {
             }
         }
         return false;
+    }
+
+    @Transient
+    public boolean submitDocument(CoopPosition cp, RequiredDocument rd) {
+        if (!coopPosition.contains(cp)) {
+            System.err.println(this.toString() + " doesn't have " + cp.toString());
+            return false;
+        }
+
+        for (Iterator<RequiredDocument> it = cp.getRequiredDocument().iterator(); it.hasNext(); ) {
+            RequiredDocument doc = it.next();
+            if (doc.equals(rd)) {
+                rd.setSubmitted(true);
+                return true;
+            }
+        }
+        System.err.println(cp.toString() + " doesn't have " + rd.toString());
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Student(id= " + studentID + ")";
     }
 }

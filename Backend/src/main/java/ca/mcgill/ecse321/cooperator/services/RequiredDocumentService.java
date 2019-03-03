@@ -56,6 +56,18 @@ public class RequiredDocumentService {
     }
 
     @Transactional
+    public Boolean gradeDocument(int docId, boolean accepted) {
+        RequiredDocument rdoc = requiredDocumentRepository.findById(docId);
+        if(rdoc==null) {
+            System.err.println("Document(id= "+docId+") not found");
+            return false;
+        }
+        rdoc.setAccepted(accepted);
+        requiredDocumentRepository.save(rdoc);
+        return true;
+    }
+
+    @Transactional
     public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp) {
         return (EmployerContract) createRequiredDocument(name, dueDate, cp, RequiredDocumentType.FORM);
     }
