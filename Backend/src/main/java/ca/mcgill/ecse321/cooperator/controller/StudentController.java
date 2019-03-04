@@ -32,7 +32,7 @@ public class StudentController {
     }
 
     // Submit a required document to
-    @PostMapping(value = {"/submitRequiredDoc", "/problematicStudents/"})
+    @PostMapping(value = {"/submitRequiredDoc", "/submitRequiredDoc/"})
     public Boolean getProblematicStudents(
             @RequestParam(name = "studentId") int studentId,
             @RequestParam(name = "coopId") int cpId,
