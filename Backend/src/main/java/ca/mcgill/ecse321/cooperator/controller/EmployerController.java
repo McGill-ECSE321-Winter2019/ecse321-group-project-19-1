@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
 @RestController
-public class EmployeerController {
+public class EmployerController {
     @Autowired
     EmployerService employerService;
 

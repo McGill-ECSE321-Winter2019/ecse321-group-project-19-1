@@ -2,7 +2,6 @@ package ca.mcgill.ecse321.cooperator.controller;
 
 import ca.mcgill.ecse321.cooperator.dto.RequiredDocumentDto;
 import ca.mcgill.ecse321.cooperator.dto.StudentDto;
-import ca.mcgill.ecse321.cooperator.model.RequiredDocument;
 import ca.mcgill.ecse321.cooperator.model.Student;
 import ca.mcgill.ecse321.cooperator.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,9 @@ public class StudentController {
 
     /**
      * Create a new student in the system
+     *
      * @param firstName the first name of the new student
-     * @param lastName the last name of the new student
+     * @param lastName  the last name of the new student
      * @return a StudentDto representing the new student
      * @throws IllegalArgumentException
      */
@@ -34,22 +34,24 @@ public class StudentController {
 
     /**
      * Assign a coop position to a student
+     *
      * @param studentId the Id of the student to be assigned the position
-     * @param cpId the Id of the coop to be assigned to the student
+     * @param cpId      the Id of the coop to be assigned to the student
      * @return a StudentDto representing the modified student
      * @throws IllegalArgumentException
      */
     @PostMapping(value = {"/offerCoopToStudent", "/offerCoopToStudent/"})
     public StudentDto offerCoopPosition(@RequestParam(name = "studentId") int studentId,
-                                     @RequestParam(name = "coopId") int cpId) throws IllegalArgumentException {
+                                        @RequestParam(name = "coopId") int cpId) throws IllegalArgumentException {
         return DtoConverters.convertToDto(studentService.offerCoopPostionToStudent(studentId, cpId));
     }
 
     /**
      * Submit a required document to a specific coop position by a student
+     *
      * @param studentId the Id of the student submitting the document
-     * @param cpId the Id of the coop to which the document is being submitted
-     * @param docId the Id of the submitted document
+     * @param cpId      the Id of the coop to which the document is being submitted
+     * @param docId     the Id of the submitted document
      * @return RequiredDocumentDto representing the submitted document
      * @throws IllegalArgumentException
      */
@@ -63,6 +65,7 @@ public class StudentController {
 
     /**
      * Get all problematic students in the system
+     *
      * @return a list of StudentDto representing all problematic students in the system
      * @throws IllegalArgumentException
      */
