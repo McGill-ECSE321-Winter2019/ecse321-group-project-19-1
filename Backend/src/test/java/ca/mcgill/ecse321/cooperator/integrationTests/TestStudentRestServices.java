@@ -12,29 +12,29 @@ public class TestStudentRestServices {
 	private final String BASE_URL_TEAM_06 = "";
 
 	
-	@Test
-	public void testQueryServicesTeam11() {
-		
-		try {
-			//Getting forms
-			SendRequests.sendRequestArray("GET", BASE_URL_TEAM_11, "/forms");
-			//Getting Students
-			SendRequests.sendRequestArray("GET", BASE_URL_TEAM_11, "/students");
-			//Getting Coops
-			SendRequests.sendRequestArray("GET", BASE_URL_TEAM_11, "/coops");
-			//Getting Employers
-			SendRequests.sendRequestArray("GET", BASE_URL_TEAM_11, "/employers");	
-		} 
-		catch (RuntimeException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			fail();
-		}
-
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	@Test
+//	public void testQueryServicesTeam11() {
+//
+//		try {
+//			//Getting forms
+//			SendRequests.sendRequestArray("GET", BASE_URL_TEAM_11, "/forms");
+//			//Getting Students
+//			SendRequests.sendRequestArray("GET", BASE_URL_TEAM_11, "/students");
+//			//Getting Coops
+//			SendRequests.sendRequestArray("GET", BASE_URL_TEAM_11, "/coops");
+//			//Getting Employers
+//			SendRequests.sendRequestArray("GET", BASE_URL_TEAM_11, "/employers");
+//		}
+//		catch (RuntimeException e) {
+//			System.out.println(e.getMessage());
+//			e.printStackTrace();
+//			fail();
+//		}
+//
+//		catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	//Team 03 needs to merge to master before this test can work.
 //	@Test
