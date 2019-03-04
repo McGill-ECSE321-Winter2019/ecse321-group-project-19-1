@@ -1,7 +1,6 @@
 package ca.mcgill.ecse321.cooperator;
 
 import java.util.Date;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
@@ -12,13 +11,10 @@ import org.mockito.Matchers;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import ca.mcgill.ecse321.cooperator.controller.CooperatorController;
 import ca.mcgill.ecse321.cooperator.dao.*;
 import ca.mcgill.ecse321.cooperator.model.*;
-import ca.mcgill.ecse321.cooperator.services.CoursesService;
 import ca.mcgill.ecse321.cooperator.services.RequiredDocumentService;
 
 import static org.junit.Assert.assertEquals;
@@ -26,7 +22,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -47,7 +42,7 @@ public class CooperatorRequiredDocumentsTest {
 	private EmployerContract docs;
 	private EmployerContract docs2;
 	private static final Integer DOCUMENT_ID = 10;
-	private static final Integer DOCUMENT_ID2 = 10;
+	private static final Integer DOCUMENT_ID2 = 20;
 	private static final Integer WRONG_DOCUMENT_ID = 11;
 	private static final Date DOCUMENT_DATE1 = new Date(1);
 	private static final Date DOCUMENT_DATE2 = new Date(2);

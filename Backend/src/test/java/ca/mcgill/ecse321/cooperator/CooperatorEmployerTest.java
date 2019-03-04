@@ -37,12 +37,13 @@ public class CooperatorEmployerTest{
 	private EmployerService employerService;
 
 	private Employer employer;
+	private EmployerContract contract;
 	private static final Integer EMPLOYER_KEY = 10;
 	private static final Integer WRONG_EMPLOYER_KEY = 11;
 	
 	
 	private List<Employer> expectedList = new ArrayList<Employer>();
-	private Set<EmployerContract> coopPositions = new HashSet<EmployerContract>();
+	private Set<EmployerContract> contracts = new HashSet<EmployerContract>();
 	
 	
 	@Before
@@ -51,6 +52,7 @@ public class CooperatorEmployerTest{
 			if (invocation.getArgument(0).equals(EMPLOYER_KEY)) {
 				Employer employer = new Employer();
 				employer.setEmployerID(EMPLOYER_KEY);
+				employer.setEmployerContract(contracts);
 				return employer;
 			} else {
 				return null;
@@ -63,7 +65,11 @@ public class CooperatorEmployerTest{
 	@Before
 	public void setUpMocks() {
 		employer = mock(Employer.class);
+		contract = mock(EmployerContract.class);
+		contract = new EmployerContract();
+		contracts.add(contract);
 		employer = employerService.createEmployer();
+		employer.setEmployerContract(contracts);
 		expectedList.add(employer);
 	}
 	
@@ -81,6 +87,11 @@ public class CooperatorEmployerTest{
 	@Test
 	public void testemployerQueryNotFound() {
 		assertNull(employerService.getEmployerById(WRONG_EMPLOYER_KEY));
+	}
+	
+	@Test
+	public void testEmployerContract() {
+		assertEquals(contracts, employerService.getEmployerById(EMPLOYER_KEY).getEmployerContract());
 	}
 	
 
