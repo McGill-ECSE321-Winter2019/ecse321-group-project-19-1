@@ -22,7 +22,13 @@ public class UserEntityController {
     @Autowired
     CoopPositionService coopPositionService;
 
-    // Assign coop to term instructors
+    /**
+     * Assign coop to a term instructor
+     * @param tiEmail the email of the instructor
+     * @param cpId the Id of the coop
+     * @return a TermInstructorDto representing the modified TermInstructor
+     * @throws IllegalArgumentException
+     */
     @PostMapping(value = {"/assignCoop", "/assignCoop/"})
     public TermInstructorDto assignCoop(@RequestParam(name = "email") String tiEmail,
                                         @RequestParam(name = "coopId") int cpId) throws IllegalArgumentException {
@@ -34,7 +40,15 @@ public class UserEntityController {
         return DtoConverters.convertToDto((TermInstructor) userEntityService.assignCoopToInstructor(ti, newCoopPositions));
     }
 
-    // create term instructor
+    /**
+     * Create a new term instructor in the system
+     * @param firstName first name of the term instructor
+     * @param lastName last name of the term instructor
+     * @param password password of term instructor
+     * @param email email of term instructor
+     * @return the new created term instructor
+     * @throws IllegalArgumentException
+     */
     @PostMapping(value = {"/createTermInstructor/{email}", "/createTermInstructor/{email}/"})
     public TermInstructorDto createTermInstructor(@RequestParam("firstName") String firstName,
                                                   @RequestParam("lastName") String lastName,
@@ -45,7 +59,10 @@ public class UserEntityController {
         return DtoConverters.convertToDto(termInstructor);
     }
 
-    // view all TermInstructor
+    /**
+     * View all term instructors in the system
+     * @return a list of TermInstructorDto representing all term instructors in the system.
+     */
     @GetMapping(value = {"/termInstructors", "/termInstructors/"})
     public List<TermInstructorDto> getAllTermInstructors() {
         List<TermInstructorDto> instructorsDtos = new ArrayList<>();
@@ -55,6 +72,4 @@ public class UserEntityController {
         }
         return instructorsDtos;
     }
-
-
 }

@@ -17,7 +17,7 @@ public class CoursesService {
 
     @Transactional
     public Course createCourse(String name) {
-        if (!Utilities.CheckNotEmpty(name))
+        if (!Utilities.checkNotEmpty(name))
             throw new IllegalArgumentException("Cannot add a course with empty name");
 
         Course course = new Course();

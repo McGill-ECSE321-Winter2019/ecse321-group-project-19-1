@@ -27,11 +27,11 @@ public class CoopPositionService {
 
     @Transactional
     public CoopPosition createCoopPosition(Date startDate, Date endDate, String description, String location, String term, Student student) {
-        if (!Utilities.CheckNotEmpty(description))
+        if (!Utilities.checkNotEmpty(description))
             throw new IllegalArgumentException("Cannot add a coop position with empty description");
-        if (!Utilities.CheckNotEmpty(location))
+        if (!Utilities.checkNotEmpty(location))
             throw new IllegalArgumentException("Cannot add a coop position with empty location");
-        if (!Utilities.CheckNotEmpty(term))
+        if (!Utilities.checkNotEmpty(term))
             throw new IllegalArgumentException("Cannot add a coop position with empty term");
         if (startDate == null)
             throw new IllegalArgumentException("Cannot add a coop position with empty startDate");

@@ -14,7 +14,11 @@ public class EmployeerController {
     @Autowired
     EmployerService employerService;
 
-    // create employer
+    /**
+     * Create a new Employer in the system
+     * @return an EmployerDto representing the newly added Employer
+     * @throws IllegalArgumentException
+     */
     @PostMapping(value = {"/createEmployer", "/createEmployer/"})
     public EmployerDto createEmployer()
             throws IllegalArgumentException {

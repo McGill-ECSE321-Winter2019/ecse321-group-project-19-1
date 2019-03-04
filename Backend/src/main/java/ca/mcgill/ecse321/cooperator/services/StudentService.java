@@ -48,30 +48,30 @@ public class StudentService {
     }
 
     @Transactional
-    public Boolean submitRequiredDocumentToCoop(int studnetId, int coopId, int docId) {
+    public RequiredDocument submitRequiredDocumentToCoop(int studnetId, int coopId, int docId) {
         Student student = studentRepository.findById(studnetId);
         CoopPosition coop = coopPositionRepository.findByCoopId(coopId);
         RequiredDocument doc = requiredDocumentRepository.findById(docId);
         if (student == null || coop == null || doc == null) {
             System.err.println("Trying to submit a document(id= " + docId + ") to coop(id= " + coopId + ") by student(id= "
                     + studnetId + ") failed!");
-            return false;
+            return null;
         }
         if (student.submitDocument(coop, doc)) {
             requiredDocumentRepository.save(doc);
-            return true;
+            return doc;
         }
-        return false;
+        return null;
     }
 
     @Transactional
-    public Boolean offerCoopPostionToStudent(int studentId, int cpId) {
+    public Student offerCoopPostionToStudent(int studentId, int cpId) {
         Student s = studentRepository.findById(studentId);
         CoopPosition cp = coopPositionRepository.findByCoopId(cpId);
         if (s == null || cp == null)
-            return false;
+            return null;
         s.offerCoopPostion(cp);
         studentRepository.save(s);
-        return true;
+        return s;
     }
 }
