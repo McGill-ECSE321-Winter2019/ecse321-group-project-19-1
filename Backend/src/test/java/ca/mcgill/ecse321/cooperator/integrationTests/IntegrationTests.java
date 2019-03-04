@@ -71,7 +71,7 @@ public class IntegrationTests {
         return sendRequest(requestType,baseUrl,path,null);
     }
     
-    private JSONArray sendRequest1(String requestType, String baseUrl, String path, String parameters) {
+    private JSONArray sendRequestArray(String requestType, String baseUrl, String path, String parameters) {
         try {
             URL url = new URL(baseUrl + path + ((parameters==null)?"":("?" + parameters)));
             System.out.println("Sending: "+url.toString());
@@ -95,8 +95,8 @@ public class IntegrationTests {
         }
         return null;
     }
-    private JSONArray sendRequest1(String requestType, String baseUrl, String path) {
-        return sendRequest1(requestType,baseUrl,path,null);
+    private JSONArray sendRequestArray(String requestType, String baseUrl, String path) {
+        return sendRequestArray(requestType,baseUrl,path,null);
     }
     @Test
     public void TestAddingCourse() {
@@ -116,8 +116,7 @@ public class IntegrationTests {
     		 
     		 //creating two students
     		 JSONObject student1 = sendRequest("POST", BASE_URL, "/createStudent", "firstName="+"max"+"&lastName="+"brodeur");
-    		 JSONObject student2 = sendRequest("POST", BASE_URL, "/createStudent", "firstName="+"andre"+"&lastName="+"kaba");
-    		 System.out.println("Received: "+student1.toString());
+    		 sendRequest("POST", BASE_URL, "/createStudent", "firstName="+"andre"+"&lastName="+"kaba");
     		 int STUDENT_ID = student1.getInt("studentId");
     		 
     		 //creating coop position for student1
@@ -126,11 +125,9 @@ public class IntegrationTests {
     		 System.out.println("Received: "+cp.toString());
     		 
     		 //getting problematic student. expected output to be student2
-             response = sendRequest1("GET", BASE_URL, "/problematicStudents");
-             System.out.println("Received: "+response.toString());
-             //JSONObject jo= new JSONObject();
-             //System.out.println("Received: "+jo.toString());
-             assertEquals("andre", response.getString(2));
+             response = sendRequestArray("GET", BASE_URL, "/problematicStudents");
+             assertEquals("andre", response.getJSONObject(1).get("firstName"));
+             
          } catch (Exception e) {
              e.printStackTrace();
          }	
