@@ -37,7 +37,7 @@ public class RequiredDocumentService {
 
     @Transactional
     public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp, Employer em) {
-        if (!Utilities.CheckNotEmpty(name))
+        if (!Utilities.checkNotEmpty(name))
             throw new IllegalArgumentException("Cannot add a document with empty name.");
 
         EmployerContract rdoc = new EmployerContract();
@@ -56,15 +56,15 @@ public class RequiredDocumentService {
     }
 
     @Transactional
-    public Boolean gradeDocument(int docId, boolean accepted) {
+    public RequiredDocument gradeDocument(int docId, boolean accepted) {
         RequiredDocument rdoc = requiredDocumentRepository.findById(docId);
         if(rdoc==null) {
             System.err.println("Document(id= "+docId+") not found");
-            return false;
+            return null;
         }
         rdoc.setAccepted(accepted);
         requiredDocumentRepository.save(rdoc);
-        return true;
+        return rdoc;
     }
 
     @Transactional
@@ -117,7 +117,7 @@ public class RequiredDocumentService {
     // =============================== Private methods ===============================
 
     private RequiredDocument createRequiredDocument(String name, Date dueDate, CoopPosition cp, RequiredDocumentType type) {
-        if (!Utilities.CheckNotEmpty(name))
+        if (!Utilities.checkNotEmpty(name))
             throw new IllegalArgumentException("Cannot add a document with empty name.");
 
         RequiredDocument rdoc = null;

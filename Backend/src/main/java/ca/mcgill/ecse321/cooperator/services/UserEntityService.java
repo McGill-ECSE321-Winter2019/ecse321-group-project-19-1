@@ -56,16 +56,16 @@ public class UserEntityService {
     // =============================== Private methods ===============================
 
     private UserEntity createUser(String firstName, String lastName, String email, String password, UserType type) {
-        if (!Utilities.CheckNotEmpty(firstName))
+        if (!Utilities.checkNotEmpty(firstName))
             throw new IllegalArgumentException("Cannot add a user with empty firstName.");
 
-        if (!Utilities.CheckNotEmpty(lastName))
+        if (!Utilities.checkNotEmpty(lastName))
             throw new IllegalArgumentException("Cannot add a user with empty lastName.");
 
-        if (!Utilities.CheckNotEmpty(email))
+        if (!Utilities.checkNotEmpty(email))
             throw new IllegalArgumentException("Cannot add a user with empty email.");
 
-        if (!Utilities.CheckNotEmpty(password))
+        if (!Utilities.checkNotEmpty(password))
             throw new IllegalArgumentException("Cannot add a user with empty password.");
 
         UserEntity user = null;
