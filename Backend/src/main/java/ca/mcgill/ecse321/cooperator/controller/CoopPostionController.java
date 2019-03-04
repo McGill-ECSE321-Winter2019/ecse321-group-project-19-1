@@ -48,13 +48,13 @@ public class CoopPostionController {
 
     // adjudicate completion of coop
     @PostMapping(value = {"/setCoopStatus", "/setCoopStatus/"})
-    public Boolean adjudicateCoop(@RequestParam(name = "coopId") int cpId, @RequestParam(name="status")Status status)
+    public CoopPositionDto adjudicateCoop(@RequestParam(name = "coopId") int cpId, @RequestParam(name="status")Status status)
             throws IllegalArgumentException {
         CoopPosition cp = coopPositionService.getById(cpId);
-        if(cp!=null)
-            return false;
-        cp.setStatus(status);
-        return true;
+        if(cp==null)
+            return null;
+        else cp.setStatus(status);
+        return DtoConverters.convertToDto(cp);
     }
 
 }

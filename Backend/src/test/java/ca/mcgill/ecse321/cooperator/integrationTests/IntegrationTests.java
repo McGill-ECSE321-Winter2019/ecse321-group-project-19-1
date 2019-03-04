@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
@@ -18,22 +17,6 @@ import ca.mcgill.ecse321.cooperator.dao.EmployerRepository;
 import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
 import ca.mcgill.ecse321.cooperator.dao.StudentRepository;
 import ca.mcgill.ecse321.cooperator.dao.UserEntityRepository;
-import ca.mcgill.ecse321.cooperator.model.CoopPosition;
-import ca.mcgill.ecse321.cooperator.model.RequiredDocument;
-import ca.mcgill.ecse321.cooperator.model.Student;
-import ca.mcgill.ecse321.cooperator.services.CoopPositionService;
-import ca.mcgill.ecse321.cooperator.services.RequiredDocumentService;
-import ca.mcgill.ecse321.cooperator.services.StudentService;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.sql.Date;
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -48,7 +31,7 @@ public class IntegrationTests {
 	private final String EMAIL = "yoyo@gmail.com";
 	private JSONObject joResponse;
 	private JSONArray jaResponse;
-	
+
 	@Autowired
 	private RequiredDocumentRepository rdocRepo;
 	@Autowired
@@ -61,7 +44,6 @@ public class IntegrationTests {
 	private StudentRepository studentRepo;
 	@Autowired
 	private EmployerRepository employerRepo;
-	
 
 	@Before
 	public void clearDatabase() {
@@ -73,41 +55,40 @@ public class IntegrationTests {
 		studentRepo.deleteAll();
 	}
 
-	@Test
-	public void TestAddingCourse() {
+	public int[] objectsCreation() {
+		int[] arr = new int[3];
 		try {
-			joResponse = SendRequests.sendRequest("POST", BASE_URL, "/createCourse", "courseName=" + COURSE_NAME);
-			System.out.println("Received: " + joResponse.toString());
-			assertEquals(COURSE_NAME, joResponse.getString("courseName"));
-		} catch (RuntimeException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			fail();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Test
-	public void testGetProblematic() {
-		try {
-
-			// creating two students
+			// creating two student
 			JSONObject student1 = SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
 					"firstName=" + "max" + "&lastName=" + "brodeur");
-			SendRequests.sendRequest("POST", BASE_URL, "/createStudent", "firstName=" + "andre" + "&lastName=" + "kaba");
+			SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
+					"firstName=" + "andre" + "&lastName=" + "kaba");
 			int STUDENT_ID = student1.getInt("studentId");
+			arr[0] = STUDENT_ID;
 
 			// creating coop position for student1
-			JSONObject cp = SendRequests.sendRequest("POST", BASE_URL, "/createCoop", "startDate=02/01/2018" + "&endDate=02/01/2019"
-					+ "&description=hello" + "&location=montreal" + "&term=fall" + "&studentId=" + STUDENT_ID);
-			System.out.println("Received: " + cp.toString());
+			JSONObject cp = SendRequests.sendRequest("POST", BASE_URL, "/createCoop",
+					"startDate=02/01/2018" + "&endDate=02/01/2019" + "&description=hello" + "&location=montreal"
+							+ "&term=fall" + "&studentId=" + STUDENT_ID);
+			int COOP_ID = cp.getInt("coopID");
+			arr[1] = COOP_ID;
 
-			// getting problematic student. expected output to be student2
-			jaResponse = SendRequests.sendRequestArray("GET", BASE_URL, "/problematicStudents");
-			System.out.println("Received: " + jaResponse.toString());
-			assertEquals("andre", jaResponse.getJSONObject(4).get("firstName"));
-			assertNotEquals("max", jaResponse.getJSONObject(0).get("firstName"));
+			// Creating a form
+			JSONObject doc = SendRequests.sendRequest("POST", BASE_URL, "/createForm",
+					"name=hello" + "&dueDate=02/01/2019" + "&coopId=" + COOP_ID);
+			int DOC_ID = doc.getInt("documentId");
+			arr[2] = DOC_ID;
+			System.out.println("FORM: " + doc.toString());
+
+			// Creating a term instructor
+			JSONObject ti = SendRequests.sendRequest("POST", BASE_URL, "/createTermInstructor/" + EMAIL,
+					"firstName=sophie" + "&lastName=Deng" + "&password=123");
+			System.out.println("TERM_INSTRUCTOR: " + ti.toString());
+			
+			//Assign coop to ti
+			JSONObject assign = SendRequests.sendRequest("POST", BASE_URL, "/assignCoop",
+					"email=" +EMAIL+ "&coopId=" +COOP_ID);
+			System.out.println("TERM_INSTRUCTOR: " + assign.toString());
 
 		} catch (RuntimeException e) {
 			System.out.println(e.getMessage());
@@ -116,52 +97,89 @@ public class IntegrationTests {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return arr;
+
 	}
 
 //	@Test
-//	public void testGradeDocument() {
+//	public void testAddingCourse() {
 //		try {
-//			//Creating a form
-//			JSONObject doc=SendRequests.sendRequest("POST", BASE_URL, "/createForm", "name=hello" + "&dueDate=02/01/2019" + "&coopId=19");
-//			int doc_id = doc.getInt("documentId");
-//			System.out.println("DEBUG: " + doc.toString());
-//			
-//			//Creating a term instructor
-//			JSONObject ti=SendRequests.sendRequest("POST", BASE_URL, "/createTermInstructor/"+EMAIL, "firstName=sophie" + "&lastName=Deng" + "&password=123");
-//			System.out.println("DEBUG: " + ti.toString());
-//			
-//			//Grading the document
-//			joResponse = SendRequests.sendRequest("POST", BASE_URL, "/gradeDocument",
-//					"documentId=" + doc_id + "&grade=true" + "&instructorEmail=" + EMAIL);
+//
+//			joResponse = SendRequests.sendRequest("POST", BASE_URL, "/createCourse", "courseName=" + COURSE_NAME);
 //			System.out.println("Received: " + joResponse.toString());
-//			assertEquals(true, joResponse.getString("grade"));
+//			assertEquals(COURSE_NAME, joResponse.getString("courseName"));
 //		} catch (RuntimeException e) {
 //			System.out.println(e.getMessage());
 //			e.printStackTrace();
 //			fail();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+//
+//	@Test
+//	public void testGetProblematic() {
+//		try {
+//			objectsCreation();
+//			// getting problematic student. expected output to be student2
+//			jaResponse = SendRequests.sendRequestArray("GET", BASE_URL, "/problematicStudents");
+//			System.out.println("PROBLEMATIC: " + jaResponse.toString());
+//			assertEquals("andre", jaResponse.getJSONObject(0).get("firstName"));
+//			assertNotEquals("max", jaResponse.getJSONObject(0).get("firstName"));
+//
+//		} catch (JSONException e) {
+//			e.printStackTrace();
+//			fail();
+//		} catch (RuntimeException e) {
+//			System.out.println(e.getMessage());
+//			e.printStackTrace();
+//			fail();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+
+	@Test
+	public void testGradeDocument() {
+		try {
+			int[] arr = objectsCreation();
+			// Grading the document
+			String answer = "True";
+			joResponse = SendRequests.sendRequest("POST", BASE_URL, "/gradeDocument",
+					"documentId=" + arr[2] + "&grade="+answer + "&instructorEmail=" + EMAIL);
+			System.out.println("GRADE_DOC: " + joResponse.toString());
+			//assertEquals("True", joResponse.getString("grade").toString());
+
+		} catch (RuntimeException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+			fail();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+//	@Test
+//	public void testViewGrade() {
+//		try {
+//			int[] arr = objectsCreation();
+//			joResponse = SendRequests.sendRequest("GET", BASE_URL, "/grade", "documentId=" + arr[2]);
+//			System.out.println("VIEW_GRADE: " + joResponse.toString());
+//			assertEquals("COMPLETED", joResponse.getString("status"));
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
 //
 //	}
-	
-//	@Test
-//	public void testViewGrade() {
-//		try {
-//			joResponse=SendRequests.sendRequest("GET", BASE_URL, "/grade", "documentId=19");
-//			System.out.println("Received: " + joResponse.toString());
-//			assertEquals("COMPLETED", joResponse.getString("status"));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//	}
-	
+
 //	@Test
 //	public void testAdjudicateCoop() {
 //		try {
-//			joResponse=SendRequests.sendRequest("POST", BASE_URL, "/setCoopStatus", "coopId=19" +"&status=COMPLETED");
-//			System.out.println("Received: " + joResponse.toString());
+//			int[] arr = objectsCreation();
+//			joResponse = SendRequests.sendRequest("POST", BASE_URL, "/setCoopStatus",
+//					"coopId=" + arr[1] + "&status=COMPLETED");
+//			System.out.println("ADJUDICATE_COOP: " + joResponse.toString());
 //			assertEquals("COMPLETED", joResponse.getString("status"));
 //		} catch (RuntimeException e) {
 //			System.out.println(e.getMessage());
@@ -171,23 +189,21 @@ public class IntegrationTests {
 //			e.printStackTrace();
 //		}
 //	}
-	
+
 	@Test
 	public void testCourseRanking() {
-		//TODO
-		//Create courses
-		//Assign coop positions to courses
-		//Assert by getting the name of the course at predetermined index 
+		// TODO
+		// Create courses
+		// Assign coop positions to courses
+		// Assert by getting the name of the course at predetermined index
 	}
-	
+
 	@Test
 	public void testAssignTermInstructorToCoop() {
-		//TODO
-		//Create term instructor
-		//Assign coop
-		//Assert by ...
+		// TODO
+		// Create term instructor
+		// Assign coop
+		// Assert by ...
 	}
-	
-	
 
 }

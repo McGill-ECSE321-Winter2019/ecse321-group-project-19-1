@@ -56,15 +56,15 @@ public class RequiredDocumentService {
     }
 
     @Transactional
-    public Boolean gradeDocument(int docId, boolean accepted) {
+    public void gradeDocument(int docId, String accepted) {
         RequiredDocument rdoc = requiredDocumentRepository.findById(docId);
         if(rdoc==null) {
             System.err.println("Document(id= "+docId+") not found");
-            return false;
         }
-        rdoc.setAccepted(accepted);
+        
+        rdoc.setAccepted(Boolean.parseBoolean(accepted));
         requiredDocumentRepository.save(rdoc);
-        return true;
+
     }
 
     @Transactional
