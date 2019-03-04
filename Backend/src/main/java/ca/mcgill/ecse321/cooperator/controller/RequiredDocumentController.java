@@ -80,22 +80,24 @@ public class RequiredDocumentController {
 
     // grade document by user
     @PostMapping(value = {"/gradeDocument", "/gradeDocument/"})
-    public Boolean gradeDocument(@RequestParam(name = "documentId") int rdId,
+    public RequiredDocumentDto gradeDocument(@RequestParam(name = "documentId") int rdId,
                                  @RequestParam(name = "grade") Boolean accepted,
                                  @RequestParam(name = "instructorEmail") String instructorEmail) throws IllegalArgumentException {
         UserEntity user = userEntityService.getUserEntityByEmail(instructorEmail);
         if (user == null || !(user instanceof TermInstructor))
-            return false;
-        return requiredDocumentService.gradeDocument(rdId,accepted);
+            return null;
+        requiredDocumentService.gradeDocument(rdId,accepted);
+        RequiredDocument rdoc = requiredDocumentService.getRequiredDocumentById(rdId);
+        return DtoConverters.convertToDto(rdoc);
     }
 
     // viewing graded document
     @GetMapping(value = {"/grade", "/grade/"})
-    public Boolean viewGrade(@RequestParam(name = "documentId") int rdId) throws IllegalArgumentException {
+    public RequiredDocumentDto viewGrade(@RequestParam(name = "documentId") int rdId) throws IllegalArgumentException {
         RequiredDocument rd = requiredDocumentService.getRequiredDocumentById(rdId);
         if (rd.getAccepted() == null)
-            return false;
+            return null;
         rd.getAccepted();
-        return true;
+        return DtoConverters.convertToDto(rd);
     }
 }

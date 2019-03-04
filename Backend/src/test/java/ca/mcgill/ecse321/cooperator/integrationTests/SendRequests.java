@@ -31,9 +31,6 @@ public class SendRequests {
 			return r;
 		} catch (JSONException | IOException e) {
 			e.printStackTrace();
-		} catch (RuntimeException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
 		}
 		return null;
 	}
@@ -59,9 +56,6 @@ public class SendRequests {
 			connection.disconnect();
 			return r;
 		} catch (JSONException | IOException e) {
-			e.printStackTrace();
-		} catch (RuntimeException e) {
-			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 		return null;
