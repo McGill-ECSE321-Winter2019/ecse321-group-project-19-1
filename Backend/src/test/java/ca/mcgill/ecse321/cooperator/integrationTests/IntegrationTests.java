@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
 import ca.mcgill.ecse321.cooperator.model.RequiredDocument;
@@ -117,22 +118,19 @@ public class IntegrationTests {
     		 JSONObject student1 = sendRequest("POST", BASE_URL, "/createStudent", "firstName="+"max"+"&lastName="+"brodeur");
     		 JSONObject student2 = sendRequest("POST", BASE_URL, "/createStudent", "firstName="+"andre"+"&lastName="+"kaba");
     		 System.out.println("Received: "+student1.toString());
-    		 String STUDENT_ID = student1.getString("studentId");
+    		 int STUDENT_ID = student1.getInt("studentId");
     		 
     		 //creating coop position for student1
-    		 Date startDate = new Date(5);
-    		 Date endDate = new Date(10000);
-    		 JSONObject cp =  sendRequest("POST", BASE_URL, "/createCoop", "startDate="+startDate+"&endDate="+endDate
+    		 JSONObject cp =  sendRequest("POST", BASE_URL, "/createCoop", "startDate=02/01/2018"+"&endDate=02/01/2019"
     		 +"&description=hello"+"&location=montreal"+"&term=fall"+"&studentId="+STUDENT_ID);
     		 System.out.println("Received: "+cp.toString());
     		 
     		 //getting problematic student. expected output to be student2
              response = sendRequest1("GET", BASE_URL, "/problematicStudents");
              System.out.println("Received: "+response.toString());
-             JSONObject jo= new JSONObject();
-             jo.put("array",response);
-             System.out.println("Received: "+jo.toString());
-             assertEquals("andre", jo.getString("firstName"));
+             //JSONObject jo= new JSONObject();
+             //System.out.println("Received: "+jo.toString());
+             assertEquals("andre", response.getString(2));
          } catch (Exception e) {
              e.printStackTrace();
          }	
