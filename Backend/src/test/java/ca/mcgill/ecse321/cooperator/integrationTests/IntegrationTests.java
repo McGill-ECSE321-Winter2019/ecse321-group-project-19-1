@@ -6,8 +6,11 @@ import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.CourseRepository;
@@ -36,6 +39,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class IntegrationTests {
 
 	private final String BASE_URL = "http://cooperator-backend-260.herokuapp.com";
@@ -58,15 +63,15 @@ public class IntegrationTests {
 	private EmployerRepository employerRepo;
 	
 
-//	@Before
-//	public void clearDatabase() {
-//		rdocRepo.deleteAll();
-//		employerRepo.deleteAll();
-//		courseRepo.deleteAll();
-//		userRepo.deleteAll();
-//		cpRepo.deleteAll();
-//		studentRepo.deleteAll();
-//	}
+	@Before
+	public void clearDatabase() {
+		rdocRepo.deleteAll();
+		employerRepo.deleteAll();
+		courseRepo.deleteAll();
+		userRepo.deleteAll();
+		cpRepo.deleteAll();
+		studentRepo.deleteAll();
+	}
 
 	@Test
 	public void TestAddingCourse() {
