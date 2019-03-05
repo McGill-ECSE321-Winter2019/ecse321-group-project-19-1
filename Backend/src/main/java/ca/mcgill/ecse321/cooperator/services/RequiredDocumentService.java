@@ -49,6 +49,7 @@ public class RequiredDocumentService {
             rdoc.setEmployer(em);
             rdoc.setSubmitted(false);
             rdoc.setAccepted(false);
+            rdoc.setEvaluation("");
             requiredDocumentRepository.save(rdoc);
             return rdoc;
         }

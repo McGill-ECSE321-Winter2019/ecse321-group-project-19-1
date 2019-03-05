@@ -208,7 +208,7 @@ public class DtoConverters {
     public static Employer convertToDomainObject(EmployerDto eDto, EmployerService employerService) {
         CheckArg(eDto);
         CheckArg(employerService);
-        return employerService.getEmployerById(eDto.getEmployerId());
+        return employerService.getById(eDto.getEmployerId());
     }
 
     /**

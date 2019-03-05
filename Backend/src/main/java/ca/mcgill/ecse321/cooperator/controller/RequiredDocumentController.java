@@ -87,7 +87,7 @@ public class RequiredDocumentController {
                                                       @RequestParam(name = "coopId") int cpId,
                                                       @RequestParam(name = "employerId") int eId)
             throws IllegalArgumentException {
-        Employer e = employerService.getEmployerById(eId);
+        Employer e = employerService.getById(eId);
         CoopPosition cp = coopPositionService.getById(cpId);
         EmployerContract ec = requiredDocumentService.createEmployerContract(name, dueDate, cp, e);
         return DtoConverters.convertToDto(ec);

@@ -51,7 +51,7 @@ public class EmployerController {
         if (rdoc == null || !(rdoc instanceof EmployerContract))
             return null;
         EmployerContract ec = (EmployerContract) rdoc;
-        Employer e = employerService.getEmployerById(ecId);
+        Employer e = employerService.getById(eId);
         return DtoConverters.convertToDto(requiredDocumentService.setEvaluation(ec, e, evaluation));
     }
 }
