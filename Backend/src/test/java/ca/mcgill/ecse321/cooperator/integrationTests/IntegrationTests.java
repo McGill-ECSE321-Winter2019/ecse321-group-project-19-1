@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.cooperator.integrationTests;
 
 import ca.mcgill.ecse321.cooperator.dao.*;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
+
+import java.io.IOException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -137,8 +140,12 @@ public class IntegrationTests {
 //	public void testRateCourse() {
 //		try {
 //		int[] arr =RESTtestDatabaseSetup.databaseSetup();
-//		joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse","courseName=ECSE"+"&coopId="+arr[1]+"&useful=True");
-//		assertNotEquals(null,joResponse.getString("CoopPositions"));
+//		joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse","courseName=ECSE321"+"&coopId="+arr[1]+"&useful=True");
+//		System.out.println("RATED_COURSE: " + joResponse.toString());
+//		assertNotEquals(null,joResponse.getString("coopPositions"));
+//		assertEquals(arr[1],joResponse.getString("coopPositions"));
+//		} catch (JSONException e) {
+//			fail();
 //		} catch (RuntimeException e) {
 //			System.out.println(e.getMessage());
 //			e.printStackTrace();
