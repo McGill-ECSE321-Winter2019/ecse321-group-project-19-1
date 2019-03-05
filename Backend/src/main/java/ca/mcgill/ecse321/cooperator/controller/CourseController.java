@@ -2,13 +2,13 @@ package ca.mcgill.ecse321.cooperator.controller;
 
 import ca.mcgill.ecse321.cooperator.dto.CoopPositionDto;
 import ca.mcgill.ecse321.cooperator.dto.CourseDto;
-import ca.mcgill.ecse321.cooperator.model.CoopPosition;
 import ca.mcgill.ecse321.cooperator.model.Course;
 import ca.mcgill.ecse321.cooperator.services.CoopPositionService;
 import ca.mcgill.ecse321.cooperator.services.CoursesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.CollationElementIterator;
 import java.util.*;
 
 @CrossOrigin(origins = "*")
@@ -16,12 +16,13 @@ import java.util.*;
 public class CourseController {
     @Autowired
     CoursesService coursesService;
-    
+
     @Autowired
     CoopPositionService cpService;
 
     /**
      * Create a new course in the system.
+     *
      * @param courseName The name of the course
      * @return A CourseDto representing the newly added course.
      * @throws IllegalArgumentException
@@ -34,6 +35,7 @@ public class CourseController {
 
     /**
      * View all courses in the system
+     *
      * @return a list of CourseDto representing all courses in the system.
      */
     @GetMapping(value = {"/courses", "/courses/"})
@@ -47,28 +49,30 @@ public class CourseController {
 
     /**
      * Add a course to the list a useful course for a specific coop
+     *
      * @param courseId course to be added
-     * @param coopId the coop to which the course is added
+     * @param coopId   the coop to which the course is added
      * @return a CoopPositionDto representing the modified coop
      */
-    @PostMapping(value= {"/rateCourse","/rateCourse/"})
-    public CoopPositionDto rateCourse(@RequestParam("courseId") Integer courseId, @RequestParam(name="coopId") int coopId) {
-    	return DtoConverters.convertToDto(coursesService.rateCourse(courseId, coopId));
+    @PostMapping(value = {"/rateCourse", "/rateCourse/"})
+    public CoopPositionDto rateCourse(@RequestParam("courseId") Integer courseId, @RequestParam(name = "coopId") int coopId) {
+        return DtoConverters.convertToDto(coursesService.rateCourse(courseId, coopId));
     }
-    
+
 
     /**
      * Get a sort list of all course based on the usefulness of a course measured by the number of times it's
      * mentioned across all coop positions.
+     *
      * @return a list of CourseDto representing the sorted list of courses.
      */
     @GetMapping(value = {"/ranking", "/ranking/"})
     public List<CourseDto> getCoursesRanking() {
         List<Course> courses = coursesService.getAllCourses();
-        Map<Integer, CourseDto> courseDtoMap = new TreeMap<>(Collections.reverseOrder());
+        Collections.sort(courses,(c1, c2)->c2.getCoopPosition().size()-c1.getCoopPosition().size());
+        List<CourseDto> res=new ArrayList<>();
         for (Course c : courses)
-            courseDtoMap.put(c.getCoopPosition().size(), DtoConverters.convertToDto(c));
-
-        return new ArrayList<>(courseDtoMap.values());
+            res.add(DtoConverters.convertToDto(c));
+        return res;
     }
 }

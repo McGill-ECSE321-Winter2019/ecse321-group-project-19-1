@@ -37,6 +37,8 @@ public class CoursesService {
         Course c = courseRepository.findByCourseId(courseId);
         CoopPosition cp = cpRepository.findByCoopId(coopId);
         cp.addUsefulCourse(c);
+        c.addAssociatedCoop(cp);
+        courseRepository.save(c);
         cpRepository.save(cp);
         return cp;
     }

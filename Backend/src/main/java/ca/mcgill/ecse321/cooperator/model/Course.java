@@ -37,6 +37,9 @@ public class Course {
         this.coopPosition = coopPositions;
     }
 
+    public void addAssociatedCoop(CoopPosition cp){
+        this.coopPosition.add(cp);
+    }
     @Override
     public String toString() {
         return "Course(id= "+getCourseId()+")";

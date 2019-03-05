@@ -140,15 +140,15 @@ public class IntegrationTests {
                     "name=googleOffer" + "&dueDate=02/01/2019" + "&coopId=" + cp_Id + "&employerId=" + e_Id);
 
             int doc_Id = contract.getInt("documentId");
-            assertNotEquals(evaluation,contract.getString("evaluation"));
+            assertNotEquals(evaluation, contract.getString("evaluation"));
 
             // Evaluate the coop through the contract
 
             // Create employer contract
             JSONObject evaluated_contract = SendRequests.sendRequest("POST", BASE_URL, "/setEmployerContractEvaluation",
-                    "employerId=" +e_Id+ "&employerContractId=" +doc_Id+ "&evaluation=" + evaluation);
+                    "employerId=" + e_Id + "&employerContractId=" + doc_Id + "&evaluation=" + evaluation);
 
-            assertEquals(evaluation,evaluated_contract.getString("evaluation"));
+            assertEquals(evaluation, evaluated_contract.getString("evaluation"));
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -157,19 +157,52 @@ public class IntegrationTests {
         }
     }
 
-//    @Test
-//    public void testViewGrade() {
-//        try {
-//            int[] arr = RESTtestDatabaseSetup.databaseSetup();
-//            joResponse = SendRequests.sendRequest("GET", BASE_URL, "/grade", "documentId=" + arr[2]);
-//            System.out.println("VIEW_GRADE: " + joResponse.toString());
-//            assertEquals("COMPLETED", joResponse.getString("status"));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
+    @Test
+    public void testCourseRanking() {
+        try {
+            String course_name1="CRAP101";
+            String course_name2="ECSE321";
 
+            // creating student
+            JSONObject s = SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
+                    "firstName=" + "sophie" + "&lastName=" + "deng");
+            int s_Id = s.getInt("studentId");
+
+            // Create coop position
+            JSONObject cp = SendRequests.sendRequest("POST", BASE_URL, "/createCoop",
+                    "startDate=05/01/2018" + "&endDate=05/01/2022" + "&description=niceshit" + "&location=yorktown"
+                            + "&term=wow" + "&studentId=" + s_Id);
+            int cp_Id = cp.getInt("coopID");
+
+            // Create course 1
+            JSONObject course1 = SendRequests.sendRequest("POST", BASE_URL, "/createCourse",
+                    "courseName="+course_name1);
+
+            // Create course 2
+            JSONObject course2 = SendRequests.sendRequest("POST", BASE_URL, "/createCourse",
+                    "courseName="+course_name2);
+            System.out.println(course2);
+            int course2_Id = course2.getInt("courseId");
+
+            // Mention course 2 as useful for the coop
+            JSONObject new_coop = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse",
+                    "courseId=" + course2_Id + "&coopId=" + cp_Id);
+
+            // Get all the courses without sorting
+            JSONArray all_courses = SendRequests.sendRequestArray("GET", BASE_URL, "/courses");
+            assertEquals(course_name1,all_courses.getJSONObject(0).getString("courseName"));
+            assertEquals(course_name2,all_courses.getJSONObject(1).getString("courseName"));
+
+            // Get a sorted view of the courses
+            JSONArray sorted_all_courses = SendRequests.sendRequestArray("GET", BASE_URL, "/ranking");
+            assertEquals(course_name2,sorted_all_courses.getJSONObject(0).getString("courseName"));
+            assertEquals(course_name1,sorted_all_courses.getJSONObject(1).getString("courseName"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            fail();
+        }
+    }
 //    @Test
 //    public void testAdjudicateCoop() {
 //        try {
@@ -197,49 +230,6 @@ public class IntegrationTests {
 //            assertEquals(arr[1], joResponse.getString("coopPositions"));
 //        } catch (JSONException e) {
 //            fail();
-//        } catch (RuntimeException e) {
-//            System.out.println(e.getMessage());
-//            e.printStackTrace();
-//            fail();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    @Test
-//    public void testCourseRanking() {
-//        try {
-//            int[] arr = RESTtestDatabaseSetup.databaseSetup();
-//            //rating courses
-//            joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse/ECSE321", "coopId=" + arr[1] + "&useful=True");
-//            joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse/ECSE321", "coopId=" + arr[3] + "&useful=False");
-//            joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse/ECSE310", "coopId=" + arr[3] + "&useful=True");
-//            joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse/ECSE321", "coopId=" + arr[4] + "&useful=True");
-//            joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse/ECSE310", "coopId=" + arr[3] + "&useful=False");
-//
-//            //Getting list of courses ranked
-//            jaResponse = SendRequests.sendRequestArray("POST", BASE_URL, "/ranking");
-//
-//            //Asserting
-//            assertEquals("ECSE321", jaResponse.getJSONObject(0).getString("courseName"));
-//            assertEquals("ECSE310", jaResponse.getJSONObject(1).getString("courseName"));
-//
-//        } catch (RuntimeException e) {
-//            System.out.println(e.getMessage());
-//            e.printStackTrace();
-//            fail();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-//
-//    @Test
-//    public void testAssignTermInstructorToCoop() {
-//        try {
-//            RESTtestDatabaseSetup.databaseSetup();
-//            jaResponse = SendRequests.sendRequestArray("GET", BASE_URL, "/termInstructors");
-//            assertEquals("sophie", jaResponse.getJSONObject(0).getString("firstName"));
 //        } catch (RuntimeException e) {
 //            System.out.println(e.getMessage());
 //            e.printStackTrace();
