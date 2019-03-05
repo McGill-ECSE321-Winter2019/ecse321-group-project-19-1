@@ -31,19 +31,14 @@ public class CoursesService {
         courseRepository.save(course);
         return course;
     }
-    
+
     @Transactional
-    public Course rateCourse(String courseName,int coopId,boolean useful) {
-    	if (!Utilities.checkNotEmpty(courseName))
-            throw new IllegalArgumentException("course with empty name");
-    	
-    	Course c =courseRepository.findCourseByCourseName(courseName);
-    	CoopPosition cp = cpRepository.findByCoopId(coopId);
-    	Set<CoopPosition> cps = new HashSet<>();
-    	cps.add(cp);
-    	c.setCoopPosition(cps);
-    	courseRepository.save(c);
-    	return c;
+    public CoopPosition rateCourse(int courseId, int coopId) {
+        Course c = courseRepository.findByCourseId(courseId);
+        CoopPosition cp = cpRepository.findByCoopId(coopId);
+        cp.addUsefulCourse(c);
+        cpRepository.save(cp);
+        return cp;
     }
 
     @Transactional
