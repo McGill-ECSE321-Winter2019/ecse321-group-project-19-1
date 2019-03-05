@@ -133,48 +133,48 @@ public class IntegrationTests {
 //		}
 //	}
 	
-	@Test
-	public void testRateCourse() {
-		try {
-		int[] arr =RESTtestDatabaseSetup.databaseSetup();
-		joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse","courseName=ECSE"+"&coopId="+arr[1]+"&useful=True");
-		assertNotEquals(null,joResponse.getString("CoopPositions"));
-		} catch (RuntimeException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			fail();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Test
-	public void testCourseRanking() {
-		try {
-			int[] arr =RESTtestDatabaseSetup.databaseSetup();
-			//rating courses
-			joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse/ECSE321","coopId="+arr[1]+"&useful=True");
-			joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse/ECSE321","coopId="+arr[3]+"&useful=False");
-			joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse/ECSE310","coopId="+arr[3]+"&useful=True");
-			joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse/ECSE321","coopId="+arr[4]+"&useful=True");
-			joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse/ECSE310","coopId="+arr[3]+"&useful=False");
-			
-			//Getting list of courses ranked
-			jaResponse = SendRequests.sendRequestArray("POST", BASE_URL, "/ranking");
-
-			//Asserting
-			assertEquals("ECSE321",jaResponse.getJSONObject(0).getString("courseName"));
-			assertEquals("ECSE310",jaResponse.getJSONObject(1).getString("courseName"));
-			
-			} catch (RuntimeException e) {
-				System.out.println(e.getMessage());
-				e.printStackTrace();
-				fail();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-	
-	}
+//	@Test
+//	public void testRateCourse() {
+//		try {
+//		int[] arr =RESTtestDatabaseSetup.databaseSetup();
+//		joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse","courseName=ECSE"+"&coopId="+arr[1]+"&useful=True");
+//		assertNotEquals(null,joResponse.getString("CoopPositions"));
+//		} catch (RuntimeException e) {
+//			System.out.println(e.getMessage());
+//			e.printStackTrace();
+//			fail();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+//
+//	@Test
+//	public void testCourseRanking() {
+//		try {
+//			int[] arr =RESTtestDatabaseSetup.databaseSetup();
+//			//rating courses
+//			joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse/ECSE321","coopId="+arr[1]+"&useful=True");
+//			joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse/ECSE321","coopId="+arr[3]+"&useful=False");
+//			joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse/ECSE310","coopId="+arr[3]+"&useful=True");
+//			joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse/ECSE321","coopId="+arr[4]+"&useful=True");
+//			joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse/ECSE310","coopId="+arr[3]+"&useful=False");
+//			
+//			//Getting list of courses ranked
+//			jaResponse = SendRequests.sendRequestArray("POST", BASE_URL, "/ranking");
+//
+//			//Asserting
+//			assertEquals("ECSE321",jaResponse.getJSONObject(0).getString("courseName"));
+//			assertEquals("ECSE310",jaResponse.getJSONObject(1).getString("courseName"));
+//			
+//			} catch (RuntimeException e) {
+//				System.out.println(e.getMessage());
+//				e.printStackTrace();
+//				fail();
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//	
+//	}
 
 //	@Test
 //	public void testAssignTermInstructorToCoop() {
