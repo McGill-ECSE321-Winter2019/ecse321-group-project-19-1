@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.cooperator.controller;
 
+import ca.mcgill.ecse321.cooperator.dto.CoopPositionDto;
 import ca.mcgill.ecse321.cooperator.dto.CourseDto;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
 import ca.mcgill.ecse321.cooperator.model.Course;
@@ -43,19 +44,16 @@ public class CourseController {
         }
         return coursesDto;
     }
-    
+
     /**
-     * Rate a course
-     * @return the CourseDto that has been rated
+     * Add a course to the list a useful course for a specific coop
+     * @param courseId course to be added
+     * @param coopId the coop to which the course is added
+     * @return a CoopPositionDto representing the modified coop
      */
     @PostMapping(value= {"/rateCourse","/rateCourse/"})
-    public CourseDto rateCourse(@RequestParam("courseName") String courseName, @RequestParam(name="coopId") int coopId,
-    		@RequestParam(name="useful")Boolean useful) {
-    	Course c = coursesService.getCourseByCourseName(courseName);
-    	if(useful) {
-    		coursesService.rateCourse(courseName, coopId, useful);
-    	}
-    	return DtoConverters.convertToDto(c);
+    public CoopPositionDto rateCourse(@RequestParam("courseId") Integer courseId, @RequestParam(name="coopId") int coopId) {
+    	return DtoConverters.convertToDto(coursesService.rateCourse(courseId, coopId));
     }
     
 

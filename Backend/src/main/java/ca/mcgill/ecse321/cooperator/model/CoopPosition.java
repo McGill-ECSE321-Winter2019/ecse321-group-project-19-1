@@ -116,6 +116,10 @@ public class CoopPosition {
         this.requiredDocument.add(rd);
     }
 
+    public void addUsefulCourse(Course c){
+        this.usefulCourses.add(c);
+    }
+
     @Override
     public String toString() {
         return "CoopPosition(id= "+getCoopId()+")";
