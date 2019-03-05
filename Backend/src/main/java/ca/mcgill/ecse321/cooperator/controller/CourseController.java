@@ -52,11 +52,8 @@ public class CourseController {
     public CourseDto rateCourse(@RequestParam("courseName") String courseName, @RequestParam(name="coopId") int coopId,
     		@RequestParam(name="useful")Boolean useful) {
     	Course c = coursesService.getCourseByCourseName(courseName);
-    	CoopPosition cp = cpService.getById(coopId);
-    	Set<CoopPosition> cps = new HashSet<>();
     	if(useful) {
-    	cps.add(cp);
-    	c.setCoopPosition(cps);
+    		coursesService.rateCourse(courseName, coopId, useful);
     	}
     	return DtoConverters.convertToDto(c);
     }
