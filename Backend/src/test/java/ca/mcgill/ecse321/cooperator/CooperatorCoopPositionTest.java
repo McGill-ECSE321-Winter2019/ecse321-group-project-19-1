@@ -57,7 +57,7 @@ public class CooperatorCoopPositionTest{
 
 	@Before
 	public void setMockOutput() {
-		when(coopPositionDao.findById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
+		when(coopPositionDao.findByCoopId(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
 			if (invocation.getArgument(0).equals(COOP_KEY)) {
 				coop.setCoopId(COOP_KEY);
 				return coop;

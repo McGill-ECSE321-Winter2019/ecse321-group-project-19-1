@@ -41,8 +41,6 @@ public class TestGrading {
 	private CoopPositionService coopPositionService;
 	@InjectMocks
 	private StudentService studentService;
-	
-	//private CooperatorController controller;
 
 	// Term instructor
 	private TermInstructor ti;
@@ -80,7 +78,7 @@ public class TestGrading {
 			}
 		});
 		// Creating a coop position
-		when(coopPositionRepository.findById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
+		when(coopPositionRepository.findByCoopId(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
 			if (invocation.getArgument(0).equals(COOP_KEY)) {
 				CoopPosition cp = new CoopPosition();
 				cp.setCoopId(COOP_KEY);
@@ -130,7 +128,6 @@ public class TestGrading {
 	@Test
 	public void testMockTermInstructorCreation() {
 		assertNotNull(ti);
-		
 	}
 	
 	@Test
