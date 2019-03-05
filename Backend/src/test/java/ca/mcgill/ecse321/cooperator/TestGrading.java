@@ -129,11 +129,6 @@ public class TestGrading {
 	// Mock creation tests
 	@Test
 	public void testMockTermInstructorCreation() {
-//		TermInstructorDto tiDto= controller.createTermInstructor("hello", "world", "weak", "yoyo@gmail.com");
-//		assertEquals("hello",tiDto.getFirstName());
-//		assertEquals("world",tiDto.getLastName());
-//		assertEquals("weak",tiDto.getPassword());
-//		assertEquals("yoyo@gmail.com",tiDto.getEmail());
 		assertNotNull(ti);
 		
 	}
@@ -180,9 +175,5 @@ public class TestGrading {
 		assertEquals(GRADE, rdocService.getRequiredDocumentById(DOC_KEY).getAccepted());
 	}
 
-//	@Test
-//	public void testViewGrade() {
-//		
-//	}
 
 }
