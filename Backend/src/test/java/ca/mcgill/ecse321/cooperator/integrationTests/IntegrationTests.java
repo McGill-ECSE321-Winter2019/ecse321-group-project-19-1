@@ -63,35 +63,35 @@ public class IntegrationTests {
     }
 
 
-    @Test
-    public void testGetProblematic() {
-        try {
-            // creating students
-            JSONObject s1 = SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
-                    "firstName=" + "max" + "&lastName=" + "brodeur");
-            int s1_id = s1.getInt("studentID");
-            JSONObject s2 = SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
-                    "firstName=" + "andre" + "&lastName=" + "kaba");
-
-            // creating coop position for students s1,s3,s4 (not s2 for testGetProblematic)
-            JSONObject cp1 = SendRequests.sendRequest("POST", BASE_URL, "/createCoop",
-                    "startDate=02/01/2018" + "&endDate=02/01/2019" + "&description=hello" + "&location=montreal"
-                            + "&term=fall" + "&studentId=" + s1_id);
-            // getting problematic student. expected output to be student2
-            jaResponse = SendRequests.sendRequestArray("GET", BASE_URL, "/problematicStudents");
-            System.out.println("PROBLEMATIC: " + jaResponse.toString());
-            assertEquals("andre", jaResponse.getJSONObject(0).get("firstName"));
-            assertNotEquals("max", jaResponse.getJSONObject(0).get("firstName"));
-
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-            fail();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
+//    @Test
+//    public void testGetProblematic() {
+//        try {
+//            // creating students
+//            JSONObject s1 = SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
+//                    "firstName=" + "max" + "&lastName=" + "brodeur");
+//            int s1_id = s1.getInt("studentID");
+//            JSONObject s2 = SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
+//                    "firstName=" + "andre" + "&lastName=" + "kaba");
+//
+//            // creating coop position for students s1,s3,s4 (not s2 for testGetProblematic)
+//            JSONObject cp1 = SendRequests.sendRequest("POST", BASE_URL, "/createCoop",
+//                    "startDate=02/01/2018" + "&endDate=02/01/2019" + "&description=hello" + "&location=montreal"
+//                            + "&term=fall" + "&studentId=" + s1_id);
+//            // getting problematic student. expected output to be student2
+//            jaResponse = SendRequests.sendRequestArray("GET", BASE_URL, "/problematicStudents");
+//            System.out.println("PROBLEMATIC: " + jaResponse.toString());
+//            assertEquals("andre", jaResponse.getJSONObject(0).get("firstName"));
+//            assertNotEquals("max", jaResponse.getJSONObject(0).get("firstName"));
+//
+//        } catch (RuntimeException e) {
+//            System.out.println(e.getMessage());
+//            e.printStackTrace();
+//            fail();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
 //    @Test
 //    public void testGradeDocument() {
