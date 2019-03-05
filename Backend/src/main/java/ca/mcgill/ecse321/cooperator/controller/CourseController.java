@@ -1,7 +1,9 @@
 package ca.mcgill.ecse321.cooperator.controller;
 
 import ca.mcgill.ecse321.cooperator.dto.CourseDto;
+import ca.mcgill.ecse321.cooperator.model.CoopPosition;
 import ca.mcgill.ecse321.cooperator.model.Course;
+import ca.mcgill.ecse321.cooperator.services.CoopPositionService;
 import ca.mcgill.ecse321.cooperator.services.CoursesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,9 @@ import java.util.*;
 public class CourseController {
     @Autowired
     CoursesService coursesService;
+    
+    @Autowired
+    CoopPositionService cpService;
 
     /**
      * Create a new course in the system.
@@ -38,6 +43,24 @@ public class CourseController {
         }
         return coursesDto;
     }
+    
+    /**
+     * Rate a course
+     * @return the CourseDto that has been rated
+     */
+    @PostMapping(value= {"/rateCourse","/rateCourse/"})
+    public CourseDto rateCourse(@RequestParam("courseName") String courseName, @RequestParam(name="coopId") int coopId,
+    		@RequestParam(name="useful")Boolean useful) {
+    	Course c = coursesService.getCourseByCourseName(courseName);
+    	CoopPosition cp = cpService.getById(coopId);
+    	Set<CoopPosition> cps = new HashSet<>();
+    	if(useful) {
+    	cps.add(cp);
+    	c.setCoopPosition(cps);
+    	}
+    	return DtoConverters.convertToDto(c);
+    }
+    
 
     /**
      * Get a sort list of all course based on the usefulness of a course measured by the number of times it's
