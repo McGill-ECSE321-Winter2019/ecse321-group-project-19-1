@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.cooperator;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 
@@ -84,7 +85,7 @@ public class CooperatorStudentTest{
 		assertEquals(STUDENT_STATUS,studentService.getStudentById(STUDENT_KEY).getProblematic());
 		assertNull(studentService.getStudentById(STUDENT_KEY).getFirstName());
 		assertNull(studentService.getStudentById(STUDENT_KEY).getLastName());
-		assertNull(studentService.getStudentById(STUDENT_KEY).getCoopPosition());
+		assertEquals(new HashSet<>(),studentService.getStudentById(STUDENT_KEY).getCoopPosition());
 
 	}
 	
@@ -104,10 +105,5 @@ public class CooperatorStudentTest{
 		s.setProblematic(NEW_STUDENT_STATUS);
 		assertEquals(NEW_STUDENT_STATUS, s.getProblematic());
 	}
-	
-	
-	
-	
-	
 	
 }
