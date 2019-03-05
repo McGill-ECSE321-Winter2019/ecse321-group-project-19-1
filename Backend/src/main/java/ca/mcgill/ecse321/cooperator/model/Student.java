@@ -9,7 +9,7 @@ import java.util.Set;
 public class Student {
     private Integer studentID;
     private Boolean problematic = true;
-    private Set<CoopPosition> coopPosition = new HashSet<>();
+    private Set<CoopPosition> coopPosition;
     private String firstName;
     private String lastName;
 

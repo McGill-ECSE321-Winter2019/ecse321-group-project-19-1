@@ -69,7 +69,7 @@ public class RequiredDocumentService {
 
     @Transactional
     public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp) {
-        return (EmployerContract) createRequiredDocument(name, dueDate, cp, RequiredDocumentType.FORM);
+        return (EmployerContract) createRequiredDocument(name, dueDate, cp, RequiredDocumentType.EMPLOYER_CONTRACT);
     }
 
     @Transactional
