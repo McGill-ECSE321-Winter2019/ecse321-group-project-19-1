@@ -136,24 +136,24 @@ public class IntegrationTests {
 //		}
 //	}
 	
-	@Test
-	public void testRateCourse() {
-		try {
-		int[] arr =RESTtestDatabaseSetup.databaseSetup();
-		joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse","courseName=ECSE321"+"&coopId="+arr[1]+"&useful=True");
-		System.out.println("RATED_COURSE: " + joResponse.toString());
-		assertNotEquals(null,joResponse.getString("coopPositions"));
-		assertEquals(arr[1],joResponse.getString("coopPositions"));
-		} catch (JSONException e) {
-			fail();
-		} catch (RuntimeException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			fail();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	@Test
+//	public void testRateCourse() {
+//		try {
+//		int[] arr =RESTtestDatabaseSetup.databaseSetup();
+//		joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse","courseName=ECSE321"+"&coopId="+arr[1]+"&useful=True");
+//		System.out.println("RATED_COURSE: " + joResponse.toString());
+//		assertNotEquals(null,joResponse.getString("coopPositions"));
+//		assertEquals(arr[1],joResponse.getString("coopPositions"));
+//		} catch (JSONException e) {
+//			fail();
+//		} catch (RuntimeException e) {
+//			System.out.println(e.getMessage());
+//			e.printStackTrace();
+//			fail();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 //
 //	@Test
 //	public void testCourseRanking() {
