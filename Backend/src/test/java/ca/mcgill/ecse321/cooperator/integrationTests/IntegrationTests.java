@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.cooperator.integrationTests;
 
 import ca.mcgill.ecse321.cooperator.dao.*;
+import ca.mcgill.ecse321.cooperator.model.Status;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -224,13 +225,17 @@ public class IntegrationTests {
             int cp_Id = cp.getInt("coopID");
 
             // Create a program manager
-            JSONObject pm = SendRequests.sendRequest("POST", BASE_URL, "/createProgramManager" + EMAIL,
+            JSONObject pm = SendRequests.sendRequest("POST", BASE_URL, "/createProgramManager",
                     "firstName=sophie" + "&lastName=Deng" + "&password=" + PASSWORD);
-            String pm_email = s.getString("email");
+            String pm_email = pm.getString("email");
 
             // Adjudicate the problematic status of a student through the academic program manager
+            JSONObject new_coop = SendRequests.sendRequest("POST", BASE_URL, "/setCoopStatus" + EMAIL,
+                    "coopId="+cp_Id + "&status="+ Status.ACCEPTED + "&programManagerEmail=" + EMAIL+"&programManagerPassword="+PASSWORD);
 
+            String new_coop_status = new_coop.getString("status");
             // Assert that the coop is completed
+            assertEquals(Status.ACCEPTED.toString(),new_coop_status);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
