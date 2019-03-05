@@ -13,4 +13,9 @@ public class Report extends RequiredDocument {
     public ReportType getReportType() {
         return this.reportType;
     }
+
+    @Override
+    public String toString() {
+        return "Report(id= "+getDocumentId()+")";
+    }
 }

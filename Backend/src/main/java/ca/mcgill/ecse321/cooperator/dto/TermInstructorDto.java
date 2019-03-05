@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class TermInstructorDto extends UserEntityDto {
-    private List<CoopPositionDto> coopPosition;
+    private List<Integer> coopPosition;
 
     public TermInstructorDto() {
 
@@ -19,20 +19,20 @@ public class TermInstructorDto extends UserEntityDto {
         this(first, last, pass, e_mail, Collections.EMPTY_LIST);
     }
 
-    public TermInstructorDto(String first, String last, String pass, String e_mail, List<CoopPositionDto> cPosition) {
+    public TermInstructorDto(String first, String last, String pass, String e_mail, List<Integer> cPosition) {
         super(first, last, pass, e_mail);
         this.coopPosition = cPosition;
     }
 
-    public List<CoopPositionDto> getCoopPosition() {
+    public List<Integer> getCoopPosition() {
         return coopPosition;
     }
 
-    public void setCoopPosition(List<CoopPositionDto> coopPositions) {
+    public void setCoopPosition(List<Integer> coopPositions) {
         this.coopPosition = coopPositions;
     }
 
-    public void addCoopPostion(CoopPositionDto cpDto) {
+    public void addCoopPostion(Integer cpDto) {
         coopPosition.add(cpDto);
     }
 }

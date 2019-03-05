@@ -17,7 +17,7 @@ public class CoursesService {
 
     @Transactional
     public Course createCourse(String name) {
-        if (!Utilities.CheckNotEmpty(name))
+        if (!Utilities.checkNotEmpty(name))
             throw new IllegalArgumentException("Cannot add a course with empty name");
 
         Course course = new Course();
@@ -34,5 +34,10 @@ public class CoursesService {
     @Transactional
     public Course getCourseByCourseName(String name) {
         return courseRepository.findCourseByCourseName(name);
+    }
+
+    @Transactional
+    public Course getCourseByCourseId(int id) {
+        return courseRepository.findByCourseId(id);
     }
 }

@@ -1,6 +1,10 @@
 package ca.mcgill.ecse321.cooperator.services;
 
+import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
+import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
 import ca.mcgill.ecse321.cooperator.dao.StudentRepository;
+import ca.mcgill.ecse321.cooperator.model.CoopPosition;
+import ca.mcgill.ecse321.cooperator.model.RequiredDocument;
 import ca.mcgill.ecse321.cooperator.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +18,14 @@ public class StudentService {
     @Autowired
     StudentRepository studentRepository;
 
-    public Student createStudent() {
-        Student student = new Student();
-        student.setProblematic(false);
+    @Autowired
+    CoopPositionRepository coopPositionRepository;
+
+    @Autowired
+    RequiredDocumentRepository requiredDocumentRepository;
+
+    public Student createStudent(String firstName, String lastName) {
+        Student student = new Student(firstName, lastName);
         studentRepository.save(student);
         return student;
     }
@@ -34,7 +43,35 @@ public class StudentService {
 
     @Transactional
     public List<Student> getAllProblematicStudents() {
-        return (List<Student>) studentRepository.findStudentByProblematic(true);
+        List<Student> possiblyProblematic = studentRepository.findStudentByProblematic(true);
+        return possiblyProblematic;
     }
 
+    @Transactional
+    public RequiredDocument submitRequiredDocumentToCoop(int studnetId, int coopId, int docId) {
+        Student student = studentRepository.findById(studnetId);
+        CoopPosition coop = coopPositionRepository.findByCoopId(coopId);
+        RequiredDocument doc = requiredDocumentRepository.findById(docId);
+        if (student == null || coop == null || doc == null) {
+            System.err.println("Trying to submit a document(id= " + docId + ") to coop(id= " + coopId + ") by student(id= "
+                    + studnetId + ") failed!");
+            return null;
+        }
+        if (student.submitDocument(coop, doc)) {
+            requiredDocumentRepository.save(doc);
+            return doc;
+        }
+        return null;
+    }
+
+    @Transactional
+    public Student offerCoopPostionToStudent(int studentId, int cpId) {
+        Student s = studentRepository.findById(studentId);
+        CoopPosition cp = coopPositionRepository.findByCoopId(cpId);
+        if (s == null || cp == null)
+            return null;
+        s.offerCoopPostion(cp);
+        studentRepository.save(s);
+        return s;
+    }
 }

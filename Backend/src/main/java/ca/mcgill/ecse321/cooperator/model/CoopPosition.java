@@ -1,22 +1,21 @@
 package ca.mcgill.ecse321.cooperator.model;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class CoopPosition {
     private Integer coopId;
     private Status status;
-    private Set<TermInstructor> termInstructor;
+    private Set<TermInstructor> termInstructor = new HashSet<>();
     private Student student;
-    private Set<RequiredDocument> requiredDocument;
+    private Set<RequiredDocument> requiredDocument = new HashSet<>();
     private String description;
     private String term;
     private Date startDate;
     private Date endDate;
     private String location;
-    private Set<Course> usefulCourses;
+    private Set<Course> usefulCourses = new HashSet<>();
 
     public void setCoopId(Integer value) {
         this.coopId = value;
@@ -41,8 +40,8 @@ public class CoopPosition {
         return this.termInstructor;
     }
 
-    public void setTermInstructor(Set<TermInstructor> termInstructors) {
-        this.termInstructor = termInstructors;
+    public void setTermInstructor(Set<TermInstructor> termInstructor) {
+        this.termInstructor = termInstructor;
     }
 
     @ManyToMany(mappedBy = "coopPosition")
@@ -68,8 +67,8 @@ public class CoopPosition {
         return this.requiredDocument;
     }
 
-    public void setRequiredDocument(Set<RequiredDocument> requiredDocuments) {
-        this.requiredDocument = requiredDocuments;
+    public void setRequiredDocument(Set<RequiredDocument> requiredDocument) {
+        this.requiredDocument = requiredDocument;
     }
 
     public void setDescription(String value) {
@@ -111,6 +110,15 @@ public class CoopPosition {
 
     public String getLocation() {
         return this.location;
+    }
+
+    public void addRequiredDocument(RequiredDocument rd){
+        this.requiredDocument.add(rd);
+    }
+
+    @Override
+    public String toString() {
+        return "CoopPosition(id= "+getCoopId()+")";
     }
 
 }

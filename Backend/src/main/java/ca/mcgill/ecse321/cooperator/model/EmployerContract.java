@@ -15,4 +15,9 @@ public class EmployerContract extends RequiredDocument {
     public void setEmployer(Employer employer) {
         this.employer = employer;
     }
+
+    @Override
+    public String toString() {
+        return "EmployerContract(id= "+getDocumentId()+")";
+    }
 }

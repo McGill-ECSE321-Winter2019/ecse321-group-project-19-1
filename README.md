@@ -31,11 +31,11 @@ The report can be found [here](https://github.com/McGill-ECSE321-Winter2019/ecse
 
 |Team member's name |Total hours |Responsibility         |
 |-------------------|------------|-----------------------|
-|Sophie Deng        |            |         RESTful services and documentation              |
-|Andre Kaba         |            |         Build system and integration testing              |
-|Mia Zhou           |            |         RESTful services and sprint 1 corrections             |
-|Max Brodeur        |            |         Sprint 1 corrections and unit testing             |
-|Carl Elkhoury      |            |         Unit and integration testing              |
+|Sophie Deng        |     20       |         RESTful services and documentation              |
+|Andre Kaba         |     20       |         Build system and integration testing              |
+|Mia Zhou           |     20       |         RESTful services and integration testing             |
+|Max Brodeur        |     20      |         Sprint 1 corrections and unit testing             |
+|Carl Elkhoury      |     20       |         Unit and integration testing              |
 * Every Member is responsible for the project management, generate issues wherever applicable
 
 ## Deliverable 3: Due March 24th, 2019

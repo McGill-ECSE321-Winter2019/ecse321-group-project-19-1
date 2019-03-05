@@ -128,7 +128,7 @@ public class TestCooperatorService {
 		assertEquals(0, studentService.getAllStudents().size());
 
 		try {
-			studentService.createStudent();
+			studentService.createStudent("who cares?"," no one");
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
@@ -207,7 +207,7 @@ public class TestCooperatorService {
 	}
 
 	private Student createStudent() {
-		Student student = studentService.createStudent();
+		Student student = studentService.createStudent("who cares?"," no one");
 		return student;
 	}
 

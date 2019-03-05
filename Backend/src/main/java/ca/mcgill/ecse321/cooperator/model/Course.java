@@ -1,13 +1,14 @@
 package ca.mcgill.ecse321.cooperator.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 public class Course {
     private Integer courseId;
     private String courseName;
-    private Set<CoopPosition> coopPosition;
+    private Set<CoopPosition> coopPosition = new HashSet<>();
 
     public void setCourseId(Integer value) {
         this.courseId = value;
@@ -36,4 +37,8 @@ public class Course {
         this.coopPosition = coopPositions;
     }
 
+    @Override
+    public String toString() {
+        return "Course(id= "+getCourseId()+")";
+    }
 }

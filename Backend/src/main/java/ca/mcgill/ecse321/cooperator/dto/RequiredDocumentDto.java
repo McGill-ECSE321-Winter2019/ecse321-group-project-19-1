@@ -9,20 +9,27 @@ public abstract class RequiredDocumentDto {
     private Date dueDate;
     private Boolean submitted;
     private Boolean accepted;
-    private StudentDto student;
+    private Integer coopId;
 
     public RequiredDocumentDto() {
 
     }
 
     public RequiredDocumentDto(String s) {
-        this(Integer.parseInt(s), null, null);
+        this(Integer.parseInt(s), null, null,null,null,null);
     }
 
     public RequiredDocumentDto(Integer id, String name, Date due) {
+        this(id,name,due,false,false,null);
+    }
+
+    public RequiredDocumentDto(Integer id, String name, Date due, Boolean submitted, Boolean accepted,Integer coopId) {
         this.documentId = id;
         this.name = name;
         this.dueDate = due;
+        this.submitted=submitted;
+        this.accepted=accepted;
+        this.coopId = coopId;
     }
 
 
@@ -57,12 +64,12 @@ public abstract class RequiredDocumentDto {
     }
 
     //Student
-    public StudentDto getStudent() {
-        return student;
+    public Integer getCoopId() {
+        return coopId;
     }
 
-    public void setStudent(StudentDto student) {
-        this.student = student;
+    public void setCoopId(Integer student) {
+        this.coopId = student;
     }
 
 }
