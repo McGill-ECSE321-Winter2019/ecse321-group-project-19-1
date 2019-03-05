@@ -70,6 +70,14 @@ public class CooperatorCourseTest{
 			return null;
 		
 		});
+		when(courseDao.findByCourseId(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
+			if(invocation.getArgument(0).equals(COURSE_ID)) {
+				return course;
+			}else if(invocation.getArgument(0).equals(COURSE_ID2)){
+				return course2;
+			}
+			return null;
+		});
 		when(coopPositionDao.findByCoopId(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
 			if (invocation.getArgument(0).equals(COOP_KEY)) {
 				coop.setCoopId(COOP_KEY);
@@ -86,10 +94,12 @@ public class CooperatorCourseTest{
 	public void setUpMocks() {
 		course = mock(Course.class);
 		course = courseService.createCourse(COURSE_NAME);
+		course.setCourseId(COURSE_ID);
 		expectedList.add(course);
 		course2 = mock(Course.class);
 		course2 = courseService.createCourse(COURSE_NAME2);
 		expectedList.add(course2);
+		course2.setCourseId(COURSE_ID2);
 		coop = mock(CoopPosition.class);
 		coop = coopPositionService.createCoopPosition(startDate, endDate, "description", "McGill", "Winter", new Student());
 	}
@@ -114,11 +124,9 @@ public class CooperatorCourseTest{
 	
 	@Test
 	public void testCourseRating() {
-		courseService.rateCourse(COURSE_NAME,COOP_KEY, true);
-		assertEquals(courseService.getCourseByCourseName(COURSE_NAME).getCoopPosition().size(), 1);
-		assertTrue(courseService.getCourseByCourseName(COURSE_NAME).getCoopPosition().contains(coopPositionService.getById(COOP_KEY)));
-		courseService.rateCourse(COURSE_NAME2, COOP_KEY, false);
-		assertTrue(!coopPositionService.getById(COOP_KEY).getUsefulCourses().contains(courseService.getCourseByCourseName(COURSE_NAME2)));
+		courseService.rateCourse(COURSE_ID,COOP_KEY);
+		assertEquals(coopPositionService.getById(COOP_KEY).getUsefulCourses().size(),1);
+		assertTrue(coopPositionService.getById(COOP_KEY).getUsefulCourses().contains(courseService.getCourseByCourseId(COURSE_ID)));
 	}
 	
 }
