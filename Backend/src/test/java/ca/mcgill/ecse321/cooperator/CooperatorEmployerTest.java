@@ -80,18 +80,18 @@ public class CooperatorEmployerTest{
 	
 	@Test
 	public void testemployerQueryFound() {
-		assertEquals(EMPLOYER_KEY, employerService.getEmployerById(EMPLOYER_KEY).getEmployerID());
+		assertEquals(EMPLOYER_KEY, employerService.getById(EMPLOYER_KEY).getEmployerID());
 	
 	}
 	
 	@Test
 	public void testemployerQueryNotFound() {
-		assertNull(employerService.getEmployerById(WRONG_EMPLOYER_KEY));
+		assertNull(employerService.getById(WRONG_EMPLOYER_KEY));
 	}
 	
 	@Test
 	public void testEmployerContract() {
-		assertEquals(contracts, employerService.getEmployerById(EMPLOYER_KEY).getEmployerContract());
+		assertEquals(contracts, employerService.getById(EMPLOYER_KEY).getEmployerContract());
 	}
 	
 

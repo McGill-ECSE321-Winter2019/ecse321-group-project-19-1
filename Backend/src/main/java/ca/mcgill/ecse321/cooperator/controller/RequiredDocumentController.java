@@ -87,7 +87,7 @@ public class RequiredDocumentController {
                                                       @RequestParam(name = "coopId") int cpId,
                                                       @RequestParam(name = "employerId") int eId)
             throws IllegalArgumentException {
-        Employer e = employerService.getEmployerById(eId);
+        Employer e = employerService.getById(eId);
         CoopPosition cp = coopPositionService.getById(cpId);
         EmployerContract ec = requiredDocumentService.createEmployerContract(name, dueDate, cp, e);
         return DtoConverters.convertToDto(ec);
@@ -124,8 +124,8 @@ public class RequiredDocumentController {
     @PostMapping(value = {"/gradeDocument", "/gradeDocument/"})
 
     public RequiredDocumentDto gradeDocument(@RequestParam(name = "documentId") int rdId,
-                                          @RequestParam(name = "grade") Boolean accepted,
-                                          @RequestParam(name = "instructorEmail") String instructorEmail) throws IllegalArgumentException {
+                                             @RequestParam(name = "grade") Boolean accepted,
+                                             @RequestParam(name = "instructorEmail") String instructorEmail) throws IllegalArgumentException {
         UserEntity user = userEntityService.getUserEntityByEmail(instructorEmail);
         if (user == null || !(user instanceof TermInstructor))
             return null;
