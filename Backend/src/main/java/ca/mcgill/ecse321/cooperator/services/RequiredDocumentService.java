@@ -58,8 +58,8 @@ public class RequiredDocumentService {
     @Transactional
     public RequiredDocument gradeDocument(int docId, boolean accepted) {
         RequiredDocument rdoc = requiredDocumentRepository.findById(docId);
-        if(rdoc==null) {
-            System.err.println("Document(id= "+docId+") not found");
+        if (rdoc == null) {
+            System.err.println("Document(id= " + docId + ") not found");
             return null;
         }
         rdoc.setAccepted(accepted);
@@ -112,6 +112,15 @@ public class RequiredDocumentService {
     @Transactional
     public List<RequiredDocument> getAllRequiredDocuments() {
         return (List<RequiredDocument>) requiredDocumentRepository.findAll();
+    }
+
+    @Transactional
+    public EmployerContract setEvaluation(EmployerContract ec, Employer e, String evaluation) {
+        if (ec.getEmployer() == null || !ec.getEmployer().equals(e))
+            return null;
+        ec.setEvaluation(evaluation);
+        requiredDocumentRepository.save(ec);
+        return ec;
     }
 
     // =============================== Private methods ===============================

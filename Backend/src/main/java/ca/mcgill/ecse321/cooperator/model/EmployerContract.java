@@ -6,6 +6,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class EmployerContract extends RequiredDocument {
     private Employer employer;
+    private String evaluation;
 
     @ManyToOne
     public Employer getEmployer() {
@@ -18,6 +19,14 @@ public class EmployerContract extends RequiredDocument {
 
     @Override
     public String toString() {
-        return "EmployerContract(id= "+getDocumentId()+")";
+        return "EmployerContract(id= " + getDocumentId() + ")";
+    }
+
+    public String getEvaluation() {
+        return this.evaluation;
+    }
+
+    public void setEvaluation(String value) {
+        this.evaluation = value;
     }
 }

@@ -75,7 +75,7 @@ public class DtoConverters {
     public static EmployerContractDto convertToDto(EmployerContract ec) {
         CheckArg(ec);
         return new EmployerContractDto(ec.getDocumentId(), ec.getName(), ec.getDueDate(), ec.getSubmitted(),
-                ec.getAccepted(), ec.getCoopPosition().getCoopId(), ec.getEmployer().getEmployerID());
+                ec.getAccepted(), ec.getCoopPosition().getCoopId(), ec.getEmployer().getEmployerID(),ec.getEvaluation());
     }
 
     /**

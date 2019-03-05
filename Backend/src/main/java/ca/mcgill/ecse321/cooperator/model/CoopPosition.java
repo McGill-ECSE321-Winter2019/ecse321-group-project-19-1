@@ -6,7 +6,7 @@ import java.util.*;
 @Entity
 public class CoopPosition {
     private Integer coopId;
-    private Status status;
+    private Status status = Status.PENDING;
     private Set<TermInstructor> termInstructor = new HashSet<>();
     private Student student;
     private Set<RequiredDocument> requiredDocument = new HashSet<>();

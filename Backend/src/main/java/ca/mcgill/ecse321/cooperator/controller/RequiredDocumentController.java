@@ -124,8 +124,8 @@ public class RequiredDocumentController {
     @PostMapping(value = {"/gradeDocument", "/gradeDocument/"})
 
     public RequiredDocumentDto gradeDocument(@RequestParam(name = "documentId") int rdId,
-                                          @RequestParam(name = "grade") Boolean accepted,
-                                          @RequestParam(name = "instructorEmail") String instructorEmail) throws IllegalArgumentException {
+                                             @RequestParam(name = "grade") Boolean accepted,
+                                             @RequestParam(name = "instructorEmail") String instructorEmail) throws IllegalArgumentException {
         UserEntity user = userEntityService.getUserEntityByEmail(instructorEmail);
         if (user == null || !(user instanceof TermInstructor))
             return null;

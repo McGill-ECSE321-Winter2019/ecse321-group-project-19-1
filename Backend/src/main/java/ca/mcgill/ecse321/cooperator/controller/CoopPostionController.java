@@ -22,14 +22,16 @@ public class CoopPostionController {
 
     @Autowired
     CoopPositionService coopPositionService;
+
     /**
      * Create a new coop position in the database.
-     * @param   startDate   The start date of the coop.
-     * @param   endDate     The end date of the coop.
-     * @param   description Textual description of the coop position
-     * @param   term        As string representing the term when the coop is happening.
-     * @param   studentId   The id of the student participating in this coop
-     * @return  A CoopPositionDto representing the newly added coop
+     *
+     * @param startDate   The start date of the coop.
+     * @param endDate     The end date of the coop.
+     * @param description Textual description of the coop position
+     * @param term        As string representing the term when the coop is happening.
+     * @param studentId   The id of the student participating in this coop
+     * @return A CoopPositionDto representing the newly added coop
      */
     @PostMapping(value = {"/createCoop", "/createCoop/"})
     public CoopPositionDto createCoopPostion(@RequestParam(name = "startDate") @DateTimeFormat(pattern = "MM/dd/yyyy") Date startDate,
@@ -39,12 +41,13 @@ public class CoopPostionController {
                                              @RequestParam(name = "studentId") int studentId) throws IllegalArgumentException {
         Student student = studentService.getStudentById(studentId);
         CoopPosition coopPostion = coopPositionService.createCoopPosition(startDate, endDate, description, location, term, student);
-        studentService.offerCoopPostionToStudent(student.getStudentID(),coopPostion.getCoopId());
+        studentService.offerCoopPostionToStudent(student.getStudentID(), coopPostion.getCoopId());
         return DtoConverters.convertToDto(coopPostion);
     }
 
     /**
      * Get all coop positions in the system.
+     *
      * @return a list of CoopPositionDto representing all coop positions in the system.
      */
     @GetMapping(value = {"/coops", "/coops/"})
@@ -58,19 +61,19 @@ public class CoopPostionController {
 
     /**
      * Set the status of a coop position
-     * @param cpId The Id of the coop for which the status is being set.
+     *
+     * @param cpId   The Id of the coop for which the status is being set.
      * @param status The status to be used.
      * @return A CoopPositionDto representing the modified coop, null if a coop with such Id cannot be found.
      * @throws IllegalArgumentException
      */
     @PostMapping(value = {"/setCoopStatus", "/setCoopStatus/"})
-    public CoopPositionDto adjudicateCoop(@RequestParam(name = "coopId") int cpId, @RequestParam(name="status")Status status)
+    public CoopPositionDto adjudicateCoop(@RequestParam(name = "coopId") int cpId, @RequestParam(name = "status") Status status)
             throws IllegalArgumentException {
         CoopPosition cp = coopPositionService.getById(cpId);
-        if(cp==null)
+        if (cp == null)
             return null;
         else cp.setStatus(status);
         return DtoConverters.convertToDto(cp);
     }
-
 }

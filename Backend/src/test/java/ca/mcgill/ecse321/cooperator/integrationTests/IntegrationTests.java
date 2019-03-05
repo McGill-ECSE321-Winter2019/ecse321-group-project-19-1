@@ -91,7 +91,7 @@ public class IntegrationTests {
     @Test
     public void testGradeDocument() {
         try {
-            // creating sudents
+            // creating student
             JSONObject s = SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
                     "firstName=" + "mia" + "&lastName=" + "zhou");
             int s_Id = s.getInt("studentId");
@@ -114,7 +114,42 @@ public class IntegrationTests {
             fail();
         }
     }
-//
+
+    @Test
+    public void testEmployerEvaluation() {
+        try {
+            String evaluation = "Yo, good job dawg!";
+
+            // creating student
+            JSONObject s = SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
+                    "firstName=" + "carl" + "&lastName=" + "alkhoury");
+            int s_Id = s.getInt("studentId");
+
+            // Create coop position
+            JSONObject cp = SendRequests.sendRequest("POST", BASE_URL, "/createCoop",
+                    "startDate=05/01/2018" + "&endDate=05/01/2019" + "&description=google" + "&location=murica"
+                            + "&term=inator" + "&studentId=" + s_Id);
+            int cp_Id = cp.getInt("coopID");
+
+            // Create an employer
+            JSONObject e = SendRequests.sendRequest("POST", BASE_URL, "/createEmployer");
+            int e_Id = e.getInt("employerId");
+
+            // Create employer contract
+            JSONObject contract = SendRequests.sendRequest("POST", BASE_URL, "/createEmployerContract",
+                    "name=googleOffer" + "&dueDate=02/01/2019" + "&coopId=" + cp_Id + "&employerId=" + e_Id);
+
+            int doc_Id = contract.getInt("documentId");
+
+            // Evaluate the coop through the contract
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            fail();
+        }
+    }
+
 //    @Test
 //    public void testViewGrade() {
 //        try {
@@ -127,7 +162,7 @@ public class IntegrationTests {
 //        }
 //
 //    }
-//
+
 //    @Test
 //    public void testAdjudicateCoop() {
 //        try {
