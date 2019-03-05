@@ -23,7 +23,7 @@ import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class IntegrationTestGrading {
+public class TestGrading {
 	@Mock
 	private RequiredDocumentRepository requiredDocumentRepository;
 	@Mock
