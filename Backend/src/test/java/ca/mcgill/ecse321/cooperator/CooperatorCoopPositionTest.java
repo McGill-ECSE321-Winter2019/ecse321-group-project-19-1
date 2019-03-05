@@ -133,22 +133,22 @@ public class CooperatorCoopPositionTest{
 
 	@Test
 	public void testCoopQueryFound() {
-		assertEquals(COOP_KEY, coopPositionService.getCoopPositionById(COOP_KEY).getCoopId());
-		assertEquals(TermInstructorSet, coopPositionService.getCoopPositionById(COOP_KEY).getTermInstructor());
-		assertEquals(student, coopPositionService.getCoopPositionById(COOP_KEY).getStudent());
-		assertEquals(RequiredDocumentSet, coopPositionService.getCoopPositionById(COOP_KEY).getRequiredDocument());
-		assertEquals(Tester, coopPositionService.getCoopPositionById(COOP_KEY).getDescription());
-		assertEquals(Tester, coopPositionService.getCoopPositionById(COOP_KEY).getTerm());
-		assertEquals(Tester, coopPositionService.getCoopPositionById(COOP_KEY).getLocation());
-		assertEquals(startDate, coopPositionService.getCoopPositionById(COOP_KEY).getStartDate());
-		assertEquals(endDate, coopPositionService.getCoopPositionById(COOP_KEY).getEndDate());
-		assertEquals(CourseSet, coopPositionService.getCoopPositionById(COOP_KEY).getUsefulCourses());
+		assertEquals(COOP_KEY, coopPositionService.getById(COOP_KEY).getCoopId());
+		assertEquals(TermInstructorSet, coopPositionService.getById(COOP_KEY).getTermInstructor());
+		assertEquals(student, coopPositionService.getById(COOP_KEY).getStudent());
+		assertEquals(RequiredDocumentSet, coopPositionService.getById(COOP_KEY).getRequiredDocument());
+		assertEquals(Tester, coopPositionService.getById(COOP_KEY).getDescription());
+		assertEquals(Tester, coopPositionService.getById(COOP_KEY).getTerm());
+		assertEquals(Tester, coopPositionService.getById(COOP_KEY).getLocation());
+		assertEquals(startDate, coopPositionService.getById(COOP_KEY).getStartDate());
+		assertEquals(endDate, coopPositionService.getById(COOP_KEY).getEndDate());
+		assertEquals(CourseSet, coopPositionService.getById(COOP_KEY).getUsefulCourses());
 	}
 	
 	
 	@Test
 	public void testStudentQueryNotFound() {
-		assertNull(coopPositionService.getCoopPositionById(WRONG_COOP_KEY));
+		assertNull(coopPositionService.getById(WRONG_COOP_KEY));
 	}
 	
 	@Test

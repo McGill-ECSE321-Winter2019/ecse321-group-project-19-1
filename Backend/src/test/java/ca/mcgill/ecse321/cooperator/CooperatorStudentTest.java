@@ -69,7 +69,7 @@ public class CooperatorStudentTest{
 	@Before
 	public void setUpMocks() {
 		student = mock(Student.class);
-		student = studentService.createStudent();
+		student = studentService.createStudent("yoyo","yaya");
 		expectedList.add(student);
 	}
 	

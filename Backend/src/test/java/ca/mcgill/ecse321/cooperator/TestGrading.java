@@ -95,7 +95,7 @@ public class TestGrading {
 			if (invocation.getArgument(0).equals(DOC_KEY)) {
 				Report rdoc = new Report();
 				rdoc.setAccepted(true);
-				rdoc.setCoopPosition(coopPositionService.getCoopPositionById(COOP_KEY));
+				rdoc.setCoopPosition(coopPositionService.getById(COOP_KEY));
 				rdoc.setDocumentId(DOC_KEY);
 				return rdoc;
 			} else {
@@ -108,7 +108,7 @@ public class TestGrading {
 			if (invocation.getArgument(0).equals(PERSON_KEY)) {
 				TermInstructor ti = new TermInstructor();
 				Set<CoopPosition> cps = new HashSet<>();
-				cps.add(coopPositionService.getCoopPositionById(COOP_KEY));
+				cps.add(coopPositionService.getById(COOP_KEY));
 				ti.setCoopPosition(cps);
 				ti.setEmail(PERSON_KEY);
 				return ti;
@@ -161,7 +161,7 @@ public class TestGrading {
 
 	@Test
 	public void testCoopQueryFound() {
-		assertEquals(COOP_KEY, coopPositionService.getCoopPositionById(COOP_KEY).getCoopId());
+		assertEquals(COOP_KEY, coopPositionService.getById(COOP_KEY).getCoopId());
 	}
 
 	@Test
