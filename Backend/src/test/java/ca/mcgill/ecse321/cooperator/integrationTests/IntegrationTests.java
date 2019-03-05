@@ -70,7 +70,7 @@ public class IntegrationTests {
             JSONObject s2 = SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
                     "firstName=" + "andre" + "&lastName=" + "kaba");
 
-            // creating coop position for students s1,s3,s4 (not s2 for testGetProblematic)
+            // creating coop position for students 1 and 2
             JSONObject cp1 = SendRequests.sendRequest("POST", BASE_URL, "/createCoop",
                     "startDate=02/01/2018" + "&endDate=02/01/2019" + "&description=hello" + "&location=montreal"
                             + "&term=fall" + "&studentId=" + s1_id);
@@ -95,10 +95,14 @@ public class IntegrationTests {
             JSONObject s = SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
                     "firstName=" + "mia" + "&lastName=" + "zhou");
             int s_Id = s.getInt("studentId");
+
+            // create a coop
             JSONObject cp = SendRequests.sendRequest("POST", BASE_URL, "/createCoop",
                     "startDate=05/01/2018" + "&endDate=05/01/2019" + "&description=world" + "&location=montreal"
                             + "&term=fall" + "&studentId=" + s_Id);
             int cp_Id = cp.getInt("coopID");
+
+            // create a term instructor
             JSONObject ti = SendRequests.sendRequest("POST", BASE_URL, "/createTermInstructor/" + EMAIL,
                     "firstName=sophie" + "&lastName=Deng" + "&password=123");
             JSONObject doc = SendRequests.sendRequest("POST", BASE_URL, "/createForm",
@@ -160,8 +164,8 @@ public class IntegrationTests {
     @Test
     public void testCourseRanking() {
         try {
-            String course_name1="CRAP101";
-            String course_name2="ECSE321";
+            String course_name1 = "CRAP101";
+            String course_name2 = "ECSE321";
 
             // creating student
             JSONObject s = SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
@@ -176,11 +180,11 @@ public class IntegrationTests {
 
             // Create course 1
             JSONObject course1 = SendRequests.sendRequest("POST", BASE_URL, "/createCourse",
-                    "courseName="+course_name1);
+                    "courseName=" + course_name1);
 
             // Create course 2
             JSONObject course2 = SendRequests.sendRequest("POST", BASE_URL, "/createCourse",
-                    "courseName="+course_name2);
+                    "courseName=" + course_name2);
             System.out.println(course2);
             int course2_Id = course2.getInt("courseId");
 
@@ -190,54 +194,49 @@ public class IntegrationTests {
 
             // Get all the courses without sorting
             JSONArray all_courses = SendRequests.sendRequestArray("GET", BASE_URL, "/courses");
-            assertEquals(course_name1,all_courses.getJSONObject(0).getString("courseName"));
-            assertEquals(course_name2,all_courses.getJSONObject(1).getString("courseName"));
+            assertEquals(course_name1, all_courses.getJSONObject(0).getString("courseName"));
+            assertEquals(course_name2, all_courses.getJSONObject(1).getString("courseName"));
 
             // Get a sorted view of the courses
             JSONArray sorted_all_courses = SendRequests.sendRequestArray("GET", BASE_URL, "/ranking");
-            assertEquals(course_name2,sorted_all_courses.getJSONObject(0).getString("courseName"));
-            assertEquals(course_name1,sorted_all_courses.getJSONObject(1).getString("courseName"));
+            assertEquals(course_name2, sorted_all_courses.getJSONObject(0).getString("courseName"));
+            assertEquals(course_name1, sorted_all_courses.getJSONObject(1).getString("courseName"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
             fail();
         }
     }
-//    @Test
-//    public void testAdjudicateCoop() {
-//        try {
-//            int[] arr = RESTtestDatabaseSetup.databaseSetup();
-//            joResponse = SendRequests.sendRequest("POST", BASE_URL, "/setCoopStatus",
-//                    "coopId=" + arr[1] + "&status=COMPLETED");
-//            System.out.println("ADJUDICATE_COOP: " + joResponse.toString());
-//            assertEquals("COMPLETED", joResponse.getString("status"));
-//        } catch (RuntimeException e) {
-//            System.out.println(e.getMessage());
-//            e.printStackTrace();
-//            fail();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    @Test
-//    public void testRateCourse() {
-//        try {
-//            int[] arr = RESTtestDatabaseSetup.databaseSetup();
-//            joResponse = SendRequests.sendRequest("POST", BASE_URL, "/rateCourse", "courseName=ECSE321" + "&coopId=" + arr[1] + "&useful=True");
-//            System.out.println("RATED_COURSE: " + joResponse.toString());
-//            assertNotEquals(null, joResponse.getString("coopPositions"));
-//            assertEquals(arr[1], joResponse.getString("coopPositions"));
-//        } catch (JSONException e) {
-//            fail();
-//        } catch (RuntimeException e) {
-//            System.out.println(e.getMessage());
-//            e.printStackTrace();
-//            fail();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
+    @Test
+    public void testAdjudicateCoop() {
+        try {
+            final String PASSWORD = "strong";
+            // creating student
+            JSONObject s = SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
+                    "firstName=" + "mia" + "&lastName=" + "zhou");
+            int s_Id = s.getInt("studentId");
+
+            // Create a coop position
+            JSONObject cp = SendRequests.sendRequest("POST", BASE_URL, "/createCoop",
+                    "startDate=06/02/2018" + "&endDate=05/01/2022" + "&description=goodtimes" + "&location=toronto"
+                            + "&term=lala" + "&studentId=" + s_Id);
+            int cp_Id = cp.getInt("coopID");
+
+            // Create a program manager
+            JSONObject pm = SendRequests.sendRequest("POST", BASE_URL, "/createProgramManager" + EMAIL,
+                    "firstName=sophie" + "&lastName=Deng" + "&password=" + PASSWORD);
+            String pm_email = s.getString("email");
+
+            // Adjudicate the problematic status of a student through the academic program manager
+
+            // Assert that the coop is completed
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            fail();
+        }
+    }
 }
 

@@ -75,7 +75,7 @@ public class Student {
 
     @Transient
     public Boolean isProblematic() {
-        if (coopPosition.size() == 0) {
+        if (coopPosition.size() == 0 || isMissingRequiredDocument()) {
             problematic = true;
         } else {
             problematic = false;

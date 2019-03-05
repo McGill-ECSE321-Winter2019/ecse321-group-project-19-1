@@ -1,7 +1,9 @@
 package ca.mcgill.ecse321.cooperator.controller;
 
+import ca.mcgill.ecse321.cooperator.dto.ProgramManagerDto;
 import ca.mcgill.ecse321.cooperator.dto.TermInstructorDto;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
+import ca.mcgill.ecse321.cooperator.model.ProgramManager;
 import ca.mcgill.ecse321.cooperator.model.TermInstructor;
 import ca.mcgill.ecse321.cooperator.model.UserEntity;
 import ca.mcgill.ecse321.cooperator.services.CoopPositionService;
@@ -57,6 +59,25 @@ public class UserEntityController {
             throws IllegalArgumentException {
         TermInstructor termInstructor = userEntityService.createTermInstructor(firstName, lastName, email, password);
         return DtoConverters.convertToDto(termInstructor);
+    }
+
+    /**
+     * Create a new program manager in the system
+     * @param firstName first name of the program manager
+     * @param lastName last name of the program manager
+     * @param password password of program manager
+     * @param email email of program manager
+     * @return the new created program manager
+     * @throws IllegalArgumentException
+     */
+    @PostMapping(value = {"/createProgramManager/{email}", "/createProgramManager/{email}/"})
+    public ProgramManagerDto createProgramManager(@RequestParam("firstName") String firstName,
+                                                  @RequestParam("lastName") String lastName,
+                                                  @RequestParam("password") String password,
+                                                  @PathVariable("email") String email)
+            throws IllegalArgumentException {
+        ProgramManager pm = userEntityService.createProgramManager(firstName, lastName, email, password);
+        return DtoConverters.convertToDto(pm);
     }
 
     /**

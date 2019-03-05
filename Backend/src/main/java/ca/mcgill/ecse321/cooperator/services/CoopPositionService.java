@@ -107,5 +107,12 @@ public class CoopPositionService {
         return true;
     }
 
+    @Transactional
+    public CoopPosition setCoopPostionStatus(CoopPosition cp, Status status) {
+        cp.setStatus(status);
+        coopPositionRepository.save(cp);
+        return cp;
+    }
+
 
 }

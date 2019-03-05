@@ -1,11 +1,10 @@
 package ca.mcgill.ecse321.cooperator.controller;
 
 import ca.mcgill.ecse321.cooperator.dto.CoopPositionDto;
-import ca.mcgill.ecse321.cooperator.model.CoopPosition;
-import ca.mcgill.ecse321.cooperator.model.Status;
-import ca.mcgill.ecse321.cooperator.model.Student;
+import ca.mcgill.ecse321.cooperator.model.*;
 import ca.mcgill.ecse321.cooperator.services.CoopPositionService;
 import ca.mcgill.ecse321.cooperator.services.StudentService;
+import ca.mcgill.ecse321.cooperator.services.UserEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +21,9 @@ public class CoopPostionController {
 
     @Autowired
     CoopPositionService coopPositionService;
+
+    @Autowired
+    UserEntityService userEntityService;
 
     /**
      * Create a new coop position in the database.
@@ -68,12 +70,15 @@ public class CoopPostionController {
      * @throws IllegalArgumentException
      */
     @PostMapping(value = {"/setCoopStatus", "/setCoopStatus/"})
-    public CoopPositionDto adjudicateCoop(@RequestParam(name = "coopId") int cpId, @RequestParam(name = "status") Status status)
+    public CoopPositionDto adjudicateCoop(@RequestParam(name = "coopId") int cpId,
+                                          @RequestParam(name = "status") Status status,
+                                          @RequestParam(name = "programManagerEmail") String pmEmail,
+                                          @RequestParam(name = "programManagerPassword") String pmPassword)
             throws IllegalArgumentException {
-        CoopPosition cp = coopPositionService.getById(cpId);
-        if (cp == null)
+        UserEntity ui = userEntityService.getUserEntityByEmail(pmEmail);
+        if (ui == null || !(ui instanceof ProgramManager) || !pmPassword.equals(ui.getPassword()))
             return null;
-        else cp.setStatus(status);
-        return DtoConverters.convertToDto(cp);
+        CoopPosition cp = coopPositionService.getById(cpId);
+        return DtoConverters.convertToDto(coopPositionService.setCoopPostionStatus(cp, status));
     }
 }
