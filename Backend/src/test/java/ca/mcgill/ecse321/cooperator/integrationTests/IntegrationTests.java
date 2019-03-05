@@ -46,20 +46,20 @@ public class IntegrationTests {
         studentRepo.deleteAll();
     }
 
-//    @Test
-//    public void TestAddingCourse() {
-//        try {
-//            joResponse = SendRequests.sendRequest("POST", BASE_URL, "/createCourse", "courseName=" + COURSE_NAME);
-//            System.out.println("Received: " + joResponse.toString());
-//            assertEquals(COURSE_NAME, joResponse.getString("courseName"));
-//        } catch (RuntimeException e) {
-//            System.out.println(e.getMessage());
-//            e.printStackTrace();
-//            fail();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @Test
+    public void testCourseCreation() {
+        try {
+            joResponse = SendRequests.sendRequest("POST", BASE_URL, "/createCourse", "courseName=" + COURSE_NAME);
+            System.out.println("Received: " + joResponse.toString());
+            assertEquals(COURSE_NAME, joResponse.getString("courseName"));
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            fail();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 //	@Test
