@@ -1,10 +1,6 @@
 package ca.mcgill.ecse321.cooperator;
 
-import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
-import ca.mcgill.ecse321.cooperator.dao.CourseRepository;
-import ca.mcgill.ecse321.cooperator.dao.EmployerRepository;
-import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
-import ca.mcgill.ecse321.cooperator.dao.UserEntityRepository;
+import ca.mcgill.ecse321.cooperator.dao.*;
 import ca.mcgill.ecse321.cooperator.model.*;
 import ca.mcgill.ecse321.cooperator.services.*;
 
@@ -55,6 +51,9 @@ public class TestCooperatorService {
 	private RequiredDocumentRepository requiredDocumentRepository;
 
 	@Autowired
+	private StudentRepository studentRepository;
+
+	@Autowired
 	private CoopPositionRepository coopPositionRepository;
 
 	@Before
@@ -65,6 +64,7 @@ public class TestCooperatorService {
 		employerRepository.deleteAll();
 		coopPositionRepository.deleteAll();
 		userEntityRepository.deleteAll();
+		studentRepository.deleteAll();
 	}
 
 	@Test

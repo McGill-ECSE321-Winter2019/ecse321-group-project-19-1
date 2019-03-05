@@ -1,35 +1,28 @@
-package ca.mcgill.ecse321.cooperator.integrationTests;
-
-import static org.junit.Assert.fail;
-
-import org.json.JSONObject;
-
-public class RESTtestDatabaseSetup {
-	private static String BASE_URL = "http://cooperator-backend-260.herokuapp.com";
-	private static String EMAIL = "yoyo@gmail.com";
-
+//package ca.mcgill.ecse321.cooperator.integrationTests;
+//
+//import static org.junit.Assert.fail;
+//
+//import org.json.JSONObject;
+//
+//public class RESTtestDatabaseSetup {
+//	private static String BASE_URL = "http://cooperator-backend-260.herokuapp.com";
+//	private static String EMAIL = "yoyo@gmail.com";
+//
 //	public static int[] databaseSetup() {
 //		int[] arr = new int[5];
 //		try {
-//			// creating students
-//			JSONObject s1 = SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
-//					"firstName=" + "max" + "&lastName=" + "brodeur");
-//			JSONObject s2 = SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
-//					"firstName=" + "andre" + "&lastName=" + "kaba");
+//
 //			JSONObject s3 = SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
 //					"firstName=" + "mia" + "&lastName=" + "zhou");
 //			JSONObject s4 = SendRequests.sendRequest("POST", BASE_URL, "/createStudent",
 //					"firstName=" + "carl" + "&lastName=" + "elkhoury");
-//			
+//
 //			int s1_ID = s1.getInt("studentId");
 //			int s2_ID = s2.getInt("studentId");
 //			int s3_ID = s3.getInt("studentId");
 //			int s4_ID = s4.getInt("studentId");
-//			
-//			// creating coop position for students s1,s3,s4 (not s2 for testGetProblematic)
-//			JSONObject cp1 = SendRequests.sendRequest("POST", BASE_URL, "/createCoop",
-//					"startDate=02/01/2018" + "&endDate=02/01/2019" + "&description=hello" + "&location=montreal"
-//							+ "&term=fall" + "&studentId=" + s1_ID);
+//
+//
 //			JSONObject cp3 = SendRequests.sendRequest("POST", BASE_URL, "/createCoop",
 //					"startDate=05/01/2018" + "&endDate=05/01/2019" + "&description=world" + "&location=montreal"
 //							+ "&term=fall" + "&studentId=" + s3_ID);
@@ -51,21 +44,21 @@ public class RESTtestDatabaseSetup {
 //			JSONObject ti = SendRequests.sendRequest("POST", BASE_URL, "/createTermInstructor/" + EMAIL,
 //					"firstName=sophie" + "&lastName=Deng" + "&password=123");
 //			System.out.println("TERM_INSTRUCTOR: " + ti.toString());
-//			
+////
 //			//Assign coop to ti
 //			JSONObject assign = SendRequests.sendRequest("POST", BASE_URL, "/assignCoop",
 //					"email=" +EMAIL+ "&coopId=" +cp1_ID);
 //			System.out.println("TERM_INSTRUCTOR: " + assign.toString());
-//			
+//
 //			//Create courses
 //			JSONObject c1 = SendRequests.sendRequest("POST", BASE_URL, "/createCourse",
 //					"courseName="+"ECSE321");
 //			JSONObject c2 = SendRequests.sendRequest("POST", BASE_URL, "/createCourse",
 //					"courseName="+"ECSE310");
-//			
+//
 //			System.out.println("Course 1: " + c1.toString());
 //			System.out.println("Course 2: " + c2.toString());
-//			
+//
 //			//Putting info of s1 in an array because needed for tests
 //			arr[0] = s1_ID;
 //			arr[1] = cp1_ID;
@@ -83,4 +76,4 @@ public class RESTtestDatabaseSetup {
 //		return arr;
 //
 //	}
-}
+//}
