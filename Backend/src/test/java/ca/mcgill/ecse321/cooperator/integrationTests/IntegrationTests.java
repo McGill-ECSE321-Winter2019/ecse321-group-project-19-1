@@ -225,14 +225,13 @@ public class IntegrationTests {
             int cp_Id = cp.getInt("coopID");
 
             // Create a program manager
-            JSONObject pm = SendRequests.sendRequest("POST", BASE_URL, "/createProgramManager",
+            JSONObject pm = SendRequests.sendRequest("POST", BASE_URL, "/createProgramManager/"+EMAIL,
                     "firstName=sophie" + "&lastName=Deng" + "&password=" + PASSWORD);
             String pm_email = pm.getString("email");
 
             // Adjudicate the problematic status of a student through the academic program manager
-            JSONObject new_coop = SendRequests.sendRequest("POST", BASE_URL, "/setCoopStatus" + EMAIL,
+            JSONObject new_coop = SendRequests.sendRequest("POST", BASE_URL, "/setCoopStatus",
                     "coopId="+cp_Id + "&status="+ Status.ACCEPTED + "&programManagerEmail=" + EMAIL+"&programManagerPassword="+PASSWORD);
-
             String new_coop_status = new_coop.getString("status");
             // Assert that the coop is completed
             assertEquals(Status.ACCEPTED.toString(),new_coop_status);

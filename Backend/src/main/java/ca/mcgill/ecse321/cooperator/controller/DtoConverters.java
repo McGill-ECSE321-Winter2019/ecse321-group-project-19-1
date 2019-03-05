@@ -75,7 +75,7 @@ public class DtoConverters {
     public static EmployerContractDto convertToDto(EmployerContract ec) {
         CheckArg(ec);
         return new EmployerContractDto(ec.getDocumentId(), ec.getName(), ec.getDueDate(), ec.getSubmitted(),
-                ec.getAccepted(), ec.getCoopPosition().getCoopId(), ec.getEmployer().getEmployerID(),ec.getEvaluation());
+                ec.getAccepted(), ec.getCoopPosition().getCoopId(), ec.getEmployer().getEmployerID(), ec.getEvaluation());
     }
 
     /**
@@ -152,7 +152,7 @@ public class DtoConverters {
                 tiDtos.add(convertToDto(instructor));
         }
         CoopPositionDto cpDto = new CoopPositionDto(cp.getCoopId(), cp.getDescription(), cp.getStartDate(),
-                cp.getEndDate(), cp.getLocation(), cp.getTerm(), cp.getStudent().getStudentID(), tiDtos);
+                cp.getEndDate(), cp.getLocation(), cp.getTerm(), cp.getStudent().getStudentID(), tiDtos, cp.getStatus());
         return cpDto;
     }
 

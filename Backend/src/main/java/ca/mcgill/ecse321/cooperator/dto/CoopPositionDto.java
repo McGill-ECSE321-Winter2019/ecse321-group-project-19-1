@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CoopPositionDto {
     private Integer coopId;
-    private Status status;
+    private Status status = Status.PENDING;
     private String description;
     private String term;
     private Date startDate;
@@ -53,7 +53,7 @@ public class CoopPositionDto {
 
     // Constructor with term instructor
     public CoopPositionDto(Integer id, String desc, Date start, Date end, String location, String term,
-                           Integer studentId, List<TermInstructorDto> termInst) {
+                           Integer studentId, List<TermInstructorDto> termInst,Status status) {
         this.coopId = id;
         this.description = desc;
         this.startDate = start;
@@ -62,6 +62,7 @@ public class CoopPositionDto {
         this.location = location;
         this.studentId = studentId;
         this.termInstructor = termInst;
+        this.status=status;
     }
 
     public Integer getCoopID() {
