@@ -34,6 +34,9 @@ public class CoursesService {
     
     @Transactional
     public Course rateCourse(String courseName,int coopId,boolean useful) {
+    	if (!Utilities.checkNotEmpty(courseName))
+            throw new IllegalArgumentException("course with empty name");
+    	
     	Course c =courseRepository.findCourseByCourseName(courseName);
     	CoopPosition cp = cpRepository.findByCoopId(coopId);
     	Set<CoopPosition> cps = new HashSet<>();
