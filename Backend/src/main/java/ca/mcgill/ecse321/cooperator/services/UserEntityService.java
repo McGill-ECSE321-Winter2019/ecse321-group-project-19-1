@@ -45,7 +45,7 @@ public class UserEntityService {
         if (user != null && user.getPassword().equals(password)) {
             return user;
         }
-        return null;
+        throw new NullPointerException("No such user.");
     }
 
     @Transactional
@@ -93,6 +93,6 @@ public class UserEntityService {
             userEntityRepository.save(t);
             return t;
         }
-        return null;
+        throw new NullPointerException("No such term instructor.");
     }
 }
