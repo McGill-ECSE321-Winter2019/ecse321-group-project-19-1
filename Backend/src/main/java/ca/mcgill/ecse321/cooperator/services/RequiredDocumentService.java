@@ -61,7 +61,7 @@ public class RequiredDocumentService {
         RequiredDocument rdoc = requiredDocumentRepository.findById(docId);
         if (rdoc == null) {
             System.err.println("Document(id= " + docId + ") not found");
-            return null;
+            throw new NullPointerException("Document not found");
         }
         rdoc.setAccepted(accepted);
         requiredDocumentRepository.save(rdoc);
@@ -118,7 +118,7 @@ public class RequiredDocumentService {
     @Transactional
     public EmployerContract setEvaluation(EmployerContract ec, Employer e, String evaluation) {
         if (ec.getEmployer() == null || !ec.getEmployer().equals(e))
-            return null;
+            throw new NullPointerException("No such employer.");
         ec.setEvaluation(evaluation);
         requiredDocumentRepository.save(ec);
         return ec;

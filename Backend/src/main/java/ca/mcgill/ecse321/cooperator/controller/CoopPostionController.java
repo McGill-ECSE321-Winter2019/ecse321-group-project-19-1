@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 @CrossOrigin(origins = "*")
 @RestController
 public class CoopPostionController {
@@ -77,8 +79,10 @@ public class CoopPostionController {
             throws IllegalArgumentException {
         UserEntity ui = userEntityService.getUserEntityByEmail(pmEmail);
         if (ui == null || !(ui instanceof ProgramManager) || !pmPassword.equals(ui.getPassword()))
-            return null;
+        	throw new IllegalArgumentException("Error");
         CoopPosition cp = coopPositionService.getById(cpId);
         return DtoConverters.convertToDto(coopPositionService.setCoopPostionStatus(cp, status));
     }
+    
+    
 }

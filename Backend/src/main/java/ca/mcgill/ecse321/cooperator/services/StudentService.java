@@ -55,13 +55,13 @@ public class StudentService {
         if (student == null || coop == null || doc == null) {
             System.err.println("Trying to submit a document(id= " + docId + ") to coop(id= " + coopId + ") by student(id= "
                     + studnetId + ") failed!");
-            return null;
+            throw new NullPointerException("No such student or coop or doc.");
         }
         if (student.submitDocument(coop, doc)) {
             requiredDocumentRepository.save(doc);
             return doc;
         }
-        return null;
+        throw new NullPointerException("Document not submitted.");
     }
 
     @Transactional
@@ -69,7 +69,7 @@ public class StudentService {
         Student s = studentRepository.findById(studentId);
         CoopPosition cp = coopPositionRepository.findByCoopId(cpId);
         if (s == null || cp == null)
-            return null;
+        	 throw new NullPointerException("No such student or coop.");
         s.offerCoopPostion(cp);
         studentRepository.save(s);
         return s;

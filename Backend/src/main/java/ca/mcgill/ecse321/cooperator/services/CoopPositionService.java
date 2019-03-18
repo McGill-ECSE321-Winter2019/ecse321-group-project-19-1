@@ -97,7 +97,7 @@ public class CoopPositionService {
     }
 
     @Transactional
-    public Boolean addRequiredDocumentToCoopPosition(int cpId, int rdId) {
+    public boolean addRequiredDocumentToCoopPosition(int cpId, int rdId) {
         RequiredDocument rd = requiredDocumentRepository.findById(rdId);
         CoopPosition cp = coopPositionRepository.findByCoopId(cpId);
         if (rd == null || cp == null)
@@ -113,6 +113,7 @@ public class CoopPositionService {
         coopPositionRepository.save(cp);
         return cp;
     }
+
 
 
 }
