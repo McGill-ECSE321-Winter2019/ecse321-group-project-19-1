@@ -94,6 +94,11 @@ public class CooperatorEmployerTest{
 		assertEquals(contracts, employerService.getById(EMPLOYER_KEY).getEmployerContract());
 	}
 	
+	@Test
+	public void testEmployerDeletion() {
+		assertEquals(true, employerService.deleteEmployer(EMPLOYER_KEY));
+	}
+	
 
 	
 	
