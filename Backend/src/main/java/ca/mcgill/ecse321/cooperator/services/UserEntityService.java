@@ -95,4 +95,13 @@ public class UserEntityService {
         }
         throw new NullPointerException("No such term instructor.");
     }
+    
+    @Transactional
+    public void deleteUserEntity(String email) {
+    	UserEntity ue = userEntityRepository.findUserEntityByEmail(email);
+    	if(ue == null) {
+    		throw new NullPointerException("No such user.");
+    	}
+    	userEntityRepository.deleteById(email);
+    }
 }

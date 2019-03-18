@@ -74,4 +74,13 @@ public class StudentService {
         studentRepository.save(s);
         return s;
     }
+    
+    @Transactional
+    public void deleteStudent(int studentId) {
+    	Student s = studentRepository.findById(studentId);
+    	if(s==null) {
+    		throw new NullPointerException("No such student.");
+    	} 
+    	studentRepository.deleteById(studentId);
+    }
 }
