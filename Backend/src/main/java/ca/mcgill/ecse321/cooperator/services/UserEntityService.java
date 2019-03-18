@@ -99,7 +99,7 @@ public class UserEntityService {
     }
     
     @Transactional
-    public void deleteUserEntity(String email) {
+    public boolean deleteUserEntity(String email) {
     	UserEntity ue = userEntityRepository.findUserEntityByEmail(email);
     	if(ue == null) {
     		throw new NullPointerException("No such user.");
@@ -116,6 +116,7 @@ public class UserEntityService {
     		}
     	}
     	userEntityRepository.deleteById(email);	
+    	return true;
     	
     }
 }

@@ -168,7 +168,7 @@ public class CooperatorCoopPositionTest{
 	}
 	
 	@Test
-	public void testDeleteCoopPosition() {
+	public void testCoopPositionDeletion() {
 		assertEquals(true, coopPositionService.deleteCoopPosition(COOP_KEY));
 		
 	}

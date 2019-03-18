@@ -32,11 +32,12 @@ public class EmployerService {
     }
     
     @Transactional
-    public void deleteEmployer(int employerId) {
+    public boolean deleteEmployer(int employerId) {
     	Employer e = employerRepository.findById(employerId);
     	if (e == null) {
     		throw new NullPointerException("No such employer.");
     	}
     	employerRepository.deleteById(employerId);
+    	return true;
     }
 }
