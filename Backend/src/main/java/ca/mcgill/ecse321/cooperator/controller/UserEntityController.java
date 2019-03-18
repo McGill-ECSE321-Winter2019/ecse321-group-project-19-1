@@ -85,17 +85,12 @@ public class UserEntityController {
 	 * 
 	 * @param email    of user
 	 * @param password of user
-	 * @return confirmation or error message
+	 * @return true = success
 	 */
 	@PostMapping(value = { "/deleteUserEntity/{email}", "/deleteUserEntity/{email}/" })
 	public boolean deleteUserEntity(@PathVariable("email") String email, @RequestParam("password") String password) {
-	
-		try {
-			userEntityService.login(email, password);
-			userEntityService.deleteUserEntity(email);
-		} catch (Exception e) {
-			return false;
-		}
+		userEntityService.login(email, password);
+		userEntityService.deleteUserEntity(email);
 		return true;
 
 	}

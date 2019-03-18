@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.NoResultException;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -89,16 +88,13 @@ public class CoopPostionController {
 
 	/**
 	 * delete a coop position
+	 * 
 	 * @param cpId coop position id
-	 * @return true = success; false = failure
+	 * @return true = success
 	 */
 	@PostMapping(value = { "/deleteCoopPosition", "/deleteCoopPosition/" })
 	public boolean deleteDocument(@RequestParam(name = "coopId") int cpId) {
-		try {
-			coopPositionService.deleteCoopPosition(cpId);
-		} catch (NullPointerException e) {
-			return false;
-		}
+		coopPositionService.deleteCoopPosition(cpId);
 		return true;
 	}
 

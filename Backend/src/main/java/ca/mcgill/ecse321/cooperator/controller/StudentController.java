@@ -3,7 +3,6 @@ package ca.mcgill.ecse321.cooperator.controller;
 import ca.mcgill.ecse321.cooperator.dto.RequiredDocumentDto;
 import ca.mcgill.ecse321.cooperator.dto.StudentDto;
 import ca.mcgill.ecse321.cooperator.model.Student;
-import ca.mcgill.ecse321.cooperator.model.UserEntity;
 import ca.mcgill.ecse321.cooperator.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -62,19 +61,16 @@ public class StudentController {
 			throws IllegalArgumentException {
 		return DtoConverters.convertToDto(studentService.submitRequiredDocumentToCoop(studentId, cpId, docId));
 	}
-	
+
 	/**
 	 * Deleting a student
-	 * @param studentId
-	 * @return true = success; false = fail
+	 * 
+	 * @param studentId: student id
+	 * @return true = success
 	 */
 	@PostMapping(value = { "/deleteStudent", "/deleteStudent/" })
 	public boolean deleteStudent(@RequestParam(name = "studentId") int studentId) {
-		try {
-			studentService.deleteStudent(studentId);
-		} catch (NullPointerException e) {
-			return false;
-		}
+		studentService.deleteStudent(studentId);
 		return true;
 
 	}
