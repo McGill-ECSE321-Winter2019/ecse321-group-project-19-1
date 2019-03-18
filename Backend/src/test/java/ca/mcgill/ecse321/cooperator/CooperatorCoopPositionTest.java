@@ -24,6 +24,7 @@ import ca.mcgill.ecse321.cooperator.services.CoopPositionService;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -164,6 +165,12 @@ public class CooperatorCoopPositionTest{
 	@Test
 	public void testFindTerm() {
 		assertEquals(Tester,coopPositionService.getCoopPositionsByTerm(Tester).get(0).getTerm());
+	}
+	
+	@Test
+	public void testDeleteCoopPosition() {
+		assertEquals(true, coopPositionService.deleteCoopPosition(COOP_KEY));
+		
 	}
 	
 
