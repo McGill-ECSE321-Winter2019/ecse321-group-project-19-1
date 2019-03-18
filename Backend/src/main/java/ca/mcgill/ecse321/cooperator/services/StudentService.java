@@ -24,6 +24,7 @@ public class StudentService {
     @Autowired
     RequiredDocumentRepository requiredDocumentRepository;
 
+    @Transactional
     public Student createStudent(String firstName, String lastName) {
         Student student = new Student(firstName, lastName);
         studentRepository.save(student);
@@ -73,5 +74,14 @@ public class StudentService {
         s.offerCoopPostion(cp);
         studentRepository.save(s);
         return s;
+    }
+    
+    @Transactional
+    public void deleteStudent(int studentId) {
+    	Student s = studentRepository.findById(studentId);
+    	if(s==null) {
+    		throw new NullPointerException("No such student.");
+    	} 
+    	studentRepository.deleteById(studentId);
     }
 }

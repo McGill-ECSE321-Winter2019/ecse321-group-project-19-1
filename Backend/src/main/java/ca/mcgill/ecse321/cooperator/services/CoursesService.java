@@ -5,6 +5,8 @@ import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.CourseRepository;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
 import ca.mcgill.ecse321.cooperator.model.Course;
+import ca.mcgill.ecse321.cooperator.model.Employer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,8 +18,10 @@ import java.util.Set;
 
 @Service
 public class CoursesService {
+	
     @Autowired
     CourseRepository courseRepository;
+    
     @Autowired
     CoopPositionRepository cpRepository;
 
@@ -56,5 +60,14 @@ public class CoursesService {
     @Transactional
     public Course getCourseByCourseId(int id) {
         return courseRepository.findByCourseId(id);
+    }
+    
+    @Transactional
+    public void deleteCourse(int courseId) {
+    	Course c = courseRepository.findByCourseId(courseId);
+    	if (c == null) {
+    		throw new NullPointerException("No such course.");
+    	}
+    	courseRepository.deleteById(courseId);
     }
 }
