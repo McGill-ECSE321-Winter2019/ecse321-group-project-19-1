@@ -109,7 +109,7 @@ public class UserEntityService {
     			for(CoopPosition cp : cps) {
     				//if coop position is on going, then cannot delete term instructor
     				if(cp.getEndDate().after(new Date())) { 
-    					throw new IllegalArgumentException("Cannot delete term instructor with on going coop positions.");
+    					throw new IllegalStateException("Cannot delete term instructor with on going coop positions.");
     				}
     			}
     		}
