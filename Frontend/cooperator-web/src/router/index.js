@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Cooperator from '@/components/Cooperator'
 import Login from '@/components/Login'
+import TiStudentView from '@/components/student.vue'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
-    }
+    },
+    {
+      path: '/TiStudentView',
+      name: 'TiStudentView',
+      component: TiStudentView
+    },
   ]
 })
