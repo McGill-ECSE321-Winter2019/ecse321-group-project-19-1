@@ -21,6 +21,15 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': config.dev.env
     }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Popper: ['popper.js', 'default'],
+      // In case you imported plugins individually, you must also require them here:
+      Util: "exports-loader?Util!bootstrap/js/dist/util",
+      Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",
+    }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
