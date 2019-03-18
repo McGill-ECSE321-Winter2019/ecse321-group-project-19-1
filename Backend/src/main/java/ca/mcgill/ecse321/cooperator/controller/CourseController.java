@@ -59,6 +59,15 @@ public class CourseController {
         return DtoConverters.convertToDto(coursesService.rateCourse(courseId, coopId));
     }
 
+    @PostMapping(value= {"/deleteCourse","/deleteCourse/"})
+	public boolean deleteDocument(@RequestParam(name="courseId")int cId){
+		try {
+			coursesService.deleteCourse(cId);
+		}catch(NullPointerException e) {
+			return false;
+		}
+		return true;
+	}
 
     /**
      * Get a sort list of all course based on the usefulness of a course measured by the number of times it's

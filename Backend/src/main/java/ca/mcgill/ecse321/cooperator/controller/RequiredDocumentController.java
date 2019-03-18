@@ -122,7 +122,6 @@ public class RequiredDocumentController {
      * @throws IllegalArgumentException
      */
     @PostMapping(value = {"/gradeDocument", "/gradeDocument/"})
-
     public RequiredDocumentDto gradeDocument(@RequestParam(name = "documentId") int rdId,
                                              @RequestParam(name = "grade") Boolean accepted,
                                              @RequestParam(name = "instructorEmail") String instructorEmail) throws IllegalArgumentException {
@@ -131,6 +130,21 @@ public class RequiredDocumentController {
             return null;
         return DtoConverters.convertToDto(requiredDocumentService.gradeDocument(rdId, accepted));
     }
+    
+    /**
+     * deleting a required document by id
+     * @param docId
+     * @return true = success, false= fail
+     */
+    @PostMapping(value= {"/deleteDocument","/deleteDocument/"})
+	public boolean deleteDocument(@RequestParam(name="documentId")int docId){
+		try {
+			requiredDocumentService.deleteRequiredDocument(docId);
+		}catch(NullPointerException e) {
+			return false;
+		}
+		return true;
+	}
 
     /**
      * View a document in the system

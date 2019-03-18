@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -102,6 +103,18 @@ public class UserEntityService {
     	if(ue == null) {
     		throw new NullPointerException("No such user.");
     	}
-    	userEntityRepository.deleteById(email);
+    	if(ue instanceof TermInstructor) {
+    		Set<CoopPosition> cps = ((TermInstructor) ue).getCoopPosition();
+    		if(cps.size() > 0) {
+    			for(CoopPosition cp : cps) {
+    				//if coop position is on going, then cannot delete term instructor
+    				if(cp.getEndDate().after(new Date())) { 
+    					throw new IllegalArgumentException("Cannot delete term instructor with on going coop positions.");
+    				}
+    			}
+    		}
+    	}
+    	userEntityRepository.deleteById(email);	
+    	
     }
 }

@@ -30,4 +30,13 @@ public class EmployerService {
     public List<Employer> getAllEmployers() {
         return (List<Employer>) employerRepository.findAll();
     }
+    
+    @Transactional
+    public void deleteEmployer(int employerId) {
+    	Employer e = employerRepository.findById(employerId);
+    	if (e == null) {
+    		throw new NullPointerException("No such employer.");
+    	}
+    	employerRepository.deleteById(employerId);
+    }
 }

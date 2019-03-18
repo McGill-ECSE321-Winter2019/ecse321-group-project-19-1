@@ -150,6 +150,14 @@ public class RequiredDocumentService {
         }
         throw new IllegalArgumentException("[Internal error] Failed to create a new document.");
     }
-
+    
+    @Transactional
+    public void deleteRequiredDocument(int docId) {
+    	RequiredDocument rd = requiredDocumentRepository.findById(docId);
+    	if(rd == null) {
+    		throw new NullPointerException("No such document.");
+    	}
+    	requiredDocumentRepository.deleteById(docId);
+    }
 
 }

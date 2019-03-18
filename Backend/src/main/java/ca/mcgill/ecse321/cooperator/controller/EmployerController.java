@@ -54,4 +54,19 @@ public class EmployerController {
         Employer e = employerService.getById(eId);
         return DtoConverters.convertToDto(requiredDocumentService.setEvaluation(ec, e, evaluation));
     }
+    
+    /**
+     * deleting an employer by id
+     * @param eId
+     * @return true = success; false = fail
+     */
+    @PostMapping(value= {"/deleteEmployer","/deleteEmployer/"})
+	public boolean deleteDocument(@RequestParam(name="demployerId")int eId){
+		try {
+			employerService.deleteEmployer(eId);
+		}catch(NullPointerException e) {
+			return false;
+		}
+		return true;
+	}
 }

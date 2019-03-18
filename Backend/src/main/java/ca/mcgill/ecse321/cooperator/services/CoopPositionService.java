@@ -113,6 +113,15 @@ public class CoopPositionService {
         coopPositionRepository.save(cp);
         return cp;
     }
+    
+    @Transactional
+    public void deleteCoopPosition(int cpId) {
+    	CoopPosition cp = coopPositionRepository.findByCoopId(cpId);
+    	if (cp == null) {
+    		throw new NullPointerException("No such coop position.");
+    	}
+    	coopPositionRepository.deleteById(cpId);
+    }
 
 
 

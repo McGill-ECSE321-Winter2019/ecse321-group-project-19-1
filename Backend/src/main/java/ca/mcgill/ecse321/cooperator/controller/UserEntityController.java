@@ -93,7 +93,7 @@ public class UserEntityController {
 		try {
 			userEntityService.login(email, password);
 			userEntityService.deleteUserEntity(email);
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return false;
 		}
 		return true;
