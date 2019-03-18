@@ -86,6 +86,16 @@ public class TestCooperatorService {
 		assertEquals(name, allCourses.get(0).getCourseName());
 	}
 
+	@Test(expected=NullPointerException.class)
+	public void testNullLogin() {
+		// Must fail to login with wrong credentials
+				try {
+					userEntityService.login("hacker@mail.com", "Trying");
+					
+				} catch (IllegalArgumentException e) {
+					fail();
+				}
+	}
 	@Test
 	public void testLogin() {
 
@@ -99,7 +109,7 @@ public class TestCooperatorService {
 		UserEntity user = null;
 		try {
 			user = userEntityService.createProgramManager(firstName, lastName, email, password);
-		} catch (IllegalArgumentException e) {
+		} catch (Exception e) {
 			fail();
 		}
 
@@ -108,12 +118,6 @@ public class TestCooperatorService {
 		assertFalse(userEntityService.getAllUserEntities().isEmpty());
 		assertEquals(email, allUsers.get(0).getEmail());
 
-		// Must fail to login with wrong credentials
-		try {
-			assertEquals(null, userEntityService.login("hacker@mail.com", "Trying"));
-		} catch (IllegalArgumentException e) {
-			fail();
-		}
 
 		// Should work since credentials are correct
 		try {
@@ -146,7 +150,7 @@ public class TestCooperatorService {
 
 		try {
 			userEntityService.createTermInstructor(firstName, lastName, email, password);
-		} catch (IllegalArgumentException e) {
+		} catch (Exception e) {
 			fail();
 		}
 		assertEquals(1, userEntityService.getAllUserEntities().size());
@@ -160,7 +164,7 @@ public class TestCooperatorService {
 
 		try {
 			student = createStudent();
-		} catch (IllegalArgumentException e) {
+		} catch (NullPointerException e) {
 			fail();
 		}
 		Date startDate = new Date(5);
@@ -169,7 +173,7 @@ public class TestCooperatorService {
 		try {
 			coop = coopPositionService.createCoopPosition(startDate, endDate, "Test Course", "Test", "Test",
 					studentService.getAllStudents().get(0));
-		} catch (IllegalArgumentException e) {
+		} catch (Exception e) {
 			fail();
 		}
 		assertEquals(1, coopPositionService.getAllCoopPositions().size());
@@ -182,7 +186,7 @@ public class TestCooperatorService {
 		CoopPosition coopPosition = createCoopPosition();
 		try {
 			requiredDocumentService.createForm("Form Test", new Date(1), coopPosition);
-		} catch (IllegalArgumentException e) {
+		} catch (Exception e) {
 			fail();
 		}
 
@@ -199,7 +203,7 @@ public class TestCooperatorService {
 			createEmployer();
 			requiredDocumentService.createEmployerContract("Employer Contract test", new Date(), coopPosition,
 					employerService.getAllEmployers().get(0));
-		} catch (IllegalArgumentException e) {
+		} catch (NullPointerException e) {
 			fail();
 		}
 
