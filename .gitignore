@@ -1,6 +1,5 @@
 ## Gradle generated
 .gradle/
-build/
 out/
 bin/
 
