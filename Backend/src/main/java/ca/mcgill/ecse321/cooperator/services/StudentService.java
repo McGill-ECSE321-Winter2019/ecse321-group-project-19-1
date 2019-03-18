@@ -24,6 +24,7 @@ public class StudentService {
     @Autowired
     RequiredDocumentRepository requiredDocumentRepository;
 
+    @Transactional
     public Student createStudent(String firstName, String lastName) {
         Student student = new Student(firstName, lastName);
         studentRepository.save(student);

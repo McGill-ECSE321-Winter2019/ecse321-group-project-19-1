@@ -18,6 +18,7 @@ import java.util.Set;
 @CrossOrigin(origins = "*")
 @RestController
 public class UserEntityController {
+	
 	@Autowired
 	UserEntityService userEntityService;
 

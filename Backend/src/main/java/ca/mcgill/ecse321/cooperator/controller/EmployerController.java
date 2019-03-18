@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 @RestController
 public class EmployerController {
+	
 	@Autowired
 	EmployerService employerService;
 

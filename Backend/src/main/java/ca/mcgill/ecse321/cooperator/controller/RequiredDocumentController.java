@@ -20,6 +20,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RestController
 public class RequiredDocumentController {
+	
 	@Autowired
 	RequiredDocumentService requiredDocumentService;
 

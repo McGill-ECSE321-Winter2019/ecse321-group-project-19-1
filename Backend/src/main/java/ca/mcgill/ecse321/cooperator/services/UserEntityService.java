@@ -17,6 +17,7 @@ import java.util.Set;
 
 @Service
 public class UserEntityService {
+	
     @Autowired
     UserEntityRepository userEntityRepository;
 
