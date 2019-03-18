@@ -1,5 +1,5 @@
 <template>
-<div id="cooperator">
+<div id="login">
   <div class="site-wrap" style="height:100%">
       <div class="site-mobile-menu">
         <div class="site-mobile-menu-header">
@@ -46,7 +46,8 @@
 
       <footer class="site-footer">
         <div class="container">
-            <div class="col-md-12 text-center">
+          
+            <div class="text-center">
               <div class="border-top pt-5">
                 <p>
                   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -57,6 +58,7 @@
                   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </p>
               </div>
+            
           </div>
         </div>
       </footer>
