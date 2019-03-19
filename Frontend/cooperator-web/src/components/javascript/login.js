@@ -19,17 +19,6 @@ export default {
             response: '',
         }
     },
-    created: function () {
-        // Initializing people from backend
-        AXIOS.get(`/persons`)
-            .then(response => {
-                // JSON responses are automatically parsed.
-                this.people = response.data
-            })
-            .catch(e => {
-                this.errorLogin = e;
-            });
-    },
     methods: {
         login(username, password) {
             if (username == '') {
@@ -57,12 +46,18 @@ export default {
                     this.username = this.$cookie.get("username") || ''
                     this.password = this.$cookie.get("password") || ''
                     if (this.response == 'TermInstructor') {
+                        localStorage.setItem('loggedIn', true)
+                        vm.$forceUpdate();
                         this.$router.push('/TiStudentView')
+                        
                     }
                     if (this.response == "ProgramManager") {
+                        localStorage.setItem('loggedIn', true)
+                        vm.$forceUpdate();
                         this.$router.push('/ProgramManager')
+                        
                     }
-                    this.errorLogin = response
+                    this.errorLogin = response.data
                     console.log(this.response)
 
                 })

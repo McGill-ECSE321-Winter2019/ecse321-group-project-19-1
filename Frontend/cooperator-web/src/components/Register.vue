@@ -13,14 +13,31 @@
             </div>
         </div>
 
-        <div class="half right">
+        <div class="half right" data-aos="fade-up">
             <div class="container" align="center">
-                <div class="login-grid" style="padding-right:10%">
+                    <select v-model="selected">
+                    <option value="Select">Select</option>
+                    <option value="TermInstructor">Term Instructor</option>
+                    <option value="ProgramManager">Program Manager</option>
+                    </select>
+                    <hr>
                     <input
                         class="login-text"
                         type="text"
-                        placeholder="Username"
-                        v-model="username"
+                        placeholder="First Name"
+                        v-model="firstName"
+                        />
+                    <input
+                        class="login-text"
+                        type="text"
+                        placeholder="Last Name"
+                        v-model="lastName"
+                    />
+                    <input
+                        class="login-text"
+                        type="text"
+                        placeholder="Email"
+                        v-model="email"
                         />
                     <input
                         class="login-text"
@@ -28,17 +45,19 @@
                         placeholder="Password"
                         v-model="password"
                         />
-                    <input @click="login(username, password)"
+                    <input @click="register(firstName, lastName, email, password, selected)"
                         type="submit"
                         value="Register"
                         class="btn btn-primary py-2 px-4 text-white"
                         />
-                    </div>
+                        <br>
+                        <span v-if="errorRegister" style="color:red">Error: {{errorRegister}} </span>
+                        <span v-if="response" style="color:green">Success: {{response}} </span>
                 </div>
             </div>
         </div>
     </div>
 </template>
 
-<script src="./javascript/login.js">
+<script src="./javascript/register.js">
 </script>

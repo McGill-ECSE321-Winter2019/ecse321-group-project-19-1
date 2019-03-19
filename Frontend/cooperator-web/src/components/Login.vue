@@ -19,7 +19,7 @@
                     <input
                         class="login-text"
                         type="text"
-                        placeholder="Username"
+                        placeholder="Email"
                         v-model="username"
                         />
                     <input
@@ -33,6 +33,8 @@
                         value="Login"
                         class="btn btn-primary py-2 px-4 text-white"
                         />
+                        <br>
+                        <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
                     </div>
                 </div>
             </div>
@@ -41,14 +43,3 @@
 </template>
 
 <script src="./javascript/login.js"></script>
-<script src="../style/js/jquery-3.3.1.min.js"></script>
-<script src="../style/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="../style/js/jquery-ui.js"></script>
-<script src="../style/js/popper.min.js"></script>
-<script src="../style/js/bootstrap.min.js"></script>
-<script src="../style/js/owl.carousel.min.js"></script>
-<script src="../style/js/jquery.stellar.min.js"></script>
-<script src="../style/js/jquery.countdown.min.js"></script>
-<script src="../style/js/jquery.magnific-popup.min.js"></script>
-<script src="../style/js/bootstrap-datepicker.min.js"></script>
-<script src="../style/js/aos.js"></script>

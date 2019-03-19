@@ -25,11 +25,14 @@
                                 <li>
                                     <router-link :to="{name: 'Home'}">Home</router-link>
                                 </li>
-                                <li>
+                                <li v-if="!loggedIn">
                                     <router-link :to="{name: 'Register'}">Register</router-link>
                                 </li>
-                                <li>
+                                <li v-if="!loggedIn">
                                     <router-link :to="{name: 'Login'}">Login</router-link>
+                                </li>
+                                <li v-if="loggedIn">
+                                    <router-link :to="{name: 'Logout'}">Logout</router-link>
                                 </li>
                             </ul>
                         </nav>
@@ -65,7 +68,13 @@
 
 <script>
 export default {
-    name: 'app'
+    name: 'app',
+    computed:{
+      loggedIn(){
+        console.log(localStorage.getItem('loggedIn'))
+        return localStorage.getItem('loggedIn')
+      }
+    }
 }
 </script>
 
