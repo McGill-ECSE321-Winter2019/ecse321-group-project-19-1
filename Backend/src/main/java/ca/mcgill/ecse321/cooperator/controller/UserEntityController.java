@@ -24,6 +24,32 @@ public class UserEntityController {
 
 	@Autowired
 	CoopPositionService coopPositionService;
+	
+	/***
+	 * This method check if the login information was valid
+	 * @param userEmail the email
+	 * @param userPassword the password
+	 * @return program manager, term instructor or something went wrong.
+	 * @throws IllegalArgumentException
+	 */
+	@PostMapping(value = { "/login/{email}/{password}", "/login/{email}/{password}/" })
+	public String login(@PathVariable("email") String userEmail,
+			@PathVariable("password") String userPassword) throws IllegalArgumentException {
+		UserEntity uentity;
+		try{
+			uentity = userEntityService.login(userEmail, userPassword);
+			if(uentity instanceof ProgramManager) {
+				return "ProgramManager";
+			}
+			if(uentity instanceof TermInstructor) {
+				return "TermInstructor";
+			}
+		}catch(Exception e){
+			return e.getMessage();
+		}
+		
+		return "Something went wrong";
+	}
 
 	/**
 	 * Assign coop to a term instructor
