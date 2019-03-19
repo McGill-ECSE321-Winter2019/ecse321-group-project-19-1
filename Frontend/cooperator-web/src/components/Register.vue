@@ -1,5 +1,5 @@
 <template>
-<div id="login">
+<div id="register">
 
     <div class="site-section site-hero inner">
         <div class="half left">
@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <div class="half right"  data-aos="fade-up">
+        <div class="half right">
             <div class="container" align="center">
                 <div class="login-grid" style="padding-right:10%">
                     <input
@@ -30,7 +30,7 @@
                         />
                     <input @click="login(username, password)"
                         type="submit"
-                        value="Login"
+                        value="Register"
                         class="btn btn-primary py-2 px-4 text-white"
                         />
                     </div>
@@ -40,15 +40,5 @@
     </div>
 </template>
 
-<script src="./javascript/login.js"></script>
-<script src="../style/js/jquery-3.3.1.min.js"></script>
-<script src="../style/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="../style/js/jquery-ui.js"></script>
-<script src="../style/js/popper.min.js"></script>
-<script src="../style/js/bootstrap.min.js"></script>
-<script src="../style/js/owl.carousel.min.js"></script>
-<script src="../style/js/jquery.stellar.min.js"></script>
-<script src="../style/js/jquery.countdown.min.js"></script>
-<script src="../style/js/jquery.magnific-popup.min.js"></script>
-<script src="../style/js/bootstrap-datepicker.min.js"></script>
-<script src="../style/js/aos.js"></script>
+<script src="./javascript/login.js">
+</script>

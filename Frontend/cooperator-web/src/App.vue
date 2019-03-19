@@ -11,6 +11,34 @@
             </div>
         </div>
 
+        <header class="site-navbar py-3" role="banner">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-11 col-xl-2">
+                        <h1 class="mb-0">
+                            <router-link :to="{name: 'Home'}" class="text-white h2 mb-0">Co<span class="text-primary">operator</span> </router-link>
+                        </h1>
+                    </div>
+                    <div class="col-12 col-md-10 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+                                <li>
+                                    <router-link :to="{name: 'Home'}">Home</router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: 'Register'}">Register</router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: 'Login'}">Login</router-link>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+
         <router-view></router-view>
 
         <footer class="site-footer">
@@ -42,5 +70,13 @@ export default {
 </script>
 
 <style>
-@import 'style/css/style.css';
+ @import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
+ @import 'style/fonts/icomoon/style.css';
+ @import 'style/css/bootstrap.min.css';
+ @import 'style/css/magnific-popup.css';
+ @import 'style/css/owl.theme.default.min.css';
+ @import 'style/css/bootstrap-datepicker.css';
+ @import 'style/fonts/flaticon/font/flaticon.css';
+ @import 'style/css/aos.css';
+ @import 'style/css/style.css';
 </style>
