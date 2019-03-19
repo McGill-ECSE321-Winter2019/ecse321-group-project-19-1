@@ -91,4 +91,20 @@ public class StudentController {
 		}
 		return studentsDto;
 	}
+	
+	/**
+	 * Get all students in the system
+	 * 
+	 * @return a list of StudentDto representing all students in the system
+	 * @throws IllegalArgumentException
+	 */
+	@GetMapping(value = { "/allStudents", "/allStudents/" })
+	public List<StudentDto> getAllStudents() throws IllegalArgumentException {
+		List<Student> students = studentService.getAllStudents();
+		List<StudentDto> studentsDto = new ArrayList<>();
+		for (Student s : students) {
+			studentsDto.add(DtoConverters.convertToDto(s));
+		}
+		return studentsDto;
+	}
 }

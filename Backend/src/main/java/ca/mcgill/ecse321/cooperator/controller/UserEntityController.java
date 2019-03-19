@@ -24,6 +24,32 @@ public class UserEntityController {
 
 	@Autowired
 	CoopPositionService coopPositionService;
+	
+	/***
+	 * This method check if the login information was valid
+	 * @param userEmail the email
+	 * @param userPassword the password
+	 * @return program manager, term instructor or something went wrong.
+	 * @throws IllegalArgumentException
+	 */
+	@PostMapping(value = { "/login/{email}/{password}", "/login/{email}/{password}/" })
+	public String login(@PathVariable("email") String userEmail,
+			@PathVariable("password") String userPassword) throws IllegalArgumentException {
+		UserEntity uentity;
+		try{
+			uentity = userEntityService.login(userEmail, userPassword);
+			if(uentity instanceof ProgramManager) {
+				return "ProgramManager";
+			}
+			if(uentity instanceof TermInstructor) {
+				return "TermInstructor";
+			}
+		}catch(Exception e){
+			return e.getMessage();
+		}
+		
+		return "Something went wrong";
+	}
 
 	/**
 	 * Assign coop to a term instructor
@@ -88,8 +114,8 @@ public class UserEntityController {
 	 * @param password of user
 	 * @return true = success
 	 */
-	@PostMapping(value = { "/deleteUserEntity/{email}", "/deleteUserEntity/{email}/" })
-	public boolean deleteUserEntity(@PathVariable("email") String email, @RequestParam("password") String password) {
+	@PostMapping(value = { "/deleteUserEntity", "/deleteUserEntity/" })
+	public boolean deleteUserEntity(@RequestParam("email") String email, @RequestParam("password") String password) {
 		userEntityService.login(email, password);
 		userEntityService.deleteUserEntity(email);
 		return true;
@@ -102,7 +128,7 @@ public class UserEntityController {
 	 * @return a list of TermInstructorDto representing all term instructors in the
 	 *         system.
 	 */
-	@GetMapping(value = { "/termInstructors", "/termInstructors/" })
+	@GetMapping(value = { "/allTermInstructors", "/allTermInstructors/" })
 	public List<TermInstructorDto> getAllTermInstructors() {
 		List<TermInstructorDto> instructorsDtos = new ArrayList<>();
 		for (UserEntity user : userEntityService.getAllUserEntities()) {
