@@ -8,7 +8,6 @@ import ca.mcgill.ecse321.cooperator.services.CoursesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.CollationElementIterator;
 import java.util.*;
 
 @CrossOrigin(origins = "*")

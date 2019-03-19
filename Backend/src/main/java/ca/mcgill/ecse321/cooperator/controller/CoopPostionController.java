@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -105,8 +107,27 @@ public class CoopPostionController {
 	 * @return a list of CoopPositionDto representing all coop positions in the
 	 *         system.
 	 */
+	@GetMapping(value = { "/allCurrentCoops", "/allCurrentCoops/" })
+	public List<CoopPositionDto> getAllCurrentCoops() {
+		List<CoopPositionDto> coopDtos = new ArrayList<>();
+		for(Student s: studentService.getAllStudents()) {
+			for(CoopPosition cp: s.getCoopPosition()) {
+				if(cp.getEndDate().after(new Date())){
+					coopDtos.add(DtoConverters.convertToDto(cp));
+				}
+			}
+		}
+		return coopDtos;
+	}
+	
+	/**
+	 * Get all coop positions in the system.
+	 *
+	 * @return a list of CoopPositionDto representing all coop positions in the
+	 *         system.
+	 */
 	@GetMapping(value = { "/allCoops", "/allCoops/" })
-	public List<CoopPositionDto> getAllCoop() {
+	public List<CoopPositionDto> getAllCoops() {
 		List<CoopPositionDto> coopDtos = new ArrayList<>();
 		for (CoopPosition cp : coopPositionService.getAllCoopPositions()) {
 			coopDtos.add(DtoConverters.convertToDto(cp));
