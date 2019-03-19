@@ -3,10 +3,10 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Cooperator from '@/components/Cooperator'
 import Login from '@/components/Login'
-import TiStudentView from '@/components/student'
-import ProgramManager from '@/components/ProgramManager'
 import Register from '@/components/Register'
 import Logout from '@/components/Logout'
+import PmStudent from '@/components/PmStudent'
+import ProgramManager from '@/components/ProgramManager.vue'
 
 Vue.use(Router)
 
@@ -28,9 +28,9 @@ export default new Router({
       component: Login
     },
     {
-      path: '/TiStudentView',
-      name: 'TiStudentView',
-      component: TiStudentView
+      path: '/PmStudent',
+      name: 'PmStudent',
+      component: PmStudent
     },
     {
       path: '/programManager',
