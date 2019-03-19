@@ -52,21 +52,6 @@ public class CoopPostionController {
 	}
 
 	/**
-	 * Get all coop positions in the system.
-	 *
-	 * @return a list of CoopPositionDto representing all coop positions in the
-	 *         system.
-	 */
-	@GetMapping(value = { "/coops", "/coops/" })
-	public List<CoopPositionDto> getAllCoop() {
-		List<CoopPositionDto> coopDtos = new ArrayList<>();
-		for (CoopPosition cp : coopPositionService.getAllCoopPositions()) {
-			coopDtos.add(DtoConverters.convertToDto(cp));
-		}
-		return coopDtos;
-	}
-
-	/**
 	 * Set the status of a coop position
 	 *
 	 * @param cpId   The Id of the coop for which the status is being set.
@@ -96,6 +81,37 @@ public class CoopPostionController {
 	public boolean deleteDocument(@RequestParam(name = "coopId") int cpId) {
 		coopPositionService.deleteCoopPosition(cpId);
 		return true;
+	}
+	
+	/**
+	 * Get all coop positions in the system for a specified student.
+	 *
+	 * @return a list of CoopPositionDto representing all coop positions in the
+	 *         system belonging to a specified student.
+	 */
+	@GetMapping(value = { "/coopsByStudent", "/coopsByStudent/" })
+	public List<CoopPositionDto> getCoopsByStudent(@RequestParam(value="studentId")int studentId) {
+		Student s = studentService.getStudentById(studentId);
+		List<CoopPositionDto> coopDtos = new ArrayList<>();
+		for (CoopPosition cp : s.getCoopPosition()) {
+			coopDtos.add(DtoConverters.convertToDto(cp));
+		}
+		return coopDtos;
+	}
+	
+	/**
+	 * Get all coop positions in the system.
+	 *
+	 * @return a list of CoopPositionDto representing all coop positions in the
+	 *         system.
+	 */
+	@GetMapping(value = { "/coops", "/coops/" })
+	public List<CoopPositionDto> getAllCoop() {
+		List<CoopPositionDto> coopDtos = new ArrayList<>();
+		for (CoopPosition cp : coopPositionService.getAllCoopPositions()) {
+			coopDtos.add(DtoConverters.convertToDto(cp));
+		}
+		return coopDtos;
 	}
 
 }
