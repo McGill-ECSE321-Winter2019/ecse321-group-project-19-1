@@ -114,8 +114,8 @@ public class UserEntityController {
 	 * @param password of user
 	 * @return true = success
 	 */
-	@PostMapping(value = { "/deleteUserEntity/{email}", "/deleteUserEntity/{email}/" })
-	public boolean deleteUserEntity(@PathVariable("email") String email, @RequestParam("password") String password) {
+	@PostMapping(value = { "/deleteUserEntity", "/deleteUserEntity/" })
+	public boolean deleteUserEntity(@RequestParam("email") String email, @RequestParam("password") String password) {
 		userEntityService.login(email, password);
 		userEntityService.deleteUserEntity(email);
 		return true;
@@ -128,7 +128,7 @@ public class UserEntityController {
 	 * @return a list of TermInstructorDto representing all term instructors in the
 	 *         system.
 	 */
-	@GetMapping(value = { "/termInstructors", "/termInstructors/" })
+	@GetMapping(value = { "/allTermInstructors", "/allTermInstructors/" })
 	public List<TermInstructorDto> getAllTermInstructors() {
 		List<TermInstructorDto> instructorsDtos = new ArrayList<>();
 		for (UserEntity user : userEntityService.getAllUserEntities()) {

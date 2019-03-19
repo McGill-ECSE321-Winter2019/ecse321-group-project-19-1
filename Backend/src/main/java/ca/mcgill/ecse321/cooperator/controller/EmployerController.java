@@ -8,10 +8,10 @@ import ca.mcgill.ecse321.cooperator.model.RequiredDocument;
 import ca.mcgill.ecse321.cooperator.services.EmployerService;
 import ca.mcgill.ecse321.cooperator.services.RequiredDocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -64,8 +64,22 @@ public class EmployerController {
 	 * @return true = success; false = fail
 	 */
 	@PostMapping(value = { "/deleteEmployer", "/deleteEmployer/" })
-	public boolean deleteDocument(@RequestParam(name = "demployerId") int eId) {
+	public boolean deleteDocument(@RequestParam(name = "employerId") int eId) {
 		employerService.deleteEmployer(eId);
 		return true;
+	}
+
+	/**
+	 * View all employers in the system
+	 *
+	 * @return a list of EmployerDto representing all employers in the system.
+	 */
+	@GetMapping(value = { "/allEmployers", "/allEmployers/" })
+	public List<EmployerDto> getAllCourses() {
+		List<EmployerDto> employerDtos = new ArrayList<>();
+		for (Employer employer : employerService.getAllEmployers()) {
+			employerDtos.add(DtoConverters.convertToDto(employer));
+		}
+		return employerDtos;
 	}
 }
