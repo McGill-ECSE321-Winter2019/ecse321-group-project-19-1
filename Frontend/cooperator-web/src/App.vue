@@ -26,6 +26,18 @@
                                 <li>
                                     <router-link :to="{name: 'Home'}">Home</router-link>
                                 </li>
+                                <li v-if="isPM">
+                                    <router-link :to="{name: 'PmStudent'}">Students</router-link>
+                                </li>
+                                <li v-if="isPM">
+                                    <router-link :to="{name: 'Courses'}">Courses</router-link>
+                                </li>
+                                <li v-if="isPM">
+                                    <router-link :to="{name: 'Coops'}">Coops</router-link>
+                                </li>
+                                <li v-if="isTI">
+                                    <router-link :to="{name: 'TiStudent'}">Students</router-link>
+                                </li>
                                 <li v-if="!loggedIn">
                                     <router-link :to="{name: 'Register'}">Register</router-link>
                                 </li>
@@ -70,23 +82,31 @@
 <script>
 export default {
     name: 'app',
-    computed:{
-      loggedIn(){
-        console.log(localStorage.getItem('loggedIn'))
-        return localStorage.getItem('loggedIn')
-      }
+    computed: {
+        loggedIn() {
+            console.log(localStorage.getItem('loggedIn'))
+            return (localStorage.getItem('loggedIn') == "TermInstructor" || localStorage.getItem('loggedIn') == "ProgramManager")
+        },
+        isPM() {
+            console.log(localStorage.getItem('loggedIn'))
+            return (localStorage.getItem('loggedIn') == "ProgramManager")
+        },
+        isTI() {
+            console.log(localStorage.getItem('loggedIn'))
+            return (localStorage.getItem('loggedIn') == "TermInstructor")
+        }
     }
 }
 </script>
 
 <style>
- @import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
- @import 'style/fonts/icomoon/style.css';
- @import 'style/css/bootstrap.min.css';
- @import 'style/css/magnific-popup.css';
- @import 'style/css/owl.theme.default.min.css';
- @import 'style/css/bootstrap-datepicker.css';
- @import 'style/fonts/flaticon/font/flaticon.css';
- @import 'style/css/aos.css';
- @import 'style/css/style.css';
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
+@import 'style/fonts/icomoon/style.css';
+@import 'style/css/bootstrap.min.css';
+@import 'style/css/magnific-popup.css';
+@import 'style/css/owl.theme.default.min.css';
+@import 'style/css/bootstrap-datepicker.css';
+@import 'style/fonts/flaticon/font/flaticon.css';
+@import 'style/css/aos.css';
+@import 'style/css/style.css';
 </style>
