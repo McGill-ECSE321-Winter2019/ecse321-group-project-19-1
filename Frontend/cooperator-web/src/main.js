@@ -11,6 +11,11 @@ import 'bootstrap'
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
+// Require dependencies
+var VueCookie = require('vue-cookie');
+// Tell Vue to use the plugin
+Vue.use(VueCookie);
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

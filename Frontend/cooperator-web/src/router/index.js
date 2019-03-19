@@ -4,6 +4,7 @@ import Hello from '@/components/Hello'
 import Cooperator from '@/components/Cooperator'
 import Login from '@/components/Login'
 import TiStudentView from '@/components/student.vue'
+import ProgramManager from '@/components/ProgramManager.vue'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/TiStudentView',
       name: 'TiStudentView',
       component: TiStudentView
+    },
+    {
+      path: '/ProgramManager',
+      name: 'ProgramManager',
+      component: ProgramManager
     },
   ]
 })
