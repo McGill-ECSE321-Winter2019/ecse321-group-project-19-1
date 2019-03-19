@@ -46,20 +46,17 @@ export default {
                     this.username = this.$cookie.get("username") || ''
                     this.password = this.$cookie.get("password") || ''
                     if (this.response == 'TermInstructor') {
-                        localStorage.setItem('loggedIn', true)
-                        vm.$forceUpdate();
-                        this.$router.push('/TiStudentView')
-                        
+                        localStorage.setItem('loggedIn', "TermInstructor")
+                        window.location.href = "/";           
                     }
-                    if (this.response == "ProgramManager") {
-                        localStorage.setItem('loggedIn', true)
-                        vm.$forceUpdate();
-                        this.$router.push('/ProgramManager')
-                        
+                    else if (this.response == "ProgramManager") {
+                        localStorage.setItem('loggedIn', "ProgramManager")
+                        window.location.href = "/";
                     }
-                    this.errorLogin = response.data
-                    console.log(this.response)
-
+                    else{
+                        this.errorLogin = response.data
+                        console.log(this.response)
+                    }
                 })
                 .catch(e => {
                     var errorMsg = e.message

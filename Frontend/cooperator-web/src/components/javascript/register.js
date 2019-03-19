@@ -52,6 +52,7 @@ export default {
                 this.errorRegister = errorMsg
                 return
             }
+            this.errorRegister = ''
             if(selected == "TermInstructor"){
                 AXIOS.post(`/createTermInstructor/` + email + "?lastName=" + lastName + "&firstName=" + firstName + "&password=" + password, {}, {})
                 .then(response => {
@@ -59,7 +60,6 @@ export default {
                     this.response = response.data
                     console.log(this.response)
                     this.response = "Term Instructor Created!"
-                    this.errorRegister = ''
                     this.firstName= ''
                     this.lastName= ''
                     this.email= ''
