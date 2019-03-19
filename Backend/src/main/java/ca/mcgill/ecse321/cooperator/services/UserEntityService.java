@@ -99,23 +99,13 @@ public class UserEntityService {
     }
     
     @Transactional
-    public void deleteUserEntity(String email) {
+    public boolean deleteUserEntity(String email) {
     	UserEntity ue = userEntityRepository.findUserEntityByEmail(email);
     	if(ue == null) {
     		throw new NullPointerException("No such user.");
     	}
-    	if(ue instanceof TermInstructor) {
-    		Set<CoopPosition> cps = ((TermInstructor) ue).getCoopPosition();
-    		if(cps.size() > 0) {
-    			for(CoopPosition cp : cps) {
-    				//if coop position is on going, then cannot delete term instructor
-    				if(cp.getEndDate().after(new Date())) { 
-    					throw new IllegalStateException("Cannot delete term instructor with on going coop positions.");
-    				}
-    			}
-    		}
-    	}
     	userEntityRepository.deleteById(email);	
+    	return true;
     	
     }
 }

@@ -63,11 +63,12 @@ public class CoursesService {
     }
     
     @Transactional
-    public void deleteCourse(int courseId) {
+    public boolean deleteCourse(int courseId) {
     	Course c = courseRepository.findByCourseId(courseId);
     	if (c == null) {
     		throw new NullPointerException("No such course.");
     	}
     	courseRepository.deleteById(courseId);
+    	return true;
     }
 }

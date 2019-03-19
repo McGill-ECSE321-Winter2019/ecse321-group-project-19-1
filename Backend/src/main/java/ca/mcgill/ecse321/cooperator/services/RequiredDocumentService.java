@@ -152,12 +152,13 @@ public class RequiredDocumentService {
     }
     
     @Transactional
-    public void deleteRequiredDocument(int docId) {
+    public boolean deleteRequiredDocument(int docId) {
     	RequiredDocument rd = requiredDocumentRepository.findById(docId);
     	if(rd == null) {
     		throw new NullPointerException("No such document.");
     	}
     	requiredDocumentRepository.deleteById(docId);
+    	return true;
     }
 
 }

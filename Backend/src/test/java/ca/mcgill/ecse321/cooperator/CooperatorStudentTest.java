@@ -106,4 +106,9 @@ public class CooperatorStudentTest{
 		assertEquals(NEW_STUDENT_STATUS, s.getProblematic());
 	}
 	
+	@Test
+	public void testStudentDeletion() {
+		assertEquals(true, studentService.deleteStudent(STUDENT_KEY));
+	}
+	
 }
