@@ -5,6 +5,7 @@ import Cooperator from '@/components/Cooperator'
 import Login from '@/components/Login'
 import PmStudent from '@/components/PmStudent.vue'
 import ProgramManager from '@/components/ProgramManager.vue'
+import Register from '@/components/Register.vue'
 
 Vue.use(Router)
 
@@ -12,7 +13,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
+      name: 'Home',
       component: Hello
     },
     {
@@ -31,9 +32,14 @@ export default new Router({
       component: PmStudent
     },
     {
-      path: '/ProgramManager',
+      path: '/programManager',
       name: 'ProgramManager',
       component: ProgramManager
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
     },
   ]
 })
