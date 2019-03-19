@@ -13,43 +13,34 @@ export default {
     data() {
         return {
           fields: {
-            first_name: {
+            firstName: {
               label: 'First Name',
               sortable: false
             },
-            last_name: {
+            lastName: {
               label: 'Last Name',
               sortable: true
             },
-            ID:{
+            studentId:{
               label: "ID",
               sortable: true
+            },
+            problematic:{
+              label: "Problematic",
+              sortable: false
             }
           },
 
-          students: [
-            {first_name: 'Max', last_name: 'Brodeur', ID: 260806240},
-            {first_name: 'Mia', last_name: 'Zhou', ID: 260806244},
-            {first_name: 'Andre', last_name: 'Kaba', ID: 260806437},
-            {first_name: 'Sophie', last_name: 'Deng', ID: 260806649},
-            {first_name: 'Tom', last_name: 'Temp', ID: 260806240},
-            {first_name: 'Emp', last_name: 'AAA', ID: 260806244},
-            {first_name: 'rick', last_name: 'Tandom', ID: 260806437},
-            {first_name: 'srah', last_name: 'Random', ID: 260806649},
-            {first_name: 'rick', last_name: 'People', ID: 260806240},
-            {first_name: 'lol', last_name: 'There', ID: 260806244},
-            {first_name: 'here', last_name: 'Aaron', ID: 260806437},
-            {first_name: 'there', last_name: 'Dude', ID: 260806649},
-          ]
+          students: []
         }
       },
 
-    //   created: function() {
-    //     // Initializing people from backend
-    //     AXIOS.get(`/allStudents`)
-    //       .then(response => {
-    //         // JSON responses are automatically parsed.
-    //         this.students = response.data;
-    //       })  
-    // }
+      created: function() {
+        // Initializing people from backend
+        AXIOS.get(`/problematicStudents`)
+          .then(response => {
+            // JSON responses are automatically parsed.
+            this.students = response.data;
+          })  
+    }
 }
