@@ -101,7 +101,7 @@ public class RequiredDocumentController {
 	 * @return a list of RequiredDocumentDto representing the requested required
 	 *         documents.
 	 */
-	@GetMapping(value = { "/requiredDocuments", "/requiredDocuments/" })
+	@GetMapping(value = { "/allRequiredDocuments", "/allRequiredDocuments/" })
 	public List<RequiredDocumentDto> getRequiredDocumentsByCoopPosition(@RequestParam(name = "coopId") int cpId) {
 		CoopPosition cp = coopPositionService.getById(cpId);
 		List<RequiredDocument> rdDto = requiredDocumentService.getRequiredDocumentByCoopPosition(cp);

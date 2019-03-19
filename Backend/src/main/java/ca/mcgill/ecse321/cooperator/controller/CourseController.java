@@ -39,7 +39,7 @@ public class CourseController {
 	 *
 	 * @return a list of CourseDto representing all courses in the system.
 	 */
-	@GetMapping(value = { "/courses", "/courses/" })
+	@GetMapping(value = { "/allCourses", "/allCourses/" })
 	public List<CourseDto> getAllCourses() {
 		List<CourseDto> coursesDto = new ArrayList<>();
 		for (Course course : coursesService.getAllCourses()) {
