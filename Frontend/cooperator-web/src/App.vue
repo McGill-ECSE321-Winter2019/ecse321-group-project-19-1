@@ -20,9 +20,9 @@
                             <router-link :to="{name: 'Home'}" class="text-white h2 mb-0">Co<span class="text-primary">operator</span> </router-link>
                         </h1>
                     </div>
-                    <div class="col-12 col-md-10 d-none d-xl-block">
+                    <div class="col-12 col-md-10">
                         <nav class="site-navigation position-relative text-right" role="navigation">
-                            <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+                            <ul class="site-menu js-clone-nav mx-auto">
                                 <li>
                                     <router-link :to="{name: 'Home'}">Home</router-link>
                                 </li>
@@ -50,7 +50,6 @@
                             </ul>
                         </nav>
                     </div>
-                    <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
                 </div>
             </div>
         </header>
@@ -97,6 +96,7 @@ export default {
         }
     }
 }
+
 </script>
 
 <style>
