@@ -2,8 +2,12 @@ package ca.mcgill.ecse321.cooperator.controller;
 
 import ca.mcgill.ecse321.cooperator.dto.RequiredDocumentDto;
 import ca.mcgill.ecse321.cooperator.dto.StudentDto;
+import ca.mcgill.ecse321.cooperator.model.CoopPosition;
 import ca.mcgill.ecse321.cooperator.model.Student;
+import ca.mcgill.ecse321.cooperator.model.TermInstructor;
 import ca.mcgill.ecse321.cooperator.services.StudentService;
+import ca.mcgill.ecse321.cooperator.services.UserEntityService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +20,9 @@ public class StudentController {
 
 	@Autowired
 	StudentService studentService;
+	
+	@Autowired
+	UserEntityService userEntityService;
 
 	/**
 	 * Create a new student in the system
@@ -74,6 +81,20 @@ public class StudentController {
 		return true;
 
 	}
+	
+	/**
+	 * Get one student of the system
+	 *
+	 * @return one StudentDto representing the specified student in the
+	 *         system
+	 * @throws IllegalArgumentException
+	 */
+	@GetMapping(value = { "/student", "/student/" })
+	public StudentDto getStudent(@RequestParam(name="studentId")int studentId) throws IllegalArgumentException {
+		Student s = studentService.getStudentById(studentId);
+		return DtoConverters.convertToDto(s);
+	}
+	
 
 	/**
 	 * Get all problematic students in the system
@@ -87,6 +108,23 @@ public class StudentController {
 		List<Student> students = studentService.getAllProblematicStudents();
 		List<StudentDto> studentsDto = new ArrayList<>();
 		for (Student s : students) {
+			studentsDto.add(DtoConverters.convertToDto(s));
+		}
+		return studentsDto;
+	}
+	
+	/**
+	 * Get all students in the system for a specified term instructor
+	 * 
+	 * @return a list of StudentDto representing all students in the system for a term instructor
+	 * @throws IllegalArgumentException
+	 */
+	@GetMapping(value = { "/allStudentsByTermInstructor", "/allStudentsByTermInstructor/" })
+	public List<StudentDto> getAllStudentsByTermInstructor(@RequestParam(name="email")String email) throws IllegalArgumentException {
+		TermInstructor ti = (TermInstructor) userEntityService.getUserEntityByEmail(email);
+		List<StudentDto> studentsDto = new ArrayList<>();
+		for (CoopPosition cp : ti.getCoopPosition()) {
+			Student s = cp.getStudent();
 			studentsDto.add(DtoConverters.convertToDto(s));
 		}
 		return studentsDto;
