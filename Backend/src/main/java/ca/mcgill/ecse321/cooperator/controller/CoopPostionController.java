@@ -105,7 +105,7 @@ public class CoopPostionController {
 	 * @return a list of CoopPositionDto representing all coop positions in the
 	 *         system.
 	 */
-	@GetMapping(value = { "/coops", "/coops/" })
+	@GetMapping(value = { "/allCoops", "/allCoops/" })
 	public List<CoopPositionDto> getAllCoop() {
 		List<CoopPositionDto> coopDtos = new ArrayList<>();
 		for (CoopPosition cp : coopPositionService.getAllCoopPositions()) {
