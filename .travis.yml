@@ -11,8 +11,6 @@ matrix:
     app: cooperator-backend-260
   # Frontend build
   - language: node_js
-    node_js:
-    - 3.5.2
     script:
     - npm install && npm run build
     provider: heroku
