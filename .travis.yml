@@ -12,7 +12,7 @@ matrix:
   # Frontend build
   - language: node_js
     script:
-    - npm install && npm run build
+    - cd Frontend/cooperator-web/ && npm install && npm run build
     provider: heroku
     api_key:
       secure: DXLeqj4FgSFQbpb9SelKr+8UK61dDZ66DzjTo+54olDPt0XZr+rVRe2a8pFlfLCVFqal+uufcs+sODAfCkKpBU9XqPWSbK18dEGrGlAgxwOvSZFIe6gwOstdZGfuvmpUCDzFCd5UdMt+wJjdJgyCiOFz4rsPyd8Euhv0XJNRyICsuPAIJSjlxu8CuWFh9Pv9zaloQANNnE8xpFxuKXW9xovC2AUrmv7NfFYBwUvPGhtkjFoirjOzhO51rsfYiTjdtQaEJ12SF3LWQtb+mwt9kscbA5+tJTDU4FGtTla6cOYI+Q4FFskVAqkQCVl0wXdxPcNcE4Xk1rNul2i2fqLXt4rGJsPtUTOfExxG3BNfuPTVtZ2vs5QFeBE+Xk4XYXU8e0BD4cBwhhfUaPE/9nXjzVr/7a+aZR+ZNcZYZuoggUK0T8/rqAGnzCm0lusnNQnIlnvFQ8wyYlGJqzkiJ+Aqn6mFkcW4NsQP6LaRoose29LBErXH4Dh9cfdsVwyEYUMDzDy6dAMvSxJZ4DJmmqeHxOUlQK/8PnZUS2G8sbF8gjYww7kQUoqNCt7FLYLZWQ/JYJ7uX23eUISJN2HcEwQKYHwn26VTBRDCgfmF8aZgK9RFsnqdqbHHvJsnowP+whzF95uALD8HAFEZeOLuCuIFlSpx8DJ31iswp+F18JtW7AY=
