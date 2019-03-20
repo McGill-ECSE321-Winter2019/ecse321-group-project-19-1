@@ -129,7 +129,13 @@ public class DtoConverters {
      */
     public static TermInstructorDto convertToDto(TermInstructor ti) {
         CheckArg(ti);
-        return new TermInstructorDto(ti.getFirstName(), ti.getLastName(), ti.getPassword(), ti.getEmail());
+        List<Integer> cpDtos = new ArrayList<>();
+        for(CoopPosition cp: ti.getCoopPosition()) {
+        	if (cp!= null) {
+        		cpDtos.add(cp.getCoopId());
+        	}
+        }
+        return new TermInstructorDto(ti.getFirstName(), ti.getLastName(), ti.getPassword(), ti.getEmail(),cpDtos);
     }
 
     /**
