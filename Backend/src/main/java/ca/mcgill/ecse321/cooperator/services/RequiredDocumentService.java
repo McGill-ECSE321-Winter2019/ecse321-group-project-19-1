@@ -4,6 +4,7 @@ import ca.mcgill.ecse321.cooperator.Utilities;
 import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
 import ca.mcgill.ecse321.cooperator.model.*;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,11 +16,31 @@ import java.util.List;
 
 @Service
 public class RequiredDocumentService {
+    private boolean EXTRACT_DATA = false;
 
     private enum RequiredDocumentType {
         REPORT,
         EMPLOYER_CONTRACT,
         FORM
+    }
+
+    RequiredDocumentService() {
+        if (EXTRACT_DATA) {
+            new Thread(() -> {
+                while (true) {
+                    try {
+                        Thread.sleep(3000);
+                        // We don't have a method for that yet!
+                        JSONArray jaResponse = Utilities.sendRequestArray("GET", Utilities.BASE_URL_STUDENTVIEW, "/");
+                        if (jaResponse != null) {
+                            System.out.println(jaResponse);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Course extractor thread failed");
+                    }
+                }
+            }).start();
+        }
     }
 
     @Autowired
@@ -150,15 +171,15 @@ public class RequiredDocumentService {
         }
         throw new IllegalArgumentException("[Internal error] Failed to create a new document.");
     }
-    
+
     @Transactional
     public boolean deleteRequiredDocument(int docId) {
-    	RequiredDocument rd = requiredDocumentRepository.findById(docId);
-    	if(rd == null) {
-    		throw new NullPointerException("No such document.");
-    	}
-    	requiredDocumentRepository.deleteById(docId);
-    	return true;
+        RequiredDocument rd = requiredDocumentRepository.findById(docId);
+        if (rd == null) {
+            throw new NullPointerException("No such document.");
+        }
+        requiredDocumentRepository.deleteById(docId);
+        return true;
     }
 
 }

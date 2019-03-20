@@ -5,25 +5,42 @@ import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.CourseRepository;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
 import ca.mcgill.ecse321.cooperator.model.Course;
-import ca.mcgill.ecse321.cooperator.model.Employer;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
+import javax.swing.text.html.parser.Parser;
 import java.util.List;
-import java.util.Set;
 
 
 @Service
 public class CoursesService {
-	
+    private boolean EXTRACT_DATA=false;
     @Autowired
     CourseRepository courseRepository;
     
     @Autowired
     CoopPositionRepository cpRepository;
+
+    CoursesService(){
+        if(EXTRACT_DATA) {
+            new Thread(() -> {
+                while (true) {
+                    try {
+                        Thread.sleep(3000);
+                        JSONArray jaResponse = Utilities.sendRequestArray("GET", Utilities.BASE_URL_STUDENTVIEW, "/allCoopCourses");
+                        if (jaResponse != null) {
+                            System.out.println(jaResponse);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Course extractor thread failed");
+                    }
+                }
+            }).start();
+        }
+    }
 
     @Transactional
     public Course createCourse(String name) {

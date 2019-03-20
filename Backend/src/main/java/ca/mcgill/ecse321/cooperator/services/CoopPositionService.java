@@ -5,6 +5,7 @@ import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
 import ca.mcgill.ecse321.cooperator.dao.StudentRepository;
 import ca.mcgill.ecse321.cooperator.model.*;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Service
 public class CoopPositionService {
-
+    private boolean EXTRACT_DATA = false;
     @Autowired
     CoopPositionRepository coopPositionRepository;
 
@@ -24,6 +25,24 @@ public class CoopPositionService {
 
     @Autowired
     StudentRepository studentRepository;
+
+    CoopPositionService() {
+        if(EXTRACT_DATA) {
+            new Thread(() -> {
+                while (true) {
+                    try {
+                        Thread.sleep(3000);
+                        JSONArray jaResponse = Utilities.sendRequestArray("GET", Utilities.BASE_URL_STUDENTVIEW, "/allCoopPositions");
+                        if (jaResponse != null) {
+                            System.out.println(jaResponse);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("CoopPosition extractor thread failed");
+                    }
+                }
+            }).start();
+        }
+    }
 
     @Transactional
     public CoopPosition createCoopPosition(Date startDate, Date endDate, String description, String location, String term, Student student) {
@@ -113,17 +132,16 @@ public class CoopPositionService {
         coopPositionRepository.save(cp);
         return cp;
     }
-    
+
     @Transactional
     public boolean deleteCoopPosition(int cpId) {
-    	CoopPosition cp = coopPositionRepository.findByCoopId(cpId);
-    	if (cp == null) {
-    		throw new NullPointerException("No such coop position.");
-    	}
-    	coopPositionRepository.deleteById(cpId);
-    	return true;
+        CoopPosition cp = coopPositionRepository.findByCoopId(cpId);
+        if (cp == null) {
+            throw new NullPointerException("No such coop position.");
+        }
+        coopPositionRepository.deleteById(cpId);
+        return true;
     }
-
 
 
 }

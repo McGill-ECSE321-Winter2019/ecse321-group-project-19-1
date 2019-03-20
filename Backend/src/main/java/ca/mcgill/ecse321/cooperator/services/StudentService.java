@@ -1,11 +1,13 @@
 package ca.mcgill.ecse321.cooperator.services;
 
+import ca.mcgill.ecse321.cooperator.Utilities;
 import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
 import ca.mcgill.ecse321.cooperator.dao.StudentRepository;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
 import ca.mcgill.ecse321.cooperator.model.RequiredDocument;
 import ca.mcgill.ecse321.cooperator.model.Student;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,7 @@ import java.util.List;
 
 @Service
 public class StudentService {
+    private boolean EXTRACT_DATA = false;
 
     @Autowired
     StudentRepository studentRepository;
@@ -23,6 +26,24 @@ public class StudentService {
 
     @Autowired
     RequiredDocumentRepository requiredDocumentRepository;
+
+    StudentService() {
+        if (EXTRACT_DATA) {
+            new Thread(() -> {
+                while (true) {
+                    try {
+                        Thread.sleep(3000);
+                        JSONArray jaResponse = Utilities.sendRequestArray("GET", Utilities.BASE_URL_STUDENTVIEW, "/allUsers");
+                        if (jaResponse != null) {
+                            System.out.println(jaResponse);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Extractor thread failed");
+                    }
+                }
+            }).start();
+        }
+    }
 
     @Transactional
     public Student createStudent(String firstName, String lastName) {
@@ -70,19 +91,19 @@ public class StudentService {
         Student s = studentRepository.findById(studentId);
         CoopPosition cp = coopPositionRepository.findByCoopId(cpId);
         if (s == null || cp == null)
-        	 throw new NullPointerException("No such student or coop.");
+            throw new NullPointerException("No such student or coop.");
         s.offerCoopPostion(cp);
         studentRepository.save(s);
         return s;
     }
-    
+
     @Transactional
     public boolean deleteStudent(int studentId) {
-    	Student s = studentRepository.findById(studentId);
-    	if(s==null) {
-    		throw new NullPointerException("No such student.");
-    	} 
-    	studentRepository.deleteById(studentId);
-    	return true;
+        Student s = studentRepository.findById(studentId);
+        if (s == null) {
+            throw new NullPointerException("No such student.");
+        }
+        studentRepository.deleteById(studentId);
+        return true;
     }
 }
