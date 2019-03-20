@@ -1,7 +1,5 @@
 {
   "scripts": {
-    "postinstall": "cd Frontend/cooperator-web/",
-    "install": "npm install",
-    "build": "npm run build"
+    "build": "cd Frontend/cooperator-web/ && npm install && npm run build"
   }
 }
