@@ -6,7 +6,7 @@
                 <div class="container" style="align:center">
                     <h1 class="page-title">Program Manager Students</h1>
                     <div id="table">
-                            <b-table class="info-table"  striped hover :items= "coops" :fields= "fields"/>
+                            <b-table class="info-table"  striped hover :items= "students" :fields= "fields"/>
                      </div>
                 </div>
             </div>

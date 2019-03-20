@@ -12,20 +12,26 @@ var AXIOS = axios.create({
 export default {
     data() {
         return {
-          
-          coops: [],
+          students: [],
 
           fields: {
-
-            coopID: {
-              label: 'CoopID',
+            firstName: {
+              label: 'FirstName',
               sortable: true
             },
-            student: {
-              label: 'StudentID',
+            lastName: {
+              label: 'LastName',
               sortable: true
             },
-            status:{
+            studentId:{
+              label: 'ID',
+              sortable: true
+            },
+            problematic:{
+              label: 'Problematic Status',
+              sortable: true
+            },
+            coopStatus:{
               label: 'Coop Status',
               sortable: true
             },
@@ -36,9 +42,9 @@ export default {
 
       created: function() {
         // Initializing people from backend
-        AXIOS.get(`/allCurrentCoops`)
+        AXIOS.get(`/allStudents`)
           .then(response => {
-            this.coops = response.data
+            this.students = response.data
               })
             }
     
