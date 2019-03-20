@@ -92,4 +92,24 @@ public class CoopPositionDto {
     public Status getStatus() {
         return status;
     }
+    
+    public String getDescription() {
+        return description;
+    }
+    
+    public Date getStartDate() {
+    	return startDate;
+    }
+
+    public Date getEndDate() {
+    	return endDate;
+    }
+    
+    public String getTerm() {
+    	return term;
+    }
+    
+    public String getLocation() {
+    	return location;
+    }
 }
