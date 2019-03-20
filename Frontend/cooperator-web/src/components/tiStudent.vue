@@ -2,20 +2,18 @@
 <div id="id">
 
     <div class="site-section site-hero inner">
-        <div class="half left">
             <div class="container" align="center">
-                <div class="row align-items-center" align="center">
-                    <div class="col-md-10" align="center" style="padding-left:10%">
-                        <span class="d-block mb-3 caption">ECSE 321</span>
-                        <h1 class="d-block mb-4">TI Student</h1>
+                <h2 align="center" class="page-title" >Ti Students</h2>
+                    
+            
                         <div id="table">
-                            <b-table class="info-table"  striped hover :items= "coops" :fields= "fields"/>
+                            <b-table class="info-table"  striped hover :items= "students" :fields= "fields"/>
                         </div>
-                    </div>
-                </div>
             </div>
         </div>
-    </div>
 
 </div>
 </template>
+
+<script src="./javascript/tiStudent.js">
+</script>
