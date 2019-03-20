@@ -34,7 +34,8 @@ export default {
             coopStatus :{
               label: 'Coop Status',
               sortable: true
-            },
+            }
+
           }
           
         }
@@ -50,8 +51,7 @@ export default {
             
         for(var i=0 ; i< this.students.length; i++){
           student = this.students[i];
-
-          student.coopStatus = student.coopPositions[0].status
+         student.coopStatus = student.coopPositions[0].status
            }
         }
     
