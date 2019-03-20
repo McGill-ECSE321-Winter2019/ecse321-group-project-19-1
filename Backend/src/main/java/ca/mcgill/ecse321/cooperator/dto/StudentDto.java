@@ -6,7 +6,7 @@ import java.util.List;
 public class StudentDto {
     private Integer studentID;
     private Boolean problematic;
-    private List<Integer> coopPositions;
+    private List<CoopPositionDto> coopPositions;
     private String firstName;
     private String lastName;
 
@@ -20,7 +20,7 @@ public class StudentDto {
         this(Integer.parseInt(sid), null, null, null, Collections.EMPTY_LIST);
     }
 
-    public StudentDto(Integer id, String firstName, String lastName, Boolean problematic, List<Integer> coopPositions) {
+    public StudentDto(Integer id, String firstName, String lastName, Boolean problematic, List<CoopPositionDto> coopPositions) {
         this(id);
         this.problematic = problematic;
         this.coopPositions = coopPositions;
@@ -37,15 +37,15 @@ public class StudentDto {
     }
 
     //Coop position
-    public List<Integer> getCoopPositions() {
+    public List<CoopPositionDto> getCoopPositions() {
         return coopPositions;
     }
 
-    public void setCoopPosition(List<Integer> cps) {
+    public void setCoopPosition(List<CoopPositionDto> cps) {
         this.coopPositions = cps;
     }
 
-    public void addCoopPosition(Integer cp) {
+    public void addCoopPosition(CoopPositionDto cp) {
         this.coopPositions.add(cp);
     }
 

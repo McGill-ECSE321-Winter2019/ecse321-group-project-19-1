@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.cooperator.services;
 
 import ca.mcgill.ecse321.cooperator.Utilities;
+import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.UserEntityRepository;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
 import ca.mcgill.ecse321.cooperator.model.ProgramManager;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -20,6 +22,9 @@ public class UserEntityService {
 	
     @Autowired
     UserEntityRepository userEntityRepository;
+    
+    @Autowired
+    CoopPositionRepository coopPositionRepository;
 
     private enum UserType {
         TERM_INSTRUCTOR,
@@ -88,10 +93,19 @@ public class UserEntityService {
         throw new IllegalArgumentException("[Internal error] Failed to create a new user.");
     }
 
+    @Transactional
     public UserEntity assignCoopToInstructor(TermInstructor ti, Set<CoopPosition> newCoopPositions) {
         UserEntity t = userEntityRepository.findUserEntityByEmail(ti.getEmail());
+        Set<TermInstructor> tis = new HashSet<>();
+        tis.add((TermInstructor)t);
+        for(CoopPosition cp: newCoopPositions) {
+        	if(cp!=null) {
+        		cp.setTermInstructor(tis);
+        		coopPositionRepository.save(cp);
+        	}
+        }
         if (t instanceof TermInstructor) {
-            ((TermInstructor) t).setCoopPosition(newCoopPositions);
+            ((TermInstructor) t).getCoopPosition().addAll(newCoopPositions);
             userEntityRepository.save(t);
             return t;
         }
