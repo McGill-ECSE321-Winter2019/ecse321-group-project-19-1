@@ -6,7 +6,8 @@ import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Logout from '@/components/Logout'
 import PmStudent from '@/components/PmStudent'
-import ProgramManager from '@/components/ProgramManager.vue'
+import ProgramManager from '@/components/ProgramManager'
+import Coops from '@/components/Coop'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/logout',
       name: 'Logout',
       component: Logout
+    },
+    {
+      path: '/Coops',
+      name: 'Coops',
+      component: Coops
     },
   ]
 })
