@@ -163,6 +163,11 @@ public class CooperatorRequiredDocumentsTest {
         document.setAccepted(!pastStatus);
         assertEquals(!pastStatus, document.getAccepted());
     }
+    
+    @Test
+	public void testRequiredDocumentDeletion() {
+		assertEquals(true, docService.deleteRequiredDocument(DOCUMENT_ID));
+	}
 
 
 }

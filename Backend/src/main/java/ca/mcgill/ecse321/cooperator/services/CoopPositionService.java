@@ -115,12 +115,13 @@ public class CoopPositionService {
     }
     
     @Transactional
-    public void deleteCoopPosition(int cpId) {
+    public boolean deleteCoopPosition(int cpId) {
     	CoopPosition cp = coopPositionRepository.findByCoopId(cpId);
     	if (cp == null) {
     		throw new NullPointerException("No such coop position.");
     	}
     	coopPositionRepository.deleteById(cpId);
+    	return true;
     }
 
 
