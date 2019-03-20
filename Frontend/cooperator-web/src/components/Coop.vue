@@ -28,17 +28,16 @@
             </div>
                     <div id="table">
                         <table>
-                            <tr v-for="coop in coops">
-                                <td>Coop : {{ coop.coopID }}</td>
-                                <td>
-                                    <ul>
-                                        <li v-for="ti in coop.termInstructor">
-                                            Instructor : {{ti.email}}
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        </table>
+                        <tr>
+                            <th>Coop ID</th>
+                            <th>Instructors</th>
+                        </tr>
+                        <tr v-for="coop in coops">
+                            <td>{{ coop.coopID }}</td>
+                            <td v-for="ti in coop.termInstructor">
+                                            {{ti.email}}</td>
+                        </tr>
+                    </table>
                     </div>
                 </div>
             </div>
