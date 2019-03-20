@@ -9,6 +9,7 @@ import PmStudent from '@/components/PmStudent'
 import ProgramManager from '@/components/ProgramManager'
 import Coops from '@/components/Coop'
 import Courses from '@/components/Courses'
+import TiStudent from '@/components/tiStudent'
 
 Vue.use(Router)
 
@@ -54,9 +55,15 @@ export default new Router({
       name: 'Coops',
       component: Coops
     },
-    {path: '/CourseRanking',
-    name: 'Courses',
-    component: Courses
+    {
+      path: '/CourseRanking',
+      name: 'Courses',
+      component: Courses
+    },
+    {
+      path: '/TiStudent',
+      name: 'TiStudent',
+      component: TiStudent
     }
     
   ]
