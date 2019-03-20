@@ -12,7 +12,11 @@ var AXIOS = axios.create({
 export default {
     data() {
         return {
+          
+          coops: [],
+
           fields: {
+
             coopID: {
               label: 'CoopID',
               sortable: true
@@ -21,33 +25,21 @@ export default {
               label: 'StudentID',
               sortable: true
             },
-            startDate:{
-              label: "Start Date",
+            status:{
+              label: 'Coop Status',
               sortable: true
             },
-            endDate:{
-              label: "End Date",
-              sortable: true
-            }
-          },
-
-          coops: []
+          }
+          
         }
       },
 
       created: function() {
         // Initializing people from backend
-        AXIOS.get(`/coops`)
+        AXIOS.get(`/allCurrentCoops`)
           .then(response => {
-            // JSON responses are automatically parsed.
-            this.coops = response.data;
-          })  
-    },
-
-    // methods:{
-    //   getStudent: function(studentID){
-    //     AXIOS.get(/)
-    //   }
-  //  }
+            this.coops = response.data
+              })
+            }
     
   }
