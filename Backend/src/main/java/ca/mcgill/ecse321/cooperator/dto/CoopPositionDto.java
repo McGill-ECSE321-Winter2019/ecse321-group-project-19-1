@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CoopPositionDto {
     private Integer coopId;
-    private Status status = Status.PENDING;
+    private Status status;
     private String description;
     private String term;
     private Date startDate;
@@ -19,16 +19,18 @@ public class CoopPositionDto {
     private List<CourseDto> courses;
 
     public CoopPositionDto() {
-
+    	status = Status.PENDING;
     }
 
     public CoopPositionDto(String sid) {
-        this(sid, null, null, null, null, null, null);
+        this(sid, null, null, null, null, null, null, null);
     }
 
     // Constructor without term instructor with string
     public CoopPositionDto(String sid, String desc, Date start, Date end, String location, String term,
-                           Integer studentId) {
+
+                           Integer studentId, Status s) {
+    	this();
         Integer id = Integer.parseInt(sid);
         this.coopId = id;
         this.description = desc;
@@ -42,7 +44,9 @@ public class CoopPositionDto {
 
     // Constructor without term instructor
     public CoopPositionDto(Integer id, String desc, Date start, Date end, String location, String term,
-                           Integer studentId) {
+
+                           Integer studentId, Status s) {
+    	this();
         this.coopId = id;
         this.description = desc;
         this.startDate = start;
@@ -56,7 +60,8 @@ public class CoopPositionDto {
     // Constructor with term instructor
     public CoopPositionDto(Integer id, String desc, Date start, Date end, String location, String term,
                            Integer studentId, List<TermInstructorDto> termInst,Status status) {
-        this.coopId = id;
+        this();
+    	this.coopId = id;
         this.description = desc;
         this.startDate = start;
         this.endDate = end;

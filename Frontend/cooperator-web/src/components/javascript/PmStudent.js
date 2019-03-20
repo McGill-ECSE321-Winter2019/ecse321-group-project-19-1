@@ -31,7 +31,7 @@ export default {
               label: 'Problematic Status',
               sortable: true
             },
-            coopStatus:{
+            coopStatus :{
               label: 'Coop Status',
               sortable: true
             },
@@ -46,6 +46,13 @@ export default {
           .then(response => {
             this.students = response.data
               })
-            }
+            
+            
+        for(var i=0 ; i< this.students.length; i++){
+          student = this.students[i];
+
+          student.coopStatus = student.coopPositions[0].status
+           }
+        }
     
   }
