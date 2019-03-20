@@ -129,4 +129,9 @@ public class CooperatorCourseTest{
 		assertTrue(coopPositionService.getById(COOP_KEY).getUsefulCourses().contains(courseService.getCourseByCourseId(COURSE_ID)));
 	}
 	
+	@Test
+	public void testCourseDeletion() {
+		assertEquals(true, courseService.deleteCourse(COURSE_ID));
+	}
+	
 }

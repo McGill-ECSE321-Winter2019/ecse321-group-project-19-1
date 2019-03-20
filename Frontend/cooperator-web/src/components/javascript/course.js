@@ -12,34 +12,21 @@ var AXIOS = axios.create({
 export default {
     data() {
         return {
-          
-          coops: [],
-
-          fields: {
-
-            coopID: {
-              label: 'CoopID',
-              sortable: true
-            },
-            student: {
-              label: 'StudentID',
-              sortable: true
-            },
-            status:{
-              label: 'Coop Status',
-              sortable: true
-            },
-          }
-          
+          courses: []
         }
       },
 
       created: function() {
         // Initializing people from backend
-        AXIOS.get(`/allCurrentCoops`)
+        AXIOS.get(`/ranking`)
           .then(response => {
-            this.coops = response.data
-              })
-            }
-    
-  }
+            // JSON responses are automatically parsed.
+            this.courses = response.data;
+          })  
+    },
+    methods: {
+        coopLength: function(course){
+            return course.coopPositions.length
+        }
+    }
+}

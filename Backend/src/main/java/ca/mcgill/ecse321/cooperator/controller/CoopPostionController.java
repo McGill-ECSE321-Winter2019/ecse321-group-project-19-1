@@ -8,7 +8,6 @@ import ca.mcgill.ecse321.cooperator.services.UserEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -52,21 +51,6 @@ public class CoopPostionController {
 	}
 
 	/**
-	 * Get all coop positions in the system.
-	 *
-	 * @return a list of CoopPositionDto representing all coop positions in the
-	 *         system.
-	 */
-	@GetMapping(value = { "/coops", "/coops/" })
-	public List<CoopPositionDto> getAllCoop() {
-		List<CoopPositionDto> coopDtos = new ArrayList<>();
-		for (CoopPosition cp : coopPositionService.getAllCoopPositions()) {
-			coopDtos.add(DtoConverters.convertToDto(cp));
-		}
-		return coopDtos;
-	}
-
-	/**
 	 * Set the status of a coop position
 	 *
 	 * @param cpId   The Id of the coop for which the status is being set.
@@ -96,6 +80,56 @@ public class CoopPostionController {
 	public boolean deleteDocument(@RequestParam(name = "coopId") int cpId) {
 		coopPositionService.deleteCoopPosition(cpId);
 		return true;
+	}
+	
+	/**
+	 * Get all coop positions in the system for a specified student.
+	 *
+	 * @return a list of CoopPositionDto representing all coop positions in the
+	 *         system belonging to a specified student.
+	 */
+	@GetMapping(value = { "/coopsByStudent", "/coopsByStudent/" })
+	public List<CoopPositionDto> getCoopsByStudent(@RequestParam(value="studentId")int studentId) {
+		Student s = studentService.getStudentById(studentId);
+		List<CoopPositionDto> coopDtos = new ArrayList<>();
+		for (CoopPosition cp : s.getCoopPosition()) {
+			coopDtos.add(DtoConverters.convertToDto(cp));
+		}
+		return coopDtos;
+	}
+	
+	/**
+	 * Get all coop positions in the system.
+	 *
+	 * @return a list of CoopPositionDto representing all coop positions in the
+	 *         system.
+	 */
+	@GetMapping(value = { "/allCurrentCoops", "/allCurrentCoops/" })
+	public List<CoopPositionDto> getAllCurrentCoops() {
+		List<CoopPositionDto> coopDtos = new ArrayList<>();
+		for(Student s: studentService.getAllStudents()) {
+			for(CoopPosition cp: s.getCoopPosition()) {
+				if(cp.getEndDate().after(new Date())){
+					coopDtos.add(DtoConverters.convertToDto(cp));
+				}
+			}
+		}
+		return coopDtos;
+	}
+	
+	/**
+	 * Get all coop positions in the system.
+	 *
+	 * @return a list of CoopPositionDto representing all coop positions in the
+	 *         system.
+	 */
+	@GetMapping(value = { "/allCoops", "/allCoops/" })
+	public List<CoopPositionDto> getAllCoops() {
+		List<CoopPositionDto> coopDtos = new ArrayList<>();
+		for (CoopPosition cp : coopPositionService.getAllCoopPositions()) {
+			coopDtos.add(DtoConverters.convertToDto(cp));
+		}
+		return coopDtos;
 	}
 
 }

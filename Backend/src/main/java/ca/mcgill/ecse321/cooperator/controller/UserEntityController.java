@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.cooperator.controller;
 
+import ca.mcgill.ecse321.cooperator.dto.CoopPositionDto;
 import ca.mcgill.ecse321.cooperator.dto.ProgramManagerDto;
 import ca.mcgill.ecse321.cooperator.dto.TermInstructorDto;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
@@ -56,19 +57,18 @@ public class UserEntityController {
 	 * 
 	 * @param tiEmail the email of the instructor
 	 * @param cpId    the Id of the coop
-	 * @return a TermInstructorDto representing the modified TermInstructor
+	 * @return the modified coopP position
 	 * @throws IllegalArgumentException
 	 */
 	@PostMapping(value = { "/assignCoop", "/assignCoop/" })
-	public TermInstructorDto assignCoop(@RequestParam(name = "email") String tiEmail,
+	public CoopPositionDto assignCoop(@RequestParam(name = "email") String tiEmail,
 			@RequestParam(name = "coopId") int cpId) throws IllegalArgumentException {
 
 		TermInstructor ti = (TermInstructor) userEntityService.getUserEntityByEmail(tiEmail);
 		CoopPosition cp = coopPositionService.getById(cpId);
-		Set<CoopPosition> newCoopPositions = ti.getCoopPosition();
-		newCoopPositions.add(cp);
+		coopPositionService.addTermInstructor(cp, ti);
 		return DtoConverters
-				.convertToDto((TermInstructor) userEntityService.assignCoopToInstructor(ti, newCoopPositions));
+				.convertToDto(cp);
 	}
 
 	/**
@@ -114,8 +114,8 @@ public class UserEntityController {
 	 * @param password of user
 	 * @return true = success
 	 */
-	@PostMapping(value = { "/deleteUserEntity/{email}", "/deleteUserEntity/{email}/" })
-	public boolean deleteUserEntity(@PathVariable("email") String email, @RequestParam("password") String password) {
+	@PostMapping(value = { "/deleteUserEntity", "/deleteUserEntity/" })
+	public boolean deleteUserEntity(@RequestParam("email") String email, @RequestParam("password") String password) {
 		userEntityService.login(email, password);
 		userEntityService.deleteUserEntity(email);
 		return true;
@@ -128,7 +128,7 @@ public class UserEntityController {
 	 * @return a list of TermInstructorDto representing all term instructors in the
 	 *         system.
 	 */
-	@GetMapping(value = { "/termInstructors", "/termInstructors/" })
+	@GetMapping(value = { "/allTermInstructors", "/allTermInstructors/" })
 	public List<TermInstructorDto> getAllTermInstructors() {
 		List<TermInstructorDto> instructorsDtos = new ArrayList<>();
 		for (UserEntity user : userEntityService.getAllUserEntities()) {

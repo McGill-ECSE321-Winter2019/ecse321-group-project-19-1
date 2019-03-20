@@ -194,7 +194,7 @@ public class IntegrationTests {
                     "courseId=" + course2_Id + "&coopId=" + cp_Id);
 
             // Get all the courses without sorting
-            JSONArray all_courses = SendRequests.sendRequestArray("GET", BASE_URL, "/courses");
+            JSONArray all_courses = SendRequests.sendRequestArray("GET", BASE_URL, "/allCourses");
             assertEquals(course_name1, all_courses.getJSONObject(0).getString("courseName"));
             assertEquals(course_name2, all_courses.getJSONObject(1).getString("courseName"));
 
