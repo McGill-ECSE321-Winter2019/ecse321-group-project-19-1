@@ -17,7 +17,7 @@
                         placeholder="Instructor Email"
                         v-model="instructor"
                         />
-                <input @click="assignCoop(coopId, instructor)"
+                <input @click="assignCoop(instructor, coopId)"
                         type="submit"
                         value="Assign"
                         class="btn btn-primary py-2 px-4 text-white"
@@ -32,9 +32,6 @@
                                 <td>Coop : {{ coop.coopID }}</td>
                                 <td>
                                     <ul>
-                                        <li v-for="ti in coop.termInstructor">
-                                            Instructor : {{ti.email}}
-                                        </li>
                                         <li v-for="ti in coop.termInstructor">
                                             Instructor : {{ti.email}}
                                         </li>

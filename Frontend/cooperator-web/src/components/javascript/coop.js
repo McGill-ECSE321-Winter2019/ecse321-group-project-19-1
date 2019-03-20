@@ -9,19 +9,6 @@ var AXIOS = axios.create({
     headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-function CoopPositionDto(id, desc, start, end, location, term,
- studentId, termInst, status) {
-this.coopId = id;
-this.description = desc;
-this.startDate = start;
-this.endDate = end;
-this.term = term;
-this.location = location;
-this.studentId = studentId;
-this.termInstructor = termInst;
-this.status=status;
-}
-
 export default {
     data() {
         return {
@@ -34,21 +21,22 @@ export default {
 
       created: function() {
         // Initializing people from backend
-        AXIOS.get(`/coops`)
+        AXIOS.get(`/allCoops`)
           .then(response => {
             // JSON responses are automatically parsed.
             this.coops = response.data;
           })  
     },
     methods: {
-        assignCoop: function (email, coopId) {
-          AXIOS.post(`/assignCoop` + "?email=" + email + "&coopId=" + coopId, {}, {})
+        assignCoop: function (instructor, coopId) {
+            console.log(`/assignCoop` + "?email=" + instructor + "&coopId=" + coopId)
+          AXIOS.post(`/assignCoop` + "?email=" + instructor + "&coopId=" + coopId, {}, {})
             .then(response => {
               // JSON responses are automatically parsed.
               this.instructor = ''
               this.coopId = ''
               this.errorCoop = ''
-              created()
+              this.coops.push(response.data)
             })
             .catch(e => {
               var errorMsg = e.message
