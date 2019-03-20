@@ -125,13 +125,15 @@ public class CoopPositionService {
     }
     
     @Transactional
-    public boolean addTermInstructor(CoopPosition cp, TermInstructor ti) {
+    public void addTermInstructor(CoopPosition cp, TermInstructor ti) {
     	if (ti == null) {
     		throw new NullPointerException("No such Term Instructor.");
     	}
+    	if (cp == null) {
+    		throw new NullPointerException("No such Coop Position.");
+    	}
     	cp.addTermInstructor(ti);
     	coopPositionRepository.save(cp);
-    	return true;
     }
 
 
