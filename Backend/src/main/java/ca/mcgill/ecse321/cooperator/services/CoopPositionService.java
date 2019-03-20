@@ -123,7 +123,16 @@ public class CoopPositionService {
     	coopPositionRepository.deleteById(cpId);
     	return true;
     }
-
+    
+    @Transactional
+    public boolean addTermInstructor(CoopPosition cp, TermInstructor ti) {
+    	if (ti == null) {
+    		throw new NullPointerException("No such Term Instructor.");
+    	}
+    	cp.addTermInstructor(ti);
+    	coopPositionRepository.save(cp);
+    	return true;
+    }
 
 
 }

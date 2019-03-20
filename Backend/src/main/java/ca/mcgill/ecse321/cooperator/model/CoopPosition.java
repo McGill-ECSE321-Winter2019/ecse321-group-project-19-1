@@ -43,6 +43,10 @@ public class CoopPosition {
     public void setTermInstructor(Set<TermInstructor> termInstructor) {
         this.termInstructor = termInstructor;
     }
+    
+    public void addTermInstructor(TermInstructor termInstructor) {
+    	this.termInstructor.add(termInstructor);
+    }
 
     @ManyToMany(mappedBy = "coopPosition")
     public Set<Course> getUsefulCourses() {
