@@ -5,6 +5,7 @@ var config = require("../../../config");
 var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
 var backendUrl = 'https://cooperator-backend-260.herokuapp.com/'
 
+
 var AXIOS = axios.create({
   baseURL: backendUrl,
   headers: { "Access-Control-Allow-Origin": frontendUrl }
@@ -59,8 +60,6 @@ export default {
       })
       .catch(error => {
         alert(error);
-      });
-
-      
+      });    
   }
 };

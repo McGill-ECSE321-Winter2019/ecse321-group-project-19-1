@@ -26,27 +26,6 @@ export default {
         // JSON responses are automatically parsed.
         this.coops = response.data;
       })
-  },
-  methods: {
-    assignCoop: function (instructor, coopId) {
-      console.log(`/assignCoop` + "?email=" + instructor + "&coopId=" + coopId)
-      AXIOS.post(`/assignCoop` + "?email=" + instructor + "&coopId=" + coopId, {}, {})
-        .then(response => {
-          // JSON responses are automatically parsed.
-          this.instructor = ''
-          this.coopId = ''
-          this.errorCoop = ''
-        })
-        .catch(e => {
-          var errorMsg = e.message
-          console.log(errorMsg)
-          this.errorCoop = errorMsg
-        });
-      AXIOS.get(`/allCoops`)
-        .then(response => {
-          // JSON responses are automatically parsed.
-          this.coops = response.data;
-        })
       if ((localStorage.getItem('loggedIn') != null)) {
         //if cookies expired, refresh
         if (this.$cookie.get("username") == null || this.$cookie.get("password") == null) {
@@ -92,6 +71,23 @@ export default {
           console.log(localStorage.getItem('loggedIn'))
         }
       }
-    },
+  },
+  methods: {
+    assignCoop: function (instructor, coopId) {
+      console.log(`/assignCoop` + "?email=" + instructor + "&coopId=" + coopId)
+      AXIOS.post(`/assignCoop` + "?email=" + instructor + "&coopId=" + coopId, {}, {})
+        .then(response => {
+          // JSON responses are automatically parsed.
+          this.instructor = ''
+          this.coopId = ''
+          this.errorCoop = ''
+        })
+        .catch(e => {
+          var errorMsg = e.message
+          console.log(errorMsg)
+          this.errorCoop = errorMsg
+        });
+        this.$refs.table.refresh();
+    }
   },
 }
