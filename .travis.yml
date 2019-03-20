@@ -1,8 +1,22 @@
-language: java
-script:
-- "./gradlew build"
-deploy:
-  provider: heroku
-  api_key:
-    secure: Lz0f0rCKfIO54xRCykJ1UAhgwwcvEUfDWwpevo8AqD/jAKrUnpTKBBjol1I4sC8+fDryix231xpRG6akEbsBC7LJQ5BYNxi8cIOv3NJtL/Nd8Ap2CyHOsXOyIvTV5dxFG7YrChFbhppXvU2Us7uY9hGIfUE4wUFjvxVWboeqR/363Xa2cY2vQ/pyFogxwXV0hbG4OXkAV2YOZijKczq0dpNRmLZJlfcQOTeTXaX1eVOToFVW+tljiiXl7MkUYD9P+Z4BktGJ497TmuK2c9T9J7lq4Q+70ieAYiUNzwQK6W54P43PuGoFOxqD3eqFdYmiFs79JQlkqzKnSmxYXRLtHgvNPfZ07i/iGO8iR1+Z1Vad0bBuVh3+EyF6PjkT9xihn0OVje7vrezqMe/y79XAPF7nvnNQkhemTKZnYnqr/AGsZlYLwGs3kzwJ3FqMod1mtW5symzeWZKovcMR+Y9r7n9bX4Y/xPTIpGreWMifjX4+yx6lcXiyBZUuJKrrxo8BWKOHv/Nhr8kGMY4R5rkHlKxJuN0mCoryO8mS08NMkl6wtITAvEq3iSBxOdRwlds3G3VbtsBc22x7wLhAc8XW0ro7F9guDN4xlwEQAoNKCch9ASrPb5bNT8y1xooCTAGQootffumQ5CX9mLT57yO81x1CurA6Kpa3RiXs0ZW+8F8=
-  app: cooperator-backend-260
+matrix:
+  include:
+  # Backend build
+  - language: java
+    script:
+    - "./gradlew build"
+    deploy: 
+    provider: heroku
+    api_key:
+      secure: DXLeqj4FgSFQbpb9SelKr+8UK61dDZ66DzjTo+54olDPt0XZr+rVRe2a8pFlfLCVFqal+uufcs+sODAfCkKpBU9XqPWSbK18dEGrGlAgxwOvSZFIe6gwOstdZGfuvmpUCDzFCd5UdMt+wJjdJgyCiOFz4rsPyd8Euhv0XJNRyICsuPAIJSjlxu8CuWFh9Pv9zaloQANNnE8xpFxuKXW9xovC2AUrmv7NfFYBwUvPGhtkjFoirjOzhO51rsfYiTjdtQaEJ12SF3LWQtb+mwt9kscbA5+tJTDU4FGtTla6cOYI+Q4FFskVAqkQCVl0wXdxPcNcE4Xk1rNul2i2fqLXt4rGJsPtUTOfExxG3BNfuPTVtZ2vs5QFeBE+Xk4XYXU8e0BD4cBwhhfUaPE/9nXjzVr/7a+aZR+ZNcZYZuoggUK0T8/rqAGnzCm0lusnNQnIlnvFQ8wyYlGJqzkiJ+Aqn6mFkcW4NsQP6LaRoose29LBErXH4Dh9cfdsVwyEYUMDzDy6dAMvSxJZ4DJmmqeHxOUlQK/8PnZUS2G8sbF8gjYww7kQUoqNCt7FLYLZWQ/JYJ7uX23eUISJN2HcEwQKYHwn26VTBRDCgfmF8aZgK9RFsnqdqbHHvJsnowP+whzF95uALD8HAFEZeOLuCuIFlSpx8DJ31iswp+F18JtW7AY=
+    app: cooperator-backend-260
+  # Frontend build
+  - language: node_js
+    node_js:
+    - 3.5.2
+    script:
+    - npm install && npm run build
+    provider: heroku
+    api_key:
+      secure: DXLeqj4FgSFQbpb9SelKr+8UK61dDZ66DzjTo+54olDPt0XZr+rVRe2a8pFlfLCVFqal+uufcs+sODAfCkKpBU9XqPWSbK18dEGrGlAgxwOvSZFIe6gwOstdZGfuvmpUCDzFCd5UdMt+wJjdJgyCiOFz4rsPyd8Euhv0XJNRyICsuPAIJSjlxu8CuWFh9Pv9zaloQANNnE8xpFxuKXW9xovC2AUrmv7NfFYBwUvPGhtkjFoirjOzhO51rsfYiTjdtQaEJ12SF3LWQtb+mwt9kscbA5+tJTDU4FGtTla6cOYI+Q4FFskVAqkQCVl0wXdxPcNcE4Xk1rNul2i2fqLXt4rGJsPtUTOfExxG3BNfuPTVtZ2vs5QFeBE+Xk4XYXU8e0BD4cBwhhfUaPE/9nXjzVr/7a+aZR+ZNcZYZuoggUK0T8/rqAGnzCm0lusnNQnIlnvFQ8wyYlGJqzkiJ+Aqn6mFkcW4NsQP6LaRoose29LBErXH4Dh9cfdsVwyEYUMDzDy6dAMvSxJZ4DJmmqeHxOUlQK/8PnZUS2G8sbF8gjYww7kQUoqNCt7FLYLZWQ/JYJ7uX23eUISJN2HcEwQKYHwn26VTBRDCgfmF8aZgK9RFsnqdqbHHvJsnowP+whzF95uALD8HAFEZeOLuCuIFlSpx8DJ31iswp+F18JtW7AY=
+    app: cooperator-web-frontend-260
+
