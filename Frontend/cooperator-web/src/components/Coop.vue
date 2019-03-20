@@ -27,14 +27,14 @@
                     <br>
             </div>
                     <div id="table">
-                        <table>
+                        <table class="info-table" style="width: 100%; height: 100%;">
                         <tr>
-                            <th>Coop ID</th>
-                            <th>Instructors</th>
+                            <th style="padding:10px">Coop ID</th>
+                            <th style="padding:10px">Instructors</th>
                         </tr>
                         <tr v-for="coop in coops">
-                            <td>{{ coop.coopID }}</td>
-                            <td v-for="ti in coop.termInstructor">
+                            <td style="padding:10px">{{ coop.coopID }}</td>
+                            <td style="padding:10px" v-for="ti in coop.termInstructor">
                                             {{ti.email}}</td>
                         </tr>
                     </table>
