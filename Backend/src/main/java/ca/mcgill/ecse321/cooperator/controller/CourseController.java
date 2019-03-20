@@ -8,7 +8,6 @@ import ca.mcgill.ecse321.cooperator.services.CoursesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.CollationElementIterator;
 import java.util.*;
 
 @CrossOrigin(origins = "*")
@@ -39,7 +38,7 @@ public class CourseController {
 	 *
 	 * @return a list of CourseDto representing all courses in the system.
 	 */
-	@GetMapping(value = { "/courses", "/courses/" })
+	@GetMapping(value = { "/allCourses", "/allCourses/" })
 	public List<CourseDto> getAllCourses() {
 		List<CourseDto> coursesDto = new ArrayList<>();
 		for (Course course : coursesService.getAllCourses()) {

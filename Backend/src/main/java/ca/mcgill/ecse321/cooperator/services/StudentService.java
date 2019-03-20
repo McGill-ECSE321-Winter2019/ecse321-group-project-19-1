@@ -77,11 +77,12 @@ public class StudentService {
     }
     
     @Transactional
-    public void deleteStudent(int studentId) {
+    public boolean deleteStudent(int studentId) {
     	Student s = studentRepository.findById(studentId);
     	if(s==null) {
     		throw new NullPointerException("No such student.");
     	} 
     	studentRepository.deleteById(studentId);
+    	return true;
     }
 }

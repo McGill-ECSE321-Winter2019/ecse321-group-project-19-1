@@ -101,7 +101,7 @@ public class RequiredDocumentController {
 	 * @return a list of RequiredDocumentDto representing the requested required
 	 *         documents.
 	 */
-	@GetMapping(value = { "/requiredDocuments", "/requiredDocuments/" })
+	@GetMapping(value = { "/allRequiredDocumentsByCoopPosition", "/allRequiredDocumentsByCoopPosition/" })
 	public List<RequiredDocumentDto> getRequiredDocumentsByCoopPosition(@RequestParam(name = "coopId") int cpId) {
 		CoopPosition cp = coopPositionService.getById(cpId);
 		List<RequiredDocument> rdDto = requiredDocumentService.getRequiredDocumentByCoopPosition(cp);
@@ -151,7 +151,7 @@ public class RequiredDocumentController {
 	 * View a document in the system
 	 *
 	 * @param rdId the Id id of the document to view
-	 * @return a RequiredDocumentDto representing th document
+	 * @return a RequiredDocumentDto representing the document
 	 * @throws IllegalArgumentException
 	 */
 	@GetMapping(value = { "/requiredDocument", "/requiredDocument/" })
