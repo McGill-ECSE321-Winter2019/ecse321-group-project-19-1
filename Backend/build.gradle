@@ -1,13 +1,13 @@
 buildscript {
-	ext {
-		springBootVersion = '2.1.2.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+    ext {
+        springBootVersion = '2.1.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
 apply plugin: 'java'
@@ -18,22 +18,50 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+sourceSets {
+    integrationTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/test/java/ca.mcgill.ecse321.cooperator.integrationTests')
+        }
+        resources.srcDir file('src/main/resources')
+
+    }
+}
+
+task integrationTest(type: Test) {
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    exclude '**/RemoteIntegrationTests.class'
+}
+
+integrationTest.mustRunAfter test
+
 test {
-	exclude '**/RemoteIntegrationTests.class'
+    exclude '**/RemoteIntegrationTests.class'
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
+}
+
+configurations {
+    integrationTestImplementation.extendsFrom testImplementation
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	runtimeOnly 'org.postgresql:postgresql'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation "junit:junit:4.12"
-  	testRuntime('org.junit.jupiter:junit-jupiter-engine:5.3.1')
-    	testImplementation('org.mockito:mockito-core:2.+')
-  	testImplementation('org.mockito:mockito-junit-jupiter:2.18.3')
-	testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: "1.3.1"
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    runtimeOnly 'org.postgresql:postgresql'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation "junit:junit:4.12"
+    testRuntime('org.junit.jupiter:junit-jupiter-engine:5.3.1')
+    testImplementation('org.mockito:mockito-core:2.+')
+    testImplementation('org.mockito:mockito-junit-jupiter:2.18.3')
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: "1.3.1"
 }
+
+
