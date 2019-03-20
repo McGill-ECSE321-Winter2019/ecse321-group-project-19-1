@@ -7,7 +7,10 @@ import ca.mcgill.ecse321.cooperator.services.EmployerService;
 import ca.mcgill.ecse321.cooperator.services.RequiredDocumentService;
 import ca.mcgill.ecse321.cooperator.services.StudentService;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DtoConverters {
@@ -112,8 +115,9 @@ public class DtoConverters {
     public static StudentDto convertToDto(Student s) {
         CheckArg(s);
         List<CoopPositionDto> coops = new ArrayList<>();
+        Date today = new Date();
         for (CoopPosition cp : s.getCoopPosition()) {
-        	if(cp != null) {
+        	if(cp != null && cp.getEndDate().after(today) ) {
         		coops.add(convertToDto(cp));
         	}
         }
