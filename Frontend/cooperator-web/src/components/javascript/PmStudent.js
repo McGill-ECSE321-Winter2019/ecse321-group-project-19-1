@@ -41,6 +41,7 @@ export default {
   },
 
   created: function() {
+    
     // Initializing people from backend
     AXIOS.get(`/allStudents`)
       .then(response => {
@@ -58,6 +59,8 @@ export default {
       })
       .catch(error => {
         alert(error);
-      });     
+      });
+
+      
   }
 };

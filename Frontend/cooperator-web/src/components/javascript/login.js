@@ -16,7 +16,7 @@ export default {
             username: this.$cookie.get("username") || '',
             password: this.$cookie.get("password") || '',
             errorLogin: '',
-            response: '',
+            response: ''
         }
     },
     methods: {
