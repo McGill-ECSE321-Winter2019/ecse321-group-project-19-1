@@ -2,7 +2,7 @@ matrix:
   include:
     # Frontend build
     - language: node_js
-      script: build_frontend.sh
+      cache: npm
       deploy:
       provider: heroku
       api_key:
