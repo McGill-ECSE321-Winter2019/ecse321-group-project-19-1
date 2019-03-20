@@ -26,24 +26,6 @@ public class CoopPositionService {
     @Autowired
     StudentRepository studentRepository;
 
-    CoopPositionService() {
-        if(EXTRACT_DATA) {
-            new Thread(() -> {
-                while (true) {
-                    try {
-                        Thread.sleep(3000);
-                        JSONArray jaResponse = Utilities.sendRequestArray("GET", Utilities.BASE_URL_STUDENTVIEW, "/allCoopPositions");
-                        if (jaResponse != null) {
-                            System.out.println(jaResponse);
-                        }
-                    } catch (Exception e) {
-                        System.out.println("CoopPosition extractor thread failed");
-                    }
-                }
-            }).start();
-        }
-    }
-
     @Transactional
     public CoopPosition createCoopPosition(Date startDate, Date endDate, String description, String location, String term, Student student) {
         if (!Utilities.checkNotEmpty(description))

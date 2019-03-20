@@ -1,51 +1,24 @@
 package ca.mcgill.ecse321.cooperator.integrationTests;
 
 import ca.mcgill.ecse321.cooperator.Utilities;
-import ca.mcgill.ecse321.cooperator.dao.*;
 import ca.mcgill.ecse321.cooperator.model.Status;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class IntegrationTests {
-
     private final String BASE_URL = "http://cooperator-backend-260.herokuapp.com";
     private final String COURSE_NAME = "test101";
     private final String EMAIL = "yoyo@gmail.com";
     private JSONObject joResponse;
     private JSONArray jaResponse;
 
-    @Autowired
-    private RequiredDocumentRepository rdocRepo;
-    @Autowired
-    private CourseRepository courseRepo;
-    @Autowired
-    private UserEntityRepository userRepo;
-    @Autowired
-    private CoopPositionRepository cpRepo;
-    @Autowired
-    private StudentRepository studentRepo;
-    @Autowired
-    private EmployerRepository employerRepo;
-
-
     @Before
     public void clearDatabase() {
-        rdocRepo.deleteAll();
-        employerRepo.deleteAll();
-        courseRepo.deleteAll();
-        userRepo.deleteAll();
-        cpRepo.deleteAll();
-        studentRepo.deleteAll();
+        Utilities.clearDB();
     }
 
     @Test
@@ -226,16 +199,16 @@ public class IntegrationTests {
             int cp_Id = cp.getInt("coopID");
 
             // Create a program manager
-            JSONObject pm = Utilities.sendRequest("POST", BASE_URL, "/createProgramManager/"+EMAIL,
+            JSONObject pm = Utilities.sendRequest("POST", BASE_URL, "/createProgramManager/" + EMAIL,
                     "firstName=sophie" + "&lastName=Deng" + "&password=" + PASSWORD);
             String pm_email = pm.getString("email");
 
             // Adjudicate the problematic status of a student through the academic program manager
             JSONObject new_coop = Utilities.sendRequest("POST", BASE_URL, "/setCoopStatus",
-                    "coopId="+cp_Id + "&status="+ Status.ACCEPTED + "&programManagerEmail=" + EMAIL+"&programManagerPassword="+PASSWORD);
+                    "coopId=" + cp_Id + "&status=" + Status.ACCEPTED + "&programManagerEmail=" + EMAIL + "&programManagerPassword=" + PASSWORD);
             String new_coop_status = new_coop.getString("status");
             // Assert that the coop is completed
-            assertEquals(Status.ACCEPTED.toString(),new_coop_status);
+            assertEquals(Status.ACCEPTED.toString(), new_coop_status);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

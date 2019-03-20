@@ -14,9 +14,11 @@ public class Utilities {
     // Group 6
     public static final String BASE_URL_ADMINVIEW = "https://cooperator-backend-3417.herokuapp.com";
     // Group 3
-    public static final String BASE_URL_STUDENTVIEW = "https://sturegistration-backend-009b01.herokuapp.com/";
+    public static final String BASE_URL_STUDENTVIEW = "https://student-backend-n.herokuapp.com";
     // Group 11
-    public static final String BASE_URL_EMPLOYERVIEW = "https://cooperator-backend-060606.herokuapp.com/";
+    public static final String BASE_URL_EMPLOYERVIEW = "https://cooperator-backend-060606.herokuapp.com";
+    // Default base url
+    private static final String DEFAULT_BASE_URL = "http://cooperator-backend-260.herokuapp.com";
 
     public static Boolean checkNotEmpty(String s) {
         return s != null && !s.equals("") && s.trim().length() > 0;
@@ -45,9 +47,6 @@ public class Utilities {
         return null;
     }
 
-    public static JSONObject sendRequest(String requestType, String baseUrl, String path) {
-        return sendRequest(requestType, baseUrl, path, null);
-    }
 
     public static JSONArray sendRequestArray(String requestType, String baseUrl, String path, String parameters) {
         try {
@@ -74,5 +73,13 @@ public class Utilities {
 
     public static JSONArray sendRequestArray(String requestType, String baseUrl, String path) {
         return sendRequestArray(requestType, baseUrl, path, null);
+    }
+
+    public static JSONObject sendRequest(String requestType, String baseUrl, String path) {
+        return sendRequest(requestType, baseUrl, path, null);
+    }
+
+    public static JSONObject clearDB() {
+        return sendRequest("POST", DEFAULT_BASE_URL, "/clearDB", null);
     }
 }

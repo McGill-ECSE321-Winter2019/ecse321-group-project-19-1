@@ -17,30 +17,11 @@ import java.util.List;
 
 @Service
 public class CoursesService {
-    private boolean EXTRACT_DATA=false;
     @Autowired
     CourseRepository courseRepository;
     
     @Autowired
     CoopPositionRepository cpRepository;
-
-    CoursesService(){
-        if(EXTRACT_DATA) {
-            new Thread(() -> {
-                while (true) {
-                    try {
-                        Thread.sleep(3000);
-                        JSONArray jaResponse = Utilities.sendRequestArray("GET", Utilities.BASE_URL_STUDENTVIEW, "/allCoopCourses");
-                        if (jaResponse != null) {
-                            System.out.println(jaResponse);
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Course extractor thread failed");
-                    }
-                }
-            }).start();
-        }
-    }
 
     @Transactional
     public Course createCourse(String name) {

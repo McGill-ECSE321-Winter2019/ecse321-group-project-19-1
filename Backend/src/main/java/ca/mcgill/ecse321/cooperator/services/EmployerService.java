@@ -12,28 +12,8 @@ import java.util.List;
 
 @Service
 public class EmployerService {
-    private boolean EXTRACT_DATA = false;
     @Autowired
     EmployerRepository employerRepository;
-
-    EmployerService(){
-        if(EXTRACT_DATA) {
-            new Thread(() -> {
-                while (true) {
-                    try {
-                        Thread.sleep(3000);
-                        // We don't have a method for that yet!
-                        JSONArray jaResponse = Utilities.sendRequestArray("GET", Utilities.BASE_URL_STUDENTVIEW, "/");
-                        if (jaResponse != null) {
-                            System.out.println(jaResponse);
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Course extractor thread failed");
-                    }
-                }
-            }).start();
-        }
-    }
 
     public Employer createEmployer() {
         Employer employer = new Employer();

@@ -16,7 +16,6 @@ import java.util.List;
 
 @Service
 public class RequiredDocumentService {
-    private boolean EXTRACT_DATA = false;
 
     private enum RequiredDocumentType {
         REPORT,
@@ -24,24 +23,6 @@ public class RequiredDocumentService {
         FORM
     }
 
-    RequiredDocumentService() {
-        if (EXTRACT_DATA) {
-            new Thread(() -> {
-                while (true) {
-                    try {
-                        Thread.sleep(3000);
-                        // We don't have a method for that yet!
-                        JSONArray jaResponse = Utilities.sendRequestArray("GET", Utilities.BASE_URL_STUDENTVIEW, "/");
-                        if (jaResponse != null) {
-                            System.out.println(jaResponse);
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Course extractor thread failed");
-                    }
-                }
-            }).start();
-        }
-    }
 
     @Autowired
     CoopPositionRepository coopPositionRepository;
