@@ -33,8 +33,7 @@ export default {
     name: 'logout',
     methods: {
         logout() {
-            localStorage.removeItem('loggedIn')
-            
+            localStorage.removeItem('loggedIn')            
             this.$cookie.delete('username');
             this.$cookie.delete('password');
             window.location.href = "/";

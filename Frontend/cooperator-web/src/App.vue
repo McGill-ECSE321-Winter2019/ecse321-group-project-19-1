@@ -24,7 +24,7 @@
                         <nav class="site-navigation position-relative text-right" role="navigation">
                             <ul class="site-menu js-clone-nav mx-auto">
                                 <li>
-                                    <router-link :to="{name: 'Home'}">Home</router-link>
+                                    <a href='/'>Home</a>
                                 </li>
                                 <li v-if="isPM">
                                     <router-link :to="{name: 'PmStudent'}">Students</router-link>
@@ -78,26 +78,7 @@
 </div>
 </template>
 
-<script>
-export default {
-    name: 'app',
-    computed: {
-        loggedIn() {
-            console.log(localStorage.getItem('loggedIn'))
-            return (localStorage.getItem('loggedIn') == "TermInstructor" || localStorage.getItem('loggedIn') == "ProgramManager")
-        },
-        isPM() {
-            console.log(localStorage.getItem('loggedIn'))
-            return (localStorage.getItem('loggedIn') == "ProgramManager")
-        },
-        isTI() {
-            console.log(localStorage.getItem('loggedIn'))
-            return (localStorage.getItem('loggedIn') == "TermInstructor")
-        }
-    }
-}
-
-</script>
+<script src="./components/javascript/vue.js"></script>
 
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
