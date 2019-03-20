@@ -5,7 +5,7 @@ import java.util.List;
 public class CourseDto {
     private Integer courseId;
     private String courseName;
-    private List<CoopPositionDto> coopPositions;
+    private List<Integer> coopPositions;
 
     public CourseDto() {
 
@@ -19,6 +19,12 @@ public class CourseDto {
         this.courseId = id;
         this.courseName = courseName;
     }
+    
+    public CourseDto(Integer id, String courseName, List<Integer> coopPositions) {
+        this.courseId = id;
+        this.courseName = courseName;
+        this.coopPositions = coopPositions;
+    }
 
     public Integer getCourseId() {
         return courseId;
@@ -29,15 +35,15 @@ public class CourseDto {
     }
 
     //Coop positions
-    public List<CoopPositionDto> getCoopPositions() {
+    public List<Integer> getCoopPositions() {
         return coopPositions;
     }
 
-    public void setCoopPositions(List<CoopPositionDto> cp) {
+    public void setCoopPositions(List<Integer> cp) {
         this.coopPositions = cp;
     }
 
-    public void addCoopPosition(CoopPositionDto cp) {
+    public void addCoopPosition(Integer cp) {
         this.coopPositions.add(cp);
     }
 

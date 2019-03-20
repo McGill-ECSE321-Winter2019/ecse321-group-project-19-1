@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.cooperator.controller;
 
+import ca.mcgill.ecse321.cooperator.dto.CoopPositionDto;
 import ca.mcgill.ecse321.cooperator.dto.ProgramManagerDto;
 import ca.mcgill.ecse321.cooperator.dto.TermInstructorDto;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
@@ -56,19 +57,18 @@ public class UserEntityController {
 	 * 
 	 * @param tiEmail the email of the instructor
 	 * @param cpId    the Id of the coop
-	 * @return a TermInstructorDto representing the modified TermInstructor
+	 * @return the modified coopP position
 	 * @throws IllegalArgumentException
 	 */
 	@PostMapping(value = { "/assignCoop", "/assignCoop/" })
-	public TermInstructorDto assignCoop(@RequestParam(name = "email") String tiEmail,
+	public CoopPositionDto assignCoop(@RequestParam(name = "email") String tiEmail,
 			@RequestParam(name = "coopId") int cpId) throws IllegalArgumentException {
 
 		TermInstructor ti = (TermInstructor) userEntityService.getUserEntityByEmail(tiEmail);
 		CoopPosition cp = coopPositionService.getById(cpId);
-		Set<CoopPosition> newCoopPositions = ti.getCoopPosition();
-		newCoopPositions.add(cp);
+		coopPositionService.addTermInstructor(cp, ti);
 		return DtoConverters
-				.convertToDto((TermInstructor) userEntityService.assignCoopToInstructor(ti, newCoopPositions));
+				.convertToDto(cp);
 	}
 
 	/**

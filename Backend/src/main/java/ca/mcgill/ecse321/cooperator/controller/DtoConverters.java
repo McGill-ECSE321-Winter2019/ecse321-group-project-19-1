@@ -97,7 +97,10 @@ public class DtoConverters {
      */
     public static CourseDto convertToDto(Course c) {
         CheckArg(c);
-        return new CourseDto(c.getCourseId(), c.getCourseName());
+        List<Integer> coops = new ArrayList<>();
+        for (CoopPosition cp : c.getCoopPosition())
+            coops.add(new Integer(cp.getCoopId()));
+        return new CourseDto(c.getCourseId(), c.getCourseName(), coops);
     }
 
     /**
