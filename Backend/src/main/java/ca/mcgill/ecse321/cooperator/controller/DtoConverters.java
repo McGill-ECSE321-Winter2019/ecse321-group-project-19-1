@@ -111,9 +111,12 @@ public class DtoConverters {
      */
     public static StudentDto convertToDto(Student s) {
         CheckArg(s);
-        List<Integer> coops = new ArrayList<>();
-        for (CoopPosition cp : s.getCoopPosition())
-            coops.add(new Integer(cp.getCoopId()));
+        List<CoopPositionDto> coops = new ArrayList<>();
+        for (CoopPosition cp : s.getCoopPosition()) {
+        	if(cp != null) {
+        		coops.add(convertToDto(cp));
+        	}
+        }
         StudentDto st = new StudentDto(s.getStudentID(), s.getFirstName(), s.getLastName(), s.getProblematic(), coops);
         return st;
     }
