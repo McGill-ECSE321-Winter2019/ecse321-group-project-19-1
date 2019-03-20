@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -122,8 +123,16 @@ public class StudentController {
 	@GetMapping(value = { "/allStudentsByTermInstructor", "/allStudentsByTermInstructor/" })
 	public List<StudentDto> getAllStudentsByTermInstructor(@RequestParam(name="email")String email) throws IllegalArgumentException {
 		TermInstructor ti = (TermInstructor) userEntityService.getUserEntityByEmail(email);
+		if(ti == null) {
+			throw new NullPointerException("No such instructor.");
+		}
+		Set<CoopPosition> cps = ti.getCoopPosition();
+		if(cps == null) {
+			throw new NullPointerException("Coop set is null for:"+email);
+		}
+
 		List<StudentDto> studentsDto = new ArrayList<>();
-		for (CoopPosition cp : ti.getCoopPosition()) {
+		for (CoopPosition cp : cps ) {
 			Student s = cp.getStudent();
 			studentsDto.add(DtoConverters.convertToDto(s));
 		}
