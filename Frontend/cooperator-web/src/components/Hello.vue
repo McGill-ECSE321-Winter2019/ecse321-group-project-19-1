@@ -63,16 +63,7 @@
 </div>
 </template>
 
-<script>
-export default {
-    name: 'hello',
-    data() {
-        return {
-            loginType: localStorage.getItem('loggedIn')
-        }
-    }
-}
-</script>
+<script src="./javascript/Hello.js"></script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
