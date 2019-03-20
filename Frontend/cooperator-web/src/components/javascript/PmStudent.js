@@ -13,34 +13,41 @@ export default {
     data() {
         return {
           fields: {
-            firstName: {
-              label: 'First Name',
-              sortable: false
-            },
-            lastName: {
-              label: 'Last Name',
+            coopID: {
+              label: 'CoopID',
               sortable: true
             },
-            studentId:{
-              label: "ID",
+            student: {
+              label: 'StudentID',
               sortable: true
             },
-            problematic:{
-              label: "Problematic",
-              sortable: false
+            startDate:{
+              label: "Start Date",
+              sortable: true
+            },
+            endDate:{
+              label: "End Date",
+              sortable: true
             }
           },
 
-          students: []
+          coops: []
         }
       },
 
       created: function() {
         // Initializing people from backend
-        AXIOS.get(`/problematicStudents`)
+        AXIOS.get(`/coops`)
           .then(response => {
             // JSON responses are automatically parsed.
-            this.students = response.data;
+            this.coops = response.data;
           })  
-    }
-}
+    },
+
+    // methods:{
+    //   getStudent: function(studentID){
+    //     AXIOS.get(/)
+    //   }
+  //  }
+    
+  }
