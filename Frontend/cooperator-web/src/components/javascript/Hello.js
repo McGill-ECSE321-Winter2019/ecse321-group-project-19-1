@@ -10,20 +10,15 @@ var AXIOS = axios.create({
 })
 
 export default {
+    name: 'hello',
     data() {
         return {
-          courses: []
+          loginType: ''
         }
       },
 
-      created: function() {
-        // Initializing people from backend
-        AXIOS.get(`/ranking`)
-          .then(response => {
-            // JSON responses are automatically parsed.
-            this.courses = response.data;
-          }) 
-          if ((localStorage.getItem('loggedIn') != null)) {
+      created: function () {
+        if ((localStorage.getItem('loggedIn') != null)) {
             //if cookies expired, refresh
             if (this.$cookie.get("username") == null || this.$cookie.get("password") == null) {
                 localStorage.removeItem('loggedIn')
@@ -65,12 +60,10 @@ export default {
                         console.log("error in post request: " + e);
                         window.location.href = "/";
                     });
+                console.log(localStorage.getItem('loggedIn'))
+                this.loginType = localStorage.getItem('loggedIn')
             }
         }
-    },
-    methods: {
-        coopLength: function(course){
-            return course.coopPositions.length
-        }
-    }
+        this.loginType = localStorage.getItem('loggedIn')
+      },
 }

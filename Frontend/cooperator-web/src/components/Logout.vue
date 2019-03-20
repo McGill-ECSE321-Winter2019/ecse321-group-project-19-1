@@ -15,7 +15,7 @@
         <div class="half right"  data-aos="fade-up">
             <div class="container" align="center">
                 <div class="login-grid" style="padding-right:10%">
-                    <span class="d-block mb-3 caption">Do You want to Log out?</span>
+                    <span class="d-block mb-3 caption">Do you want to Log out?</span>
             <input @click="logout()"
                         type="submit"
                         value="Logout"
@@ -33,8 +33,7 @@ export default {
     name: 'logout',
     methods: {
         logout() {
-            localStorage.removeItem('loggedIn')
-            
+            localStorage.removeItem('loggedIn')            
             this.$cookie.delete('username');
             this.$cookie.delete('password');
             window.location.href = "/";

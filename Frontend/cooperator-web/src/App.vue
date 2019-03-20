@@ -78,26 +78,7 @@
 </div>
 </template>
 
-<script>
-export default {
-    name: 'app',
-    computed: {
-        loggedIn() {
-            console.log(localStorage.getItem('loggedIn'))
-            return (localStorage.getItem('loggedIn') == "TermInstructor" || localStorage.getItem('loggedIn') == "ProgramManager")
-        },
-        isPM() {
-            console.log(localStorage.getItem('loggedIn'))
-            return (localStorage.getItem('loggedIn') == "ProgramManager")
-        },
-        isTI() {
-            console.log(localStorage.getItem('loggedIn'))
-            return (localStorage.getItem('loggedIn') == "TermInstructor")
-        }
-    }
-}
-
-</script>
+<script src="./components/javascript/App.js"></script>
 
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
