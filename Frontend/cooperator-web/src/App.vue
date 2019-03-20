@@ -24,7 +24,7 @@
                         <nav class="site-navigation position-relative text-right" role="navigation">
                             <ul class="site-menu js-clone-nav mx-auto">
                                 <li>
-                                    <a href='/'>Home</a>
+                                    <router-link :to="{name: 'Home'}">Home</router-link>
                                 </li>
                                 <li v-if="isPM">
                                     <router-link :to="{name: 'PmStudent'}">Students</router-link>
@@ -78,7 +78,7 @@
 </div>
 </template>
 
-<script src="./components/javascript/vue.js"></script>
+<script src="./components/javascript/App.js"></script>
 
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
