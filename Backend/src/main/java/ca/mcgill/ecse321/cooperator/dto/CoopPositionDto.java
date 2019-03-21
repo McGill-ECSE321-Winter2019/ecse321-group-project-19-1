@@ -39,7 +39,7 @@ public class CoopPositionDto {
         this.location = location;
         this.studentId = studentId;
         this.term=term;
-
+        this.status = s;
     }
 
     // Constructor without term instructor
@@ -54,7 +54,7 @@ public class CoopPositionDto {
         this.location = location;
         this.studentId = studentId;
         this.term=term;
-     
+        this.status = s;
     }
 
     // Constructor with term instructor
