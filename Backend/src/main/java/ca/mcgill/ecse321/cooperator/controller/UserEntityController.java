@@ -65,9 +65,12 @@ public class UserEntityController {
 	@PostMapping(value = { "/assignCoop", "/assignCoop/" })
 	public CoopPositionDto assignCoop(@RequestParam(name = "email") String tiEmail,
 			@RequestParam(name = "coopId") int cpId) throws IllegalArgumentException {
-
 		TermInstructor ti = (TermInstructor) userEntityService.getUserEntityByEmail(tiEmail);
+		if(ti == null)
+			throw new IllegalArgumentException("No such term instructor");
 		CoopPosition cp = coopPositionService.getById(cpId);
+		if(cp == null)
+			throw new IllegalArgumentException("No such coop position");
 		Set<CoopPosition> cps = new HashSet<>();
 		cps.add(cp);
 		userEntityService.assignCoopToInstructor(ti, cps);
@@ -88,6 +91,9 @@ public class UserEntityController {
 	public TermInstructorDto createTermInstructor(@RequestParam("firstName") String firstName,
 			@RequestParam("lastName") String lastName, @RequestParam("password") String password,
 			@PathVariable("email") String email) throws IllegalArgumentException {
+		UserEntity user = userEntityService.getUserEntityByEmail(email);
+		if(user == null)
+			throw new IllegalArgumentException("User already exists");
 		TermInstructor termInstructor = userEntityService.createTermInstructor(firstName, lastName, email, password);
 		return DtoConverters.convertToDto(termInstructor);
 	}
@@ -106,6 +112,9 @@ public class UserEntityController {
 	public ProgramManagerDto createProgramManager(@RequestParam("firstName") String firstName,
 			@RequestParam("lastName") String lastName, @RequestParam("password") String password,
 			@PathVariable("email") String email) throws IllegalArgumentException {
+		UserEntity user = userEntityService.getUserEntityByEmail(email);
+		if(user == null)
+			throw new IllegalArgumentException("User already exists");
 		ProgramManager pm = userEntityService.createProgramManager(firstName, lastName, email, password);
 		return DtoConverters.convertToDto(pm);
 	}

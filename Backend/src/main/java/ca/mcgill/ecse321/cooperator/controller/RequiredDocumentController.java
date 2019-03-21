@@ -49,8 +49,16 @@ public class RequiredDocumentController {
 			@RequestParam(name = "coopId") int cpId, @RequestParam(name = "reportType") ReportType type)
 			throws IllegalArgumentException {
 		CoopPosition cp = coopPositionService.getById(cpId);
-		Report report = requiredDocumentService.createReport(name, dueDate, cp, type);
-		return DtoConverters.convertToDto(report);
+		if(cp == null) {
+			throw new IllegalArgumentException("No such coop position");
+		}
+		try {
+			Report report = requiredDocumentService.createReport(name, dueDate, cp, type);
+			return DtoConverters.convertToDto(report);
+		}
+		catch(Exception e) {
+			throw new IllegalArgumentException("Please enter valid information");
+		}
 	}
 
 	/**
@@ -67,8 +75,16 @@ public class RequiredDocumentController {
 			@RequestParam(name = "dueDate") @DateTimeFormat(pattern = "MM/dd/yyyy") Date dueDate,
 			@RequestParam(name = "coopId") int cpId) throws IllegalArgumentException {
 		CoopPosition cp = coopPositionService.getById(cpId);
-		Form form = requiredDocumentService.createForm(name, dueDate, cp);
-		return DtoConverters.convertToDto(form);
+		if(cp == null) {
+			throw new IllegalArgumentException("No such coop position");
+		}
+		try {
+			Form form = requiredDocumentService.createForm(name, dueDate, cp);
+			return DtoConverters.convertToDto(form);
+		}
+		catch(Exception e) {
+			throw new IllegalArgumentException("Please enter valid information");
+		}
 	}
 
 	/**
@@ -89,9 +105,18 @@ public class RequiredDocumentController {
 			@RequestParam(name = "coopId") int cpId, @RequestParam(name = "employerId") int eId)
 			throws IllegalArgumentException {
 		Employer e = employerService.getById(eId);
+		if(e == null)
+			throw new IllegalArgumentException("No such employer");
 		CoopPosition cp = coopPositionService.getById(cpId);
-		EmployerContract ec = requiredDocumentService.createEmployerContract(name, dueDate, cp, e);
-		return DtoConverters.convertToDto(ec);
+		if(cp == null)
+			throw new IllegalArgumentException("No such coop position");
+		try {
+			EmployerContract ec = requiredDocumentService.createEmployerContract(name, dueDate, cp, e);
+			return DtoConverters.convertToDto(ec);
+		}
+		catch(Exception ex){
+			throw new IllegalArgumentException("Please enter valid information");
+		}
 	}
 
 	/**
@@ -104,6 +129,8 @@ public class RequiredDocumentController {
 	@GetMapping(value = { "/allRequiredDocumentsByCoopPosition", "/allRequiredDocumentsByCoopPosition/" })
 	public List<RequiredDocumentDto> getRequiredDocumentsByCoopPosition(@RequestParam(name = "coopId") int cpId) {
 		CoopPosition cp = coopPositionService.getById(cpId);
+		if(cp == null)
+			throw new IllegalArgumentException("No such coop id");
 		List<RequiredDocument> rdDto = requiredDocumentService.getRequiredDocumentByCoopPosition(cp);
 		List<RequiredDocumentDto> rdDtos = new ArrayList<>();
 		for (RequiredDocument r : rdDto) {
@@ -159,7 +186,7 @@ public class RequiredDocumentController {
 			throws IllegalArgumentException {
 		RequiredDocument rd = requiredDocumentService.getRequiredDocumentById(rdId);
 		if (rd == null)
-			return null;
+			throw new IllegalArgumentException("No such document");
 		return DtoConverters.convertToDto(rd);
 	}
 }
