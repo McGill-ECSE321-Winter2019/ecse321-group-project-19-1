@@ -2,7 +2,7 @@ import axios from "axios";
 var config = require("../../../config");
 
 var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
-var backendUrl = 'https://cooperator-backend-260.herokuapp.com/https://cooperator-backend-260.herokuapp.com/'
+var backendUrl = 'https://cooperator-backend-260.herokuapp.com/'
 
 var AXIOS = axios.create({
   baseURL: backendUrl,
@@ -13,7 +13,7 @@ export default {
     data() {
         return {
             students: [],
-            username: "test",
+            username: "",
 
       fields: {
         studentId: {
@@ -28,7 +28,9 @@ export default {
           label: "Last Name",
           sortable: true
         }
-    },
+    }
+  }
+},
     created: function () {
       // AXIOS.get(`/allStudentsByTermInstructor` + '?email' + this.username)
       
@@ -36,15 +38,16 @@ export default {
       if(this.username == '')
         window.location.href = "/login";  
             
-        AXIOS.get(`/allStudentsByTermInstructor/` + '?email' + this.username)
+        AXIOS.get(`/allStudentsByTermInstructor/` + '?email=' + this.username)
         .then(response => {
           this.students = response.data
+        }).then(()=>{
+          console.log(this.students);
         })
+        
             
     },
     methods: {
-        
+      
         }
       }
-    }
-  }
