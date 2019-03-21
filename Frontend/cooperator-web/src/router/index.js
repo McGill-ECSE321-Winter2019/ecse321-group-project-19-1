@@ -64,7 +64,12 @@ export default new Router({
       path: '/TiStudent',
       name: 'TiStudent',
       component: TiStudent
-    }
+    },
+    // {
+    //   path: '/TiStudent/:id',
+    //   name: 'TiStudent Document vue',
+    //   component: 
+    // }
     
   ]
 })
