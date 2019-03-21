@@ -61,5 +61,15 @@ export default {
       .catch(error => {
         alert(error);
       });    
+  },
+
+  methods:{
+    studentSelection(item){
+      console.log(item)
+      window.location.href = "/#/PmSingleStudent"
+      
+
+    }
+
   }
 };
