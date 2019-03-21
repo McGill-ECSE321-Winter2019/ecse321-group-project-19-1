@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class IntegrationTests {
-    private final String BASE_URL = "http://cooperator-backend-260.herokuapp.com";
+    private final String BASE_URL = "http://localhost:8080";
     private final String COURSE_NAME = "test101";
     private final String EMAIL = "yoyo@gmail.com";
     private JSONObject joResponse;
@@ -18,7 +18,7 @@ public class IntegrationTests {
 
     @Before
     public void clearDatabase() {
-        Utilities.clearDB();
+        Utilities.clearDB(BASE_URL);
     }
 
     @Test

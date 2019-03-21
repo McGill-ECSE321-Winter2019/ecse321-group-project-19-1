@@ -17,8 +17,8 @@ import java.util.List;
 
 @Service
 public class StudentService {
-    private boolean EXTRACT_DATA = true;
-    private String ALL_STUDENT_PATH = "external/students";
+    private boolean EXTRACT_DATA = false;
+    private String ALL_STUDENT_PATH = "/external/students";
     private int REMOTE_CALL_DELAY_MS = 3000;
 
     @Autowired

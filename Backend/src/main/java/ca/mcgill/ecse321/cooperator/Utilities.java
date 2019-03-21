@@ -79,7 +79,7 @@ public class Utilities {
         return sendRequest(requestType, baseUrl, path, null);
     }
 
-    public static JSONObject clearDB() {
-        return sendRequest("POST", DEFAULT_BASE_URL, "/clearDB", null);
+    public static JSONObject clearDB(String baseUrl) {
+        return sendRequest("POST", ((baseUrl==null)?DEFAULT_BASE_URL:baseUrl), "/clearDB", null);
     }
 }
