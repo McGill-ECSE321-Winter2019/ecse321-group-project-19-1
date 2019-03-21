@@ -41,13 +41,15 @@ export default {
         AXIOS.get(`/allStudentsByTermInstructor/` + '?email=' + this.username)
         .then(response => {
           this.students = response.data
-        }).then(()=>{
-          console.log(this.students);
         })
         
             
     },
     methods: {
-      
-        }
+      studentSelection(item){
+        window.location.href = "/StudentDocument/#/" + item[0].studentId
+        // console.log(item)
+        
       }
+    }
+  }
