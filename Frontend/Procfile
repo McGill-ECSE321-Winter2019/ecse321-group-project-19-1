@@ -1,1 +1,1 @@
-web: cd cooperator-web && echo $PORT && export PORT && node build/dev-server.js
+web: cd cooperator-web && echo $PORT && export PORT && npm start
