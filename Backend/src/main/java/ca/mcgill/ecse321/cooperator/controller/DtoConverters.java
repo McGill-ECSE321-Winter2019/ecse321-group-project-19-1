@@ -97,7 +97,10 @@ public class DtoConverters {
      */
     public static CourseDto convertToDto(Course c) {
         CheckArg(c);
-        return new CourseDto(c.getCourseId(), c.getCourseName());
+        List<Integer> coops = new ArrayList<>();
+        for (CoopPosition cp : c.getCoopPosition())
+            coops.add(new Integer(cp.getCoopId()));
+        return new CourseDto(c.getCourseId(), c.getCourseName(), coops);
     }
 
     /**
@@ -108,9 +111,12 @@ public class DtoConverters {
      */
     public static StudentDto convertToDto(Student s) {
         CheckArg(s);
-        List<Integer> coops = new ArrayList<>();
-        for (CoopPosition cp : s.getCoopPosition())
-            coops.add(new Integer(cp.getCoopId()));
+        List<CoopPositionDto> coops = new ArrayList<>();
+        for (CoopPosition cp : s.getCoopPosition()) {
+        	if(cp != null) {
+        		coops.add(convertToDto(cp));
+        	}
+        }
         StudentDto st = new StudentDto(s.getStudentID(), s.getFirstName(), s.getLastName(), s.getProblematic(), coops);
         return st;
     }
@@ -123,7 +129,13 @@ public class DtoConverters {
      */
     public static TermInstructorDto convertToDto(TermInstructor ti) {
         CheckArg(ti);
-        return new TermInstructorDto(ti.getFirstName(), ti.getLastName(), ti.getPassword(), ti.getEmail());
+        List<Integer> cpDtos = new ArrayList<>();
+        for(CoopPosition cp: ti.getCoopPosition()) {
+        	if (cp!= null) {
+        		cpDtos.add(cp.getCoopId());
+        	}
+        }
+        return new TermInstructorDto(ti.getFirstName(), ti.getLastName(), ti.getPassword(), ti.getEmail(),cpDtos);
     }
 
     /**

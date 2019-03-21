@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.cooperator.controller;
 
+import ca.mcgill.ecse321.cooperator.dto.CoopPositionDto;
 import ca.mcgill.ecse321.cooperator.dto.ProgramManagerDto;
 import ca.mcgill.ecse321.cooperator.dto.TermInstructorDto;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
@@ -12,42 +13,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @CrossOrigin(origins = "*")
 @RestController
 public class UserEntityController {
-	
+
 	@Autowired
 	UserEntityService userEntityService;
 
 	@Autowired
 	CoopPositionService coopPositionService;
-	
+
 	/***
 	 * This method check if the login information was valid
-	 * @param userEmail the email
+	 * 
+	 * @param userEmail    the email
 	 * @param userPassword the password
 	 * @return program manager, term instructor or something went wrong.
 	 * @throws IllegalArgumentException
 	 */
 	@PostMapping(value = { "/login/{email}/{password}", "/login/{email}/{password}/" })
-	public String login(@PathVariable("email") String userEmail,
-			@PathVariable("password") String userPassword) throws IllegalArgumentException {
+	public String login(@PathVariable("email") String userEmail, @PathVariable("password") String userPassword)
+			throws IllegalArgumentException {
 		UserEntity uentity;
-		try{
+		try {
 			uentity = userEntityService.login(userEmail, userPassword);
-			if(uentity instanceof ProgramManager) {
+			if (uentity instanceof ProgramManager) {
 				return "ProgramManager";
 			}
-			if(uentity instanceof TermInstructor) {
+			if (uentity instanceof TermInstructor) {
 				return "TermInstructor";
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			return e.getMessage();
 		}
-		
+
 		return "Something went wrong";
 	}
 
@@ -56,19 +59,19 @@ public class UserEntityController {
 	 * 
 	 * @param tiEmail the email of the instructor
 	 * @param cpId    the Id of the coop
-	 * @return a TermInstructorDto representing the modified TermInstructor
+	 * @return the modified coopP position
 	 * @throws IllegalArgumentException
 	 */
 	@PostMapping(value = { "/assignCoop", "/assignCoop/" })
-	public TermInstructorDto assignCoop(@RequestParam(name = "email") String tiEmail,
+	public CoopPositionDto assignCoop(@RequestParam(name = "email") String tiEmail,
 			@RequestParam(name = "coopId") int cpId) throws IllegalArgumentException {
 
 		TermInstructor ti = (TermInstructor) userEntityService.getUserEntityByEmail(tiEmail);
 		CoopPosition cp = coopPositionService.getById(cpId);
-		Set<CoopPosition> newCoopPositions = ti.getCoopPosition();
-		newCoopPositions.add(cp);
-		return DtoConverters
-				.convertToDto((TermInstructor) userEntityService.assignCoopToInstructor(ti, newCoopPositions));
+		Set<CoopPosition> cps = new HashSet<>();
+		cps.add(cp);
+		userEntityService.assignCoopToInstructor(ti, cps);
+		return DtoConverters.convertToDto(cp);
 	}
 
 	/**
