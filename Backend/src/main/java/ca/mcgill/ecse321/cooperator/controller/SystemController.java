@@ -27,13 +27,12 @@ public class SystemController {
      * @throws IllegalArgumentException
      */
     @PostMapping(value = {"/clearDB", "/clearDB/"})
-    public boolean clearDB() throws IllegalArgumentException {
+    public void clearDB() throws IllegalArgumentException {
         rdocRepo.deleteAll();
         employerRepo.deleteAll();
         courseRepo.deleteAll();
         userRepo.deleteAll();
         cpRepo.deleteAll();
         studentRepo.deleteAll();
-        return true;
     }
 }

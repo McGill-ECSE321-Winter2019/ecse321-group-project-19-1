@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class IntegrationTests {
-    private final String BASE_URL = "http://localhost:8080";
+    private final String BASE_URL = "http://cooperator-backend-260.herokuapp.com";
     private final String COURSE_NAME = "test101";
     private final String EMAIL = "yoyo@gmail.com";
     private JSONObject joResponse;
@@ -168,7 +168,7 @@ public class IntegrationTests {
                     "courseId=" + course2_Id + "&coopId=" + cp_Id);
 
             // Get all the courses without sorting
-            JSONArray all_courses = Utilities.sendRequestArray("GET", BASE_URL, "/courses");
+            JSONArray all_courses = Utilities.sendRequestArray("GET", BASE_URL, "/allCourses");
             assertEquals(course_name1, all_courses.getJSONObject(0).getString("courseName"));
             assertEquals(course_name2, all_courses.getJSONObject(1).getString("courseName"));
 

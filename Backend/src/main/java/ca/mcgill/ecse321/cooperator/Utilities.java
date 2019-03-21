@@ -35,12 +35,13 @@ public class Utilities {
                 throw new RuntimeException(
                         url.toString() + " failed : HTTP error code : " + connection.getResponseCode());
             }
-            JSONObject r = new JSONObject(
-                    new BufferedReader(new InputStreamReader((connection.getInputStream()))).readLine());
-            connection.disconnect();
-            if (200 != connection.getResponseCode())
-                return null;
-            return r;
+            BufferedReader br = new BufferedReader(new InputStreamReader((connection.getInputStream())));
+            String response = br.readLine();
+            if (response != null) {
+                JSONObject r = new JSONObject(response);
+                connection.disconnect();
+                return r;
+            }
         } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
@@ -59,12 +60,13 @@ public class Utilities {
                 throw new RuntimeException(
                         url.toString() + " failed : HTTP error code : " + connection.getResponseCode());
             }
-            JSONArray r = new JSONArray(
-                    new BufferedReader(new InputStreamReader((connection.getInputStream()))).readLine());
-            if (200 != connection.getResponseCode())
-                return null;
-            connection.disconnect();
-            return r;
+            BufferedReader br = new BufferedReader(new InputStreamReader((connection.getInputStream())));
+            String response = br.readLine();
+            if (response != null) {
+                JSONArray r = new JSONArray(response);
+                connection.disconnect();
+                return r;
+            }
         } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
@@ -80,6 +82,6 @@ public class Utilities {
     }
 
     public static JSONObject clearDB(String baseUrl) {
-        return sendRequest("POST", ((baseUrl==null)?DEFAULT_BASE_URL:baseUrl), "/clearDB", null);
+        return sendRequest("POST", ((baseUrl == null) ? DEFAULT_BASE_URL : baseUrl), "/clearDB", null);
     }
 }
