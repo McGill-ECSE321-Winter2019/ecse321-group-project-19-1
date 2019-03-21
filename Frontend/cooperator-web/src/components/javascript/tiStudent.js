@@ -1,13 +1,13 @@
-import axios from 'axios'
-var config = require('../../../config')
+import axios from "axios";
+var config = require("../../../config");
 
 var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
 var backendUrl = 'https://cooperator-backend-260.herokuapp.com/https://cooperator-backend-260.herokuapp.com/'
 
 var AXIOS = axios.create({
-    baseURL: backendUrl,
-    headers: { 'Access-Control-Allow-Origin': frontendUrl }
-})
+  baseURL: backendUrl,
+  headers: { "Access-Control-Allow-Origin": frontendUrl }
+});
 
 export default {    
     data() {
@@ -15,20 +15,18 @@ export default {
             students: [],
             username: "test",
 
-            fields: {
-                studentId: {
-                  label: 'StudentID',
-                  sortable: true
-                },
-                firstName : {
-                  label: 'First Name',
-                  sortable: true
-                },
-                lastName: {
-                  label: 'Last Name',
-                  sortable: true
-                }
-              }
+      fields: {
+        studentId: {
+          label: "StudentID",
+          sortable: true
+        },
+        firstName: {
+          label: "First Name",
+          sortable: true
+        },
+        lastName: {
+          label: "Last Name",
+          sortable: true
         }
     },
     created: function () {
@@ -46,5 +44,7 @@ export default {
     },
     methods: {
         
+        }
+      }
     }
-}
+  }
