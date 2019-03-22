@@ -65,10 +65,10 @@ export default {
 
   methods:{
     studentSelection(item){
-      console.log(item)
-      window.location.href = "/#/PmSingleStudent"
-      
-
+      if(item[0].coopStatus != null){
+      id = item[0].studentId
+      window.location.href = "/#/PmSingleStudent/" + id
+      }
     }
 
   }

@@ -68,7 +68,7 @@ export default new Router({
       component: TiStudent
     },
     {
-      path: '/PmSingleStudent',
+      path: '/PmSingleStudent/:id',
       name: 'PmSingleStudent',
       component: PmSingleStudent
     },

@@ -12,18 +12,22 @@ var AXIOS = axios.create({
 export default {
     data() {
         return {
-          courses: []
+            courses: [],
+            newCourse: '',
+            courseName: '',
+            coopId: '',
+            errorCourse: '',
+            errorNewCourse: '',
         }
-      },
-
-      created: function() {
-        // Initializing people from backend
+    },
+    created: function () {
         AXIOS.get(`/ranking`)
-          .then(response => {
-            // JSON responses are automatically parsed.
-            this.courses = response.data;
-          }) 
-          if ((localStorage.getItem('loggedIn') != null)) {
+            .then(response => {
+                this.courses = response.data;
+            })
+    },
+    updated() {
+        if ((localStorage.getItem('loggedIn') != null)) {
             //if cookies expired, refresh
             if (this.$cookie.get("username") == null || this.$cookie.get("password") == null) {
                 localStorage.removeItem('loggedIn')
@@ -36,19 +40,19 @@ export default {
                 AXIOS.post(`/login/` + this.$cookie.get("username") + '/' + this.$cookie.get("password"), {}, {})
                     .then(response => {
                         if (response.data == 'TermInstructor') {
-                            if(localStorage.getItem('loggedIn') != "TermInstructor"){
+                            if (localStorage.getItem('loggedIn') != "TermInstructor") {
                                 localStorage.setItem('loggedIn', "TermInstructor");
                                 console.log("Not term instructor");
                                 window.location.href = "/";
                             }
-                            
+
                         }
                         else if (response.data == "ProgramManager") {
-                            if(localStorage.getItem('loggedIn') != "ProgramManager"){
+                            if (localStorage.getItem('loggedIn') != "ProgramManager") {
                                 localStorage.setItem('loggedIn', "ProgramManager");
                                 console.log("Not program manager");
                                 window.location.href = "/";
-                            }                           
+                            }
                         }
                         else {
                             localStorage.removeItem('loggedIn')
@@ -65,12 +69,63 @@ export default {
                         console.log("error in post request: " + e);
                         window.location.href = "/";
                     });
+                console.log(localStorage.getItem('loggedIn'))
             }
         }
     },
+
     methods: {
-        coopLength: function(course){
+        coopLength: function (course) {
             return course.coopPositions.length
-        }
+        },
+
+        createCourse: function (newCourse) {
+            if(newCourse == null || newCourse == ''){
+                this.errorNewCourse = "Please enter a Course Name"
+                return
+            }
+            AXIOS.post(`/createCourse` + "?courseName=" + newCourse, {}, {})
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    this.newCourse = ''
+                    this.coopId = ''
+                    this.errorNewCourse = ''
+                    AXIOS.get(`/ranking`)
+                        .then(response => {
+                            this.courses = response.data;
+                        })
+                })
+                .catch(e => {
+                    var errorMsg = e.message
+                    console.log(errorMsg)
+                    this.errorNewCourse = errorMsg
+                })
+        },
+
+        rateCourse: function (coopId, courseId) {
+            if(coopId == null || coopId == ''){
+                this.errorCourse = "Please enter a Coop Id"
+                return
+            }
+            if(courseId == null || courseId == ''){
+                this.errorCourse = "Please enter a Course Id"
+                return
+            }
+            AXIOS.post(`/rateCourse` + "?courseId=" + courseId + "&coopId=" + coopId, {}, {})
+                .then(response => {
+                    this.courseId = ''
+                    this.coopId = ''
+                    this.errorCourse = ''
+                    AXIOS.get(`/ranking`)
+                        .then(response => {
+                            this.courses = response.data;
+                        })
+                })
+                .catch(e => {
+                    var errorMsg = e.message
+                    console.log(errorMsg)
+                    this.errorCourse = errorMsg
+                });
+        },
     }
 }
