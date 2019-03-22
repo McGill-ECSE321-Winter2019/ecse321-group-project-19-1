@@ -44,6 +44,7 @@ public class CoopPostionController {
 			@RequestParam(name = "term") String term, @RequestParam(name = "studentId") int studentId)
 			throws IllegalArgumentException {
 		Student student = studentService.getStudentById(studentId);
+		System.out.println("hahas");
 		CoopPosition coopPostion = coopPositionService.createCoopPosition(startDate, endDate, description, location,
 				term, student);
 		studentService.offerCoopPostionToStudent(student.getStudentID(), coopPostion.getCoopId());
