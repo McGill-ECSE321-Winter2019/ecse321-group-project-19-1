@@ -47,9 +47,7 @@ export default {
     },
     methods: {
       studentSelection(item){
-        window.location.href = "/StudentDocument/#/" + item[0].studentId
-        // console.log(item)
-        
+        window.location.href = "/#/StudentDocument/" + item[0].studentId        
       }
     }
   }

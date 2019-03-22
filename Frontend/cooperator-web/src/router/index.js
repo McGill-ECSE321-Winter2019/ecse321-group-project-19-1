@@ -75,7 +75,7 @@ export default new Router({
     {
       path: '/StudentDocument/:id',
       name: 'StudentDocument',
-      component: PmSingleStudent
+      component: StudentDocument
     }
     
   ]
