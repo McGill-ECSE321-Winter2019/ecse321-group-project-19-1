@@ -5,6 +5,7 @@ import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
 import ca.mcgill.ecse321.cooperator.dao.StudentRepository;
 import ca.mcgill.ecse321.cooperator.model.*;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Service
 public class CoopPositionService {
-
+    private boolean EXTRACT_DATA = false;
     @Autowired
     CoopPositionRepository coopPositionRepository;
 
@@ -113,15 +114,15 @@ public class CoopPositionService {
         coopPositionRepository.save(cp);
         return cp;
     }
-    
+
     @Transactional
     public boolean deleteCoopPosition(int cpId) {
-    	CoopPosition cp = coopPositionRepository.findByCoopId(cpId);
-    	if (cp == null) {
-    		throw new NullPointerException("No such coop position.");
-    	}
-    	coopPositionRepository.deleteById(cpId);
-    	return true;
+        CoopPosition cp = coopPositionRepository.findByCoopId(cpId);
+        if (cp == null) {
+            throw new NullPointerException("No such coop position.");
+        }
+        coopPositionRepository.deleteById(cpId);
+        return true;
     }
     
     @Transactional
@@ -135,6 +136,5 @@ public class CoopPositionService {
     	cp.addTermInstructor(ti);
     	coopPositionRepository.save(cp);
     }
-
 
 }
