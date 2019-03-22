@@ -51,12 +51,21 @@ export default {
        AXIOS.get('/allRequiredDocumentsByCoopPosition' + '?coopId=' + this.coopId)
         .then(response => {
             this.documents = response.data
-
-            
+            for(i=0; i<this.documents.length; i++){
+                this.documents[i].dueDate = this.documents[i].dueDate.substring(0,11)
+            }
+            this.$refs.table.refresh();
        })
       })
       .catch(error => {
         alert(error);
       })
+  },
+
+  methods:{
+      adjudicate(){
+        // coop = this.student.coopPositions[0]
+        // AXIOS.put('/setCoopStatus/' + '')
+      }
   }
 };
