@@ -1,9 +1,8 @@
 matrix:
   include:
-    # Frontend build
     - language: node_js
       node_js:
-        - "6"
+        - '7'
       cache: npm
       before_install:
         - cd Frontend/cooperator-web
@@ -14,10 +13,9 @@ matrix:
         provider: heroku
         app: cooperator-web-frontend-260
         api_key:
-          secure: DXLeqj4FgSFQbpb9SelKr+8UK61dDZ66DzjTo+54olDPt0XZr+rVRe2a8pFlfLCVFqal+uufcs+sODAfCkKpBU9XqPWSbK18dEGrGlAgxwOvSZFIe6gwOstdZGfuvmpUCDzFCd5UdMt+wJjdJgyCiOFz4rsPyd8Euhv0XJNRyICsuPAIJSjlxu8CuWFh9Pv9zaloQANNnE8xpFxuKXW9xovC2AUrmv7NfFYBwUvPGhtkjFoirjOzhO51rsfYiTjdtQaEJ12SF3LWQtb+mwt9kscbA5+tJTDU4FGtTla6cOYI+Q4FFskVAqkQCVl0wXdxPcNcE4Xk1rNul2i2fqLXt4rGJsPtUTOfExxG3BNfuPTVtZ2vs5QFeBE+Xk4XYXU8e0BD4cBwhhfUaPE/9nXjzVr/7a+aZR+ZNcZYZuoggUK0T8/rqAGnzCm0lusnNQnIlnvFQ8wyYlGJqzkiJ+Aqn6mFkcW4NsQP6LaRoose29LBErXH4Dh9cfdsVwyEYUMDzDy6dAMvSxJZ4DJmmqeHxOUlQK/8PnZUS2G8sbF8gjYww7kQUoqNCt7FLYLZWQ/JYJ7uX23eUISJN2HcEwQKYHwn26VTBRDCgfmF8aZgK9RFsnqdqbHHvJsnowP+whzF95uALD8HAFEZeOLuCuIFlSpx8DJ3g1iswp+F18JtW7AY=
+          secure: slX9QBmQr5XYjhFuLMlmUZBg0kdXoUqXF9W9Je4Nwb4fySeV3cZuarDJEvoLkI2Y0JEH+0nupj0LbmDuYUl6ag61yffte0NLorm2zJgK7w/PZBpQo5ooLlT2t9j9i3EZdfZfN9qveHO9sSfVWs2KRrgMXMAtuteqn9bhV4mfTEtrcBg7OjNpL5gVdiHUDpgmlJVBIIoXf7rEslP1DGYRrUvjjoLoFK76Mgavg60f5X++epgY1KB8X4OMNAsnUT6puRChXYUS9nnVAdRW1qmWLJv65AuotgucS4Nm8bFscm6VaXr1xckvFkKFuT4CXzMJuerfZn7UR+QgIiNrttsV+5v4v7GMIo5kCdF4zTiMvJzWQqLbm8SCcjsT38z0Wa3TGXdVZ0mY1PuG6YNsZ0ndcvRMjMQ66wT/pBdiktLSc0RKzwItmX4NNPx5r5b38VA7scMwHgjiHTc+LxC9blSSkDPHXVVMnrFjWbWEy8fjvXwIKuNSv4HgWSLzcvyaLMzFXJ7gb07pCOBId4DvvVc6YcAVmaJsPcK3LxbrVFTUo1HoRqkYgF6ZfMHSNMIa2Zx5ze73JpH/Hv06/c1KAvG8mCumyiJn+yIjJHR2QDY4dw3MzURbZKLyz9IvXvW9vJpzNI+4Gecmt1XNoxsKBphW3tpK9cYxkMRerFlrnjWEAxs=
         on:
           branch: akaba/fixFrontEndBuild
-    # Backend build
     - language: java
       script:
         - "./gradlew build"
@@ -25,17 +23,6 @@ matrix:
         provider: heroku
         app: cooperator-backend-260
         api_key:
-          secure: DXLeqj4FgSFQbpb9SelKr+8UK61dDZ66DzjTo+54olDPt0XZr+rVRe2a8pFlfLCVFqal+uufcs+sODAfCkKpBU9XqPWSbK18dEGrGlAgxwOvSZFIe6gwOstdZGfuvmpUCDzFCd5UdMt+wJjdJgyCiOFz4rsPyd8Euhv0XJNRyICsuPAIJSjlxu8CuWFh9Pv9zaloQANNnE8xpFxuKXW9xovC2AUrmv7NfFYBwUvPGhtkjFoirjOzhO51rsfYiTjdtQaEJ12SF3LWQtb+mwt9kscbA5+tJTDU4FGtTla6cOYI+Q4FFskVAqkQCVl0wXdxPcNcE4Xk1rNul2i2fqLXt4rGJsPtUTOfExxG3BNfuPTVtZ2vs5QFeBE+Xk4XYXU8e0BD4cBwhhfUaPE/9nXjzVr/7a+aZR+ZNcZYZuoggUK0T8/rqAGnzCm0lusnNQnIlnvFQ8wyYlGJqzkiJ+Aqn6mFkcW4NsQP6LaRoose29LBErXH4Dh9cfdsVwyEYUMDzDy6dAMvSxJZ4DJmmqeHxOUlQK/8PnZUS2G8sbF8gjYww7kQUoqNCt7FLYLZWQ/JYJ7uX23eUISJN2HcEwQKYHwn26VTBRDCgfmF8aZgK9RFsnqdqbHHvJsnowP+whzF95uALD8HAFEZeOLuCuIFlSpx8DJ31iswp+F18JtW7AY=
+          secure: slX9QBmQr5XYjhFuLMlmUZBg0kdXoUqXF9W9Je4Nwb4fySeV3cZuarDJEvoLkI2Y0JEH+0nupj0LbmDuYUl6ag61yffte0NLorm2zJgK7w/PZBpQo5ooLlT2t9j9i3EZdfZfN9qveHO9sSfVWs2KRrgMXMAtuteqn9bhV4mfTEtrcBg7OjNpL5gVdiHUDpgmlJVBIIoXf7rEslP1DGYRrUvjjoLoFK76Mgavg60f5X++epgY1KB8X4OMNAsnUT6puRChXYUS9nnVAdRW1qmWLJv65AuotgucS4Nm8bFscm6VaXr1xckvFkKFuT4CXzMJuerfZn7UR+QgIiNrttsV+5v4v7GMIo5kCdF4zTiMvJzWQqLbm8SCcjsT38z0Wa3TGXdVZ0mY1PuG6YNsZ0ndcvRMjMQ66wT/pBdiktLSc0RKzwItmX4NNPx5r5b38VA7scMwHgjiHTc+LxC9blSSkDPHXVVMnrFjWbWEy8fjvXwIKuNSv4HgWSLzcvyaLMzFXJ7gb07pCOBId4DvvVc6YcAVmaJsPcK3LxbrVFTUo1HoRqkYgF6ZfMHSNMIa2Zx5ze73JpH/Hv06/c1KAvG8mCumyiJn+yIjJHR2QDY4dw3MzURbZKLyz9IvXvW9vJpzNI+4Gecmt1XNoxsKBphW3tpK9cYxkMRerFlrnjWEAxs=
         on:
           branch: akaba/fixFrontEndBuild
-
-
-
-
-
-
-
-
-
-
-
