@@ -1,5 +1,10 @@
 {
+  "name": "cooperator-frontend-260",
+  "version": "1.0.0",
+  "description": "Frontend",
+  "author": "",
+  "private": true,
   "scripts": {
-    "build": "cd Frontend/cooperator-web/ && npm install && npm run build"
+    "build": "cd Frontend/cooperator-web/ && npm build && npm install"
   }
 }

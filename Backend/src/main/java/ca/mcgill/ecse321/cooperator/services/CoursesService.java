@@ -5,20 +5,18 @@ import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.CourseRepository;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
 import ca.mcgill.ecse321.cooperator.model.Course;
-import ca.mcgill.ecse321.cooperator.model.Employer;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
+import javax.swing.text.html.parser.Parser;
 import java.util.List;
-import java.util.Set;
 
 
 @Service
 public class CoursesService {
-	
     @Autowired
     CourseRepository courseRepository;
     

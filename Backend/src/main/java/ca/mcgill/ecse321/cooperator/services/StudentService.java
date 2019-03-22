@@ -1,11 +1,14 @@
 package ca.mcgill.ecse321.cooperator.services;
 
+import ca.mcgill.ecse321.cooperator.Utilities;
 import ca.mcgill.ecse321.cooperator.dao.CoopPositionRepository;
 import ca.mcgill.ecse321.cooperator.dao.RequiredDocumentRepository;
 import ca.mcgill.ecse321.cooperator.dao.StudentRepository;
 import ca.mcgill.ecse321.cooperator.model.CoopPosition;
 import ca.mcgill.ecse321.cooperator.model.RequiredDocument;
 import ca.mcgill.ecse321.cooperator.model.Student;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +17,9 @@ import java.util.List;
 
 @Service
 public class StudentService {
+    private boolean EXTRACT_DATA = false;
+    private String ALL_STUDENT_PATH = "/external/students";
+    private int REMOTE_CALL_DELAY_MS = 3000;
 
     @Autowired
     StudentRepository studentRepository;
@@ -23,6 +29,41 @@ public class StudentService {
 
     @Autowired
     RequiredDocumentRepository requiredDocumentRepository;
+
+    StudentService() {
+        if (EXTRACT_DATA) {
+            new Thread(() -> {
+                while (true) {
+                    try {
+                        Thread.sleep(REMOTE_CALL_DELAY_MS);
+                        // Query remote thread
+                        JSONArray jaResponse = Utilities.sendRequestArray("GET", Utilities.BASE_URL_STUDENTVIEW, ALL_STUDENT_PATH);
+                        System.out.println();
+                        if (jaResponse != null) {
+                            for (int i = 0; i < jaResponse.length(); i++) {
+                                JSONObject obj = jaResponse.getJSONObject(i);
+                                if (obj != null) {
+                                    createStudent(obj.getInt("studentID"),obj.getString("firstName"), obj.getString("lastName"));
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("Student Extractor thread failed");
+                    }
+                }
+            }).start();
+        }
+    }
+
+    @Transactional
+    public Student createStudent(int id, String firstName, String lastName) {
+        Student student = new Student(firstName, lastName);
+        studentRepository.save(student);
+        student.setStudentID(id);
+        studentRepository.save(student);
+        return student;
+    }
 
     @Transactional
     public Student createStudent(String firstName, String lastName) {
@@ -70,19 +111,19 @@ public class StudentService {
         Student s = studentRepository.findById(studentId);
         CoopPosition cp = coopPositionRepository.findByCoopId(cpId);
         if (s == null || cp == null)
-        	 throw new NullPointerException("No such student or coop.");
+            throw new NullPointerException("No such student or coop.");
         s.offerCoopPostion(cp);
         studentRepository.save(s);
         return s;
     }
-    
+
     @Transactional
     public boolean deleteStudent(int studentId) {
-    	Student s = studentRepository.findById(studentId);
-    	if(s==null) {
-    		throw new NullPointerException("No such student.");
-    	} 
-    	studentRepository.deleteById(studentId);
-    	return true;
+        Student s = studentRepository.findById(studentId);
+        if (s == null) {
+            throw new NullPointerException("No such student.");
+        }
+        studentRepository.deleteById(studentId);
+        return true;
     }
 }
