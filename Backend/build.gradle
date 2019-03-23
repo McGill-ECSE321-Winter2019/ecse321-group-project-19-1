@@ -18,33 +18,23 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+repositories {
+    mavenCentral()
+}
+
 sourceSets {
     integrationTest {
         java {
             compileClasspath += main.output + test.output
             runtimeClasspath += main.output + test.output
-            srcDir file('src/test/java/ca.mcgill.ecse321.cooperator.integrationTests')
+            srcDir file('src/integrationTests/java')
         }
         resources.srcDir file('src/main/resources')
-
     }
 }
 
-task integrationTest(type: Test) {
-    testClassesDirs = sourceSets.integrationTest.output.classesDirs
-    classpath = sourceSets.integrationTest.runtimeClasspath
-    exclude '**/RemoteIntegrationTests.class'
-}
-
-integrationTest.mustRunAfter test
-
 test {
     exclude '**/RemoteIntegrationTests.class'
-    exclude '**/IntegrationTests.class'
-}
-
-repositories {
-    mavenCentral()
 }
 
 configurations {
@@ -66,4 +56,10 @@ dependencies {
     testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: "1.3.1"
 }
 
+task integrationTest(type: Test) {
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+}
+
+integrationTest.mustRunAfter test
 
