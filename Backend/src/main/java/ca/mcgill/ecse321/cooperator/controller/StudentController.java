@@ -94,12 +94,8 @@ public class StudentController {
 	public StudentDto getStudent(@RequestParam(name="studentId")int studentId) throws IllegalArgumentException {
 		Student s = studentService.getStudentById(studentId);
 		return DtoConverters.convertToDto(s);
-	}
+	}	
 	
-	
-	
-	
-
 	/**
 	 * Get all problematic students in the system
 	 *

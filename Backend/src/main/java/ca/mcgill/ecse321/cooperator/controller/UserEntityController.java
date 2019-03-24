@@ -93,7 +93,7 @@ public class UserEntityController {
 			@PathVariable("email") String email) throws IllegalArgumentException {
 		UserEntity user = userEntityService.getUserEntityByEmail(email);
 		if(user == null)
-			throw new IllegalArgumentException("User already exists");
+			throw new IllegalArgumentException("User does not exist");
 		TermInstructor termInstructor = userEntityService.createTermInstructor(firstName, lastName, email, password);
 		return DtoConverters.convertToDto(termInstructor);
 	}
@@ -114,7 +114,7 @@ public class UserEntityController {
 			@PathVariable("email") String email) throws IllegalArgumentException {
 		UserEntity user = userEntityService.getUserEntityByEmail(email);
 		if(user == null)
-			throw new IllegalArgumentException("User already exists");
+			throw new IllegalArgumentException("User does not exist");
 		ProgramManager pm = userEntityService.createProgramManager(firstName, lastName, email, password);
 		return DtoConverters.convertToDto(pm);
 	}
