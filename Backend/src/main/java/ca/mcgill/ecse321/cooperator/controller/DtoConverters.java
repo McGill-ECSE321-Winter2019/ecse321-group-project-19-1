@@ -8,6 +8,7 @@ import ca.mcgill.ecse321.cooperator.services.RequiredDocumentService;
 import ca.mcgill.ecse321.cooperator.services.StudentService;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DtoConverters {
