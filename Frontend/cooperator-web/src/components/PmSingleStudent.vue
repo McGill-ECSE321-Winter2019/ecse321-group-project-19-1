@@ -13,7 +13,12 @@
                     
                     <b-table ref="table" class="info-table" striped hover :items= "documents" :fields= "fields"/>
                     <div style="width:100%" align="right">
-                    <button class="btn btn-secondary"  style="background:green; border-color:green" onclick="adjudicate"> Adjudicate </button>
+                    <input @click="adj()"
+                        style="background:green; border-color:green"
+                        type="submit"
+                        value="Adjudicate"
+                        class="btn btn-primary"
+                        />
                     </div>
                      </div>
                 </div>

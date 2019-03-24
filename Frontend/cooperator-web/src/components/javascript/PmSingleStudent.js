@@ -17,6 +17,8 @@ export default {
       documents:[],
       id: null,
       coopId: null,
+      username: this.$cookie.get("username") || '',
+      password: this.$cookie.get("password") || '',
 
       fields: {
         name: {
@@ -45,14 +47,16 @@ export default {
     AXIOS.get(`/student/` + '?studentId=' + id)
       .then(response => {
         this.student = response.data;
+        console.log(this.student);
       })
       .then(() =>{
-       this.coopId=this.student.coopPositions[0].coopID
+       this.coopId=this.student.coopPositions[0].coopID;
        AXIOS.get('/allRequiredDocumentsByCoopPosition' + '?coopId=' + this.coopId)
         .then(response => {
-            this.documents = response.data
-            for(i=0; i<this.documents.length; i++){
-                this.documents[i].dueDate = this.documents[i].dueDate.substring(0,11)
+            this.documents = response.data;
+            if(this.documents.length != 0){
+            for(var i=0; i<this.documents.length; i++)
+                this.documents[i].dueDate = this.documents[i].dueDate.substring(0,10);
             }
             this.$refs.table.refresh();
        })
@@ -63,9 +67,14 @@ export default {
   },
 
   methods:{
-      adjudicate(){
-        // coop = this.student.coopPositions[0]
-        // AXIOS.put('/setCoopStatus/' + '')
+      adj(){
+        AXIOS.post('/setCoopStatus/' + '?status=' + 'ACCEPTED'+ '&coopId='+ this.coopId +'&programManagerEmail='+ this.username + '&programManagerPassword=' + this.password)
+        .then(() =>{
+          AXIOS.get(`/student/` + '?studentId=' + id)
+            .then(response => {
+              this.student = response.data;
+            })
+        })
       }
   }
 };
