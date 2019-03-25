@@ -36,25 +36,16 @@
                     <p>Our application supports the scenarios described in the user story for the Co-Op Academic 
                       program manager and the Co-Op Term Instructor. Additionally this application is designed to 
                       integrate with the viewpoints of other stake-holders created by seperate teams via service 
-                      calls. 3. All functionality of the system is to be accessible via the web frontend for 
+                      calls. All functionality of the system is to be accessible via the web frontend for 
                       respective stakeholders. In addition, a mobile (Android) frontend allows easy execution of 
                       the most important functionality for the givenstakeholder having both read and write access 
                       to the backend via RESTful service call.</p>
-                    <h2>Essential Links</h2>
+                    <h2>Project Links</h2>
                     <ul>
-                        <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-                        <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-                        <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-                        <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
+                        <li><a href="https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-19-1/wiki" target="_blank">Project WIKI</a></li>
+                        <li><a href="https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-19-1" target="_blank">Github Repository</a></li>
                         <br>
                         <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-                    </ul>
-                    <h2>Ecosystem</h2>
-                    <ul>
-                        <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-                        <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-                        <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-                        <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
                     </ul>
                 </div>
             </div>
