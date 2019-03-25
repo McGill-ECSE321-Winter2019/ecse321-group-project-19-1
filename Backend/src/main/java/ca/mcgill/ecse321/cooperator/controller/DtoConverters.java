@@ -112,9 +112,11 @@ public class DtoConverters {
      */
     public static StudentDto convertToDto(Student s) {
         CheckArg(s);
+
         List<CoopPositionDto> coops = new ArrayList<>();
+        Date today = new Date();
         for (CoopPosition cp : s.getCoopPosition()) {
-        	if(cp != null) {
+        	if(cp != null && cp.getEndDate().after(today) ) {
         		coops.add(convertToDto(cp));
         	}
         }

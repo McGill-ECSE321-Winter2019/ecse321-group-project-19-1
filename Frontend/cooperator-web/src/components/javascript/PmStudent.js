@@ -1,53 +1,78 @@
-import axios from 'axios'
-var config = require('../../../config')
+import axios from "axios";
+import { log } from "util";
+var config = require("../../../config");
 
 var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
 var backendUrl = 'https://cooperator-backend-260.herokuapp.com/'
 
+
 var AXIOS = axios.create({
-    baseURL: backendUrl,
-    headers: { 'Access-Control-Allow-Origin': frontendUrl }
-})
+  baseURL: backendUrl,
+  headers: { "Access-Control-Allow-Origin": frontendUrl }
+});
 
 export default {
-    data() {
-        return {
-          fields: {
-            coopID: {
-              label: 'CoopID',
-              sortable: true
-            },
-            student: {
-              label: 'StudentID',
-              sortable: true
-            },
-            startDate:{
-              label: "Start Date",
-              sortable: true
-            },
-            endDate:{
-              label: "End Date",
-              sortable: true
-            }
-          },
+  data() {
+    return {
+      students: [],
 
-          coops: []
+      fields: {
+        firstName: {
+          label: "FirstName",
+          sortable: true
+        },
+        lastName: {
+          label: "LastName",
+          sortable: true
+        },
+        studentId: {
+          label: "ID",
+          sortable: true
+        },
+        problematic: {
+          label: "Problematic?",
+          sortable: true
+        },
+        coopStatus: {
+          label: "Coop Status",
+          sortable:true
         }
-      },
+      }
+    };
+  },
 
-      created: function() {
-        // Initializing people from backend
-        AXIOS.get(`/coops`)
-          .then(response => {
-            // JSON responses are automatically parsed.
-            this.coops = response.data;
-          })  
-    },
-
-    // methods:{
-    //   getStudent: function(studentID){
-    //     AXIOS.get(/)
-    //   }
-  //  }
+  created: function() {
     
+    AXIOS.get(`/allStudents`)
+      .then(response => {
+        this.students = response.data;
+      })
+      .then(() => {
+        for (var i = 0; i < this.students.length; i++) {
+          var student = this.students[i];
+          if (student.coopPositions.length > 0) {
+            student.coopStatus = student.coopPositions[0].status;
+            if(student.problematic === "true")
+              student.problematic = "Yes"
+            else
+              student.problematic = "No"
+          } else student.coopStatus = null;
+        }    
+            
+        this.$refs.table.refresh();
+      })
+      .catch(error => {
+        alert(error);
+      });    
+  },
+
+  methods:{
+    studentSelection(item){
+      if(item[0].coopStatus != null){
+      id = item[0].studentId
+      window.location.href = "/#/PmSingleStudent/" + id
+      }
+    }
+
   }
+};
