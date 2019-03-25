@@ -39,6 +39,16 @@ The report can be found [here](https://github.com/McGill-ECSE321-Winter2019/ecse
 * Every Member is responsible for the project management, generate issues wherever applicable
 
 ## Deliverable 3: Due March 24th, 2019
+The report can be found [here](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-19-1/wiki/Deliverable-3-Report)
+
+|Team member's name |Total hours |Responsibility         |
+|-------------------|------------|-----------------------|
+|Sophie Deng        |     35       |         Frontend and login              |
+|Andre Kaba         |     35       |         Build system, deployment and connecting REST              |
+|Mia Zhou           |     35       |         Backend fixes and frontend             |
+|Max Brodeur        |     35      |         Frontend and design             |
+|Carl Elkhoury      |     35       |          Frontend and design             |
+* Every Member is responsible for the project management, generate issues wherever applicable
 
 ## Deliverable 4: Due April 7th, 2019
 
