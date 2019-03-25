@@ -30,7 +30,7 @@ export default {
           sortable: true
         },
         problematic: {
-          label: "Problematic Status",
+          label: "Problematic?",
           sortable: true
         },
         coopStatus: {
