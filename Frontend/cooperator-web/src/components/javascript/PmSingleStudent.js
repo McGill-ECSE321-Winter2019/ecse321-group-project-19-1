@@ -34,7 +34,7 @@ export default {
             sortable: true
           },
         submitted: {
-          label: "Submitted Status",
+          label: "Submitted?",
           sortable: true
         },
       }
