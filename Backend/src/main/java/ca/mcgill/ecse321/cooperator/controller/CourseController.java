@@ -29,8 +29,13 @@ public class CourseController {
 	 */
 	@PostMapping(value = { "/createCourse", "/createCourse/" })
 	public CourseDto createCourse(@RequestParam("courseName") String courseName) throws IllegalArgumentException {
-		Course course = coursesService.createCourse(courseName);
-		return DtoConverters.convertToDto(course);
+		try{
+			Course course = coursesService.createCourse(courseName);
+			return DtoConverters.convertToDto(course);
+		}
+		catch(Exception e){
+			throw new IllegalArgumentException("Could not create course");
+		}
 	}
 
 	/**
@@ -40,11 +45,16 @@ public class CourseController {
 	 */
 	@GetMapping(value = { "/allCourses", "/allCourses/" })
 	public List<CourseDto> getAllCourses() {
-		List<CourseDto> coursesDto = new ArrayList<>();
-		for (Course course : coursesService.getAllCourses()) {
-			coursesDto.add(DtoConverters.convertToDto(course));
+		try {
+			List<CourseDto> coursesDto = new ArrayList<>();
+			for (Course course : coursesService.getAllCourses()) {
+				coursesDto.add(DtoConverters.convertToDto(course));
+			}
+			return coursesDto;
 		}
-		return coursesDto;
+		catch(Exception e) {
+			throw new IllegalArgumentException("Could not retrieve information from service");
+		}
 	}
 
 	/**
@@ -57,7 +67,12 @@ public class CourseController {
 	@PostMapping(value = { "/rateCourse", "/rateCourse/" })
 	public CoopPositionDto rateCourse(@RequestParam("courseId") Integer courseId,
 			@RequestParam(name = "coopId") int coopId) {
-		return DtoConverters.convertToDto(coursesService.rateCourse(courseId, coopId));
+		try{
+			return DtoConverters.convertToDto(coursesService.rateCourse(courseId, coopId));
+		}
+		catch(Exception e) {
+			throw new IllegalArgumentException("Please enter valid information");
+		}
 	}
 	
 	/**
@@ -80,11 +95,16 @@ public class CourseController {
 	 */
 	@GetMapping(value = { "/ranking", "/ranking/" })
 	public List<CourseDto> getCoursesRanking() {
-		List<Course> courses = coursesService.getAllCourses();
-		Collections.sort(courses, (c1, c2) -> c2.getCoopPosition().size() - c1.getCoopPosition().size());
-		List<CourseDto> res = new ArrayList<>();
-		for (Course c : courses)
-			res.add(DtoConverters.convertToDto(c));
-		return res;
+		try {
+			List<Course> courses = coursesService.getAllCourses();
+			Collections.sort(courses, (c1, c2) -> c2.getCoopPosition().size() - c1.getCoopPosition().size());
+			List<CourseDto> res = new ArrayList<>();
+			for (Course c : courses)
+				res.add(DtoConverters.convertToDto(c));
+			return res;
+		}
+		catch(Exception e) {
+			throw new IllegalArgumentException("Could not access information " + e.getMessage());
+		}
 	}
 }

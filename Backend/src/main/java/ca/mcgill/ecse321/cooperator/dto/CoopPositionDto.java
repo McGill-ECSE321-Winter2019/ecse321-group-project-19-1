@@ -28,7 +28,6 @@ public class CoopPositionDto {
 
     // Constructor without term instructor with string
     public CoopPositionDto(String sid, String desc, Date start, Date end, String location, String term,
-
                            Integer studentId, Status s) {
     	this();
         Integer id = Integer.parseInt(sid);
@@ -44,7 +43,6 @@ public class CoopPositionDto {
 
     // Constructor without term instructor
     public CoopPositionDto(Integer id, String desc, Date start, Date end, String location, String term,
-
                            Integer studentId, Status s) {
     	this();
         this.coopId = id;
@@ -98,5 +96,24 @@ public class CoopPositionDto {
 
     public Status getStatus() {
         return status;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+    public Date getStartDate() {
+    	return startDate;
+    }
+
+    public Date getEndDate() {
+    	return endDate;
+    }
+
+    public String getTerm() {
+    	return term;
+    }
+
+    public String getLocation() {
+    	return location;
     }
 }

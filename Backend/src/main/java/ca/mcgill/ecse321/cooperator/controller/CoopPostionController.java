@@ -44,10 +44,18 @@ public class CoopPostionController {
 			@RequestParam(name = "term") String term, @RequestParam(name = "studentId") int studentId)
 			throws IllegalArgumentException {
 		Student student = studentService.getStudentById(studentId);
-		CoopPosition coopPostion = coopPositionService.createCoopPosition(startDate, endDate, description, location,
-				term, student);
-		studentService.offerCoopPostionToStudent(student.getStudentID(), coopPostion.getCoopId());
-		return DtoConverters.convertToDto(coopPostion);
+		if(student == null) {
+			throw new IllegalArgumentException("No such student");
+		}
+		try {
+			CoopPosition coopPostion = coopPositionService.createCoopPosition(startDate, endDate, description, location,
+					term, student);
+			studentService.offerCoopPostionToStudent(student.getStudentID(), coopPostion.getCoopId());
+			return DtoConverters.convertToDto(coopPostion);
+		}
+		catch(Exception e) {
+			throw new IllegalArgumentException("Please enter valid information");
+		}
 	}
 
 	/**
@@ -64,8 +72,11 @@ public class CoopPostionController {
 			@RequestParam(name = "status") Status status, @RequestParam(name = "programManagerEmail") String pmEmail,
 			@RequestParam(name = "programManagerPassword") String pmPassword) throws IllegalArgumentException {
 		UserEntity ui = userEntityService.getUserEntityByEmail(pmEmail);
+		if(ui == null) {
+			throw new IllegalArgumentException("No such user");
+		}
 		if (ui == null || !(ui instanceof ProgramManager) || !pmPassword.equals(ui.getPassword()))
-			throw new IllegalArgumentException("Error");
+			throw new IllegalArgumentException("Access Error");
 		CoopPosition cp = coopPositionService.getById(cpId);
 		return DtoConverters.convertToDto(coopPositionService.setCoopPostionStatus(cp, status));
 	}

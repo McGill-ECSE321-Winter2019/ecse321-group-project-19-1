@@ -1,4 +1,4 @@
-package ca.mcgill.ecse321.cooperator.integrationTests;
+package integrationTests.java.ca.mcgill.ecse321.cooperator;
 
 import ca.mcgill.ecse321.cooperator.Utilities;
 import ca.mcgill.ecse321.cooperator.model.Status;
