@@ -65,16 +65,17 @@ public class UserEntityController {
 	@PostMapping(value = { "/assignCoop", "/assignCoop/" })
 	public CoopPositionDto assignCoop(@RequestParam(name = "email") String tiEmail,
 			@RequestParam(name = "coopId") int cpId) throws IllegalArgumentException {
-		TermInstructor ti = (TermInstructor) userEntityService.getUserEntityByEmail(tiEmail);
-		if(ti == null)
-			throw new IllegalArgumentException("No such term instructor");
-		CoopPosition cp = coopPositionService.getById(cpId);
-		if(cp == null)
-			throw new IllegalArgumentException("No such coop position");
-		Set<CoopPosition> cps = new HashSet<>();
-		cps.add(cp);
-		userEntityService.assignCoopToInstructor(ti, cps);
-		return DtoConverters.convertToDto(cp);
+		try {
+			TermInstructor ti = (TermInstructor) userEntityService.getUserEntityByEmail(tiEmail);
+			CoopPosition cp = coopPositionService.getById(cpId);
+			Set<CoopPosition> cps = new HashSet<>();
+			cps.add(cp);
+			userEntityService.assignCoopToInstructor(ti, cps);
+			return DtoConverters.convertToDto(cp);
+		}
+		catch(Exception e) {
+			throw new IllegalArgumentException("Could not find instructor or coop");
+		}
 	}
 
 	/**
@@ -91,11 +92,15 @@ public class UserEntityController {
 	public TermInstructorDto createTermInstructor(@RequestParam("firstName") String firstName,
 			@RequestParam("lastName") String lastName, @RequestParam("password") String password,
 			@PathVariable("email") String email) throws IllegalArgumentException {
-		UserEntity user = userEntityService.getUserEntityByEmail(email);
-		if(user == null)
-			throw new IllegalArgumentException("User does not exist");
-		TermInstructor termInstructor = userEntityService.createTermInstructor(firstName, lastName, email, password);
-		return DtoConverters.convertToDto(termInstructor);
+		if(firstName == null || lastName == null || password == null || email == null) {
+			throw new IllegalArgumentException("Please input valid information");
+		}
+		try {
+			TermInstructor termInstructor = userEntityService.createTermInstructor(firstName, lastName, email, password);
+			return DtoConverters.convertToDto(termInstructor);
+		}catch(Exception e) {
+			throw new IllegalArgumentException("User already exists");
+		}
 	}
 
 	/**
@@ -112,11 +117,16 @@ public class UserEntityController {
 	public ProgramManagerDto createProgramManager(@RequestParam("firstName") String firstName,
 			@RequestParam("lastName") String lastName, @RequestParam("password") String password,
 			@PathVariable("email") String email) throws IllegalArgumentException {
-		UserEntity user = userEntityService.getUserEntityByEmail(email);
-		if(user == null)
-			throw new IllegalArgumentException("User does not exist");
-		ProgramManager pm = userEntityService.createProgramManager(firstName, lastName, email, password);
-		return DtoConverters.convertToDto(pm);
+		if(firstName == null || lastName == null || password == null || email == null) {
+			throw new IllegalArgumentException("Please input valid information");
+		}
+		try {
+			ProgramManager pm = userEntityService.createProgramManager(firstName, lastName, email, password);
+			return DtoConverters.convertToDto(pm);
+		}
+		catch(Exception e) {
+			throw new IllegalArgumentException("User already exists");
+		}
 	}
 
 	/**
