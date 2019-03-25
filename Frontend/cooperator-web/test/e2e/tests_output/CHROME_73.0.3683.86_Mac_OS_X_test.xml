@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
             failures="0"
-            tests="2">
+            tests="4">
 
   <testsuite name="test"
     errors="0" failures="0" hostname="" id="" package="test" skipped="0"
-    tests="2" time="6.034" timestamp="">
+    tests="4" time="15.69" timestamp="">
   
-    <testcase name="step three: login" classname="test" time="3.566" assertions="8">
+    <testcase name="step one: home" classname="test" time="1.468" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="step two: register" classname="test" time="5.154" assertions="9">
+
+    
 
     
 
@@ -26,7 +37,42 @@
     
     </testcase>
   
-    <testcase name="step four: Program Manager View" classname="test" time="2.468" assertions="0">
+    <testcase name="step three: program manager login" classname="test" time="5.772" assertions="11">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="step four: assigning a term instructor to a coop" classname="test" time="3.298" assertions="5">
+
+    
+
+    
+
+    
+
+    
+
+    
     </testcase>
   
 
