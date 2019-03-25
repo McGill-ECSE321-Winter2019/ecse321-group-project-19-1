@@ -47,16 +47,22 @@ export default {
     AXIOS.get(`/student/` + '?studentId=' + id)
       .then(response => {
         this.student = response.data;
-        console.log(this.student);
       })
       .then(() =>{
        this.coopId=this.student.coopPositions[0].coopID;
        AXIOS.get('/allRequiredDocumentsByCoopPosition' + '?coopId=' + this.coopId)
         .then(response => {
             this.documents = response.data;
+            console.log(this.documents);
+            //Formatting document attributes for table
             if(this.documents.length != 0){
             for(var i=0; i<this.documents.length; i++)
-                this.documents[i].dueDate = this.documents[i].dueDate.substring(0,10);
+                var document = this.documents[i];
+                document.dueDate = document.dueDate.substring(0,10);
+                if(document.submitted = "true")
+                  document.submitted = "Yes";
+                else
+                  document.submitted = "No";
             }
             this.$refs.table.refresh();
        })

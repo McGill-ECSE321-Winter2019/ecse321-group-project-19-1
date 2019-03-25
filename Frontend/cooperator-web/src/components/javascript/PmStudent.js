@@ -43,7 +43,6 @@ export default {
 
   created: function() {
     
-    // Initializing people from backend
     AXIOS.get(`/allStudents`)
       .then(response => {
         this.students = response.data;
@@ -53,6 +52,10 @@ export default {
           var student = this.students[i];
           if (student.coopPositions.length > 0) {
             student.coopStatus = student.coopPositions[0].status;
+            if(student.problematic === "true")
+              student.problematic = "Yes"
+            else
+              student.problematic = "No"
           } else student.coopStatus = null;
         }    
             
