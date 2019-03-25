@@ -77,8 +77,12 @@ public class CoopPostionController {
 		}
 		if (ui == null || !(ui instanceof ProgramManager) || !pmPassword.equals(ui.getPassword()))
 			throw new IllegalArgumentException("Access Error");
-		CoopPosition cp = coopPositionService.getById(cpId);
-		return DtoConverters.convertToDto(coopPositionService.setCoopPostionStatus(cp, status));
+		try {
+			CoopPosition cp = coopPositionService.getById(cpId);
+			return DtoConverters.convertToDto(coopPositionService.setCoopPostionStatus(cp, status));
+		}catch(Exception e) {
+			throw new IllegalArgumentException("Could not find coop");
+		}
 	}
 
 	/**
