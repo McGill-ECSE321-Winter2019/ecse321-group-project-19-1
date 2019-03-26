@@ -5,7 +5,7 @@ matrix:
         - '7'
       cache: npm
       before_install:
-        - cd Frontend/cooperator-web
+        - cd Frontend/
         - npm install
       script:
         - npm run build
