@@ -61,5 +61,9 @@ task integrationTest(type: Test) {
     classpath = sourceSets.integrationTest.runtimeClasspath
 }
 
+integrationTest{
+    exclude '**/RemoteIntegrationTests.class'
+}
+
 integrationTest.mustRunAfter test
 
