@@ -1,10 +1,9 @@
 {
-  "name": "cooperator-frontend-260",
-  "version": "1.0.0",
-  "description": "Frontend",
-  "author": "",
-  "private": true,
   "scripts": {
-    "build": "cd Frontend/cooperator-web/ && npm build && npm install"
+    "postinstall": "cd Frontend && npm install",
+    "start": "cd Frontend/ && node build/dev-server.js"
+  },
+  "dependencies": {
+    "bootstrap-vue": "^2.0.0-rc.15"
   }
 }
