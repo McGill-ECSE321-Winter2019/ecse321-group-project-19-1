@@ -75,7 +75,7 @@ public class CoopPostionController {
 		if(ui == null) {
 			throw new IllegalArgumentException("No such user");
 		}
-		if (ui == null || !(ui instanceof ProgramManager) || !pmPassword.equals(ui.getPassword()))
+		if (ui == null || !(ui instanceof ProgramManager) || !pmPassword.equals(ui.getPasswordHash()))
 			throw new IllegalArgumentException("Access Error");
 		try {
 			CoopPosition cp = coopPositionService.getById(cpId);

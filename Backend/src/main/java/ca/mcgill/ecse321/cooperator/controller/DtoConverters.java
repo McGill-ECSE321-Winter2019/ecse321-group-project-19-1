@@ -138,7 +138,7 @@ public class DtoConverters {
         		cpDtos.add(cp.getCoopId());
         	}
         }
-        return new TermInstructorDto(ti.getFirstName(), ti.getLastName(), ti.getPassword(), ti.getEmail(),cpDtos);
+        return new TermInstructorDto(ti.getFirstName(), ti.getLastName(), ti.getPasswordHash(), ti.getEmail(),cpDtos);
     }
 
     /**
@@ -149,7 +149,7 @@ public class DtoConverters {
      */
     public static ProgramManagerDto convertToDto(ProgramManager pm) {
         CheckArg(pm);
-        return new ProgramManagerDto(pm.getFirstName(), pm.getLastName(), pm.getPassword(), pm.getEmail());
+        return new ProgramManagerDto(pm.getFirstName(), pm.getLastName(), pm.getPasswordHash(), pm.getEmail());
     }
 
     /**
