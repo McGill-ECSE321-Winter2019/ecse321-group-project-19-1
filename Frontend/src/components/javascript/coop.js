@@ -16,7 +16,17 @@ export default {
       instructor: '',
       coopId: '',
       errorCoop: '',
-    }
+      fields: {
+        coopID: {
+          label: "Coop ID",
+          sortable: true
+        },
+        termInstructor: {
+          label: "Instructors",
+          sortable: true
+        },
+    },
+  }
   },
   created: function () {
     AXIOS.get(`/allCoops`)

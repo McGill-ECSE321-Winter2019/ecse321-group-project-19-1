@@ -19,7 +19,6 @@
                     <span v-if="errorNewCourse" style="color:red">Error: {{errorNewCourse}} </span>
                     <br>
                 </div>
-                </div>
                 <div class="container" style="align:center">
                     <h1 class="page-title">Add Course to Coop</h1>
                     <input
@@ -44,23 +43,10 @@
                         <br>
                     </div>
                     </div>
-                    <div class="container" style="align:center">
-                        <h1 class="page-title">Course Ranking</h1>
-                        <div id="table">
-                            <table class="info-table" style="width: 100%; height: 100%;">
-                                <tr>
-                                    <th style="padding:10px">Course ID</th>
-                                    <th style="padding:10px">Course Name</th>
-                                    <th style="padding:10px">Number of Coops Used</th>
-                                </tr>
-                                <tr v-for="course in courses">
-                                    <td style="padding:10px">{{ course.courseId }}</td>
-                                    <td style="padding:10px">{{ course.courseName }}</td>
-                                    <td style="padding:10px">{{coopLength(course)}}</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+                    <div id="table">
+                            <b-table ref="table" class="info-table" striped :items= "courses" :fields= "fields"/>
+                     </div>
+                     </div>
                 </div>
             </div>
         </div>
