@@ -815,11 +815,13 @@ h1, h2, h3, h4, h5,
   }
 
   .info-table{
-    color:rgb(243, 72, 20);
+    background:rgb(224, 223, 214);
+    color:rgb(0, 0, 0);
     border: solid rgb(255, 255, 255) 1px;
   }
 
   .page-title{
+    text-align:center;
     color:white;
     padding:5%;
     align-self: center;
