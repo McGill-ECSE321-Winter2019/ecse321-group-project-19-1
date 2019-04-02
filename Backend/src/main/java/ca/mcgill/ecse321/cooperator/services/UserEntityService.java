@@ -191,6 +191,13 @@ public class UserEntityService {
 
     }
 
+    /**
+     * Hashes a password
+     * 
+     * @param stringToHash password to hash
+     * @return the hashed password
+     */
+
     private String hash(String stringToHash) {
         try {
             MessageDigest passwordDigest = MessageDigest.getInstance("SHA-256");
