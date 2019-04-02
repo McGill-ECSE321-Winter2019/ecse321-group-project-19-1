@@ -1,28 +1,24 @@
 matrix:
   include:
-    - language: node_js
-      node_js:
-        - '7'
-      cache: npm
-      before_install:
-        - cd Frontend/
-        - npm install
-      script:
-        - npm run build
-      deploy:
-        provider: heroku
-        app: cooperator-web-frontend-260
-        api_key:
-          secure: slX9QBmQr5XYjhFuLMlmUZBg0kdXoUqXF9W9Je4Nwb4fySeV3cZuarDJEvoLkI2Y0JEH+0nupj0LbmDuYUl6ag61yffte0NLorm2zJgK7w/PZBpQo5ooLlT2t9j9i3EZdfZfN9qveHO9sSfVWs2KRrgMXMAtuteqn9bhV4mfTEtrcBg7OjNpL5gVdiHUDpgmlJVBIIoXf7rEslP1DGYRrUvjjoLoFK76Mgavg60f5X++epgY1KB8X4OMNAsnUT6puRChXYUS9nnVAdRW1qmWLJv65AuotgucS4Nm8bFscm6VaXr1xckvFkKFuT4CXzMJuerfZn7UR+QgIiNrttsV+5v4v7GMIo5kCdF4zTiMvJzWQqLbm8SCcjsT38z0Wa3TGXdVZ0mY1PuG6YNsZ0ndcvRMjMQ66wT/pBdiktLSc0RKzwItmX4NNPx5r5b38VA7scMwHgjiHTc+LxC9blSSkDPHXVVMnrFjWbWEy8fjvXwIKuNSv4HgWSLzcvyaLMzFXJ7gb07pCOBId4DvvVc6YcAVmaJsPcK3LxbrVFTUo1HoRqkYgF6ZfMHSNMIa2Zx5ze73JpH/Hv06/c1KAvG8mCumyiJn+yIjJHR2QDY4dw3MzURbZKLyz9IvXvW9vJpzNI+4Gecmt1XNoxsKBphW3tpK9cYxkMRerFlrnjWEAxs=
-        on:
-          branch: akaba/fixFrontEndBuild
-    - language: java
-      script:
-        - "./gradlew build"
-      deploy:
-        provider: heroku
-        app: cooperator-backend-260
-        api_key:
-          secure: slX9QBmQr5XYjhFuLMlmUZBg0kdXoUqXF9W9Je4Nwb4fySeV3cZuarDJEvoLkI2Y0JEH+0nupj0LbmDuYUl6ag61yffte0NLorm2zJgK7w/PZBpQo5ooLlT2t9j9i3EZdfZfN9qveHO9sSfVWs2KRrgMXMAtuteqn9bhV4mfTEtrcBg7OjNpL5gVdiHUDpgmlJVBIIoXf7rEslP1DGYRrUvjjoLoFK76Mgavg60f5X++epgY1KB8X4OMNAsnUT6puRChXYUS9nnVAdRW1qmWLJv65AuotgucS4Nm8bFscm6VaXr1xckvFkKFuT4CXzMJuerfZn7UR+QgIiNrttsV+5v4v7GMIo5kCdF4zTiMvJzWQqLbm8SCcjsT38z0Wa3TGXdVZ0mY1PuG6YNsZ0ndcvRMjMQ66wT/pBdiktLSc0RKzwItmX4NNPx5r5b38VA7scMwHgjiHTc+LxC9blSSkDPHXVVMnrFjWbWEy8fjvXwIKuNSv4HgWSLzcvyaLMzFXJ7gb07pCOBId4DvvVc6YcAVmaJsPcK3LxbrVFTUo1HoRqkYgF6ZfMHSNMIa2Zx5ze73JpH/Hv06/c1KAvG8mCumyiJn+yIjJHR2QDY4dw3MzURbZKLyz9IvXvW9vJpzNI+4Gecmt1XNoxsKBphW3tpK9cYxkMRerFlrnjWEAxs=
-        on:
-          branch: akaba/fixFrontEndBuild
+  - language: node_js
+    node_js:
+    - 10.15
+    cache: npm
+    before_install:
+    - cd Frontend/
+    - npm install
+    script:
+    - npm run build
+    deploy:
+      provider: heroku
+      app: cooperator-web-frontend-260
+      api_key:
+        secure: FEigLRU8UAMwz5w/W/ME4849UlhWIF39r43gI7hMAkasFogU1gQ/wTmP6lZeGpeV1sd33c4a3Y/H6eHt7/0ioDuykW6LMoXAtHNHcRTo6xOsaT/afnbWaNbyH59WjyVa/k/oEgL6+G8WhrblhKLm+aCRwOyn9/yjnhDcj9NMA9RF5ZDtWvp7qDJPWGcVZtv8a1wfdsywpKnE1h5lyU+7HqKM4CWUUWsu7LSrIIzpa7Jmll5RE4FBDYcLMs49zNx8GK9vId/Ct+9/uay3iWhnewGVUkGKjRT2eBF7pX1N7ejfE102G8KtfyVAZAdYO2+zVZ/bEWRJUh7DT+jYUuEvXL7Oh17UNgT4apfUupMD4ugNJMkZgRBmf1i+6Nm+MER6WDocdc/08/GFSUBkNZu8WtLC+/YCjwUjPDhEZIYx2nPdOCD+fNo5tZVqvGqY4v0k41QHsjpRtB5w5Ipu5vUbBYQWYdnZ1RAdH+L0hYdK+q2j3HEuCHNXSQjtUS9OpESCSzvJL+/6DiAVsUlU30FFr1qlclKjUGME3xG0+VA33lO4RO1lSBJPIgss8SAKGYGLCd39uI1haNzL2bBXJfkagziCS35bukYbRKfOpiKkl0d7phXheOxceHiZ3fPyoqFDTSvoom5JsSWjeKSjI0Vy6fLFjdxRfld2xmk9L1bqqMg
+  - language: java
+    script:
+    - "./gradlew build"
+    deploy:
+      provider: heroku
+      app: cooperator-backend-260
+      api_key:
+        secure: FEigLRU8UAMwz5w/W/ME4849UlhWIF39r43gI7hMAkasFogU1gQ/wTmP6lZeGpeV1sd33c4a3Y/H6eHt7/0ioDuykW6LMoXAtHNHcRTo6xOsaT/afnbWaNbyH59WjyVa/k/oEgL6+G8WhrblhKLm+aCRwOyn9/yjnhDcj9NMA9RF5ZDtWvp7qDJPWGcVZtv8a1wfdsywpKnE1h5lyU+7HqKM4CWUUWsu7LSrIIzpa7Jmll5RE4FBDYcLMs49zNx8GK9vId/Ct+9/uay3iWhnewGVUkGKjRT2eBF7pX1N7ejfE102G8KtfyVAZAdYO2+zVZ/bEWRJUh7DT+jYUuEvXL7Oh17UNgT4apfUupMD4ugNJMkZgRBmf1i+6Nm+MER6WDocdc/08/GFSUBkNZu8WtLC+/YCjwUjPDhEZIYx2nPdOCD+fNo5tZVqvGqY4v0k41QHsjpRtB5w5Ipu5vUbBYQWYdnZ1RAdH+L0hYdK+q2j3HEuCHNXSQjtUS9OpESCSzvJL+/6DiAVsUlU30FFr1qlclKjUGME3xG0+VA33lO4RO1lSBJPIgss8SAKGYGLCd39uI1haNzL2bBXJfkagziCS35bukYbRKfOpiKkl0d7phXheOxceHiZ3fPyoqFDTSvoom5JsSWjeKSjI0Vy6fLFjdxRfld2xmk9L1bqqMg
