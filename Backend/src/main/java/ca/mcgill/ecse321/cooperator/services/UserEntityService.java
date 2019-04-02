@@ -11,7 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,10 +20,10 @@ import java.util.Set;
 
 @Service
 public class UserEntityService {
-	
+
     @Autowired
     UserEntityRepository userEntityRepository;
-    
+
     @Autowired
     CoopPositionRepository coopPositionRepository;
 
@@ -49,7 +50,7 @@ public class UserEntityService {
     @Transactional
     public UserEntity login(String email, String password) {
         UserEntity user = userEntityRepository.findUserEntityByEmail(email);
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null && user.getPasswordHash().equals(hash(password))) {
             return user;
         }
         throw new NullPointerException("No such user.");
@@ -86,7 +87,7 @@ public class UserEntityService {
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setEmail(email);
-            user.setPassword(password);
+            user.setPasswordHash(hash(password));
             userEntityRepository.save(user);
             return user;
         }
@@ -97,12 +98,12 @@ public class UserEntityService {
     public UserEntity assignCoopToInstructor(TermInstructor ti, Set<CoopPosition> newCoopPositions) {
         UserEntity t = userEntityRepository.findUserEntityByEmail(ti.getEmail());
         Set<TermInstructor> tis = new HashSet<>();
-        tis.add((TermInstructor)t);
-        for(CoopPosition cp: newCoopPositions) {
-        	if(cp!=null) {
-        		cp.setTermInstructor(tis);
-        		coopPositionRepository.save(cp);
-        	}
+        tis.add((TermInstructor) t);
+        for (CoopPosition cp : newCoopPositions) {
+            if (cp != null) {
+                cp.setTermInstructor(tis);
+                coopPositionRepository.save(cp);
+            }
         }
         if (t instanceof TermInstructor) {
             ((TermInstructor) t).getCoopPosition().addAll(newCoopPositions);
@@ -111,15 +112,29 @@ public class UserEntityService {
         }
         throw new NullPointerException("No such term instructor.");
     }
-    
+
     @Transactional
     public boolean deleteUserEntity(String email) {
-    	UserEntity ue = userEntityRepository.findUserEntityByEmail(email);
-    	if(ue == null) {
-    		throw new NullPointerException("No such user.");
-    	}
-    	userEntityRepository.deleteById(email);	
-    	return true;
-    	
+        UserEntity ue = userEntityRepository.findUserEntityByEmail(email);
+        if (ue == null) {
+            throw new NullPointerException("No such user.");
+        }
+        userEntityRepository.deleteById(email);
+        return true;
+
+    }
+
+    private String hash(String stringToHash) {
+        try {
+            MessageDigest passwordDigest = MessageDigest.getInstance("SHA-256");
+            passwordDigest.update(stringToHash.getBytes());
+            return new String(passwordDigest.digest());
+        } catch (NoSuchAlgorithmException e) {
+            System.err.println("SHA-256 not found!");
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

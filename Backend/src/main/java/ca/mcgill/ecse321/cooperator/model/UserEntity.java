@@ -7,7 +7,7 @@ import javax.persistence.Id;
 public abstract class UserEntity {
     private String firstName;
     private String lastName;
-    private String password;
+    private String passwordHash;
     private String email;
 
     public void setFirstName(String value) {
@@ -26,12 +26,12 @@ public abstract class UserEntity {
         return this.lastName;
     }
 
-    public void setPassword(String value) {
-        this.password = value;
+    public void setPasswordHash(String value) {
+        this.passwordHash = value;
     }
 
-    public String getPassword() {
-        return this.password;
+    public String getPasswordHash() {
+        return this.passwordHash;
     }
 
     public void setEmail(String value) {

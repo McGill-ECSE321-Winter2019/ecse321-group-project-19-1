@@ -86,14 +86,14 @@ public class CooperatorUserEntityTest {
 				user.setFirstName(firstName);
 				user.setLastName(lastName);
 				user.setEmail(email);
-				user.setPassword(password);
+				user.setPasswordHash(password);
 				return user;
 			} else if (invocation.getArgument(0).equals(email2)) {
 				UserEntity user = new TermInstructor();
 				user.setFirstName(firstName2);
 				user.setLastName(lastName2);
 				user.setEmail(email2);
-				user.setPassword(password);
+				user.setPasswordHash(password);
 				return user;
 			} else {
 				return null;
