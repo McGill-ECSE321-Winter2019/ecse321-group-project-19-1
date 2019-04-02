@@ -37,15 +37,47 @@ public class UserEntityService {
         return (List<UserEntity>) userEntityRepository.findAll();
     }
 
+    /**
+	 * Create a new term instructor in the system
+	 * 
+	 * @param firstName first name of the term instructor
+	 * @param lastName  last name of the term instructor
+	 * @param password  password of term instructor
+	 * @param email     email of term instructor
+	 * @return the new created term instructor
+     * @throws IllegalArgumentException
+	 */
+
     @Transactional
     public TermInstructor createTermInstructor(String firstName, String lastName, String email, String password) {
         return (TermInstructor) createUser(firstName, lastName, email, password, UserType.TERM_INSTRUCTOR);
     }
 
+
+    /**
+	 * Create a new program manager in the system
+	 * 
+	 * @param firstName first name of the program manager
+	 * @param lastName  last name of the program manager
+	 * @param password  password of program manager
+	 * @param email     email of program manager
+	 * @return the new created program manager
+     * @throws IllegalArgumentException
+	 */
+
     @Transactional
     public ProgramManager createProgramManager(String firstName, String lastName, String email, String password) {
         return (ProgramManager) createUser(firstName, lastName, email, password, UserType.PROGRAM_MANAGER);
     }
+
+    /**
+	 * This method check if the login information was valid
+	 * 
+	 * @param email    the email
+	 * @param password the password
+	 * @return program manager, term instructor
+	 * @throws NullPointerException
+	 */
 
     @Transactional
     public UserEntity login(String email, String password) {
@@ -56,12 +88,31 @@ public class UserEntityService {
         throw new NullPointerException("No such user.");
     }
 
+    /**
+     * This method returns the user entity with a specific email
+     * 
+     * @param email the email
+     * @return the user entity
+     */
+
     @Transactional
     public UserEntity getUserEntityByEmail(String email) {
         return userEntityRepository.findUserEntityByEmail(email);
     }
 
     // =============================== Private methods ===============================
+
+    /**
+     * This method creates a user entity
+     * 
+     * @param firstName first name of the user entity
+	 * @param lastName  last name of the user entity
+	 * @param password  password of user entity
+	 * @param email     email of user entity
+     * @paran type      type of the user entity
+	 * @return the new created user entity
+     * @throws IllegalArgumentException
+     */
 
     private UserEntity createUser(String firstName, String lastName, String email, String password, UserType type) {
         if (!Utilities.checkNotEmpty(firstName))
@@ -94,6 +145,14 @@ public class UserEntityService {
         throw new IllegalArgumentException("[Internal error] Failed to create a new user.");
     }
 
+    /**
+	 * Assign coop to a term instructor
+	 * 
+	 * @param ti the the instructor
+	 * @param newCoopPoisitions the coop positions
+	 * @return the modified term instructor
+	 * @throws NullPointerException
+	 */
     @Transactional
     public UserEntity assignCoopToInstructor(TermInstructor ti, Set<CoopPosition> newCoopPositions) {
         UserEntity t = userEntityRepository.findUserEntityByEmail(ti.getEmail());
@@ -112,6 +171,14 @@ public class UserEntityService {
         }
         throw new NullPointerException("No such term instructor.");
     }
+
+	/**
+	 * Deleting an user entity
+	 * 
+	 * @param email    of user
+	 * @return boolean true = success
+     * @throws NullPointerException
+	 */
 
     @Transactional
     public boolean deleteUserEntity(String email) {
