@@ -56,13 +56,15 @@ export default {
             console.log(this.documents);
             //Formatting document attributes for table
             if(this.documents.length != 0){
-            for(var i=0; i<this.documents.length; i++)
+            for(var i=0; i<this.documents.length; i++){
                 var document = this.documents[i];
                 document.dueDate = document.dueDate.substring(0,10);
-                if(document.submitted = "true")
+                if(document.submitted === true)
                   document.submitted = "Yes";
-                else
+                else{
                   document.submitted = "No";
+                }
+            }
             }
             this.$refs.table.refresh();
        })
@@ -74,6 +76,7 @@ export default {
 
   methods:{
       adj(){
+        console.log('/setCoopStatus/' + '?status=' + 'ACCEPTED'+ '&coopId='+ this.coopId +'&programManagerEmail='+ this.username + '&programManagerPassword=' + this.password)
         AXIOS.post('/setCoopStatus/' + '?status=' + 'ACCEPTED'+ '&coopId='+ this.coopId +'&programManagerEmail='+ this.username + '&programManagerPassword=' + this.password)
         .then(() =>{
           AXIOS.get(`/student/` + '?studentId=' + id)

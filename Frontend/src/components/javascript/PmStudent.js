@@ -52,11 +52,13 @@ export default {
           var student = this.students[i];
           if (student.coopPositions.length > 0) {
             student.coopStatus = student.coopPositions[0].status;
-            if(student.problematic === "true")
+          } else student.coopStatus = null;
+          
+            if(student.problematic === true)
               student.problematic = "Yes"
             else
               student.problematic = "No"
-          } else student.coopStatus = null;
+          
         }    
             
         this.$refs.table.refresh();
