@@ -25,19 +25,9 @@
                     <span v-if="errorCoop" style="color:red">Error: {{errorCoop}} </span>
                     <br>
             </div>
-                    <div id="table">
-                        <table class="info-table" style="width: 100%; height: 100%;">
-                        <tr>
-                            <th style="padding:10px">Coop ID</th>
-                            <th style="padding:10px">Instructors</th>
-                        </tr>
-                        <tr v-for="coop in coops">
-                            <td style="padding:10px">{{ coop.coopID }}</td>
-                            <td style="padding:10px" v-for="ti in coop.termInstructor">
-                                            {{ti.email}}</td>
-                        </tr>
-                    </table>
-                    </div>
+            <div id="table">
+                            <b-table ref="table" class="info-table" striped :items= "coops" :fields= "fields"/>
+                     </div>
                 </div>
             </div>
         </div>

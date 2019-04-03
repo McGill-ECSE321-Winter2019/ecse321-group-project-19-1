@@ -18,12 +18,30 @@ export default {
             coopId: '',
             errorCourse: '',
             errorNewCourse: '',
+            fields: {
+                courseId: {
+                  label: "Course ID",
+                  sortable: true
+                },
+                courseName: {
+                  label: "Course Name",
+                  sortable: true
+                },
+                coopPositions: {
+                    label: "Number of Coop",
+                    sortable: true
+                  },
+                },
         }
     },
     created: function () {
         AXIOS.get(`/ranking`)
             .then(response => {
                 this.courses = response.data;
+                for (var i = 0; i < this.courses.length; i++) {
+                    var course = this.courses[i];
+                    course.coopPositions = course.coopPositions.length;                          
+                  }   
             })
     },
     updated() {
@@ -93,6 +111,10 @@ export default {
                     AXIOS.get(`/ranking`)
                         .then(response => {
                             this.courses = response.data;
+                            for (var i = 0; i < this.courses.length; i++) {
+                                var course = this.courses[i];
+                                course.coopPositions = course.coopPositions.length;                          
+                              }    
                         })
                 })
                 .catch(e => {
@@ -119,6 +141,10 @@ export default {
                     AXIOS.get(`/ranking`)
                         .then(response => {
                             this.courses = response.data;
+                            for (var i = 0; i < this.courses.length; i++) {
+                                var course = this.courses[i];
+                                course.coopPositions = course.coopPositions.length;                          
+                              }    
                         })
                 })
                 .catch(e => {
