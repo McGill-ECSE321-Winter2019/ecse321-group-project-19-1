@@ -25,13 +25,40 @@
                     <span v-if="errorCoop" style="color:red">Error: {{errorCoop}} </span>
                     <br>
             </div>
-            <div id="table">
-                            <b-table ref="table" class="info-table" striped :items= "coops" :fields= "fields"/>
-                     </div>
+                        <h1 class="page-title">Filter Coops</h1>
+                        <input
+                        class="text"
+                        type="text"
+                        placeholder="CoopID"
+                        v-model="coopId_filter"
+                        />
+                        <input @click="FilterCoop(coopId_filter)"
+                        type="submit"
+                        value="Find"
+                        class="btn btn-primary py-2 px-4 text-white"
+                        />
+                        <input
+                        class="text"
+                        type="text"
+                        placeholder="term"
+                        v-model="term"
+                        />
+                        <input @click="ActiveCoop(term)"
+                        type="submit"
+                        value="View Coops by Term"
+                        class="btn btn-primary py-2 px-4 text-white"
+                        />
+                    <div class="container" align="center">
+                            <span v-if="errorCoop_filter" style="color:red">Error: {{errorCoop_filter}} </span>
+                            <br>
+                    </div>
+                            <div id="table">
+                                <b-table ref="table" class="info-table" striped :items="coops" :fields="fields" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 </template>
 
 <script src="./javascript/coop.js">

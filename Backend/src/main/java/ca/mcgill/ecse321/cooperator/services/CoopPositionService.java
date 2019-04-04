@@ -38,8 +38,6 @@ public class CoopPositionService {
             throw new IllegalArgumentException("Cannot add a coop position with empty startDate");
         if (endDate == null)
             throw new IllegalArgumentException("Cannot add a coop position with empty endDate");
-
-
         CoopPosition cp = new CoopPosition();
         cp.setDescription(description);
         cp.setLocation(location);
