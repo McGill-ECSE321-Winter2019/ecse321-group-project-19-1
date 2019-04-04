@@ -2,17 +2,19 @@
 <div id="id">
     <div class="site-wrap">
         <div class="site-section" style="padding-top:10%">
-            <div class="container" style="align:center">
+            <div class="container" style="text-align:center; ">
                 <h1 class="page-title">Assign Coop Position</h1>
                 <input
                         class="text"
                         type="text"
+                        style="margin: 15px; border-radius:2%;"
                         placeholder="CoopID"
                         v-model="coopId"
                         />
                 <input
                         class="text"
                         type="text"
+                        style="margin: 15px; border-radius:2%;"
                         placeholder="Instructor Email"
                         v-model="instructor"
                         />
@@ -29,6 +31,7 @@
                         <input
                         class="text"
                         type="text"
+                        style="margin: 15px; border-radius:2%;"
                         placeholder="CoopID"
                         v-model="coopId_filter"
                         />
@@ -40,6 +43,7 @@
                         <input
                         class="text"
                         type="text"
+                        style="margin: 15px; border-radius:2%;"
                         placeholder="Term"
                         v-model="term"
                         />

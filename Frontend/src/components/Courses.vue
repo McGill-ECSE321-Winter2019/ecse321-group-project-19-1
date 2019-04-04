@@ -2,11 +2,12 @@
 <div id="id">
     <div class="site-wrap">
         <div class="site-section" style="padding-top:10%">
-            <div class="container" style="align:center">
+            <div class="container" style="text-align:center; ">
                 <h1 class="page-title">Create Course</h1>
                 <input
                         class="text"
                         type="text"
+                        style="margin: 15px; border-radius:2%;"
                         placeholder="Course Name"
                         v-model="newCourse"
                         />
@@ -23,12 +24,14 @@
                         <input
                         class="text"
                         type="text"
+                        style="margin: 15px; border-radius:2%;"
                         placeholder="CoopID"
                         v-model="coopId"
                         />
                         <input
                         class="text"
                         type="text"
+                        style="margin: 15px; border-radius:2%;"
                         placeholder="CourseID"
                         v-model="courseId"
                         />

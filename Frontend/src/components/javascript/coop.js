@@ -138,6 +138,10 @@ export default {
         });
     },
     ActiveCoop: function (term) {
+      if(term == null || term == ''){
+        this.errorCoop_filter = 'Please enter a term';
+        return;
+      }
       AXIOS.post(`/allCoops/` + term, {}, {})
         .then(response => {
           // JSON responses are automatically parsed.
