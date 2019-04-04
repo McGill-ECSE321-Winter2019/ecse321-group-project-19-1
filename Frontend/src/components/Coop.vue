@@ -40,7 +40,7 @@
                         <input
                         class="text"
                         type="text"
-                        placeholder="term"
+                        placeholder="Term"
                         v-model="term"
                         />
                         <input @click="ActiveCoop(term)"
