@@ -82,7 +82,7 @@ public class UserEntityService {
     @Transactional
     public UserEntity login(String email, String password) {
         UserEntity user = userEntityRepository.findUserEntityByEmail(email);
-        if (user != null && user.getPasswordHash().equals(hash(password))) {
+        if (user != null && user.getPasswordHash().equals(Utilities.hash(password))) {
             return user;
         }
         throw new NullPointerException("No such user.");
@@ -138,7 +138,7 @@ public class UserEntityService {
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setEmail(email);
-            user.setPasswordHash(hash(password));
+            user.setPasswordHash(Utilities.hash(password));
             userEntityRepository.save(user);
             return user;
         }
@@ -191,24 +191,4 @@ public class UserEntityService {
 
     }
 
-    /**
-     * Hashes a password
-     * 
-     * @param stringToHash password to hash
-     * @return the hashed password
-     */
-
-    private String hash(String stringToHash) {
-        try {
-            MessageDigest passwordDigest = MessageDigest.getInstance("SHA-256");
-            passwordDigest.update(stringToHash.getBytes());
-            return new String(passwordDigest.digest());
-        } catch (NoSuchAlgorithmException e) {
-            System.err.println("SHA-256 not found!");
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
 }

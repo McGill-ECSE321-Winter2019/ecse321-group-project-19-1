@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.cooperator.controller;
 
+import ca.mcgill.ecse321.cooperator.Utilities;
 import ca.mcgill.ecse321.cooperator.dto.CoopPositionDto;
 import ca.mcgill.ecse321.cooperator.model.*;
 import ca.mcgill.ecse321.cooperator.services.CoopPositionService;
@@ -75,7 +76,7 @@ public class CoopPostionController {
 		if(ui == null) {
 			throw new IllegalArgumentException("No such user");
 		}
-		if (ui == null || !(ui instanceof ProgramManager) || !pmPassword.equals(ui.getPasswordHash()))
+		if (ui == null || !(ui instanceof ProgramManager) || !Utilities.hash(pmPassword).equals(ui.getPasswordHash()))
 			throw new IllegalArgumentException("Access Error");
 		try {
 			CoopPosition cp = coopPositionService.getById(cpId);

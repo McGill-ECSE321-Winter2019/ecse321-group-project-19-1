@@ -2,14 +2,16 @@
 <div id="id">
     <div class="site-wrap">
         <div class="site-section" style="padding-top:10%">
-            <div class="container" style="align:center">
+            <div class="container" style="text-align:center; ">
                 <h1 class="page-title">Create Course</h1>
                 <input
                         class="text"
                         type="text"
+                        style="margin: 15px; border-radius:2%;"
                         placeholder="Course Name"
                         v-model="newCourse"
                         />
+                    <br>
                 <input @click="createCourse(newCourse)"
                         type="submit"
                         value="Create"
@@ -19,21 +21,29 @@
                     <span v-if="errorNewCourse" style="color:red">Error: {{errorNewCourse}} </span>
                     <br>
                 </div>
+
                 </div>
-                <div class="container" style="align:center">
+                <br>
+                <hr style="border: 1px solid white; width:60%; opacity:0.4;" />
+                <div class="container" style="text-align:center">
+
                     <h1 class="page-title">Add Course to Coop</h1>
                     <input
                         class="text"
                         type="text"
+                        style="border-radius:2%;"
                         placeholder="CoopID"
                         v-model="coopId"
                         />
+                        <br>
                     <input
                         class="text"
                         type="text"
+                        style="margin: 15px; border-radius:2%;"
                         placeholder="CourseID"
                         v-model="courseId"
                         />
+                        <br>
                     <input @click="rateCourse(coopId, courseId)"
                         type="submit"
                         value="Rate Course"
@@ -44,23 +54,16 @@
                         <br>
                     </div>
                     </div>
-                    <div class="container" style="align:center">
-                        <h1 class="page-title">Course Ranking</h1>
-                        <div id="table">
-                            <table class="info-table" style="width: 100%; height: 100%;">
-                                <tr>
-                                    <th style="padding:10px">Course ID</th>
-                                    <th style="padding:10px">Course Name</th>
-                                    <th style="padding:10px">Number of Coops Used</th>
-                                </tr>
-                                <tr v-for="course in courses">
-                                    <td style="padding:10px">{{ course.courseId }}</td>
-                                    <td style="padding:10px">{{ course.courseName }}</td>
-                                    <td style="padding:10px">{{coopLength(course)}}</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+                    <hr style="border: 1px solid white; width:60%; opacity:0.4;" />
+                    <br>
+                    <div id="table">
+                            <b-table ref="table" class="info-table" striped :items= "courses" :fields= "fields"/>
+                     </div>
+                     </div>
+
+                    
+                    
+
                 </div>
             </div>
         </div>

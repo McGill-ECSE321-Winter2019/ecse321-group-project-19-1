@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class Utilities {
     // Group 6
@@ -83,5 +85,19 @@ public class Utilities {
 
     public static JSONObject clearDB(String baseUrl) {
         return sendRequest("POST", ((baseUrl == null) ? DEFAULT_BASE_URL : baseUrl), "/clearDB", null);
+    }
+
+    public static String hash(String stringToHash) {
+        try {
+            MessageDigest passwordDigest = MessageDigest.getInstance("SHA-256");
+            passwordDigest.update(stringToHash.getBytes());
+            return new String(passwordDigest.digest());
+        } catch (NoSuchAlgorithmException e) {
+            System.err.println("SHA-256 not found!");
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }
