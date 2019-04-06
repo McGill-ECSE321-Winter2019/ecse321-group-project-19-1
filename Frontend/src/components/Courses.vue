@@ -48,6 +48,13 @@
                             <b-table ref="table" class="info-table" striped :items="courses" :fields="fields" />
                         </div>
                     </div>
+                    <hr style="border: 1px solid white; width:60%; opacity:0.4;" />
+                    <br>
+                    <div id="table" style="tex-align:center;">
+                            <b-table style="width:80%; text-align:center; margin-left:10%;" ref="table" class="info-table" striped :items= "courses" :fields= "fields"/>
+                     </div>
+                     </div>
+
                 </div>
             </div>
         </div>

@@ -15,11 +15,23 @@ public class EmployerService {
     @Autowired
     EmployerRepository employerRepository;
 
+    /**
+	 * Create a new Employer in the system
+	 *
+	 * @return an Employer representing the newly added Employer
+	 */
     public Employer createEmployer() {
         Employer employer = new Employer();
         employerRepository.save(employer);
         return employer;
     }
+
+    /**
+     * get a employer by id
+     * 
+     * @param id of the employer
+     * @return the employer with the id
+     */
 
     @Transactional
     public Employer getById(int id) {
@@ -27,11 +39,22 @@ public class EmployerService {
         return employer;
     }
 
+    /**
+     * get all employers in the system
+     *
+     * @return A list of all employers in the system
+     */
     @Transactional
     public List<Employer> getAllEmployers() {
         return (List<Employer>) employerRepository.findAll();
     }
     
+    /**
+	 * deleting an employer by id
+	 * 
+	 * @param employerId of the employer to remove
+	 * @return true = success; false = fail
+	 */
     @Transactional
     public boolean deleteEmployer(int employerId) {
     	Employer e = employerRepository.findById(employerId);

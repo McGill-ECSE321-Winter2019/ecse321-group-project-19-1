@@ -7,7 +7,6 @@
                     <h3 class="page-title" align="center"> 
                         ID: <span style="color:red">{{student.studentId}} </span>
                         , CoopID:<span style="color:red"> {{student.coopPositions[0].coopID}}</span>
-                        , Problematic Status: <span style="color:red">{{student.problematic}}</span>
                         </h3>
                     <h2 class="page-title" align="center">Current Coop Status: {{student.coopPositions[0].status}}</h2>
                     

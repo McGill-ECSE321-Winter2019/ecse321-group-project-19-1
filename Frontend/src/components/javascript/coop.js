@@ -41,6 +41,18 @@ export default {
         // JSON responses are automatically parsed.
         this.coops = response.data;
       })
+      .then(() => {
+        for (var i = 0; i < this.coops.length; i++) {
+          var coop = this.coops[i];
+          if (coop.termInstructor.length > 0) {
+            coop.termInstructorEmail= coop.termInstructor[0].email;
+            console.log(coop.termInstructorEmail)
+          } else coop.termInstructorEmail = null;
+          
+          
+        }   
+        this.$refs.table.refresh(); 
+      })
   },
 
   updated() {

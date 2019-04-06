@@ -13,16 +13,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 @Service
 public class RequiredDocumentService {
 
     private enum RequiredDocumentType {
-        REPORT,
-        EMPLOYER_CONTRACT,
-        FORM
+        REPORT, EMPLOYER_CONTRACT, FORM
     }
-
 
     @Autowired
     CoopPositionRepository coopPositionRepository;
@@ -30,6 +26,15 @@ public class RequiredDocumentService {
     @Autowired
     RequiredDocumentRepository requiredDocumentRepository;
 
+    /**
+     * Create a new report in the system
+     *
+     * @param name    the name of the report
+     * @param dueDate the date for which the report have to submitted before
+     * @param cp      the coop position associated with this report
+     * @param type    the type of the report
+     * @return a Report representing the newly added Report
+     */
     @Transactional
     public Report createReport(String name, Date dueDate, CoopPosition cp, ReportType type) {
         Report report = (Report) createRequiredDocument(name, dueDate, cp, RequiredDocumentType.REPORT);
@@ -37,6 +42,17 @@ public class RequiredDocumentService {
         return report;
     }
 
+    /**
+     * Create a new employer contract in the system
+     *
+     * @param name    the name of the employer contract
+     * @param dueDate the date for which the employer contract have to submitted
+     *                before
+     * @param cpId    the Id of the coop position associated with this employer
+     *                contract
+     * @return a Employer contract representing the newly added employer contract
+     * @throws IllegalArgumentException
+     */
     @Transactional
     public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp, Employer em) {
         if (!Utilities.checkNotEmpty(name))
@@ -58,6 +74,16 @@ public class RequiredDocumentService {
         throw new IllegalArgumentException("[Internal error] Failed to create a new document.");
     }
 
+    /**
+     * Set the grade (accepted or not accepted) of a required document
+     *
+     * @param accepted indicating if the document is accepted or not by the
+     *                 instructor
+     * @param docId    the id of the graded document
+     * @return the graded document, or null if the document is not found
+     * @throws NullPointerException
+     */
+
     @Transactional
     public RequiredDocument gradeDocument(int docId, boolean accepted) {
         RequiredDocument rdoc = requiredDocumentRepository.findById(docId);
@@ -70,16 +96,42 @@ public class RequiredDocumentService {
         return rdoc;
     }
 
+    /**
+     * Create a new employerContract in the system
+     *
+     * @param name    the name of the employer contract
+     * @param dueDate the date for which the employer contract have to submitted
+     *                before
+     * @param cpId    the Id of the coop position associated with this employer
+     *                contract
+     * @return a employer contract representing the newly added employer contract
+     */
+
     @Transactional
     public EmployerContract createEmployerContract(String name, Date dueDate, CoopPosition cp) {
         return (EmployerContract) createRequiredDocument(name, dueDate, cp, RequiredDocumentType.EMPLOYER_CONTRACT);
     }
 
+    /**
+     * Create a new Form in the system
+     *
+     * @param name    the name of the Form
+     * @param dueDate the date for which the Form have to submitted before
+     * @param cp      the coop position associated with this Form
+     * @return a Form representing the newly added Form
+     */
     @Transactional
     public Form createForm(String name, Date dueDate, CoopPosition cp) {
         return (Form) createRequiredDocument(name, dueDate, cp, RequiredDocumentType.FORM);
     }
 
+    /**
+     * Get all the required documents associated to a coop position.
+     *
+     * @param cp the coop position we are targeting
+     * @return a list of RequiredDocument representing the requested required
+     *         documents.
+     */
     @Transactional
     public List<RequiredDocument> getRequiredDocumentByCoopPosition(CoopPosition cp) {
         List<RequiredDocument> requiredDocumentByStudentAndCoopPosition = new ArrayList<>();
@@ -89,6 +141,13 @@ public class RequiredDocumentService {
         return requiredDocumentByStudentAndCoopPosition;
     }
 
+    /**
+     * Get all the required documents associated a due date.
+     *
+     * @param dueDate the due date we are targeting
+     * @return a list of RequiredDocument representing the requested required
+     *         documents.
+     */
     @Transactional
     public List<RequiredDocument> getRequiredDocumentByDueDate(Date dueDate) {
         List<RequiredDocument> requiredDocumentByDueDate = new ArrayList<>();
@@ -98,12 +157,24 @@ public class RequiredDocumentService {
         return requiredDocumentByDueDate;
     }
 
+    /**
+     * Get the required document associated with an id
+     * 
+     * @param id the id of the document
+     * @return the document specific to an id
+     */
     @Transactional
     public RequiredDocument getRequiredDocumentById(int id) {
         RequiredDocument rdoc = requiredDocumentRepository.findById(id);
         return rdoc;
     }
 
+    /**
+     * Set the grade (accepted or not accepted) of a required document
+     *
+     * @param answer indicating if the document is accepted or not by the instructor
+     * @param id     the id of the graded document
+     */
     @Transactional
     public void setAccepted(int id, Boolean answer) {
         RequiredDocument rd = requiredDocumentRepository.findById(id);
@@ -111,12 +182,23 @@ public class RequiredDocumentService {
 
     }
 
-
+    /**
+     * Get all the required document in the system
+     * 
+     * @return A list of all required document in the system
+     */
     @Transactional
     public List<RequiredDocument> getAllRequiredDocuments() {
         return (List<RequiredDocument>) requiredDocumentRepository.findAll();
     }
 
+    /**
+     * Set the evaluation of a employer contract
+     * 
+     * @param ec         the employer contract
+     * @param e          the empoyer
+     * @param evaluation the evaluation of the employer contract
+     */
     @Transactional
     public EmployerContract setEvaluation(EmployerContract ec, Employer e, String evaluation) {
         if (ec.getEmployer() == null || !ec.getEmployer().equals(e))
@@ -126,9 +208,22 @@ public class RequiredDocumentService {
         return ec;
     }
 
-    // =============================== Private methods ===============================
-
-    private RequiredDocument createRequiredDocument(String name, Date dueDate, CoopPosition cp, RequiredDocumentType type) {
+    // =============================== Private methods
+    // ===============================
+    /**
+     * Create a required document in the system
+     *
+     * @param name    the name of the Required document
+     * @param dueDate the date for which the Required document have to submitted
+     *                before
+     * @param cpId    the Id of the coop position associated with this Required
+     *                document
+     * @param type    the type of the Required document
+     * @return a Required document representing the newly added Required document
+     * @throws IllegalArgumentException
+     */
+    private RequiredDocument createRequiredDocument(String name, Date dueDate, CoopPosition cp,
+            RequiredDocumentType type) {
         if (!Utilities.checkNotEmpty(name))
             throw new IllegalArgumentException("Cannot add a document with empty name.");
 
@@ -153,6 +248,13 @@ public class RequiredDocumentService {
         throw new IllegalArgumentException("[Internal error] Failed to create a new document.");
     }
 
+    /**
+     * deleting a required document by id
+     * 
+     * @param docId document id
+     * @return true = success
+     * @throws NullPointerException
+     */
     @Transactional
     public boolean deleteRequiredDocument(int docId) {
         RequiredDocument rd = requiredDocumentRepository.findById(docId);
