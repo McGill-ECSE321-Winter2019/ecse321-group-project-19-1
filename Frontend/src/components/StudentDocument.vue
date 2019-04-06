@@ -11,7 +11,7 @@
                         />
                 </h2>
                 
-                        <div id="table">
+                        <div id="table" style="height= 1500px">
                             <b-table ref="table" class="info-table" selectable select-mode="multi"  striped hover :items= "docs" :fields= "fields" @row-selected="studentSelection"/>
                         </div>
             </div>
