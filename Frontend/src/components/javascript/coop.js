@@ -94,7 +94,7 @@ export default {
     assignCoop: function (instructor, coopId) {
       console.log(`/assignCoop` + "?email=" + instructor + "&coopId=" + coopId)
       if(instructor == null || instructor == ''){
-        this.errorCoop = 'Please enter instructor ID';
+        this.errorCoop = 'Please enter a valid instructor email';
         return;
       }
       if(coopId == null || coopId == ''){
@@ -123,7 +123,7 @@ export default {
         this.errorCoop_filter = 'Please enter coop ID';
         return;
       }
-      AXIOS.post(`/Coop/` + coopId, {}, {})
+      AXIOS.post(`/Coops/` + coopId, {}, {})
         .then(response => {
           this.instructor = ''
           this.coopId_filter = ''

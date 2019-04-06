@@ -139,7 +139,7 @@ public class CoopPostionController {
 	 * @return a CoopPositionDto in the
 	 *         system.
 	 */
-	@GetMapping(value = { "/Coop/{CoopId}", "/Coops/{CoopId}" })
+	@GetMapping(value = { "/Coops/{CoopId}", "/Coops/{CoopId}/" })
 	public CoopPositionDto getCoopById(@PathVariable(value="CoopId")Integer id) {
 		try{
 			CoopPositionDto coopDto = DtoConverters.convertToDto(coopPositionService.getById(id));	
@@ -156,7 +156,7 @@ public class CoopPostionController {
 	 * @return a list of CoopPositionDto representing all coop positions in the
 	 *         system.
 	 */
-	@GetMapping(value = { "/allCoops/{term}", "/allCoops/{term}" })
+	@GetMapping(value = { "/allCoops/{term}", "/allCoops/{term}/" })
 	public List<CoopPositionDto> getAllTermCoops(@PathVariable(value="term")String term) {
 		try{
 			List<CoopPositionDto> coopDtos = new ArrayList<>();
