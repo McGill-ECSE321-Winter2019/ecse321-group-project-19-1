@@ -47,6 +47,9 @@ public class CooperatorApplicationTests {
 	private static final String SYSTEM_KEY = "test";
 	private static final String NONEXISTING_KEY = "nothing";
 
+	/**
+	 * Set up the courseDao course repository mock output
+	 */
 	@Before
 	public void setMockOutput() {
 		when(courseDao.findCourseByCourseName(anyString())).thenAnswer((InvocationOnMock invocation) -> {
@@ -60,16 +63,25 @@ public class CooperatorApplicationTests {
 		});
 	}
 
+	/**
+	 * Setup the mock course
+	 */
 	@Before
 	public void setupMock() {
 		course = mock(Course.class);
 	}
 
+	/**
+	 * Test a Course Creation
+	 */
 	@Test
 	public void testMockCourseCreation() {
 		assertNotNull(course);
 	}
 
+	/**
+	 * Test a course query not found
+	 */
 	@Test
 	public void testMockCourseQueryFound() {
 		assertNotNull(coursesServicce.getCourseByCourseName(SYSTEM_KEY));
