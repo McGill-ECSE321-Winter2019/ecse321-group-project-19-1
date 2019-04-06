@@ -76,7 +76,6 @@ export default {
 
   methods:{
       adj(){
-        console.log('/setCoopStatus/' + '?status=' + 'ACCEPTED'+ '&coopId='+ this.coopId +'&programManagerEmail='+ this.username + '&programManagerPassword=' + this.password)
         AXIOS.post('/setCoopStatus/' + '?status=' + 'ACCEPTED'+ '&coopId='+ this.coopId +'&programManagerEmail='+ this.username + '&programManagerPassword=' + this.password)
         .then(() =>{
           AXIOS.get(`/student/` + '?studentId=' + id)
