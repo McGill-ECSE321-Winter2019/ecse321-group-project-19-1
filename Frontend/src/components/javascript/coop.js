@@ -15,13 +15,20 @@ export default {
       coops: [],
       instructor: '',
       coopId: '',
+      term: '',
+      coopId_filter: '',
       errorCoop: '',
+      errorCoop_filter: '',
       fields: {
         coopID: {
           label: "Coop ID",
           sortable: true
         },
-        termInstructorEmail: {
+        term: {
+          label: "Term",
+          sortable: true
+        },
+        termInstructor: {
           label: "Instructors",
           sortable: true
         },
@@ -98,6 +105,14 @@ export default {
   methods: {
     assignCoop: function (instructor, coopId) {
       console.log(`/assignCoop` + "?email=" + instructor + "&coopId=" + coopId)
+      if(instructor == null || instructor == ''){
+        this.errorCoop = 'Please enter a valid instructor email';
+        return;
+      }
+      if(coopId == null || coopId == ''){
+        this.errorCoop = 'Please enter coop ID';
+        return;
+      }
       AXIOS.post(`/assignCoop` + "?email=" + instructor + "&coopId=" + coopId, {}, {})
         .then(response => {
           // JSON responses are automatically parsed.
@@ -106,15 +121,51 @@ export default {
           this.errorCoop = ''
           AXIOS.get(`/allCoops`)
             .then(response => {
-              // JSON responses are automatically parsed.
               this.coops = response.data;
             })
         })
-
         .catch(e => {
-          var errorMsg = e.message
+          var errorMsg = "Coop ID or Instructor ID not found"
           console.log(errorMsg)
           this.errorCoop = errorMsg
+        });
+    },
+    FilterCoop: function (coopId) {
+      if(coopId == null || coopId == ''){
+        this.errorCoop_filter = 'Please enter coop ID';
+        return;
+      }
+      AXIOS.post(`/Coops/` + coopId, {}, {})
+        .then(response => {
+          this.instructor = ''
+          this.coopId_filter = ''
+          this.errorCoop_filter = ''
+          this.coops = response.data;
+        })
+
+        .catch(e => {
+          var errorMsg = "No coops found for this ID"
+          console.log(errorMsg)
+          this.errorCoop_filter = errorMsg
+        });
+    },
+    ActiveCoop: function (term) {
+      if(term == null || term == ''){
+        this.errorCoop_filter = 'Please enter a term';
+        return;
+      }
+      AXIOS.post(`/allCoops/` + term, {}, {})
+        .then(response => {
+          // JSON responses are automatically parsed.
+          this.instructor = ''
+          this.coopId_filter = ''
+          this.errorCoop_filter = ''
+          this.coops = response.data;
+        })
+        .catch(e => {
+          var errorMsg = "No Coop Found"
+          console.log(errorMsg)
+          this.errorCoop_filter = errorMsg
         });
     },
   }

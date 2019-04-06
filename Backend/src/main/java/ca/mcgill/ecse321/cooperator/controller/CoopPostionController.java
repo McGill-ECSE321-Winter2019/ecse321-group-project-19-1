@@ -115,7 +115,7 @@ public class CoopPostionController {
 	}
 	
 	/**
-	 * Get all coop positions in the system.
+	 * Get all active coop positions in the system.
 	 *
 	 * @return a list of CoopPositionDto representing all coop positions in the
 	 *         system.
@@ -131,6 +131,43 @@ public class CoopPostionController {
 			}
 		}
 		return coopDtos;
+	}
+	
+	/**
+	 * Get a coop positions by id in the system.
+	 *
+	 * @return a CoopPositionDto in the
+	 *         system.
+	 */
+	@GetMapping(value = { "/Coops/{CoopId}", "/Coops/{CoopId}/" })
+	public CoopPositionDto getCoopById(@PathVariable(value="CoopId")Integer id) {
+		try{
+			CoopPositionDto coopDto = DtoConverters.convertToDto(coopPositionService.getById(id));	
+			return coopDto;
+		}
+		catch(Exception e) {
+			throw new IllegalArgumentException("Could not find coop");
+		}		
+	}
+	
+	/**
+	 * Get all coop positions by term in the system.
+	 *
+	 * @return a list of CoopPositionDto representing all coop positions in the
+	 *         system.
+	 */
+	@GetMapping(value = { "/allCoops/{term}", "/allCoops/{term}/" })
+	public List<CoopPositionDto> getAllTermCoops(@PathVariable(value="term")String term) {
+		try{
+			List<CoopPositionDto> coopDtos = new ArrayList<>();
+			for (CoopPosition cp : coopPositionService.getCoopPositionsByTerm(term)) {
+				coopDtos.add(DtoConverters.convertToDto(cp));
+			}
+			return coopDtos;
+		}
+		catch(Exception e) {
+			throw new IllegalArgumentException("Could not find coop");
+		}		
 	}
 	
 	/**
