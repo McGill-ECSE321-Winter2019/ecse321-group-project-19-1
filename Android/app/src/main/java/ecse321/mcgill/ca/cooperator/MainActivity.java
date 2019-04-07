@@ -79,35 +79,40 @@ public class MainActivity extends AppCompatActivity {
         error = "";
         final TextView email = (TextView) findViewById(R.id.login_email);
         final TextView password = (TextView) findViewById(R.id.login_password);
+        error = "Calling on "+email.getText().toString() + " with "+ password.getText() + "\n";
+
+        //====== This post request is different from the others because it is catching a String not a JSON . DO NOT USE IT AS A TEMPLATE ======
+
         HttpUtils.post("login/" + email.getText().toString() + "/" + password.getText() + "/", new RequestParams(), new JsonHttpResponseHandler() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+            public void onSuccess(int statusCode, Header[] headers, String response) {
+                error += "Success";
                 refreshErrorMessage();
-                new AlertDialog.Builder(getApplicationContext())
-                        .setTitle("Good shit")
-                        .setMessage("Login worked")
 
-                        // Specifying a listener allows you to take an action before dismissing the dialog.
-                        // The dialog is automatically dismissed when a dialog button is clicked.
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Continue with delete operation
-                            }
-                        })
-
-                        // A null listener allows the button to dismiss the dialog and take no further action.
-                        .setNegativeButton(android.R.string.no, null)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += statusCode+" " + throwable.getMessage();
+                } catch (Exception e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {0
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
+            public void onFailure(int statusCode, Header[] headers, String anError, Throwable throwable){
+                if(statusCode == 200){ //this handles the success
+                    if(anError.equals("TermInstructor"))
+                        error = "You are logged in as TermInstructor";
+                    else if(anError.equals("ProgramManager"))
+                        error = "You are logged in as ProgramManager";
+                    else
+                        error = "Wrong User or Password";
+                }else{
+                    error += "Error code: " +statusCode+ " "+ anError + " " +throwable.getMessage();
                 }
+
                 refreshErrorMessage();
             }
         });
