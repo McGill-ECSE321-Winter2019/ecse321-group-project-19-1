@@ -4,9 +4,10 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-10">
-                    <span class="d-block mb-3 caption" data-aos="fade-up" data-aos-delay="100">ECSE 321</span>
-                    <h1 class="d-block mb-4" data-aos="fade-up" data-aos-delay="200">Coop-erator {{loginType}}</h1>
-                    <span class="d-block mb-5 caption" data-aos="fade-up" data-aos-delay="300">Group 19</span>                    
+                    <h1 class="d-block mb-4" data-aos="fade-up" data-aos-delay="200"> <img src="../assets/nameLogo.svg" style="width:400px"> {{loginType}}</h1>
+                    <br>
+                    <br>
+                    <span class="d-block mb-5 caption" data-aos="fade-up" data-aos-delay="300">ECSE 321 Group 19</span>                    
                     <span class="d-block mb-5 caption" data-aos="fade-up" data-aos-delay="300">BRODEUR Max</span>
                     <span class="d-block mb-5 caption" data-aos="fade-up" data-aos-delay="300">DENG Sophie</span>
                     <span class="d-block mb-5 caption" data-aos="fade-up" data-aos-delay="300">ELKHOURY Carl</span>

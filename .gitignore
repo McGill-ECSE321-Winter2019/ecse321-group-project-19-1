@@ -17,3 +17,4 @@ bin/
 
 .project
 *.log
+node_modules/

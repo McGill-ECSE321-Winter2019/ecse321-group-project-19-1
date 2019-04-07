@@ -17,13 +17,13 @@
                 <div class="row align-items-center">
                     <div class="col-11 col-xl-2">
                         <h1 class="mb-0">
-                            <router-link :to="{name: 'Home'}" class="text-white h2 mb-0">Co<span class="text-primary">operator</span> </router-link>
+                            <img v-if="loggedIn" src="./assets/nameLogo.svg" style="width:200px">
                         </h1>
                     </div>
                     <div class="col-12 col-md-10">
                         <nav class="site-navigation position-relative text-right" role="navigation">
                             <ul class="site-menu js-clone-nav mx-auto">
-                                <li>
+                                <li >
                                     <router-link :to="{name: 'Home'}">Home</router-link>
                                 </li>
                                 <li v-if="isPM">
