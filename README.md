@@ -51,7 +51,7 @@ The report can be found [here](https://github.com/McGill-ECSE321-Winter2019/ecse
 * Every Member is responsible for the project management, generate issues wherever applicable
 
 ## Deliverable 4: Due April 7th, 2019
-
+The report can be found [here](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-19-1/wiki/Deliverable-4-Report)
 |Team member's name |Total hours |Responsibility         |
 |-------------------|------------|-----------------------|
 |Sophie Deng        |     10       |         Frontend             |
