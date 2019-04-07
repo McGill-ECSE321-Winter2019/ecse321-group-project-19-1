@@ -52,3 +52,11 @@ The report can be found [here](https://github.com/McGill-ECSE321-Winter2019/ecse
 
 ## Deliverable 4: Due April 7th, 2019
 
+|Team member's name |Total hours |Responsibility         |
+|-------------------|------------|-----------------------|
+|Sophie Deng        |     10       |         Frontend             |
+|Andre Kaba         |     10       |         Build system, deployment and frontend fixes              |
+|Mia Zhou           |     10       |         Documentation            |
+|Max Brodeur        |     10      |         Frontend fixes            |
+|Carl Elkhoury      |     10       |          JavaDoc and android login             |
+* Every Member is responsible for the project management, generate issues wherever applicable
