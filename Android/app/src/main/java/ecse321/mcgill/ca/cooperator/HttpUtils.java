@@ -5,8 +5,8 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 public class HttpUtils {
-    //public static final String DEFAULT_BASE_URL = "http://cooperator-backend-260.herokuapp.com/";
-    public static final String DEFAULT_BASE_URL = "http://localhost:8080/";
+    public static final String DEFAULT_BASE_URL = "http://cooperator-backend-260.herokuapp.com/";
+//    public static final String DEFAULT_BASE_URL = "http://localhost:8080/";
 
     private static String baseUrl;
     private static AsyncHttpClient client = new AsyncHttpClient();
