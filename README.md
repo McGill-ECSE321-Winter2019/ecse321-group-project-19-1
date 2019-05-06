@@ -1,5 +1,7 @@
 # ECSE321 Project Group 19 [![Build Status](https://travis-ci.com/McGill-ECSE321-Winter2019/ecse321-group-project-19-1.svg?token=E9CzzJJTQAzyqtGXvYx8&branch=master)](https://travis-ci.com/McGill-ECSE321-Winter2019/ecse321-group-project-19-1)
 
+We would like to make this project public!
+
 ## Academic Program Manager view point - Unit 3
 
 Welcome to ECSE 321 - Winter 2019 project - Group 19 edition.
